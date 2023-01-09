@@ -1,0 +1,13 @@
+.image-gallery-slide-wrapper {
+  background-color: #2b3b42;
+}
+.image-gallery-thumbnail {
+  width: auto;
+}
+.image-gallery-thumbnail .image-gallery-thumbnail-image {
+  max-height: 69px;
+  width: auto;
+}
+.image-gallery-content:not(.fullscreen) .image-gallery-slide .image-gallery-image {
+  max-height: 550px;
+}

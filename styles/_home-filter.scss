@@ -1,0 +1,14 @@
+.home-filter {
+  margin-bottom: 30px;
+  label {
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .btn--home-filter {
+    margin-top: 28px;
+    width: 100%;
+  }
+  @include media-breakpoint-up(sm) {
+    margin-bottom: 246px;
+  }
+}

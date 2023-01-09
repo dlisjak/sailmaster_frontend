@@ -1,0 +1,145 @@
+.offer-navigation {
+  background: #2b3b42;
+  display: table;
+  width: 100%;
+  margin-bottom: 25px;
+  padding: 10px 15px 10px 5px;
+
+  .offer-nav-item {
+    display: table-cell;
+    width: 33.33%;
+    vertical-align: middle;
+
+    .choose-view {
+      span {
+        color: white;
+        font-size: 13px;
+        font-weight: 400;
+        font-family: 'Open Sans', sans-serif;
+        text-transform: uppercase;
+      }
+    }
+
+    .gallery-wrapper {
+      cursor: pointer;
+      margin-left: 7px;
+      display: flex;
+      align-items: center;
+      float: left;
+
+      .gallery-icon {
+        height: 20px;
+        width: 25px;
+
+        .cls-1 {
+          stroke-width: 1px;
+          stroke: white;
+          fill: white;
+        }
+      }
+
+      span {
+        margin-left: 10px;
+        color: white;
+        font-size: 13px;
+        font-weight: 400;
+        font-family: 'Open Sans', sans-serif;
+        text-transform: uppercase;
+      }
+    }
+
+    .list-wrapper {
+      cursor: pointer;
+      margin-left: 20px;
+      display: flex;
+      align-items: center;
+      float: left;
+
+      .list-icon {
+        height: 20px;
+        width: 22px;
+
+        .cls-1 {
+          stroke-width: 1px;
+          stroke: white;
+          fill: white;
+        }
+      }
+
+      span {
+        margin-left: 10px;
+        color: white;
+        font-size: 13px;
+        font-weight: 400;
+        font-family: 'Open Sans', sans-serif;
+        text-transform: uppercase;
+      }
+    }
+
+    &.offer-buttons {
+      text-align: right;
+
+      button {
+        height: 45px;
+        border: 1px solid white;
+        color: white;
+        font-size: 13px;
+        font-weight: 400;
+        font-family: 'Open Sans', sans-serif;
+        text-transform: uppercase;
+        box-shadow: none !important;
+        outline: 0 !important;
+        border-radius: 0;
+        cursor: pointer;
+        background: transparent;
+        padding: 0 10px;
+        transition: all 0.2s;
+
+        &:first-child {
+          border-right: 0;
+        }
+
+        &:last-child {
+          border-left: 0;
+        }
+      }
+
+      .active {
+        border: 1px solid #ceb896;
+        background: #ceb896;
+      }
+    }
+
+    .triangle {
+      content: '';
+      position: absolute;
+      right: 13px;
+      top: 20px;
+      width: 0;
+      height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 5px solid white;
+      cursor: pointer;
+      z-index: 20;
+    }
+  }
+
+  .yacht-cabins {
+    input {
+      width: 100%;
+      border-radius: 0;
+      height: 45px;
+      outline: 0 !important;
+      border: 1px solid white !important;
+      box-shadow: none !important;
+      text-transform: uppercase;
+      font-family: 'Open Sans', sans-serif;
+      color: white;
+      font-size: 13px;
+      font-weight: 400;
+      background: transparent !important;
+      cursor: pointer;
+    }
+  }
+}

@@ -1,0 +1,235 @@
+.footer {
+  background: #253238;
+  color: white;
+  padding: 35px 0 0;
+  font-family: 'Open Sans', sans-serif;
+  float: left;
+  width: 100%;
+
+  .footer-bottom {
+    background: #2b3a42;
+    color: #fff;
+    line-height: 1.5;
+    color: white;
+    font-size: 15px;
+    margin: 0;
+
+    .footer-bottom-text {
+      padding: 20px 15px;
+    }
+  }
+
+  h6 {
+    font-size: 17px;
+    padding: 0 0 25px;
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    font-weight: bold;
+  }
+
+  .container {
+    position: relative;
+  }
+
+  .footer-border {
+    border-bottom: 1px solid #525252;
+  }
+
+  .footer-middle {
+    margin-top: 35px;
+  }
+
+  .nausys-logo {
+    margin-top: -19px;
+    margin-left: 61px;
+    width: 129px;
+    height: 58px;
+  }
+
+  .p-logos {
+    displayt: flex;
+    align-items:center a {
+      float: left;
+      width: 35%;
+
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  }
+
+  .sailmaster-si-le {
+    height: 58px;
+
+    .cls-2,
+    .cls-6 {
+      fill: white;
+    }
+
+    .cls-5 {
+      fill: #c5aa82;
+      stroke: #c5aa82;
+    }
+  }
+
+  .sailmaster-it-le {
+    height: 58px;
+    .cls-1,
+    .cls-6 {
+      fill: white;
+    }
+
+    .cls-5 {
+      fill: #c5aa82;
+      stroke: #c5aa82;
+    }
+  }
+
+  .sailmaster-si-le,
+  .sailmaster-it-le {
+    margin-right: 40px;
+    margin-top: 2px;
+  }
+
+  .social {
+    a {
+      float: left;
+      margin-right: 10px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      circle,
+      .social-svg-mask {
+        fill: #515e64 !important;
+      }
+
+      .social-svg-icon {
+        fill: white !important;
+      }
+
+      .social-svg {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+      }
+    }
+  }
+
+  .footer-upper-col {
+    padding-bottom: 20px;
+
+    p {
+      line-height: 1.5;
+      padding: 0 0 20px;
+      color: white;
+      font-size: 15px;
+      margin: 0;
+    }
+
+    .check {
+      list-style-type: none;
+      padding-left: 15px;
+
+      li {
+        padding: 0 0 4px 10px;
+        position: relative;
+
+        &:before {
+          content: '';
+
+          background-color: transparent;
+
+          /* position the checkbox */
+          position: absolute;
+          left: -12px;
+          top: 3px;
+
+          /* setting the checkbox */
+          /* short arm */
+          width: 7px;
+          border-bottom: 3px solid #ceb896;
+          /* long arm */
+          height: 13px;
+          border-right: 3px solid #ceb896;
+
+          /* rotate the mirrored L to make it a checkbox */
+          transform: rotate(45deg);
+          -o-transform: rotate(45deg);
+          -ms-transform: rotate(45deg);
+          -webkit-transform: rotate(45deg);
+        }
+
+        a {
+          line-height: 1.5;
+          padding: 0 0 20px;
+          color: white;
+          font-size: 15px;
+          transition: color 0.5s;
+          text-decoration: none;
+
+          &:hover {
+            text-decoration: none;
+            color: #ceb896;
+          }
+        }
+      }
+    }
+
+    .squares {
+      list-style-type: none;
+      padding-left: 10px;
+
+      li {
+        padding: 0 0 4px 10px;
+        position: relative;
+
+        &:before {
+          content: '';
+
+          background-color: #ceb896;
+          position: absolute;
+          left: -8px;
+          top: 11px;
+          width: 4px;
+          height: 4px;
+        }
+
+        &.break {
+          margin-top: 26px;
+        }
+
+        a {
+          line-height: 1.5;
+          padding: 0 0 20px;
+          color: white;
+          font-size: 15px;
+          transition: color 0.5s;
+          text-decoration: none;
+
+          &:hover {
+            text-decoration: none;
+            color: #ceb896;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 767px) {
+    .p-logos {
+      display: block;
+
+      a {
+        display: block;
+        float: left;
+        width: 100%;
+
+        &:last-child {
+          margin: 10px 0 0 0;
+        }
+      }
+    }
+  }
+}

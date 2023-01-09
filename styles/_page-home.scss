@@ -1,0 +1,24 @@
+.page-home {
+}
+
+.page-home__title {
+  display: flex;
+  @extend .mb-4;
+  h2 {
+    color: #2b3b42;
+    font-size: 38px;
+    font-family: 'Open Sans', sans-serif;
+    position: relative;
+    float: left;
+
+    &:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -13px;
+      height: 2px;
+      background: #ceb896;
+    }
+  }
+}

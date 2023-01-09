@@ -1,0 +1,19 @@
+.destinations2 {
+}
+.col--destinations2 {
+  margin-bottom: 1rem;
+}
+
+.destination2 {
+  height: 200px;
+  background: $grey-color center center;
+  background-size: cover;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.destinations2__link {
+  @extend .stretched-link;
+  margin: auto auto;
+  background-color: rgba($primary, 0.8);
+}

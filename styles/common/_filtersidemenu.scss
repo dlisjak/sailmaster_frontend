@@ -1,0 +1,303 @@
+.filter-side-menu-wrapper {
+  $filter-margin-bottom: 20px;
+
+  position: -webkit-sticky; // required for Safari
+  position: sticky;
+  top: 110px; // required as well.
+  margin-top: -95px;
+  -webkit-box-shadow: 0px 0px 31px 1px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 0px 0px 31px 1px rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 0px 31px 1px rgba(0, 0, 0, 0.4);
+
+  &.filter-side-menu-wrapper-relative {
+    position: initial !important;
+  }
+
+  .filter-side-menu {
+    background: #2b3b42;
+
+    .hand-lens {
+      .cls-1,
+      .cls-2 {
+        stroke: white;
+      }
+    }
+
+    .yacht-icon,
+    .calendar {
+      .cls-1,
+      .cls-2 {
+        fill: white;
+      }
+    }
+
+    .hand-lens {
+      position: absolute;
+      height: 17px;
+      left: 16px;
+      top: 39px;
+
+      .cls-1,
+      .cls-2 {
+        stroke: white;
+      }
+    }
+
+    .yacht-icon {
+      position: absolute;
+      width: 17px;
+      left: 16px;
+      top: 37px;
+      height: 20px;
+
+      .cls-1,
+      .cls-2 {
+        fill: white;
+        stroke: white;
+        stroke-width: 7px;
+      }
+    }
+
+    .berth-icon {
+      position: absolute;
+      left: 19px;
+      top: 39px;
+      height: 18px;
+      width: 11px;
+
+      .cls-1,
+      .cls-2 {
+        fill: white;
+        stroke: white;
+        stroke-width: 20px;
+      }
+    }
+
+    .dropdown-with-seatch-active {
+      top: 70px;
+    }
+
+    .rc-menu {
+      border-radius: 0;
+    }
+
+    .date-range {
+      margin-bottom: $filter-margin-bottom;
+
+      .calendar {
+        width: 17px;
+      }
+
+      .triangle {
+        z-index: 50 !important;
+      }
+
+      .calendar-1 {
+        position: absolute;
+        left: 16px;
+        top: 14px;
+        z-index: 1;
+      }
+
+      .calendar-2 {
+        position: absolute;
+        left: 16px;
+        top: 104px;
+        z-index: 1;
+      }
+
+      .DateInput__display-text--focused {
+        box-shadow: none;
+        background: $secondary-color !important;
+        height: 43px !important;
+      }
+
+      .DateRangePicker .DateRangePicker__picker {
+        top: 130px;
+      }
+
+      .DateRangePicker {
+        z-index: 40;
+
+        .DateRangePickerInput {
+          height: 100%;
+
+          .DateInput {
+            width: 100%;
+            margin-right: 0;
+            height: 45px;
+            background: transparent;
+            border: 1px solid white;
+            color: white;
+          }
+
+          .DateInput__display-text {
+            color: white;
+            height: 45px;
+          }
+
+          .DateInput:nth-child(1) {
+            margin-bottom: 45px;
+          }
+        }
+      }
+    }
+
+    .to-date-filter {
+      position: absolute;
+      top: 90px;
+    }
+
+    .date-range .triangle-first {
+      right: 28px;
+      left: initial;
+    }
+
+    .date-range .triangle-last {
+      right: 28px;
+      top: 135px;
+    }
+
+    .control-label {
+      span {
+        font-weight: 400;
+        text-transform: lowercase;
+      }
+    }
+
+    .range-line {
+      margin-bottom: $filter-margin-bottom;
+
+      .range-wrapper {
+        position: relative;
+        float: left;
+        z-index: 1;
+        width: 100%;
+
+        &:after {
+          content: '';
+          position: absolute;
+          top: 8px;
+          left: 15px;
+          right: 15px;
+          height: 2px;
+          background: white;
+          z-index: -1;
+        }
+
+        .input-range__label-container {
+          display: none;
+        }
+
+        .input-range__track--active {
+          margin-top: -2px;
+        }
+      }
+    }
+
+    form {
+      width: 100%;
+      float: left;
+      padding: 23px 15px 20px;
+      position: relative;
+
+      &:before {
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        content: '';
+        position: absolute;
+        top: 5px;
+        bottom: 5px;
+        left: 5px;
+        right: 5px;
+      }
+
+      .triangle {
+        content: '';
+        position: absolute;
+        right: 13px;
+        top: 45px;
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+
+        border-top: 5px solid white;
+        cursor: pointer;
+        z-index: 20;
+      }
+      .delete {
+        position: absolute;
+        right: 28px;
+        top: 38px;
+        color: #fff;
+        cursor: pointer;
+        z-index: 20;
+      }
+
+      .form-group {
+        width: 100%;
+
+        label {
+          text-transform: uppercase;
+          font-size: 14px;
+          font-weight: 700;
+          float: left;
+          color: white;
+        }
+
+        input,
+        select {
+          width: 100%;
+          border-radius: 0;
+          height: 45px;
+          outline: 0 !important;
+          padding-left: 50px;
+          border: 1px solid white !important;
+          box-shadow: none !important;
+          text-transform: uppercase;
+          font-family: 'Open Sans', sans-serif;
+          color: white;
+          font-size: 13px;
+          font-weight: 400;
+          padding-right: 45px;
+          background: transparent !important;
+          margin-bottom: $filter-margin-bottom;
+
+          &::placeholder {
+            color: white;
+          }
+        }
+      }
+
+      .caret-down {
+        height: 8px;
+        position: absolute;
+        right: 10px;
+        top: 48px;
+
+        cursor: pointer;
+      }
+
+      .gold-button {
+        height: 56px;
+        margin-bottom: 6px;
+        margin-top: 8px;
+        transition: background 1s;
+
+        &:hover {
+          background: #c1a881;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 990px) {
+    .date-range {
+      margin-top: 0;
+    }
+  }
+
+  @media (max-width: 768px) {
+    margin-top: 0;
+  }
+}

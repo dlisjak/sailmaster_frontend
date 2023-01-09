@@ -1,0 +1,20 @@
+.featured-equipment {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.featured-equipment__item {
+  flex: 0 0 33.33%;
+  margin: 0 auto;
+  padding: 5px 2px;
+  display: flex;
+  flex-direction: column;
+}
+.featured-equipment__name {
+  text-align: center;
+  font-size: 11px;
+}
+.featured-equipment__img {
+  height: 28px;
+  width: auto;
+}

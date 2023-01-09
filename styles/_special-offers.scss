@@ -1,0 +1,34 @@
+.home-special-offers {
+  margin: 20px 0;
+  font-size: 15px;
+  text-align: left;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  @media (min-width: 767px) {
+    flex-direction: row;
+  }
+  .home-special-offers__img {
+    flex: 0 0 auto;
+    img {
+      max-height: 200px;
+      width: auto;
+      display: block;
+      margin-right: 20px;
+      @media (max-width: 767px) {
+        margin: 0 auto;
+      }
+    }
+  }
+  .home-special-offers__content {
+    padding: 10px;
+  }
+  .home-special-offers__title {
+    font-size: 17px;
+    font-weight: 700;
+  }
+}
+
+.offer-special-offer-badge {
+  margin-top: 20px;
+}

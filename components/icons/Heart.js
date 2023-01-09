@@ -1,0 +1,23 @@
+import React from "react";
+
+const Heart = () => {
+  return (
+    <svg
+      className="heart"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 43.33 39.76"
+    >
+      <title>Heart</title>
+      <g id="Layer_2" data-name="Layer 2">
+        <g id="Layer_1-2" data-name="Layer 1">
+          <path
+            className="cls-1"
+            d="M30.51,2a10.79,10.79,0,0,0-8.85,4.61,10.81,10.81,0,1,0-17,13.31l17,17,17-17A10.81,10.81,0,0,0,30.51,2Z"
+          />
+        </g>
+      </g>
+    </svg>
+  );
+};
+
+export default Heart;

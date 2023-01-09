@@ -1,0 +1,169 @@
+.home-icon-wrapper {
+  display: flex;
+  justify-content: center;
+
+  .home-icon {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+
+    .home-icon--icon {
+      display: flex;
+      height: 85px;
+      width: 85px;
+      border: 2px solid #f1f1f1;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border 0.5s, background 0.5s;
+
+      -webkit-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.16);
+      -moz-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.16);
+      box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.16);
+
+      &:hover {
+        border: 1px solid #ceb896;
+        background: #ceb896;
+
+        .hand-lens {
+          height: 35px;
+          width: 35px;
+
+          .cls-1 {
+            stroke: white;
+          }
+          .cls-2 {
+            stroke: white;
+          }
+        }
+
+        .calendar {
+          width: 35px;
+          height: 35px;
+
+          .cls-1 {
+            transition: stroke 0.5s;
+            stroke: transparent;
+            stroke-width: 0;
+            fill: white;
+          }
+        }
+
+        .reservation-icon {
+          width: 33px;
+          height: 36px;
+
+          .cls-1 {
+            stroke: white;
+            fill: white;
+          }
+        }
+
+        .free-icon {
+          height: 46px;
+          width: 35px;
+          .cls-1 {
+            stroke: white;
+          }
+        }
+      }
+
+      .hand-lens {
+        width: 35px;
+
+        .cls-1 {
+          transition: stroke 0.5s;
+          stroke: #ceb896;
+          stroke-width: 3px;
+        }
+
+        .cls-2 {
+          transition: stroke 0.5s;
+          stroke: #ceb896;
+          stroke-width: 2px;
+        }
+      }
+
+      .free-icon {
+        width: 35px;
+
+        .cls-1 {
+          transition: stroke 0.5s;
+          stroke: #ceb896;
+          stroke-width: 2px;
+        }
+
+        .cls-2 {
+          transition: stroke 0.5s;
+          stroke: #ceb896;
+          stroke-width: 2px;
+        }
+      }
+
+      .reservation-icon {
+        width: 33px;
+
+        .cls-1 {
+          transition: stroke 0.5s, fill 0.5s;
+          stroke: #ceb896;
+          stroke-width: 1px;
+          fill: #ceb896;
+        }
+      }
+
+      .calendar {
+        width: 35px;
+
+        .cls-1 {
+          transition: fill 0.5s;
+          stroke: transparent;
+          stroke-width: 0;
+          fill: #ceb896;
+        }
+      }
+    }
+
+    .home-icon--title {
+      font-size: 17px;
+      padding: 18px 0 9px;
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 700;
+      width: 100%;
+
+      a {
+        color: #2b3b42;
+        transition: color 0.5s;
+
+        &:hover {
+          text-decoration: none;
+          color: #ceb896;
+        }
+      }
+    }
+
+    .home-icon--text {
+      color: #2b3b42;
+      font-size: 14px;
+      font-family: 'Open Sans', sans-serif;
+      width: 100%;
+
+      a {
+        color: #ceb896;
+        transition: color 0.5s;
+
+        &:hover {
+          text-decoration: none;
+          color: #2b3b42;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}

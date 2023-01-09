@@ -1,0 +1,10 @@
+@mixin border-top {
+  margin-top: $spacer / 2;
+  padding-top: $spacer / 2;
+  border-top: 1px solid $secondary;
+}
+@mixin border-bottom {
+  margin-bottom: $spacer / 2;
+  padding-bottom: $spacer / 2;
+  border-bottom: 1px solid $secondary;
+}

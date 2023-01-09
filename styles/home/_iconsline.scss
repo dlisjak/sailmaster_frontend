@@ -1,0 +1,72 @@
+.icons-line {
+  height: 110px;
+  min-height: 110px;
+  background: #2b3b42;
+  -webkit-box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.1);
+
+  displayt: flex;
+  align-items:center .verified-icon {
+    width: 50px;
+    height: 52px;
+
+    .cls-1 {
+      fill: #ceb896;
+    }
+  }
+
+  .realtime {
+    width: 50px;
+    height: 51px;
+
+    .cls-1 {
+      fill: #ceb896;
+    }
+  }
+
+  .trusted-destination {
+    width: 50px;
+    height: 49px;
+    margin-bottom: 6px;
+
+    .cls-1 {
+      fill: #ceb896;
+    }
+  }
+
+  .talk-icon {
+    width: 50px;
+    margin-top: 5px;
+    height: 40px;
+
+    .cls-1 {
+      fill: #ceb896;
+    }
+  }
+  @media (min-width: 768px) and (max-width: 990px) {
+    height: 150px;
+
+    .icon_with_text_home_1,
+    .icon_with_text_home_2 {
+      margin-top: 10px;
+    }
+
+    .icon_with_text_home_3,
+    .icon_with_text_home_4 {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    height: 310px;
+
+    .icon-with-text {
+      margin-top: 10px;
+    }
+    .icon_with_text_home_4 {
+      margin-bottom: 10px;
+    }
+  }
+}

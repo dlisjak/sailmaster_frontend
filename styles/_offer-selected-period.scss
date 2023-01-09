@@ -1,0 +1,35 @@
+.offer-selected-period {
+}
+.offer-selected-period__header {
+  background: #2b3b42;
+  color: $white;
+}
+.offer-selected-period__period {
+  padding-top: $card-spacer-y;
+  padding-bottom: $card-spacer-y;
+}
+.offer-selected-period__label {
+  color: $secondary;
+  font-size: 20px;
+}
+.offer-selected-period__date {
+  font-weight: bold;
+  font-size: 16px;
+}
+.offer-selected-period__info-name {
+  font-size: 16px;
+  font-weight: bold;
+  font-family: $headings-font-family;
+  @include border-bottom;
+}
+.offer-selected-period__info-price-period {
+  @include border-top;
+}
+.offer-selected-period__inquiry {
+  align-self: center;
+  text-align: center;
+}
+
+.offer-selected-period__main {
+  margin-top: $vertical-space / 2;
+}

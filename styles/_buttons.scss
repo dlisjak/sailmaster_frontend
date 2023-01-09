@@ -1,0 +1,79 @@
+.gold-button {
+  background: #ceb896;
+  color: white;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: 700;
+  float: left;
+  font-family: 'Open Sans', sans-serif;
+  border: 0;
+  border-radius: 0;
+  outline: 0;
+}
+
+.dark-button {
+  background: #2b3b42;
+  color: white;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: 700;
+  float: left;
+  font-family: 'Open Sans', sans-serif;
+  border: 0;
+  border-radius: 0;
+  outline: 0;
+}
+
+.gold-border-button {
+  background: white;
+  border: 1px solid #ceb896;
+  color: white;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  font-size: 11px;
+  float: left;
+  font-family: 'Open Sans', sans-serif;
+  border-radius: 0;
+  outline: 0;
+  color: #ceb896;
+  transition: color 0.5s, background 0.5s;
+
+  &:hover {
+    color: white;
+    background: #ceb896;
+  }
+}
+
+.white-empty-button {
+  background: transparent;
+  border: 1px solid white;
+  color: white;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  font-size: 11px;
+  float: left;
+  font-family: 'Open Sans', sans-serif;
+  border-radius: 0;
+  outline: 0;
+  color: white;
+  transition: color 0.5s, background 0.5s;
+
+  &:hover {
+    color: #ceb896;
+    background: white;
+  }
+}

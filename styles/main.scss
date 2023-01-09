@@ -1,0 +1,200 @@
+$navbarHeight: 78px;
+$primary-color: #2b3b42;
+$secondary-color: #ceb896;
+$grey-color: #f1f0f0;
+$vertical-space: 30px;
+$font-2: 'Open Sans', sans-serif;
+$font-1: 'Open Sans', sans-serif;
+
+$font-size-base: 0.85rem;
+$headings-font-family: 'Open Sans', sans-serif;
+$headings-font-weight: 600;
+$h1-font-size: 2rem;
+$h2-font-size: 1.5rem;
+$h3-font-size: 1.45rem;
+
+$primary: #2b3b42;
+$secondary: #ceb896;
+
+$info: #eee;
+$light: #fff;
+$border: #ddd;
+
+$link-color: $secondary;
+$border-radius: 0;
+$border-radius-lg: 0;
+$border-radius-sm: 0;
+$input-btn-line-height-lg: (48px - 20px) / 16px;
+
+$navbar-light-color: $primary;
+$navbar-light-hover-color: rgba($primary, 0.7);
+$navbar-light-active-color: #ceb896;
+$navbar-dark-toggler-border-color: $primary;
+
+$card-cap-bg: $primary;
+$card-cap-color: #fff;
+
+$carousel-control-color: $secondary;
+
+$slick-arrow-color: $secondary;
+
+// react-image-gallery
+$ig-blue: $secondary;
+
+// BASE ELEMENTS OVERRIDES
+
+h3 {
+  font-weight: 500;
+}
+
+.table th,
+.table td {
+  padding-left: 0;
+}
+// CUSTOM
+
+.vertical-space {
+  margin-bottom: 30px;
+}
+.vertical-space-half {
+  margin-bottom: $vertical-space/2;
+}
+
+$navHeight: 78px;
+
+@import '_custom-mixins';
+
+@import '~bootstrap/scss/bootstrap.scss';
+@import '~react-image-gallery/styles/scss/image-gallery.scss';
+@import '~slick-carousel/slick/slick.scss';
+@import '~slick-carousel/slick/slick-theme.scss';
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700|Playfair+Display:200,700&amp;subset=latin-ext');
+
+@import 'mixins';
+@import 'mixins2';
+
+@import 'base';
+
+@import 'icons';
+
+@import 'buttons';
+
+@import 'input-range/input-range';
+
+//@import "form-fields/checkbox";
+//@import "form-fields/selectinput";
+//@import "form-fields/textinput";
+
+@import 'home/homeblogitem';
+
+//@import "common/enquiry";
+//@import "common/navigation";
+//@import "common/stickynavigation";
+//@import "common/dropdownwithsearch";
+//@import "common/daterange";
+@import 'common/iconwithtext';
+@import 'common/filtersidemenu';
+@import 'common/filtersidewrapper';
+@import 'common/footer';
+@import 'common/CookieLaw';
+@import 'common/PromoModal';
+
+@import 'google-map/googlemap';
+
+@import 'destinations/destinations';
+
+@import 'home/header';
+@import 'home-filter';
+//@import "home/homesearchbar";
+@import 'home/iconsline';
+@import 'home/homeoffers';
+@import 'home/homeblogitem';
+@import 'home/homenewsletter';
+@import 'special-offers';
+
+//@import "offers/offers";
+//@import "offer-navigation";
+//@import "offers/offersheader";
+
+@import 'offer/offer';
+@import 'offer/offerheader';
+
+@import 'not-found/notfound';
+
+@import 'contact/contact';
+@import 'contact-data';
+
+@import 'properties';
+@import 'prices';
+@import 'section';
+@import 'accordion';
+@import 'page-inner';
+@import 'page-home';
+
+@import 'blog/blog';
+@import 'blog-single/blogsingle';
+@import 'wishlist/wishlist';
+@import 'offerlabels';
+@import 'react-select';
+@import 'offer-filter';
+@import 'offer-teaser';
+@import 'featured-equipment';
+@import 'destinations2';
+@import 'equipment';
+@import 'service-price';
+@import 'season-items';
+@import 'attributes';
+@import 'offer-selected-period';
+@import 'similar-offers-carousel';
+@import 'offer-detail';
+@import 'map';
+@import 'featured-yachts';
+
+// https://trello.com/c/DauMvoUk/47-kvadratki-filter-destinacij-letnica-2019
+//NOTE: https://github.com/react-component/menu/pull/208
+@font-face {
+  font-family: 'FontAwesome';
+  src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/fonts/fontawesome-webfont.eot');
+  src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/fonts/fontawesome-webfont.eot?#iefix')
+      format('embedded-opentype'),
+    url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/fonts/fontawesome-webfont.woff')
+      format('woff'),
+    url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/fonts/fontawesome-webfont.ttf')
+      format('truetype'),
+    url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/fonts/fontawesome-webfont.svg?#fontawesomeregular')
+      format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@import 'forms.scss';
+@import 'custom-react-dates.scss';
+@import 'navigation2';
+@import 'quick-contact';
+@import 'custom-react-image-gallery';
+@import 'offers-page';
+@import 'no-results';
+@import 'inquiry';
+@import 'testimonials';
+@import 'base-layout';
+
+body {
+  padding-top: $navHeight;
+}
+
+//input-range
+.input-range__label--min,
+.input-range__label--max {
+  display: none;
+}
+
+//slick buttons mobile
+@include media-breakpoint-down(xs) {
+  .slick-next {
+    right: -15px;
+  }
+  .slick-prev {
+    left: -15px;
+  }
+}
