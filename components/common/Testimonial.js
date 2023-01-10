@@ -1,33 +1,37 @@
-import React from "react";
+import Link from "next/link";
+import Image from "next/image";
 
-import Rating from "components/Rating";
-import LinkIf from "components/LinkIf";
+import Rating from "../Rating";
 
-const Testimonial = (props) => {
-  const country = props.country ? " - " + props.country : "";
+const Testimonial = ({ country, author_url, image, name, rating, text }) => {
+  const modifiedCountry = country ? " - " + country : "";
+
   return (
     <div className="testimonial">
       <div className="testimonial-image">
-        <LinkIf link={props.author_url}>
-          <img
-            src={props.image}
-            className="img-circle img-fluid"
-            alt={props.name}
-          />
-        </LinkIf>
+        <Link href={author_url}>
+          <div className="img-circle img-fluid">
+            <Image
+              src={image}
+              width={150}
+              height={150}
+              alt={name}
+            />
+          </div>
+        </Link>
       </div>
       <div className="testimonial-name">
-        <LinkIf link={props.author_url}>
-          <span>{props.name}</span>
-        </LinkIf>
-        {country}
+        <Link href={author_url}>
+          <span>{name}</span>
+        </Link>
+        {modifiedCountry}
       </div>
-      {props.rating && (
+      {rating && (
         <div className="testimonial-rating">
-          <Rating rating={props.rating} />
+          <Rating rating={rating} />
         </div>
       )}
-      <div className="testimonial-text">{props.text}</div>
+      <div className="testimonial-text">{text}</div>
     </div>
   );
 };

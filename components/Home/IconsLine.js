@@ -1,4 +1,3 @@
-import { Row, Col } from "react-bootstrap";
 import { useTranslation } from 'next-i18next';
 
 import IconWithText from "../common/IconWithText";
@@ -18,26 +17,26 @@ const IconsLine = () => {
     <div className="icons-line">
       <div className="container">
         <div className="row">
-          <Col xs={12} sm={6} md={3} className="icon_with_text_home_1">
+          <div className="icon_with_text_home_1 md:w-1/4 pr-4 pl-4 sm:w-1/2 pr-4 pl-4 w-full">
             <IconWithText text={t("icon_with_text_home_1")}>
               <Verified />
             </IconWithText>
-          </Col>
-          <Col xs={12} sm={6} md={3} className="icon_with_text_home_2">
+          </div>
+          <div className="icon_with_text_home_2 md:w-1/4 pr-4 pl-4 sm:w-1/2 pr-4 pl-4 w-full">
             <IconWithText text={t("icon_with_text_home_2")}>
               <RealTime />
             </IconWithText>
-          </Col>
-          <Col xs={12} sm={6} md={3} className="icon_with_text_home_3">
+          </div>
+          <div className="icon_with_text_home_3 md:w-1/4 pr-4 pl-4 sm:w-1/2 pr-4 pl-4 w-full">
             <IconWithText text={t("icon_with_text_home_3")}>
               <TrustedDestination style={iconStyles} />
             </IconWithText>
-          </Col>
-          <Col xs={12} sm={6} md={3} className="icon_with_text_home_4">
+          </div>
+          <div className="icon_with_text_home_4 md:w-1/4 pr-4 pl-4 sm:w-1/2 pr-4 pl-4 w-full">
             <IconWithText text={t("icon_with_text_home_4")}>
               <TalkIcon style={iconStyles} />
             </IconWithText>
-          </Col>
+          </div>
         </div>
       </div>
     </div>

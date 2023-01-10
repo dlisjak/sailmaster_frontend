@@ -29,15 +29,12 @@ const Destinations = ({ items }) => {
     <div className="destinations2">
       <div className="row">
         {items.map((destination) => (
-          <Col
+          <div
+            className="col--destinations2 w-full lg:w-1/4 pr-4 pl-4 md:w-1/3 pr-4 pl-4 sm:w-1/2 pr-4 pl-4"
             key={destination.id}
-            sm="6"
-            md="4"
-            lg="3"
-            className="col--destinations2"
           >
             <Destination destination={destination} />
-          </Col>
+          </div>
         ))}
       </div>
     </div>

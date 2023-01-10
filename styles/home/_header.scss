@@ -4,12 +4,11 @@
 }
 .home-header__container {
   min-height: 60vh;
-  max-height: calc(100vh - #{$navHeight});
+  max-height: calc(100vh - #{78px});
   display: flex;
   align-items: center;
 }
 
-$header-font-size: 13px;
 .home-header__content {
   width: 100%;
 
@@ -43,19 +42,19 @@ $header-font-size: 13px;
 
   @include media-breakpoint-up(sm) {
     h1 {
-      font-size: $header-font-size * 3 * 0.87;
+      font-size: 13px * 3 * 0.87;
     }
     h2 {
-      font-size: $header-font-size * 1.2 * 0.87;
+      font-size: 13px * 1.2 * 0.87;
       margin-bottom: 80px;
     }
   }
   @include media-breakpoint-up(lg) {
     h1 {
-      font-size: $header-font-size * 3;
+      font-size: 13px * 3;
     }
     h2 {
-      font-size: $header-font-size * 1.2;
+      font-size: 13px * 1.2;
     }
   }
 }

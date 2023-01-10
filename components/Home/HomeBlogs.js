@@ -1,14 +1,13 @@
-import React from "react";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container";
 import Link from "next/link";
 import { useTranslation } from 'next-i18next';
+import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+
 import HomeBlogItem from "./HomeBlogItem";
 
 const HomeBlogs = ({ items }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("common");
+
   return (
     <div className="home-blog-wrapper">
       <Container className="page-home__block">
@@ -16,12 +15,10 @@ const HomeBlogs = ({ items }) => {
           <h2>{t("home_blog_title")}</h2>
         </div>
         <div className="row">
-          {items.map((item, index) => {
+          {items?.map((item, index) => {
             return (
-              <Col
-                xs={12}
-                sm={4}
-                className="page-title"
+              <div
+                className="page-title sm:w-1/3 pr-4 pl-4 w-full"
                 key={`blog-${index}-${item.slug}`}
               >
                 <HomeBlogItem
@@ -30,7 +27,7 @@ const HomeBlogs = ({ items }) => {
                   text={item.descrtiption}
                   slug={item.slug}
                 />
-              </Col>
+              </div>
             );
           })}
         </div>

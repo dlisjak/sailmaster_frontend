@@ -8,7 +8,7 @@ import { initReactI18next } from "react-i18next";
 import { language } from '../constants'
 import { I18nextProvider } from "react-i18next";
 
-import Navigation2 from "../components/Navigation2";
+import Navigation2 from "../components/Navigation";
 import Footer from "../components/common/Footer";
 import CookieLaw from "../components/common/CookieLaw";
 // import { wishlistClickedReducerAction } from "actions/wishlist";

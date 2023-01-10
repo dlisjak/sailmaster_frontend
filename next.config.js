@@ -18,6 +18,11 @@ module.exports = {
         hostname: 'thesailmaster.si',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: '**.googleusercontent.com',
+        pathname: '/**',
+      },
     ],
   },
   typescript: {

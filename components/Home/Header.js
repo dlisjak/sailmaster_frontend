@@ -26,9 +26,9 @@ const Header = ({ onSearch, searchDestinations, yachtType }) => {
     <header className="home-header">
       <Parallax
         className="home-header__paralax"
-        strength={200}
+        strength={300}
       >
-        <Background className="custom-bg w-full">
+        <Background className="custom-bg w-full min-h-[1080px]">
           <Image src={HEADER} alt="Sailmaster - najem jadrnice, katamarana, plovil" width={1920} height={1080} />
         </Background>
         <Container className="home-header__container">

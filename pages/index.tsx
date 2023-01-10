@@ -1,41 +1,38 @@
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import nextI18NextConfig from '../next-i18next.config.js';
-
-// import { useTranslation } from 'react-i18next';
+import Head from 'next/head';
 import { useTranslation } from 'next-i18next';
-import Container from 'react-bootstrap/Container';
-// import { useHistory } from 'react-router-dom';
-import { Helmet } from 'react-helmet';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import Header from '../components/Home/Header';
-// import { useAPI } from '../utils/hooks';
-// import { getDestinations } from '../api/search';
-// import getSpecialOffers from '../api/specialOffers';
-// import { getHomeBlogs, getTestimonials, subscribeNewsletter, getFeaturedYachts } from '../api/base';
 import Destinations from '../components/Destinations';
-import DisplayComponent from '../components/DisplayComponent';
 import HomeSpecialOffers from '../components/Home/HomeSpecialOffers';
 import HomeIcons from '../components/Home/HomeIcons';
 import HomeBlogs from '../components/Home/HomeBlogs';
 import Testimonials from '../components/Testimonials';
 import HomeNewsletter from '../components/Home/HomeNewsletter2';
 import FeaturedYachts from '../components/FeaturedYachts';
-import { getFeaturedYachts } from '../queries/getters.js';
+import {
+  getDestinations,
+  getFeaturedYachts,
+  getHomeBlogs,
+  getTestimonials,
+} from '../queries/getters.js';
+
 import { searchDestinations } from '../api/search';
-// import { searchDestinations } from '../api/search';
+import nextI18NextConfig from '../next-i18next.config.js';
 // import { OFFERS_URL } from '../constants/index';
 // import { valuesToSearch } from '../utils/search_utils';
 
-const Index = ({ featuredYachts }) => {
+const Index = ({ featuredYachts, destinations, testimonials, homeBlogs }) => {
   const { i18n, t } = useTranslation('home');
   const lang = i18n.language;
 
   return (
     <div className="page-home">
-      <Helmet>
+      <Head>
         <title>{t('meta_title')}</title>
         <meta name="description" content={t('meta_description')} />
-      </Helmet>
+      </Head>
+
       <Header
         yachtType={[]}
         searchDestinations={searchDestinations}
@@ -43,6 +40,7 @@ const Index = ({ featuredYachts }) => {
           // history.push(OFFERS_URL + '?' + valuesToSearch(values));
         }}
       />
+
       <div className="container container-xl mx-auto px-4 py-8">
         {/* {specialOffers.data && <HomeSpecialOffers specialOffers={specialOffers.data.results} />} */}
 
@@ -57,20 +55,17 @@ const Index = ({ featuredYachts }) => {
           <HomeIcons />
         </div>
 
-        <Container className="page-home__block">
+        <div className="page-home__block">
           <div className="page-home__title">
             <h2>{t('page_destinations_title')}</h2>
           </div>
-          {/* <DisplayComponent
-          source={destinations}
-          render={(data) => <Destinations items={data.results} />}
-        /> */}
-        </Container>
+          <Destinations items={destinations?.results} />
+        </div>
 
-        {/* {testimonials.data && <Testimonials items={testimonials.data.results} />} */}
-
-        {/* <DisplayComponent source={blogs} render={(data) => <HomeBlogs items={data.results} />} /> */}
-
+        <Testimonials items={testimonials?.results} />
+      </div>
+      <HomeBlogs items={homeBlogs?.results} />
+      <div className="container container-xl mx-auto px-4 py-8">
         {/* <HomeNewsletter onSubmit={subscribeNewsletter} /> */}
       </div>
     </div>
@@ -78,12 +73,18 @@ const Index = ({ featuredYachts }) => {
 };
 
 export const getStaticProps = async ({ locale }) => {
-  const featuredYachtsResponse = await getFeaturedYachts(locale);
   const translations = await serverSideTranslations(locale, ['home', 'common'], nextI18NextConfig);
+  const featuredYachtsResponse = await getFeaturedYachts(locale);
+  const destinationsResponse = await getDestinations(locale, true);
+  const testimonialsResponse = await getTestimonials(locale);
+  const homeBlogsResponse = await getHomeBlogs(locale);
 
   return {
     props: {
       featuredYachts: featuredYachtsResponse?.data,
+      destinations: destinationsResponse?.data,
+      testimonials: testimonialsResponse?.data,
+      homeBlogs: homeBlogsResponse?.data,
       ...translations,
     },
     revalidate: 3600,

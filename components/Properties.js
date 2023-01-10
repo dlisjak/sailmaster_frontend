@@ -2,8 +2,6 @@ import React from "react";
 import chunk from "lodash/chunk";
 import range from "lodash/range";
 
-import Col from "react-bootstrap/Col";
-
 export const Property = ({ name, value }) => (
   <>
     <div className="property-label">{name}</div>
@@ -18,9 +16,9 @@ const Properties = ({ items, size = 2 }) => (
         {range(size).map((index) => {
           const property = rows[index];
           if (!property) {
-            return <Col key={index} />;
+            return <div className="relative flex-grow max-w-full flex-1 px-4" key={index} />;
           }
-          return <Col key={index}><Property {...property} /></Col>;
+          return <div className="relative flex-grow max-w-full flex-1 px-4" key={index}><Property {...property} /></div>;
         })}
       </div>
     ))}

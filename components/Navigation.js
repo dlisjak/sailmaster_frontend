@@ -49,7 +49,7 @@ const Lang = ({ lang }) => {
   );
 };
 
-export const Navigation2 = ({ wishlistCount, onShowInquiry }) => {
+export const Navigation = ({ wishlistCount, onShowInquiry }) => {
   const [expanded, setExpanded] = useState(false);
 
   const { t } = useTranslation();
@@ -85,11 +85,11 @@ export const Navigation2 = ({ wishlistCount, onShowInquiry }) => {
       expanded={expanded}
     >
       <Container>
-        <Navbar.Brand>
-          <Link className="d-inline-block" href={linkHome}>
+        <div className="flex">
+          <Link className="flex items-center w-[221px] h-[78px]" href={linkHome}>
             <Logo />
           </Link>
-        </Navbar.Brand>
+        </div>
         <Navbar.Toggle
           onClick={() => setExpanded(expanded ? false : "expanded")}
         />
@@ -151,4 +151,4 @@ export const Navigation2 = ({ wishlistCount, onShowInquiry }) => {
 //     wishlistCount: state.wishlist.count,
 //   };
 // }
-export default Navigation2;
+export default Navigation;

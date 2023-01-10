@@ -6,7 +6,7 @@
     padding: 0;
     svg {
       padding: 5px 0;
-      height: $navHeight;
+      height: 78px;
       width: auto;
     }
   }
@@ -27,7 +27,7 @@
 .navbar-icon--heart {
   .cls-1 {
     fill: none;
-    stroke: #323D43;
+    stroke: #323d43;
     stroke-miterlimit: 10;
     stroke-width: 4px;
   }
@@ -36,7 +36,6 @@
 .btn--request-offer {
   font-weight: bold;
 }
-
 
 .flag {
   width: 25px;
