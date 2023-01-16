@@ -1,23 +1,23 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Formik } from "formik";
+import { useTranslation } from 'next-i18next';
+
 import Button from "react-bootstrap/Button";
-import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
-import { useTranslation } from 'next-i18next';
 
-import { Field } from "components/forms/fields";
+import { Field } from "../forms/fields";
 import {
   newsletterValidationSchema,
   newsletterInitialValues,
-} from "utils/newsletterFormUtils";
+} from "../../utils/newsletterFormUtils";
 
 const HomeNewsletter = ({ onSubmit }) => {
   const [finished, setFinished] = useState(false);
   const [error, setError] = useState(false);
-  const { t } = useTranslation();
+  const { t } = useTranslation("common");
 
   return (
     <div className="home-newsletter">
@@ -49,30 +49,30 @@ const HomeNewsletter = ({ onSubmit }) => {
           >
             {(formikBag) => (
               <Form noValidate onSubmit={formikBag.handleSubmit}>
-                <Form.Row>
-                  <Form.Group as={Col} md="3">
+                <div className="row">
+                  <div className="w-full md:w-1/4 px-2 mb-4">
                     <Field
                       name="name"
                       placeholder={t("name")}
                       formikBag={formikBag}
                     />
-                  </Form.Group>
-                  <Form.Group as={Col} md="3">
+                  </div>
+                  <div className="w-full md:w-1/4 px-2 mb-4">
                     <Field
                       name="nickname"
                       placeholder={t("surname")}
                       formikBag={formikBag}
                     />
-                  </Form.Group>
-                  <Form.Group as={Col} md="3">
+                  </div>
+                  <div className="w-full md:w-1/4 px-2 mb-4">
                     <Field
                       name="email"
                       placeholder={t("email")}
                       formikBag={formikBag}
                       type="email"
                     />
-                  </Form.Group>
-                  <Col md="3">
+                  </div>
+                  <div className="w-full md:w-1/4 px-2">
                     <Button
                       type="submit"
                       disabled={formikBag.isSubmitting}
@@ -80,8 +80,8 @@ const HomeNewsletter = ({ onSubmit }) => {
                     >
                       {t("confirm")}
                     </Button>
-                  </Col>
-                </Form.Row>
+                  </div>
+                </div>
               </Form>
             )}
           </Formik>

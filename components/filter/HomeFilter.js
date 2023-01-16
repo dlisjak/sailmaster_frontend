@@ -5,7 +5,6 @@ import Form from "react-bootstrap/Form";
 import FormLabel from "react-bootstrap/FormLabel";
 import FormGroup from "react-bootstrap/FormGroup";
 import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 
 import DestinationSelect from "./DestinationSelect";
@@ -32,7 +31,7 @@ const HomeFilter = ({ searchDestinations, yachtType, onSubmit }) => {
         onSubmit(values);
       }}
     >
-      <Row>
+      <div className="row">
         <FormGroup as={Col} md={3} lg={4} xl={5}>
           <FormLabel>{t("starting_point")}</FormLabel>
           <DestinationSelect
@@ -67,7 +66,7 @@ const HomeFilter = ({ searchDestinations, yachtType, onSubmit }) => {
             {t("search")}
           </Button>
         </Col>
-      </Row>
+      </div>
     </Form>
   );
 };

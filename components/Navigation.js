@@ -52,7 +52,7 @@ const Lang = ({ lang }) => {
 export const Navigation = ({ wishlistCount, onShowInquiry }) => {
   const [expanded, setExpanded] = useState(false);
 
-  const { t } = useTranslation();
+  const { t } = useTranslation("common");
 
   const links = [
     {

@@ -1,17 +1,15 @@
-import React from "react";
-import { Row, Col } from "react-bootstrap";
-import { withTranslation } from "react-i18next";
+import { useTranslation } from 'next-i18next';
 import Link from "next/link";
-import { generateShareIcon } from "react-share";
+import { FacebookIcon } from "react-share";
+
 import Navtika from "../icons/Navtika";
-import { ReactComponent as Vzajemna } from "../icons/VZ_LOGO_sekundarni_RGB.svg";
+import Vzajemna from "../icons/VZ_LOGO_sekundarni_RGB.svg";
 import Nausys from "../icons/Nausys";
 import SailmasterSiLe from "../icons/SailmasterSiLe";
 import SailmasterItLe from "../icons/SailmasterItLe";
 
-const Footer = (props) => {
-  const FacebookIcon = generateShareIcon("facebook");
-  const lang = props.i18n && props.i18n.language;
+const Footer = ({ lang }) => {
+  const { t } = useTranslation("common");
 
   let logo = "";
 
@@ -22,17 +20,17 @@ const Footer = (props) => {
   return (
     <div className="footer">
       <div className="container">
-        <Row className="footer-upper">
-          <Col xs={12} sm={6} md={3} className="footer-upper-col">
-            <h6>{props.t("why_us")}</h6>
+        <div className="footer-upper row">
+          <div className="footer-upper-col md:w-1/4 pr-4 pl-4 sm:w-1/2 pr-4 pl-4 w-full">
+            <h6>{t("why_us")}</h6>
             <ul className="check">
               <li
                 onClick={() => {
                   window.scrollTo(0, 0);
                 }}
               >
-                <Link href={props.t("why_us_route") + "?selected=1"}>
-                  {props.t("why_us_footer_1")}
+                <Link href={t("why_us_route") + "?selected=1"}>
+                  {t("why_us_footer_1")}
                 </Link>
               </li>
               <li
@@ -40,8 +38,8 @@ const Footer = (props) => {
                   window.scrollTo(0, 0);
                 }}
               >
-                <Link href={props.t("why_us_route") + "?selected=2"}>
-                  {props.t("why_us_footer_2")}
+                <Link href={t("why_us_route") + "?selected=2"}>
+                  {t("why_us_footer_2")}
                 </Link>
               </li>
               <li
@@ -49,8 +47,8 @@ const Footer = (props) => {
                   window.scrollTo(0, 0);
                 }}
               >
-                <Link href={props.t("why_us_route") + "?selected=3"}>
-                  {props.t("why_us_footer_3")}
+                <Link href={t("why_us_route") + "?selected=3"}>
+                  {t("why_us_footer_3")}
                 </Link>
               </li>
               <li
@@ -58,8 +56,8 @@ const Footer = (props) => {
                   window.scrollTo(0, 0);
                 }}
               >
-                <Link href={props.t("why_us_route") + "?selected=4"}>
-                  {props.t("why_us_footer_4")}
+                <Link href={t("why_us_route") + "?selected=4"}>
+                  {t("why_us_footer_4")}
                 </Link>
               </li>
               <li
@@ -67,22 +65,22 @@ const Footer = (props) => {
                   window.scrollTo(0, 0);
                 }}
               >
-                <Link href={props.t("why_us_route") + "?selected=5"}>
-                  {props.t("why_us_footer_5")}
+                <Link href={t("why_us_route") + "?selected=5"}>
+                  {t("why_us_footer_5")}
                 </Link>
               </li>
             </ul>
-          </Col>
-          <Col xs={12} sm={6} md={3} className="footer-upper-col">
-            <h6>{props.t("footer_informations")}</h6>
+          </div>
+          <div className="footer-upper-col md:w-1/4 pr-4 pl-4 sm:w-1/2 pr-4 pl-4 w-full">
+            <h6>{t("footer_informations")}</h6>
             <ul className="squares">
               <li
                 onClick={() => {
                   window.scrollTo(0, 0);
                 }}
               >
-                <Link href={props.t("reservations_steps_route")}>
-                  {props.t("informations_1")}
+                <Link href={t("reservations_steps_route")}>
+                  {t("informations_1")}
                 </Link>
               </li>
               <li
@@ -90,8 +88,8 @@ const Footer = (props) => {
                   window.scrollTo(0, 0);
                 }}
               >
-                <Link href={props.t("payment_type_route")}>
-                  {props.t("informations_2")}
+                <Link href={t("payment_type_route")}>
+                  {t("informations_2")}
                 </Link>
               </li>
               <li
@@ -99,8 +97,8 @@ const Footer = (props) => {
                   window.scrollTo(0, 0);
                 }}
               >
-                <Link href={props.t("terms_route")}>
-                  {props.t("informations_3")}
+                <Link href={t("terms_route")}>
+                  {t("informations_3")}
                 </Link>
               </li>
               <li
@@ -108,8 +106,8 @@ const Footer = (props) => {
                   window.scrollTo(0, 0);
                 }}
               >
-                <Link href={props.t("data_privacy_route")}>
-                  {props.t("informations_4")}
+                <Link href={t("data_privacy_route")}>
+                  {t("informations_4")}
                 </Link>
               </li>
               <li
@@ -117,8 +115,8 @@ const Footer = (props) => {
                   window.scrollTo(0, 0);
                 }}
               >
-                <Link href={props.t("faq_route")}>
-                  {props.t("informations_5")}
+                <Link href={t("faq_route")}>
+                  {t("informations_5")}
                 </Link>
               </li>
               <li
@@ -126,8 +124,8 @@ const Footer = (props) => {
                   window.scrollTo(0, 0);
                 }}
               >
-                <Link href={props.t("partners_route")}>
-                  {props.t("for_partners")}
+                <Link href={t("partners_route")}>
+                  {t("for_partners")}
                 </Link>
               </li>
               <li
@@ -135,22 +133,22 @@ const Footer = (props) => {
                   window.scrollTo(0, 0);
                 }}
               >
-                <Link href={props.t("insurance_route")}>
-                  {props.t("insurance")}
+                <Link href={t("insurance_route")}>
+                  {t("insurance")}
                 </Link>
               </li>
             </ul>
-          </Col>
-          <Col xs={12} sm={6} md={3} className="footer-upper-col">
-            <h6>{props.t("footer_sailmaster")}</h6>
+          </div>
+          <div className="footer-upper-col md:w-1/4 pr-4 pl-4 sm:w-1/2 pr-4 pl-4 w-full">
+            <h6>{t("footer_sailmaster")}</h6>
             <ul className="squares">
               <li
                 onClick={() => {
                   window.scrollTo(0, 0);
                 }}
               >
-                <Link href={props.t("why_charter_route")}>
-                  {props.t("why_charter")}
+                <Link href={t("why_charter_route")}>
+                  {t("why_charter")}
                 </Link>
               </li>
               <li
@@ -158,8 +156,8 @@ const Footer = (props) => {
                   window.scrollTo(0, 0);
                 }}
               >
-                <Link href={props.t("abous_us_route")}>
-                  {props.t("abous_us")}
+                <Link href={t("abous_us_route")}>
+                  {t("abous_us")}
                 </Link>
               </li>
               <li
@@ -167,29 +165,29 @@ const Footer = (props) => {
                   window.scrollTo(0, 0);
                 }}
               >
-                <Link href={props.t("blog_route")}>
-                  {props.t("blog").toUpperCase()}
+                <Link href={t("blog_route")}>
+                  {t("blog").toUpperCase()}
                 </Link>
               </li>
             </ul>
-          </Col>
-          <Col xs={12} sm={6} md={3} className="footer-upper-col">
-            <h6>{props.t("contact")}</h6>
+          </div>
+          <div className="footer-upper-col md:w-1/4 pr-4 pl-4 sm:w-1/2 pr-4 pl-4 w-full">
+            <h6>{t("contact")}</h6>
             <p>
-              {props.t("company_name")} <br />
-              {props.t("company_address")}, {props.t("company_zip")}
+              {t("company_name")} <br />
+              {t("company_address")}, {t("company_zip")}
             </p>
             <p>
-              {props.t("phone386")} <br />
-              {props.t("mobile_phone386")} <br />
-              {props.t("mail")}
+              {t("phone386")} <br />
+              {t("mobile_phone386")} <br />
+              {t("mail")}
             </p>
-          </Col>
-          <Col xs={12} className="footer-border" />
-        </Row>
-        <Row className="footer-upper footer-middle">
-          <Col xs={12} sm={12} md={6} className="footer-upper-col">
-            <h6>{props.t("partners")}</h6>
+          </div>
+          <div className="footer-border w-full" />
+        </div>
+        <div className="footer-upper footer-middle row">
+          <div className="footer-upper-col md:w-1/2 pr-4 pl-4 sm:w-full pr-4 pl-4 w-full">
+            <h6>{t("partners")}</h6>
             <div className="p-logos">
               <a
                 href="https://www.vzajemna.si/"
@@ -213,13 +211,13 @@ const Footer = (props) => {
                 <img
                   alt="YachtPool"
                   className="YachtPool-icon"
-                  src="/static/media/YachtPool.svg"
+                  src="/media/YachtPool.svg"
                 />
               </a>
             </div>
-          </Col>
-          <Col xs={12} sm={12} md={3} className="footer-upper-col">
-            <h6>{props.t("follow_us")}</h6>
+          </div>
+          <div className="footer-upper-col md:w-1/4 pr-4 pl-4 sm:w-full pr-4 pl-4 w-full">
+            <h6>{t("follow_us")}</h6>
             <div className="social">
               <a
                 href="https://www.facebook.com/TheSailmaster/"
@@ -263,24 +261,24 @@ const Footer = (props) => {
                 </svg>
               </a>
             </div>
-          </Col>
-          <Col xs={12} sm={12} md={3} className="footer-upper-col">
+          </div>
+          <div className="footer-upper-col md:w-1/4 pr-4 pl-4 sm:w-full pr-4 pl-4 w-full">
             {logo}
             <Nausys />
-          </Col>
-        </Row>
+          </div>
+        </div>
       </div>
       <div className="footer-bottom">
         <div className="container">
-          <Row>
-            <Col xs={12} className="footer-bottom-text">
-              {props.t("footer_bottom_text")}
-            </Col>
-          </Row>
+          <div className="row">
+            <div className="footer-bottom-text w-full">
+              {t("footer_bottom_text")}
+            </div>
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default withTranslation()(Footer);
+export default Footer;

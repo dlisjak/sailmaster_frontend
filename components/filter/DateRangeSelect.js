@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-// import DateRangePicker from "react-dates/lib/components/DateRangePicker";
+import 'react-dates-gte-react-17/initialize';
+import { useState } from "react";
+import { DateRangePicker } from "react-dates-gte-react-17";
 import { useTranslation } from 'next-i18next';
 
 const isDayBlocked = (day) => {
@@ -11,7 +12,7 @@ const DateRangeSelect = ({ onSelect, value }) => {
   const [focusedInput, setFocusedInput] = useState();
   return (
     <div className={`date-range-select--focus-${focusedInput || "none"}`}>
-      {/* <DateRangePicker
+      <DateRangePicker
         startDatePlaceholderText={t("offer_filter_date_range_start")}
         endDatePlaceholderText={t("offer_filter_date_range_end")}
         startDate={value && value.startDate}
@@ -32,7 +33,7 @@ const DateRangeSelect = ({ onSelect, value }) => {
             className="calendar-date-info"
           />
         )}
-        />*/}
+      />
     </div>
   );
 };

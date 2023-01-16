@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import nextI18NextConfig from '../next-i18next.config.js';
 
 import Header from '../components/Home/Header';
 import Destinations from '../components/Destinations';
@@ -16,9 +17,9 @@ import {
   getHomeBlogs,
   getTestimonials,
 } from '../queries/getters.js';
+import { subscribeNewsletter } from '../api/base';
 
 import { searchDestinations } from '../api/search';
-import nextI18NextConfig from '../next-i18next.config.js';
 // import { OFFERS_URL } from '../constants/index';
 // import { valuesToSearch } from '../utils/search_utils';
 
@@ -65,9 +66,7 @@ const Index = ({ featuredYachts, destinations, testimonials, homeBlogs }) => {
         <Testimonials items={testimonials?.results} />
       </div>
       <HomeBlogs items={homeBlogs?.results} />
-      <div className="container container-xl mx-auto px-4 py-8">
-        {/* <HomeNewsletter onSubmit={subscribeNewsletter} /> */}
-      </div>
+      <HomeNewsletter onSubmit={subscribeNewsletter} />
     </div>
   );
 };

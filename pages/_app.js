@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { appWithTranslation } from 'next-i18next'
 import nextI18NextConfig from '../next-i18next.config.js'
 
@@ -8,7 +8,7 @@ import { initReactI18next } from "react-i18next";
 import { language } from '../constants'
 import { I18nextProvider } from "react-i18next";
 
-import Navigation2 from "../components/Navigation";
+import Navigation from "../components/Navigation";
 import Footer from "../components/common/Footer";
 import CookieLaw from "../components/common/CookieLaw";
 // import { wishlistClickedReducerAction } from "actions/wishlist";
@@ -25,6 +25,7 @@ import "../node_modules/flag-icons/css/flag-icons.min.css";
 
 const MyApp = ({ Component, pageProps, router }) => {
   const route = router.route;
+  const lang = process.env.NEXT_PUBLIC_REACT_APP_LANGUAGE;
   const [showInquiry, setShowInquiry] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
@@ -69,8 +70,10 @@ const MyApp = ({ Component, pageProps, router }) => {
 
   return (
     <>
-      <Navigation2 />
-      <Component {...pageProps} route={route} key={route} />
+      <ScrollToTop smooth color="#ceb896" />
+      <Navigation />
+      <Component {...pageProps} route={route} key={route} lang={lang} />
+      <Footer lang={lang} />
     </>
   );
 };
