@@ -1,7 +1,7 @@
+import { useState } from "react";
 import Image from "next/image";
-import React, { useState } from "react";
-import { useTranslation } from 'next-i18next';
 import Link from "next/link";
+import { useTranslation } from 'next-i18next';
 import Dropdown from "react-bootstrap/Dropdown";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
@@ -18,6 +18,8 @@ import LogoSi from "../public/icons/the-sailmaster-si.svg";
 import LogoIt from "../public/icons/the-sailmaster-it.svg";
 import { language, WISHLIST_URL } from "../constants";
 import QuickContact from "components/QuickContact";
+
+import { useWishlist } from "../queries/queries";
 
 const Logo = process.env.REACT_APP_LANGUAGE === "it" ? LogoIt : LogoSi;
 
@@ -49,8 +51,9 @@ const Lang = ({ lang }) => {
   );
 };
 
-export const Navigation = ({ wishlistCount, onShowInquiry }) => {
+export const Navigation = ({ setShowInquiry }) => {
   const [expanded, setExpanded] = useState(false);
+  const { wishlist } = useWishlist();
 
   const { t } = useTranslation("common");
 
@@ -98,7 +101,7 @@ export const Navigation = ({ wishlistCount, onShowInquiry }) => {
             <Button
               size="sm"
               className="btn--request-offer"
-              onClick={onShowInquiry}
+              onClick={() => setShowInquiry(true)}
             >
               {t("nav_request_offer")}
             </Button>
@@ -108,19 +111,18 @@ export const Navigation = ({ wishlistCount, onShowInquiry }) => {
               placement="bottom"
               overlay={popoverContact}
             >
-              <Button size="sm" variant="light">
+              <button type="button" className="btn btn-light btn-sm text-[#323d43]">
                 <Phone className="navbar-icon" />
-              </Button>
+              </button>
             </OverlayTrigger>
             <Link
               onClick={() => setExpanded(false)}
-              href="/seznam-zelja">
-              <Button size="sm" variant="light">
-                <Heart className="navbar-icon navbar-icon--heart" />
-                <Badge pill variant="secondary" className="btn-wishlist__badge">
-                  {wishlistCount}
-                </Badge>
-              </Button>
+              className="btn btn-light btn-sm flex items-center"
+              href={WISHLIST_URL}>
+              <Heart className="navbar-icon navbar-icon--heart" />
+              <Badge pill bg="secondary" className="btn-wishlist__badge">
+                {wishlist?.size}
+              </Badge>
             </Link>
             {links.map((link, index) => (
               <Nav.Item
@@ -146,9 +148,4 @@ export const Navigation = ({ wishlistCount, onShowInquiry }) => {
   );
 };
 
-// function mapStateToProps(state) {
-//   return {
-//     wishlistCount: state.wishlist.count,
-//   };
-// }
 export default Navigation;

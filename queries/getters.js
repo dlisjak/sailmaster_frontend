@@ -1,5 +1,7 @@
 import axios from "axios";
 
+import { postData } from "../api/base";
+
 export const getFeaturedYachts = async (lang) => {
   const url = process.env.NEXT_PUBLIC_API_URL + '/featured-yachts/';
 
@@ -50,4 +52,10 @@ export const getSearchDestination = async (term) => {
       term,
     },
   });
+};
+
+export const getCountriesEnquiries = async (payload) => {
+  const url = process.env.NEXT_PUBLIC_API_URL + '/countries_enquiry';
+
+  return await axios.get(url);
 };

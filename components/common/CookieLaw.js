@@ -1,64 +1,54 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Col, Row, Button } from "react-bootstrap";
+import { useEffect, useState } from "react";
 
-class CookieLaw extends React.Component {
-  constructor(props) {
-    super(props);
+import { Col, Button } from "react-bootstrap";
+import { useTranslation } from "next-i18next";
 
-    this.state = {
-      closedCookies: localStorage.getItem("closedCookies"),
-    };
+const CookieLaw = () => {
+  const [closedCookies, setClosedCookies] = useState(null)
+  const { t } = useTranslation("common")
 
-    this.handleCloseCookies = this.handleCloseCookies.bind(this);
-  }
+  useEffect(() => {
+    const closedCookies = localStorage.getItem("closedCookies");
 
-  handleCloseCookies() {
+    setClosedCookies(closedCookies)
+  }, []);
+
+  const handleCloseCookies = () => {
     localStorage.setItem("closedCookies", true);
-    this.setState({ closedCookies: true });
+    setClosedCookies(true);
   }
 
-  render() {
-    if (this.state.closedCookies) {
-      return <div />;
-    }
+  if (closedCookies) {
+    return <div />;
+  }
 
-    return (
-      <div className="CookieLaw">
-        <div className="container">
-          <div className="row">
-            <Col xs={12}>
-              <div className="CookieLaw__inner">
-                <Col xs={12} sm={10} className="CookieLaw__left">
-                  <div className="CookieLaw__left__info">i</div>
-                  <div
-                    className="CookieLaw__left__infoText"
-                    dangerouslySetInnerHTML={{ __html: this.props.text }}
-                  ></div>
-                </Col>
-                <Col xs={12} sm={2} className="CookieLaw__right">
-                  <Button
-                    className="gold-button"
-                    onClick={this.handleCloseCookies}
-                  >
-                    {this.props.buttonText}
-                  </Button>
-                </Col>
-              </div>
-            </Col>
-          </div>
+  return (
+    <div className="CookieLaw">
+      <div className="container">
+        <div className="row">
+          <Col xs={12}>
+            <div className="CookieLaw__inner">
+              <Col xs={12} sm={10} className="CookieLaw__left">
+                <div className="CookieLaw__left__info">i</div>
+                <div
+                  className="CookieLaw__left__infoText"
+                  dangerouslySetInnerHTML={{ __html: t("COOKIES") }}
+                />
+              </Col>
+              <Col xs={12} sm={2} className="CookieLaw__right">
+                <Button
+                  className="gold-button"
+                  onClick={handleCloseCookies}
+                >
+                  {t("CLOSE")}
+                </Button>
+              </Col>
+            </div>
+          </Col>
         </div>
       </div>
-    );
-  }
+    </div>
+  );
 }
-
-CookieLaw.defaultProps = {
-  text: "",
-};
-
-CookieLaw.propTypes = {
-  text: PropTypes.string,
-};
 
 export default CookieLaw;

@@ -33,11 +33,10 @@ export const subscribeNewsletter = async (data) =>
   await postData(BACKEND_URL + "newsletter/", data);
 
 export const subscribeNewsletterGift = async (data) =>
-  await postData(BACKEND_URL + "newsletter-gift/", data);
+  await postData(process.env.NEXT_PUBLIC_API_URL + "newsletter-gift/", data);
 
 export const createInquiry = async (data) =>
   await postData(BACKEND_URL2 + "inquiry/", data);
-
 
 export const createOfferInquiry = async (data) =>
   await postData(BACKEND_URL + "offers/" + data.id + "/enquiry", data)

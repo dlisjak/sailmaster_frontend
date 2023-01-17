@@ -1,23 +1,26 @@
-import Alert from "react-bootstrap/Alert";
-import React, { useState } from "react";
+import { useState } from "react";
 import { Formik } from "formik";
-import { useTranslation } from 'next-i18next';
-import Form from "react-bootstrap/Form";
-import Col from "react-bootstrap/Col";
 import * as Yup from "yup";
+import { useTranslation } from 'next-i18next';
+import Alert from "react-bootstrap/Alert";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 
+import { ThankYouMessage } from "../components/ThankYouMessage";
 import { RequiredLabel, Field, Checkbox, CountrySelect } from "../components/forms/fields";
+
 import { DEFAULT_COUNTRY } from "../constants/index";
 import { getCountryId } from "../utils/miscUtils";
-import { ThankYouMessage } from "../components/ThankYouMessage";
+import { createInquiry } from "../api/base";
+import { useCountriesEnquiry } from "../queries/queries";
 
-const InquiryModal = ({ onClose, onSubmit, countries = [] }) => {
+const InquiryModal = ({ showInquiry, onClose }) => {
+  const { countriesEnquiry } = useCountriesEnquiry();
+  const { t } = useTranslation("common");
   const [finished, setFinished] = useState(false);
   const [error, setError] = useState(false);
-  const { t } = useTranslation();
 
+  const selectedCountry = getCountryId(countriesEnquiry || [], DEFAULT_COUNTRY);
   const requiredMsg = t("form_field_required");
   const invalidEmail = t("form_field_email_invalid");
   const ValidationSchema = Yup.object().shape({
@@ -28,13 +31,14 @@ const InquiryModal = ({ onClose, onSubmit, countries = [] }) => {
   });
 
   return (
-    <Modal show={true}
+    <Modal
+      show={showInquiry}
       onHide={onClose}
       dialogClassName="inquiry-modal">
       <Modal.Header closeButton>
-        <Modal.Title>{t("inquiry_title")}</Modal.Title>
+        <h4 className="modal-title">{t("inquiry_title")}</h4>
       </Modal.Header>
-      <Modal.Body>
+      <div className="modal-body">
         {error && <Alert variant="danger">{error}</Alert>}
         {!finished && (
           <Formik
@@ -43,14 +47,14 @@ const InquiryModal = ({ onClose, onSubmit, countries = [] }) => {
               email: "",
               phone: "",
               address: "",
-              country: getCountryId(countries, DEFAULT_COUNTRY),
+              country: selectedCountry,
               skipper: "",
             }}
             validationSchema={ValidationSchema}
             onSubmit={async (values, { setSubmitting }) => {
               setError(null);
               try {
-                await onSubmit(values);
+                await createInquiry(values);
                 setFinished(true);
               } catch (e) {
                 setError("error");
@@ -58,47 +62,48 @@ const InquiryModal = ({ onClose, onSubmit, countries = [] }) => {
             }}
           >
             {(formikBag) => (
-              <Form noValidate onSubmit={formikBag.handleSubmit}>
-                <Form.Group controlId="name">
+              <form noValidate onSubmit={formikBag.handleSubmit}>
+                <div className="form-group">
                   <Field
                     name="name"
                     label={<RequiredLabel name={t("inquiry_name")} />}
                     formikBag={formikBag}
                   />
-                </Form.Group>
-                <Form.Group controlId="email">
+                </div>
+                <div className="form-group">
                   <Field
                     name="email"
                     label={<RequiredLabel name={t("inquiry_email")} />}
                     formikBag={formikBag}
                     type="email"
                   />
-                </Form.Group>
-                <Form.Group controlId="phone">
+                </div>
+                <div className="form-group">
+                  <RequiredLabel name={t("inquiry_phone")} />
                   <Field
                     name="phone"
                     label={<RequiredLabel name={t("inquiry_phone")} />}
                     formikBag={formikBag}
                   />
-                </Form.Group>
-                <Form.Row>
-                  <Form.Group controlId="address" as={Col} sm="6">
+                </div>
+                <div className="form-row">
+                  <div className="form-group col-sm-6">
                     <Field
                       name="address"
                       label={t("inquiry_address")}
                       formikBag={formikBag}
                     />
-                  </Form.Group>
-                  <Form.Group controlId="country" as={Col} sm="6">
+                  </div>
+                  <div className="form-group col-sm-6">
                     <CountrySelect
-                      countries={countries}
+                      countries={countriesEnquiry}
                       name="country"
                       label={<RequiredLabel name={t("inquiry_country")} />}
                       formikBag={formikBag}
                     />
-                  </Form.Group>
-                </Form.Row>
-                <Form.Group controlId="content">
+                  </div>
+                </div>
+                <div className="form-group">
                   <Field
                     name="content"
                     as="textarea"
@@ -107,33 +112,31 @@ const InquiryModal = ({ onClose, onSubmit, countries = [] }) => {
                     formikBag={formikBag}
                     placeholder={t("inquiry_comment_placeholder")}
                   />
-                </Form.Group>
+                </div>
                 {false &&
-                  <Form.Group>
+                  <div className="form-group">
                     <Checkbox
                       id="inquiry_skipper"
                       name="skipper"
                       label={t("inquiry_skipper")}
                       formikBag={formikBag}
                     />
-                  </Form.Group>
+                  </div>
                 }
-
                 <Button type="submit" disabled={formikBag.isSubmitting}>
                   {t("inquiry_submit")}
                 </Button>
-              </Form>
+              </form>
             )}
           </Formik>
         )}
         {finished && (
-
           <ThankYouMessage
             title={t("successful_enquiry")}
             content={<p>{t("inquiry_success")}</p>}
           />
         )}
-      </Modal.Body>
+      </div>
     </Modal>
   );
 };

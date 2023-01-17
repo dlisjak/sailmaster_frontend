@@ -24,8 +24,7 @@ import { searchDestinations } from '../api/search';
 // import { valuesToSearch } from '../utils/search_utils';
 
 const Index = ({ featuredYachts, destinations, testimonials, homeBlogs }) => {
-  const { i18n, t } = useTranslation('home');
-  const lang = i18n.language;
+  const { t } = useTranslation('home');
 
   return (
     <div className="page-home">
