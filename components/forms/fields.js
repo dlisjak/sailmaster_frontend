@@ -158,7 +158,7 @@ export const SelectField = ({
   formGroupProps = null,
   placeholder,
 }) => {
-  const value = options.find(
+  const value = options?.find(
     (item) => String(item.value) === String(values[fieldName])
   );
   return (

@@ -15,6 +15,13 @@
     "isolatedModules": true,
     "jsx": "preserve"
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/sitemap.xml.js", "pages/_app.js"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "pages/sitemap.xml.js",
+    "pages/_app.js",
+    "components/filter/DestinationSelect.js"
+  ],
   "exclude": ["node_modules"]
 }

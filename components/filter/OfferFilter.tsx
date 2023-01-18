@@ -1,23 +1,21 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
 import FormLabel from 'react-bootstrap/FormLabel';
 import FormGroup from 'react-bootstrap/FormGroup';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
-import { useLocation } from 'react-router-dom';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
 
 import DestinationSelect from './DestinationSelect';
 import DateRangeSelect from './DateRangeSelect';
-import { RANGE_FIELDS_MAX } from 'utils/search_utils';
-import { formatMoneyAmount, formatLength } from 'utils/formats';
-import { RangeField, SelectField } from 'components/forms/fields';
-import { getValuesFromUrl } from 'utils/search_utils';
-import { searchUrl } from 'utils/url_utils';
-import { searchDestinations } from 'api/search';
+import { RANGE_FIELDS_MAX } from '../../utils/search_utils';
+import { formatMoneyAmount, formatLength } from '../../utils/formats';
+import { RangeField, SelectField } from '../../components/forms/fields';
+import { getValuesFromUrl } from '../../utils/search_utils';
+import { searchUrl } from '../../utils/url_utils';
+import { useYachtBrands, useYachtTypes } from '../../queries/queries';
 
-export const BasicSearch = ({ searchDestinations, yachtType, values, onSubmit, ...props }) => {
+export const BasicSearch = ({ values, onSubmit, ...props }) => {
   const { t } = useTranslation();
+  const { yachtTypes } = useYachtTypes();
   const [currentValues, setCurrentValues] = useState(values);
 
   const setValue = (k, v) => {
@@ -36,7 +34,6 @@ export const BasicSearch = ({ searchDestinations, yachtType, values, onSubmit, .
             setValue={(value) => {
               setValue('destinations', value);
             }}
-            searchDestinations={searchDestinations}
             value={currentValues.destinations}
           />
         </FormGroup>
@@ -50,25 +47,18 @@ export const BasicSearch = ({ searchDestinations, yachtType, values, onSubmit, .
         <SelectField
           fieldName="yacht__yacht_model__category__yachtdisplaycategory"
           label={t('yacht_type')}
-          options={yachtType}
+          options={yachtTypes}
           values={currentValues}
           setValue={setValue}
           placeholder={t('offer_filter_yacht_type_placeholder')}
         />
-        <Button
-          onClick={() => onSubmit(currentValues)}
-          variant="secondary"
-          size="xl"
-          className="btn--search"
-        >
-          {t('search')}
-        </Button>
       </div>
     </div>
   );
 };
 
-export const OfferFilter = ({ searchDestinations, yachtType, values, onSubmit, ...props }) => {
+export const OfferFilter = ({ values, onSubmit, ...props }) => {
+  const { yachtTypes } = useYachtTypes();
   const { t } = useTranslation();
   const setValue = (k, v) => {
     const newValues = {
@@ -87,7 +77,6 @@ export const OfferFilter = ({ searchDestinations, yachtType, values, onSubmit, .
             setValue={(value) => {
               setValue('destinations', value);
             }}
-            searchDestinations={searchDestinations}
             value={values.destinations}
           />
         </FormGroup>
@@ -101,7 +90,7 @@ export const OfferFilter = ({ searchDestinations, yachtType, values, onSubmit, .
         <SelectField
           fieldName="yacht__yacht_model__category__yachtdisplaycategory"
           label={t('yacht_type')}
-          options={yachtType}
+          options={yachtTypes}
           values={values}
           setValue={setValue}
           placeholder={t('offer_filter_yacht_type_placeholder')}
@@ -111,7 +100,8 @@ export const OfferFilter = ({ searchDestinations, yachtType, values, onSubmit, .
   );
 };
 
-export const ExtendedFilter = ({ values, brands, onSubmit }) => {
+export const ExtendedFilter = ({ values, onSubmit }) => {
+  const { yachtBrands } = useYachtBrands();
   const { t } = useTranslation();
   const setValue = (k, v) => {
     const newValues = {
@@ -173,70 +163,51 @@ export const ExtendedFilter = ({ values, brands, onSubmit }) => {
       <SelectField
         fieldName="yacht__yacht_model__builder"
         label={t('yacht_brand')}
-        options={brands}
+        options={yachtBrands}
         values={values}
         setValue={setValue}
         placeholder={t('offer_filter_yacht_brand_placeholder')}
       />
-      <div className="extended-filter__equipment">
-        {false &&
-          EQUIPMENT.map((equipment) => (
-            <Form.Check
-              key={equipment.nausys_id}
-              id={`equipment_${equipment.nausys_id}`}
-              custom
-              type="checkbox"
-              name="equipment"
-              value={equipment.nausys_id}
-              label={equipment.name}
-              checked={values.equipment.has(equipment.nausys_id)}
-              onChange={(event) => {
-                const newSet = new Set(values.equipment);
-                if (event.target.checked) {
-                  newSet.add(equipment.nausys_id);
-                } else {
-                  newSet.delete(equipment.nausys_id);
-                }
-                setValue('equipment', newSet);
-              }}
-            />
-          ))}
-      </div>
     </div>
   );
 };
 
-const OfferExtendedFilter = ({ values, yachtType, brands, searchDestinations, onSubmit }) => {
+const OfferExtendedFilter = ({ values, onSubmit }) => {
+  const { yachtTypes } = useYachtTypes();
+
   return (
     <>
-      <OfferFilter
-        values={values}
-        onSubmit={onSubmit}
-        searchDestinations={searchDestinations}
-        yachtType={yachtType}
-      />
+      <OfferFilter values={values} onSubmit={onSubmit} />
 
-      <ExtendedFilter brands={brands} values={values} onSubmit={onSubmit} />
+      <ExtendedFilter values={values} onSubmit={onSubmit} />
     </>
   );
 };
 
-const ConnectedOfferFilter = ({ yachtType, brands, searchComponent }) => {
+const ConnectedOfferFilter = () => {
   const router = useRouter();
+  const [values, setValue] = useState({
+    destinations: [],
+    dateRange: { startDate: null, endDate: null },
+  });
 
-  const SearchComponent = searchComponent || OfferExtendedFilter;
-  const values = getValuesFromUrl(router.search);
+  useEffect(() => {
+    setValue(getValuesFromUrl(window.location.search));
+  }, []);
+
+  useEffect(() => {
+    if (!values.dateRange.endDate) return;
+
+    router.replace(searchUrl(values));
+  }, [values]);
 
   return (
     <div className="offer-filter-container">
-      <SearchComponent
+      <OfferExtendedFilter
         values={values}
         onSubmit={(values) => {
-          router.push(searchUrl(values));
+          setValue(values);
         }}
-        searchDestinations={searchDestinations}
-        yachtType={yachtType}
-        brands={brands}
       />
     </div>
   );
@@ -245,13 +216,6 @@ const ConnectedOfferFilter = ({ yachtType, brands, searchComponent }) => {
 const WrappedBasicSearch = (props) => {
   return <ConnectedOfferFilter searchComponent={BasicSearch} {...props} />;
 };
-
-// function mapStateToProps(state) {
-//   return {
-//     yachtType: state.yachtType,
-//     brands: state.brands,
-//   };
-// }
 
 export const ConnectedBasicSearch = WrappedBasicSearch;
 export default ConnectedOfferFilter;

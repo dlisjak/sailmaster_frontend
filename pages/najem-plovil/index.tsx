@@ -22,13 +22,7 @@ import { handleHeartClick } from '../../utils/wishlistUtils';
 import { wishlistClickedReducerAction } from '../../actions/wishlist';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import nextI18nextConfig from '../../next-i18next.config';
-import {
-  getDestinations,
-  getFeaturedYachts,
-  getSearchResults,
-  getTestimonials,
-  getYachtTypes,
-} from '../../queries/getters';
+import { getSearchResults } from '../../queries/getters';
 import { useRouter } from 'next/router';
 import { searchUrl } from '../../api/search';
 
@@ -42,30 +36,11 @@ const NoResults = () => {
   );
 };
 
-const search = (search) => {
-  const currentSearch = search;
-  console.log({ currentSearch });
-  return;
-};
-
-const OffersPage = ({
-  error,
-  results,
-  next,
-  dispatch,
-  wishlist,
-  count,
-  destination,
-  testimonials,
-}) => {
+const OffersPage = ({ error, results, next, dispatch, wishlist, count, destination, loading }) => {
+  const { t } = useTranslation();
   const [showEnquiryModal, setShowEnquiryModal] = useState(false);
   const [enquiryProps, setEnquiryProps] = useState({});
   const [displayTotalPrice, setDisplayTotalPrice] = useState(true);
-  const { t } = useTranslation();
-  console.log({ results });
-
-  // const noResults = results !== null && results.length === 0;
-  // const values = getValuesFromUrl(location.search);
 
   return (
     <>
@@ -84,9 +59,9 @@ const OffersPage = ({
         className="offers"
         sidebar={
           <>
-            {/* <OfferFilter /> */}
+            <OfferFilter />
             <QuickContact />
-            <SidebarTestimonials testimonials={testimonials?.results} />
+            <SidebarTestimonials />
           </>
         }
       >
@@ -101,6 +76,7 @@ const OffersPage = ({
             {t(error)}
           </Alert>
         )}
+        {loading && <Loader />}
         {destination && <DestinationTeaser destination={destination} />}
         {!results?.length && <NoResults />}
         {count ? <p className="offers_num_result">{t('offers_num_result', { count })}</p> : ''}
@@ -168,26 +144,18 @@ function mapStateToProps(state) {
 }
 
 export const getServerSideProps = async (ctx) => {
+  const search = ctx.req.url;
+  const { data } = await getSearchResults(search);
   const translations = await serverSideTranslations(
     ctx.locale,
     ['home', 'common'],
     nextI18nextConfig
   );
-  const yachtTypes = await getYachtTypes(ctx.locale);
-  const featuredYachtsResponse = await getFeaturedYachts(ctx.locale);
-  const destinationsResponse = await getDestinations(ctx.locale, true);
-  const testimonialsResponse = await getTestimonials(ctx.locale);
-  const search = ctx.req.url;
-  const { data } = await getSearchResults(search);
 
   return {
     props: {
-      yachtTypes,
       results: data?.results,
-      destination: data?.destination,
-      featuredYachts: featuredYachtsResponse?.data,
-      destinations: destinationsResponse?.data,
-      testimonials: testimonialsResponse?.data,
+      destination: data?.destination || null,
       ...translations,
     },
   };

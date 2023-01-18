@@ -36,7 +36,6 @@ const HomeFilter = ({ searchDestinations, onSubmit, yachtTypes }) => {
             setValue={(value) => {
               setValue("destinations", value);
             }}
-            searchDestinations={searchDestinations}
             value={values.destinations}
           />
         </div>

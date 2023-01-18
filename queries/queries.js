@@ -24,6 +24,16 @@ export const useDestinations = (lang = "si") => {
   };
 };
 
+export const useSearchDestinations = (term) => {
+  const { data, error } = useSWR(`/api/destinations/search`, fetcher);
+
+  return {
+    searchDestinations: data,
+    isLoading: !error && !data,
+    isError: error,
+  };
+};
+
 export const useCountriesEnquiry = () => {
   const { data, error } = useSWR("/api/countries-enquiry", fetcher);
 
@@ -34,11 +44,21 @@ export const useCountriesEnquiry = () => {
   }
 }
 
-export const useYachtTypes = (lang = "si") => {
-  const { data, error } = useSWR(`/api/yacht-types?lang=${lang}`, fetcher);
+export const useYachtTypes = () => {
+  const { data, error } = useSWR(`/api/yacht-types`, fetcher);
 
   return {
     yachtTypes: data,
+    isLoading: !error && !data,
+    isError: error,
+  }
+}
+
+export const useYachtBrands = () => {
+  const { data, error } = useSWR(`/api/yacht-brands`, fetcher);
+
+  return {
+    yachtBrands: data,
     isLoading: !error && !data,
     isError: error,
   }
@@ -49,6 +69,16 @@ export const useSearch = (search) => {
 
   return {
     yachtTypes: data,
+    isLoading: !error && !data,
+    isError: error,
+  }
+}
+
+export const useTestimonials = () => {
+  const { data, error } = useSWR(`/api/testimonials`, fetcher);
+
+  return {
+    testimonials: data,
     isLoading: !error && !data,
     isError: error,
   }

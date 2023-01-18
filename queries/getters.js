@@ -2,50 +2,72 @@ import axios from "axios";
 
 import { postData } from "../api/base";
 
-export const getFeaturedYachts = async (lang) => {
+export const getFeaturedYachts = async () => {
+  const lang = process.env.NEXT_PUBLIC_REACT_APP_LANGUAGE;
   const url = process.env.NEXT_PUBLIC_API_URL + '/featured-yachts/';
 
-  return await axios.get(url, {
+  const { data } = await axios.get(url, {
     params: {
       lang,
     },
   });
+
+  return data;
 };
 
-export const getDestinations = async (lang, frontpage = false) => {
+export const getDestinations = async (frontpage = false) => {
+  const lang = process.env.NEXT_PUBLIC_REACT_APP_LANGUAGE;
   const url = process.env.NEXT_PUBLIC_API_URL_V2 + '/destinations/';
 
-  return await axios.get(url, {
+  const { data } = await axios.get(url, {
     params: {
       lang,
       frontpage,
     },
   });
+
+  return data;
 };
 
-export const getTestimonials = async (lang, limit = 4) => {
-  const url = process.env.NEXT_PUBLIC_API_URL + '/testimonials/';
+export const getSearchDestinations = async (term) => {
+  const url = process.env.NEXT_PUBLIC_API_URL + '/destinations/search';
 
   return await axios.get(url, {
+    params: {
+      term
+    },
+  });
+};
+
+export const getTestimonials = async (limit) => {
+  const url = process.env.NEXT_PUBLIC_API_URL + '/testimonials/';
+  const lang = process.env.NEXT_PUBLIC_REACT_APP_LANGUAGE;
+
+  const { data } = await axios.get(url, {
     params: {
       lang,
       limit,
     },
   });
+
+  return data;
 }
-export const getHomeBlogs = async (lang) => {
+export const getHomeBlogs = async () => {
+  const lang = process.env.NEXT_PUBLIC_REACT_APP_LANGUAGE;
   const url = process.env.NEXT_PUBLIC_API_URL + '/blog/';
 
-  return await axios.get(url, {
+  const { data } = await axios.get(url, {
     params: {
       lang,
       limit: 3,
     },
   });
+
+  return data;
 }
 
 export const getSearchDestination = async (term) => {
-  const url = process.env.NEXT_PUBLIC_API_URL + '/destinations/search';
+  const url = process.env.NEXT_PUBLIC_API_URL + '/destinations/search/';
 
   return await axios.get(url, {
     params: {
@@ -60,12 +82,21 @@ export const getCountriesEnquiries = async (payload) => {
   return await axios.get(url);
 };
 
-export const getYachtTypes = async (lang) => {
+export const getYachtTypes = async () => {
+  const lang = process.env.NEXT_PUBLIC_REACT_APP_LANGUAGE;
   const url = process.env.NEXT_PUBLIC_API_URL + '/yacht_display_categories';
 
   const { data } = await axios.get(url, { params: { lang } });
 
   return data.map(item => ({ value: item.id, label: item.name.name }))
+};
+
+export const getYachtBrands = async () => {
+  const url = process.env.NEXT_PUBLIC_API_URL + '/yacht_builders';
+
+  const { data } = await axios.get(url);
+
+  return data.map(item => ({ value: item.id, label: item.name }))
 };
 
 export const getSearchResults = async (search) => {

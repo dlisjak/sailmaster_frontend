@@ -7,11 +7,13 @@ import Rating from './Rating';
 import LinkIf from './LinkIf';
 
 import GOOGLE_REVIEW from '../public/media/GoogleReview_logo.png';
+import { useTestimonials } from '../queries/queries';
 
-export const SidebarTestimonials = ({ testimonials }) => {
+export const SidebarTestimonials = () => {
+  const { testimonials } = useTestimonials();
   const { t } = useTranslation();
 
-  if (!testimonials) {
+  if (!testimonials?.results) {
     return null;
   }
 
@@ -25,7 +27,7 @@ export const SidebarTestimonials = ({ testimonials }) => {
         <Image className="google-review-icon" src={GOOGLE_REVIEW} alt={t('testimonials_more')} />
       </Link>
       <Carousel indicators={false} interval={30000} className="sidebar-testimonials__carousel">
-        {testimonials?.map((item, index) => {
+        {testimonials?.results.map((item, index) => {
           const country = item.country ? item.country.name : null;
 
           return (
