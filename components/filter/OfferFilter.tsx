@@ -1,28 +1,22 @@
-import React, { useState } from "react";
-import FormLabel from "react-bootstrap/FormLabel";
-import FormGroup from "react-bootstrap/FormGroup";
+import React, { useState } from 'react';
+import FormLabel from 'react-bootstrap/FormLabel';
+import FormGroup from 'react-bootstrap/FormGroup';
 import { useTranslation } from 'next-i18next';
-import { useRouter } from "next/router";
-import { useLocation } from "react-router-dom";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
+import { useRouter } from 'next/router';
+import { useLocation } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 
-import DestinationSelect from "./DestinationSelect";
-import DateRangeSelect from "./DateRangeSelect";
-import { RANGE_FIELDS_MAX } from "utils/search_utils";
-import { formatMoneyAmount, formatLength } from "utils/formats";
-import { RangeField, SelectField } from "components/forms/fields";
-import { getValuesFromUrl } from "utils/search_utils";
-import { searchUrl } from "utils/url_utils";
-import { searchDestinations } from "api/search";
+import DestinationSelect from './DestinationSelect';
+import DateRangeSelect from './DateRangeSelect';
+import { RANGE_FIELDS_MAX } from 'utils/search_utils';
+import { formatMoneyAmount, formatLength } from 'utils/formats';
+import { RangeField, SelectField } from 'components/forms/fields';
+import { getValuesFromUrl } from 'utils/search_utils';
+import { searchUrl } from 'utils/url_utils';
+import { searchDestinations } from 'api/search';
 
-export const BasicSearch = ({
-  searchDestinations,
-  yachtType,
-  values,
-  onSubmit,
-  ...props
-}) => {
+export const BasicSearch = ({ searchDestinations, yachtType, values, onSubmit, ...props }) => {
   const { t } = useTranslation();
   const [currentValues, setCurrentValues] = useState(values);
 
@@ -37,29 +31,29 @@ export const BasicSearch = ({
     <div className="offer-filter ofer-filter--basic-search">
       <div className="search-box search-box--primary">
         <FormGroup>
-          <FormLabel>{t("starting_point")}</FormLabel>
+          <FormLabel>{t('starting_point')}</FormLabel>
           <DestinationSelect
             setValue={(value) => {
-              setValue("destinations", value);
+              setValue('destinations', value);
             }}
             searchDestinations={searchDestinations}
             value={currentValues.destinations}
           />
         </FormGroup>
         <FormGroup>
-          <FormLabel>{t("date_range")}</FormLabel>
+          <FormLabel>{t('date_range')}</FormLabel>
           <DateRangeSelect
             value={currentValues.dateRange}
-            onSelect={(value) => setValue("dateRange", value)}
+            onSelect={(value) => setValue('dateRange', value)}
           />
         </FormGroup>
         <SelectField
           fieldName="yacht__yacht_model__category__yachtdisplaycategory"
-          label={t("yacht_type")}
+          label={t('yacht_type')}
           options={yachtType}
           values={currentValues}
           setValue={setValue}
-          placeholder={t("offer_filter_yacht_type_placeholder")}
+          placeholder={t('offer_filter_yacht_type_placeholder')}
         />
         <Button
           onClick={() => onSubmit(currentValues)}
@@ -67,20 +61,14 @@ export const BasicSearch = ({
           size="xl"
           className="btn--search"
         >
-          {t("search")}
+          {t('search')}
         </Button>
       </div>
     </div>
   );
 };
 
-export const OfferFilter = ({
-  searchDestinations,
-  yachtType,
-  values,
-  onSubmit,
-  ...props
-}) => {
+export const OfferFilter = ({ searchDestinations, yachtType, values, onSubmit, ...props }) => {
   const { t } = useTranslation();
   const setValue = (k, v) => {
     const newValues = {
@@ -94,29 +82,29 @@ export const OfferFilter = ({
     <div className="offer-filter">
       <div className="search-box search-box--primary">
         <FormGroup>
-          <FormLabel>{t("starting_point")}</FormLabel>
+          <FormLabel>{t('starting_point')}</FormLabel>
           <DestinationSelect
             setValue={(value) => {
-              setValue("destinations", value);
+              setValue('destinations', value);
             }}
             searchDestinations={searchDestinations}
             value={values.destinations}
           />
         </FormGroup>
         <FormGroup>
-          <FormLabel>{t("date_range")}</FormLabel>
+          <FormLabel>{t('date_range')}</FormLabel>
           <DateRangeSelect
             value={values.dateRange}
-            onSelect={(value) => setValue("dateRange", value)}
+            onSelect={(value) => setValue('dateRange', value)}
           />
         </FormGroup>
         <SelectField
           fieldName="yacht__yacht_model__category__yachtdisplaycategory"
-          label={t("yacht_type")}
+          label={t('yacht_type')}
           options={yachtType}
           values={values}
           setValue={setValue}
-          placeholder={t("offer_filter_yacht_type_placeholder")}
+          placeholder={t('offer_filter_yacht_type_placeholder')}
         />
       </div>
     </div>
@@ -133,15 +121,15 @@ export const ExtendedFilter = ({ values, brands, onSubmit }) => {
     onSubmit(newValues);
   };
   const EQUIPMENT = [
-    { name: t("klima"), nausys_id: "4" },
-    { name: t("avtopilot"), nausys_id: "17" },
-    { name: t("Premčni propeler"), nausys_id: "2" },
+    { name: t('klima'), nausys_id: '4' },
+    { name: t('avtopilot'), nausys_id: '17' },
+    { name: t('Premčni propeler'), nausys_id: '2' },
   ];
   return (
     <div className="search-box search-box--extended">
       <RangeField
         fieldName="yacht__cabins_total"
-        label={t("yacht_cabins")}
+        label={t('yacht_cabins')}
         minValue={0}
         maxValue={RANGE_FIELDS_MAX.yacht__cabins_total}
         values={values}
@@ -149,7 +137,7 @@ export const ExtendedFilter = ({ values, brands, onSubmit }) => {
       />
       <RangeField
         fieldName="yacht__wc"
-        label={t("extended_filter_wc")}
+        label={t('extended_filter_wc')}
         minValue={0}
         maxValue={RANGE_FIELDS_MAX.yacht__wc}
         values={values}
@@ -157,7 +145,7 @@ export const ExtendedFilter = ({ values, brands, onSubmit }) => {
       />
       <RangeField
         fieldName="yacht__build_year"
-        label={t("build_year")}
+        label={t('build_year')}
         minValue={1980}
         maxValue={RANGE_FIELDS_MAX.yacht__build_year()}
         values={values}
@@ -166,7 +154,7 @@ export const ExtendedFilter = ({ values, brands, onSubmit }) => {
       />
       <RangeField
         fieldName="yacht__yacht_model__loa"
-        label={t("extended_filter_loa")}
+        label={t('extended_filter_loa')}
         minValue={0}
         maxValue={RANGE_FIELDS_MAX.yacht__yacht_model__loa}
         values={values}
@@ -175,7 +163,7 @@ export const ExtendedFilter = ({ values, brands, onSubmit }) => {
       />
       <RangeField
         fieldName="client_price"
-        label={t("price")}
+        label={t('price')}
         minValue={1}
         maxValue={RANGE_FIELDS_MAX.client_price}
         values={values}
@@ -184,11 +172,11 @@ export const ExtendedFilter = ({ values, brands, onSubmit }) => {
       />
       <SelectField
         fieldName="yacht__yacht_model__builder"
-        label={t("yacht_brand")}
+        label={t('yacht_brand')}
         options={brands}
         values={values}
         setValue={setValue}
-        placeholder={t("offer_filter_yacht_brand_placeholder")}
+        placeholder={t('offer_filter_yacht_brand_placeholder')}
       />
       <div className="extended-filter__equipment">
         {false &&
@@ -209,7 +197,7 @@ export const ExtendedFilter = ({ values, brands, onSubmit }) => {
                 } else {
                   newSet.delete(equipment.nausys_id);
                 }
-                setValue("equipment", newSet);
+                setValue('equipment', newSet);
               }}
             />
           ))}
@@ -218,13 +206,7 @@ export const ExtendedFilter = ({ values, brands, onSubmit }) => {
   );
 };
 
-const OfferExtendedFilter = ({
-  values,
-  yachtType,
-  brands,
-  searchDestinations,
-  onSubmit,
-}) => {
+const OfferExtendedFilter = ({ values, yachtType, brands, searchDestinations, onSubmit }) => {
   return (
     <>
       <OfferFilter
@@ -241,9 +223,10 @@ const OfferExtendedFilter = ({
 
 const ConnectedOfferFilter = ({ yachtType, brands, searchComponent }) => {
   const router = useRouter();
-  let location = useLocation();
+
   const SearchComponent = searchComponent || OfferExtendedFilter;
-  const values = getValuesFromUrl(location.search);
+  const values = getValuesFromUrl(router.search);
+
   return (
     <div className="offer-filter-container">
       <SearchComponent

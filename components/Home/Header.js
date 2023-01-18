@@ -8,8 +8,8 @@ import IconsLine from "./IconsLine";
 
 import HEADER from "../../public/media/header-opt.jpg";
 
-const Header = ({ onSearch, searchDestinations, yachtType }) => {
-  const { i18n, t } = useTranslation('common');
+const Header = ({ searchDestinations, yachtTypes, onSearch }) => {
+  const { t } = useTranslation('common');
 
   const description = t("description")
     .split("\n")
@@ -37,8 +37,8 @@ const Header = ({ onSearch, searchDestinations, yachtType }) => {
             <h2>{description}</h2>
             <HomeFilter
               searchDestinations={searchDestinations}
-              yachtType={yachtType}
               onSubmit={onSearch}
+              yachtTypes={yachtTypes}
             />
           </div>
         </Container>

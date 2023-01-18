@@ -1,8 +1,11 @@
-import React from "react";
+import Image from "next/image";
 import { useTranslation } from 'next-i18next';
+
+import JERNEJ from "../public/media/quick-contact.jpg"
 
 const QuickContact = () => {
   const { t } = useTranslation();
+
   return (
     <div className="quick-contact">
       <div className="quick-contact__header">
@@ -13,10 +16,10 @@ const QuickContact = () => {
           {t("common:quick_contact_subtitle")}
         </div>
       </div>
-      <img
+      <Image
         alt="Jernej"
         className="img-responsive quick-contact__img"
-        src="/static/media/quick-contact.jpg"
+        src={JERNEJ}
       />
       <div className="quick-contact__contacts">
         Jernej

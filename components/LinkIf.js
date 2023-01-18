@@ -1,13 +1,14 @@
-import React from "react";
+import Link from "next/link";
 
 const LinkIf = ({ link, children }) => {
   if (!link) {
     return children;
   }
+
   return (
-    <a rel="noopener noreferrer" target="_blank" href={link}>
+    <Link rel="noopener noreferrer" target="_blank" href={link}>
       {children}
-    </a>
+    </Link>
   );
 };
 

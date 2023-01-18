@@ -4,9 +4,6 @@ import { valuesToSearch, parseDestinations } from "utils/search_utils";
 import { OFFERS_URL } from "../constants";
 
 const Destination = ({ destination }) => {
-  const style = {
-    backgroundImage: `url(${destination.image.thumbnail})`,
-  };
   const link =
     OFFERS_URL +
     "?" +
@@ -15,7 +12,7 @@ const Destination = ({ destination }) => {
     });
 
   return (
-    <div className="destination2" style={style}>
+    <div className="destination2" style={{ backgroundImage: `url(${destination.image.thumbnail})` }}>
       <Link className="destinations2__link btn btn-lg btn-primary" href={link}>
         {destination.name}
       </Link>
@@ -23,11 +20,11 @@ const Destination = ({ destination }) => {
   );
 };
 
-const Destinations = ({ items }) => {
+const Destinations = ({ destinations }) => {
   return (
     <div className="destinations2">
       <div className="row">
-        {items.map((destination) => (
+        {destinations?.map((destination) => (
           <div
             className="col--destinations2 w-full lg:w-1/4 pr-4 pl-4 md:w-1/3 pr-4 pl-4 sm:w-1/2 pr-4 pl-4"
             key={destination.id}

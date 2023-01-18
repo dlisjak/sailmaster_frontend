@@ -2,7 +2,7 @@ import axios from "axios";
 import { BACKEND_URL, BACKEND_URL2 } from "../constants/api";
 
 export const searchDestinations = async (term) => {
-  const response = await axios.get(BACKEND_URL + "destinations/search/", {
+  const response = await axios.get(process.env.NEXT_PUBLIC_API_URL + "/destinations/search/", {
     params: {
       term,
     },

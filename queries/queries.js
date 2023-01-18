@@ -14,7 +14,7 @@ export const useFeaturedYachts = (lang = "si") => {
   };
 };
 
-export const useDestinations = (lang = "si", frontpage) => {
+export const useDestinations = (lang = "si") => {
   const { data, error } = useSWR(`/api/destinations?lang=${lang}`, fetcher);
 
   return {
@@ -29,6 +29,26 @@ export const useCountriesEnquiry = () => {
 
   return {
     countriesEnquiry: data,
+    isLoading: !error && !data,
+    isError: error,
+  }
+}
+
+export const useYachtTypes = (lang = "si") => {
+  const { data, error } = useSWR(`/api/yacht-types?lang=${lang}`, fetcher);
+
+  return {
+    yachtTypes: data,
+    isLoading: !error && !data,
+    isError: error,
+  }
+}
+
+export const useSearch = (search) => {
+  const { data, error } = useSWR(`/api/search?${search}`, fetcher);
+
+  return {
+    yachtTypes: data,
     isLoading: !error && !data,
     isError: error,
   }

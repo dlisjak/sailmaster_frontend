@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { useTranslation } from 'next-i18next';
 
-import Form from "react-bootstrap/Form";
 import FormLabel from "react-bootstrap/FormLabel";
-import FormGroup from "react-bootstrap/FormGroup";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 
@@ -11,9 +9,9 @@ import DestinationSelect from "./DestinationSelect";
 import DateRangeSelect from "./DateRangeSelect";
 import { SelectField } from "../forms/fields"
 
-const HomeFilter = ({ searchDestinations, yachtType, onSubmit }) => {
+const HomeFilter = ({ searchDestinations, onSubmit, yachtTypes }) => {
   const [values, setValues] = useState({});
-  const { i18n, t } = useTranslation('common');
+  const { t } = useTranslation('common');
 
   const setValue = (k, v) => {
     const newValues = {
@@ -24,7 +22,7 @@ const HomeFilter = ({ searchDestinations, yachtType, onSubmit }) => {
   };
 
   return (
-    <Form
+    <form
       className="home-filter"
       onSubmit={(event) => {
         event.preventDefault();
@@ -32,7 +30,7 @@ const HomeFilter = ({ searchDestinations, yachtType, onSubmit }) => {
       }}
     >
       <div className="row">
-        <FormGroup as={Col} md={3} lg={4} xl={5}>
+        <div className="form-group w-full xl:w-2/5 lg:w-1/3 md:w-1/4 pr-4 pl-4 md:pr-1 md:pl-1">
           <FormLabel>{t("starting_point")}</FormLabel>
           <DestinationSelect
             setValue={(value) => {
@@ -41,14 +39,14 @@ const HomeFilter = ({ searchDestinations, yachtType, onSubmit }) => {
             searchDestinations={searchDestinations}
             value={values.destinations}
           />
-        </FormGroup>
-        <FormGroup as={Col} md={5} lg={4} xl={3}>
+        </div>
+        <div className="form-group w-full xl:w-1/4 lg:w-1/3 md:w-2/5 pr-4 pl-4 md:pr-1 md:pl-1">
           <FormLabel>{t("date_range")}</FormLabel>
           <DateRangeSelect
             value={values.dateRange}
             onSelect={(value) => setValue("dateRange", value)}
           />
-        </FormGroup>
+        </div>
         <SelectField
           formGroupProps={{
             as: Col,
@@ -56,18 +54,18 @@ const HomeFilter = ({ searchDestinations, yachtType, onSubmit }) => {
           }}
           fieldName="yacht__yacht_model__category__yachtdisplaycategory"
           label={t("yacht_type")}
-          options={yachtType}
+          options={yachtTypes}
           values={values}
           setValue={setValue}
           placeholder={t("offer_filter_yacht_type_placeholder")}
         />
-        <Col md={2}>
+        <div className="w-full md:w-1/6 pr-4 pl-4 md:pr-1 md:pl-1">
           <Button className="btn--home-filter" size="lg" variant="secondary" type="submit">
             {t("search")}
           </Button>
-        </Col>
+        </div>
       </div>
-    </Form>
+    </form>
   );
 };
 

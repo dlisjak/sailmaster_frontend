@@ -59,3 +59,20 @@ export const getCountriesEnquiries = async (payload) => {
 
   return await axios.get(url);
 };
+
+export const getYachtTypes = async (lang) => {
+  const url = process.env.NEXT_PUBLIC_API_URL + '/yacht_display_categories';
+
+  const { data } = await axios.get(url, { params: { lang } });
+
+  return data.map(item => ({ value: item.id, label: item.name.name }))
+};
+
+export const getSearchResults = async (search) => {
+  const idx = search.indexOf("?");
+  const query = search.substring(idx);
+
+  const url = process.env.NEXT_PUBLIC_API_URL + `/search/${idx > 0 ? query : ""}`;
+
+  return await axios.get(url);
+};

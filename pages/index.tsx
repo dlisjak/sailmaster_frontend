@@ -16,6 +16,7 @@ import {
   getFeaturedYachts,
   getHomeBlogs,
   getTestimonials,
+  getYachtTypes,
 } from '../queries/getters.js';
 import { subscribeNewsletter } from '../api/base';
 
@@ -23,7 +24,7 @@ import { searchDestinations } from '../api/search';
 // import { OFFERS_URL } from '../constants/index';
 // import { valuesToSearch } from '../utils/search_utils';
 
-const Index = ({ featuredYachts, destinations, testimonials, homeBlogs }) => {
+const Index = ({ yachtTypes, featuredYachts, destinations, testimonials, homeBlogs }) => {
   const { t } = useTranslation('home');
 
   return (
@@ -34,8 +35,8 @@ const Index = ({ featuredYachts, destinations, testimonials, homeBlogs }) => {
       </Head>
 
       <Header
-        yachtType={[]}
         searchDestinations={searchDestinations}
+        yachtTypes={yachtTypes}
         onSearch={(values) => {
           // history.push(OFFERS_URL + '?' + valuesToSearch(values));
         }}
@@ -59,7 +60,7 @@ const Index = ({ featuredYachts, destinations, testimonials, homeBlogs }) => {
           <div className="page-home__title">
             <h2>{t('page_destinations_title')}</h2>
           </div>
-          <Destinations items={destinations?.results} />
+          <Destinations destinations={destinations?.results} />
         </div>
 
         <Testimonials items={testimonials?.results} />
@@ -72,6 +73,7 @@ const Index = ({ featuredYachts, destinations, testimonials, homeBlogs }) => {
 
 export const getStaticProps = async ({ locale }) => {
   const translations = await serverSideTranslations(locale, ['home', 'common'], nextI18NextConfig);
+  const yachtTypes = await getYachtTypes(locale);
   const featuredYachtsResponse = await getFeaturedYachts(locale);
   const destinationsResponse = await getDestinations(locale, true);
   const testimonialsResponse = await getTestimonials(locale);
@@ -79,6 +81,7 @@ export const getStaticProps = async ({ locale }) => {
 
   return {
     props: {
+      yachtTypes,
       featuredYachts: featuredYachtsResponse?.data,
       destinations: destinationsResponse?.data,
       testimonials: testimonialsResponse?.data,
