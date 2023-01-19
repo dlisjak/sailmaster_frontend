@@ -23,7 +23,7 @@ const PromoModal = ({
       </Modal.Header>
       <Modal.Body>
         <div className="promo-img">
-          <img src={`/static/media/gift_${language}.png`} alt="gift" />
+          <img src={`/media/gift_${language}.png`} alt="gift" />
         </div>
 
         {showModal && (

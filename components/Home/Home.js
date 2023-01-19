@@ -205,7 +205,7 @@ class Home extends React.Component {
                 >
                   <img
                     className="google-review-icon"
-                    src="/static/media/GoogleReview_logo.png"
+                    src="/media/GoogleReview_logo.png"
                     alt={this.props.t("testimonials_more")}
                   />
                 </a>

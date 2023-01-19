@@ -24,7 +24,8 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import nextI18nextConfig from '../../next-i18next.config';
 import { getSearchResults } from '../../queries/getters';
 import { useRouter } from 'next/router';
-import { searchUrl } from '../../api/search';
+
+import { OFFERS_URL } from '../../constants/urls';
 
 const NoResults = () => {
   const { t } = useTranslation();
@@ -36,11 +37,29 @@ const NoResults = () => {
   );
 };
 
-const OffersPage = ({ error, results, next, dispatch, wishlist, count, destination, loading }) => {
+const OffersPage = ({
+  search,
+  error,
+  results,
+  next,
+  dispatch,
+  wishlist,
+  count,
+  destination,
+  loading,
+}) => {
   const { t } = useTranslation();
+  const router = useRouter();
   const [showEnquiryModal, setShowEnquiryModal] = useState(false);
   const [enquiryProps, setEnquiryProps] = useState({});
   const [displayTotalPrice, setDisplayTotalPrice] = useState(true);
+  const [filterValues, setFilterValues] = useState({});
+
+  useEffect(() => {
+    setTimeout(() => {
+      setFilterValues(getValuesFromUrl(window.location.search));
+    }, 250);
+  }, [router]);
 
   return (
     <>
@@ -59,15 +78,17 @@ const OffersPage = ({ error, results, next, dispatch, wishlist, count, destinati
         className="offers"
         sidebar={
           <>
-            <OfferFilter />
+            <OfferFilter filterValues={filterValues} />
             <QuickContact />
             <SidebarTestimonials />
           </>
         }
       >
         <OffersHeader
-          onSetOrdering={(o) => null}
-          orderValue={null}
+          filterValues={filterValues}
+          onSetOrdering={(o) =>
+            router.push(`${OFFERS_URL}?${valuesToSearch({ ...filterValues, o })}`)
+          }
           displayTotalPrice={displayTotalPrice}
           setDisplayTotalPrice={setDisplayTotalPrice}
         />

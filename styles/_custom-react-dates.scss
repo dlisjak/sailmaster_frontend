@@ -9,7 +9,7 @@
   width: calc((100% - 20px) / 2);
 }
 .DateInput_input::placeholder {
-    color: $input-placeholder-color;
+  color: $input-placeholder-color;
 }
 .DateRangePickerInput_arrow_svg {
   height: 18px;
@@ -38,30 +38,34 @@
 }
 
 .date-range-select--focus-startDate {
-  .CalendarDay__default:not(.CalendarDay__blocked_calendar):not(.CalendarDay__blocked_out_of_range):hover {
-    background-image: url(/static/images/calendar/start-hover.svg) !important;
+  .CalendarDay__default:not(.CalendarDay__blocked_calendar):not(
+      .CalendarDay__blocked_out_of_range
+    ):hover {
+    background-image: url(/images/calendar/start-hover.svg) !important;
     color: #fff;
   }
 }
 .date-range-select--focus-endDate {
-  .CalendarDay__default:not(.CalendarDay__blocked_calendar):not(.CalendarDay__blocked_out_of_range):hover {
-    background-image: url(/static/images/calendar/end-hover.svg) !important;
+  .CalendarDay__default:not(.CalendarDay__blocked_calendar):not(
+      .CalendarDay__blocked_out_of_range
+    ):hover {
+    background-image: url(/images/calendar/end-hover.svg) !important;
     color: #fff;
   }
 }
 
 .CalendarDay__selected_start {
-  background-image: url(/static/images/calendar/start-selected.svg);
+  background-image: url(/images/calendar/start-selected.svg);
 }
 .CalendarDay__selected_end {
-  background-image: url(/static/images/calendar/end-selected.svg);
+  background-image: url(/images/calendar/end-selected.svg);
 }
 .CalendarDay__hovered_span {
   // NOTE: workaround for https://trello.com/c/m7PUlwBh/112-react-date-select
   &:not(.CalendarDay__before_hovered_end) {
     &,
     &:hover {
-      background-image: url(/static/images/calendar/middle-hover.svg) !important;
+      background-image: url(/images/calendar/middle-hover.svg) !important;
       color: #fff;
     }
   }
@@ -71,7 +75,7 @@
 .CalendarDay__selected_span {
   &,
   &:hover {
-    background-image: url(/static/images/calendar/middle-selected.svg);
+    background-image: url(/images/calendar/middle-selected.svg);
     color: #fff;
   }
 }

@@ -71,7 +71,7 @@ export default class AbousUsIt extends React.Component {
                   <div className="row">
                     <Col xs={12} sm={6} md={6} className="team-item">
                       <img
-                        src="/static/media/team/jernej.jpg"
+                        src="/media/team/jernej.jpg"
                         className="img-fluid"
                         alt="JERNEJ"
                       />
@@ -85,7 +85,7 @@ export default class AbousUsIt extends React.Component {
                     </Col>
                     <Col xs={12} sm={6} md={6} className="team-item">
                       <img
-                        src="/static/media/team/marko.jpg"
+                        src="/media/team/marko.jpg"
                         className="img-fluid"
                         alt="MARKO"
                       />
@@ -101,7 +101,7 @@ export default class AbousUsIt extends React.Component {
                     </Col>
                     <Col xs={12} sm={6} md={6} className="team-item">
                       <img
-                        src="/static/media/team/bojan.jpg"
+                        src="/media/team/bojan.jpg"
                         className="img-fluid"
                         alt="BOJAN"
                       />
@@ -114,7 +114,7 @@ export default class AbousUsIt extends React.Component {
                     </Col>
                     <Col xs={12} sm={6} md={6} className="team-item">
                       <img
-                        src="/static/media/team/nika.jpg"
+                        src="/media/team/nika.jpg"
                         className="img-fluid"
                         alt="NIKA"
                       />

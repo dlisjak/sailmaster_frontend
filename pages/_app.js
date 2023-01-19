@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { appWithTranslation } from 'next-i18next'
 import nextI18NextConfig from '../next-i18next.config.js'
+import SSRProvider from 'react-bootstrap/SSRProvider';
 
 import ScrollToTop from "react-scroll-to-top";
 import { language } from '../constants'
@@ -59,7 +60,7 @@ const MyApp = ({ Component, pageProps, router }) => {
   }, []);
 
   return (
-    <>
+    <SSRProvider>
       <ScrollToTop smooth color="#ceb896" />
       <Navigation setShowInquiry={setShowInquiry} />
       <Component {...pageProps} route={route} key={route} lang={lang} />
@@ -73,7 +74,7 @@ const MyApp = ({ Component, pageProps, router }) => {
         showInquiry={showInquiry}
         onClose={() => setShowInquiry(false)}
       />
-    </>
+    </SSRProvider>
   );
 };
 

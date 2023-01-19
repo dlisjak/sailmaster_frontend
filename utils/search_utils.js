@@ -141,12 +141,12 @@ export const getValuesFromUrl = (search) => {
   });
   RANGE_FIELDS.forEach(
     (fieldName) =>
-      (values[fieldName] = paramsToRange(
-        fieldName,
-        data,
-        RANGE_FIELDS_MAX[fieldName],
-        RANGE_FIELDS_MIN[fieldName]
-      ))
+    (values[fieldName] = paramsToRange(
+      fieldName,
+      data,
+      RANGE_FIELDS_MAX[fieldName],
+      RANGE_FIELDS_MIN[fieldName]
+    ))
   );
   DEFAULT_FIELDS.forEach((fieldName) => (values[fieldName] = data[fieldName]));
 

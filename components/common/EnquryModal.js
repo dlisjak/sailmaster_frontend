@@ -91,7 +91,7 @@ class EnquryModal extends React.Component {
                 rel="noopener noreferrer"
                 href="https://www.vzajemna.si/sl/zavarovanja/zavarovanje-za-tujino/o-zavarovanju-za-tujino/?utm_source=sailmaster&utm_medium=banner&utm_campaign=tujina"
               >
-                <img src="/static/media/vzajemna.jpg" alt="vzajemna" />
+                <img src="/media/vzajemna.jpg" alt="vzajemna" />
               </a>
             </div>
           ) : (

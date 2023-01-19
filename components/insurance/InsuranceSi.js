@@ -9,7 +9,7 @@ const PAGE_HTML = `
 
 <div class="row py1">
 	<div class="col-sm-3">
-		<img class="img-fluid" src="/static/media/yacht-pool-Financial_System_2022.jpg" />
+		<img class="img-fluid" src="/media/yacht-pool-Financial_System_2022.jpg" />
 	</div>
 	<div class="col-sm-8">
 <p>Nem&scaron;ka zavarovalnica <a  rel="noopener noreferrer" target="_blank" href="https://www.charterfairtrag.de/charterfirmen-checked-and-trusted/">Yacht Pool</a> nas je kot svojega uradnega partnerja uvrstila v sistem agencij &raquo;Checked &amp; Trusted&laquo;, to je tistih, ki ustrezajo njihovim strogim pogojem solventnosti in finančne stabilnosti. S tem so vsa plačila na&scaron;ih strank za najem plovil pridobila garancijo popolne varnosti.</p>
@@ -18,7 +18,7 @@ const PAGE_HTML = `
 
 <div class="row">
 	<div class="col-sm-3">
-		<img class="img-fluid" src="/static/media/yachtpool-2.png" />
+		<img class="img-fluid" src="/media/yachtpool-2.png" />
 	</div>
 	<div class="col-sm-8">
 
@@ -40,7 +40,7 @@ zavarovanje odgovornosti skiperja
 <h2>Zdravstveno in nezgodno zavarovanje</h2>
 <div class="row py1">
 	<div class="col-sm-3">
-		<img class="img-fluid" src="/static/media/VZ_LOGO_sekundarni_RGB.svg" />
+		<img class="img-fluid" src="/media/VZ_LOGO_sekundarni_RGB.svg" />
 	</div>
 	<div class="col-sm-8">
 

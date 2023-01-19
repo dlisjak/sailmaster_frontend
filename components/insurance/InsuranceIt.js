@@ -9,7 +9,7 @@ const PAGE_HTML = `
 
 <div class="row py1">
 	<div class="col-sm-3">
-		<img class="img-fluid" src="/static/media/yacht-pool-Financial_System_2022.jpg" />
+		<img class="img-fluid" src="/media/yacht-pool-Financial_System_2022.jpg" />
 	</div>
 	<div class="col-sm-8">
 <p>
@@ -20,7 +20,7 @@ Siamo divenuti partner ufficiali dell'Assicurazione tedesca <a  rel="noopener no
 
 <div class="row">
 	<div class="col-sm-3">
-		<img class="img-fluid" src="/static/media/yachtpool-2.png" />
+		<img class="img-fluid" src="/media/yachtpool-2.png" />
 	</div>
 	<div class="col-sm-8">
 
@@ -36,7 +36,7 @@ Siamo divenuti partner ufficiali dell'Assicurazione tedesca <a  rel="noopener no
 <h2>Assicurazione sanitaria e infortuni</h2>
 <div class="row py1">
 	<div class="col-sm-3">
-		<img class="img-fluid" src="/static/media/VZ_LOGO_sekundarni_RGB.svg" />
+		<img class="img-fluid" src="/media/VZ_LOGO_sekundarni_RGB.svg" />
 	</div>
 	<div class="col-sm-8">
 

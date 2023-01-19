@@ -3,6 +3,7 @@ import Form from "react-bootstrap/Form";
 import FormLabel from "react-bootstrap/FormLabel";
 import FormGroup from "react-bootstrap/FormGroup";
 import Select from "react-select";
+import InputRange from "react-input-range";
 import { useTranslation } from 'next-i18next';
 
 import { customTheme, customStyles } from "utils/reactSelectTheme";
@@ -143,7 +144,18 @@ export const RangeField = ({
         </span>
       </FormLabel>
       <div className="range-wrapper">
-
+        <InputRange
+          allowSameValues
+          minValue={minValue}
+          maxValue={maxValue}
+          value={currrentOrDefault}
+          onChangeComplete={(value) => {
+            setValue(fieldName, value);
+          }}
+          onChange={(value) => {
+            setCurrent(value);
+          }}
+        />
       </div>
     </FormGroup>
   );

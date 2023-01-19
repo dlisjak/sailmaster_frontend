@@ -1,13 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import classNames from "classnames";
 import { useTranslation } from 'next-i18next';
 import Link from "next/link"
+import Image from "next/image"
 
 import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
-import { LinkContainer } from "react-router-bootstrap";
 
 import OfferLabel from "./OfferLabel";
 import SpecialOffer from "./SpecialOffer";
@@ -15,20 +13,22 @@ import Properties from "./Properties";
 import Gallery from "./Gallery";
 
 import Heart from "./icons/Heart";
-import { formatLength } from "utils/formats";
-import { offerLink } from "utils/url_utils";
-import PriceBlock from "components/PriceBlock";
-import Location from "components/Location";
-import Map from "components/Map";
+import { formatLength } from "../utils/formats";
+import { offerLink } from "../utils/url_utils";
+import PriceBlock from "../components/PriceBlock";
+import Location from "../components/Location";
+import Map from "./Googlemap";
 
 const FeaturedEquipment = ({ items }) => {
   return (
     <div className="featured-equipment">
       {items.map((item, index) => (
         <div key={index} className="featured-equipment__item">
-          <img
+          <Image
             className="featured-equipment__img"
-            src={`${process.env.PUBLIC_URL}/static/images/featured-equipment/${item.image}`}
+            width={72}
+            height={72}
+            src={`/images/featured-equipment/${item.image}`}
             alt={item.name}
           />
           <div className="featured-equipment__name">{item.name}</div>
@@ -71,17 +71,18 @@ const OfferTeaser = ({
     { name: t("draft"), value: formatLength(yacht.draft) },
   ];
   const link = offerLink(offer);
+
   return (
     <>
       <Container fluid className={wrapperClass} style={wrapperStyle}>
         <div className="row">
-          <Col md={8}>
+          <div className="w-full md:w-2/3 pr-4 pl-4">
             <h3>
               <Link href={link}>{offer.yacht.yacht_model.name}</Link>
             </h3>
 
             <div className="row">
-              <Col md={5} className="offer-teaser__left">
+              <div className="offer-teaser__left w-full md:w-2/5 pr-4 pl-4">
                 <div className="offer-teaser__location">
                   <Location location={offer.location_from} onLocationClick={() => setShowMap(!showMap)} />
                 </div>
@@ -96,9 +97,9 @@ const OfferTeaser = ({
                 >
                   {showMap ? t("hide_map") : t("show_map")}
                 </Button>
-              </Col>
+              </div>
 
-              <Col md={7} className="offer-teaser__center">
+              <div className="offer-teaser__center w-full md:w-3/5 pr-4 pl-4">
                 <div className="offer-carousel">
                   {offer.label && <OfferLabel label={offer.label} />}
                   <div
@@ -110,14 +111,13 @@ const OfferTeaser = ({
                     <Heart />
                   </div>
                   <Gallery
-                    images={offer.yacht.pictures}
-                    youtube={offer.yacht.youtube}
+                    yacht={offer.yacht}
                   />
                 </div>
-              </Col>
+              </div>
             </div>
-          </Col>
-          <Col md={4} className="offer-teaser__right">
+          </div>
+          <div className="offer-teaser__right w-full md:w-1/3 pr-4 pl-4">
             <PriceBlock
               className="price-block--box price-block--hover"
               offer={offer}
@@ -126,19 +126,19 @@ const OfferTeaser = ({
             <FeaturedEquipment items={offer.yacht.featured_equipment} />
 
             <div>
-              <Link href={link}>{t("yacht_details")}</Link>
+              <Link className="w-100 mb-1 btn btn-secondary" href={link}>{t("yacht_details")}</Link>
 
               <Button className="w-100" variant="primary" onClick={onEnquiry}>
                 {t("enquiry")}
               </Button>
             </div>
-          </Col>
+          </div>
         </div>
         {specialOffer && (
           <div className="row">
-            <Col xs={12}>
+            <div className="w-full px-4">
               <SpecialOffer specialOffer={specialOffer} />
-            </Col>
+            </div>
           </div>
         )}
       </Container>

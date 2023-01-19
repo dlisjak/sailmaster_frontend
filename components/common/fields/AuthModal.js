@@ -97,7 +97,7 @@ class AuthModal extends React.Component {
       <div className="forgot-password-body">
         <div>
           <img
-            src="/static/media/back.jpg"
+            src="/media/back.jpg"
             onClick={this.toggleForgotPassword}
           />
         </div>

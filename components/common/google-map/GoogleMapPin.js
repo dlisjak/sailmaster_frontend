@@ -124,7 +124,7 @@ class GoogleMapPin extends React.Component {
           </div>
         ) : (
           <div className="pin" onClick={this.onPinClick}>
-            <img src="/static/media/marker.png" />
+            <img src="/media/marker.png" />
           </div>
         )}
       </div>

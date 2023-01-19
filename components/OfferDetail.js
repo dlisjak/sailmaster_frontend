@@ -155,7 +155,7 @@ const Attribute = ({ label, value, icon = null, comment = null }) => {
         {icon && (
           <img
             className="attribute__icon"
-            src={`${process.env.PUBLIC_URL}/static/images/attributes/${icon}`}
+            src={`${process.env.PUBLIC_URL}/images/attributes/${icon}`}
             alt={label}
           />
         )}
@@ -381,7 +381,7 @@ const OfferDetail = ({
             <Link href={INSURANCE_URL}>
               <img
                 className="img-fluid"
-                src="/static/media/yacht-pool-Financial_System_2022.jpg"
+                src="/media/yacht-pool-Financial_System_2022.jpg"
                 alt={t("insurance")}
               />
             </Link>

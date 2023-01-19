@@ -199,7 +199,7 @@ const OfferInquiry = ({
                 rel="noopener noreferrer"
                 href="https://www.vzajemna.si/sl/zavarovanja/zavarovanje-za-tujino/o-zavarovanju-za-tujino/?utm_source=sailmaster&utm_medium=banner&utm_campaign=tujina"
               >
-                <img src="/static/media/vzajemna-2021.jpg" alt="vzajemna" />
+                <img src="/media/vzajemna-2021.jpg" alt="vzajemna" />
               </a>
             )}
           </ThankYouMessage>

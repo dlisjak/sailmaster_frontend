@@ -9,7 +9,6 @@ import DateRangeSelect from './DateRangeSelect';
 import { RANGE_FIELDS_MAX } from '../../utils/search_utils';
 import { formatMoneyAmount, formatLength } from '../../utils/formats';
 import { RangeField, SelectField } from '../../components/forms/fields';
-import { getValuesFromUrl } from '../../utils/search_utils';
 import { searchUrl } from '../../utils/url_utils';
 import { useYachtBrands, useYachtTypes } from '../../queries/queries';
 
@@ -115,6 +114,7 @@ export const ExtendedFilter = ({ values, onSubmit }) => {
     { name: t('avtopilot'), nausys_id: '17' },
     { name: t('Premčni propeler'), nausys_id: '2' },
   ];
+
   return (
     <div className="search-box search-box--extended">
       <RangeField
@@ -173,40 +173,29 @@ export const ExtendedFilter = ({ values, onSubmit }) => {
 };
 
 const OfferExtendedFilter = ({ values, onSubmit }) => {
-  const { yachtTypes } = useYachtTypes();
-
   return (
     <>
       <OfferFilter values={values} onSubmit={onSubmit} />
-
       <ExtendedFilter values={values} onSubmit={onSubmit} />
     </>
   );
 };
 
-const ConnectedOfferFilter = () => {
+const ConnectedOfferFilter = ({ filterValues }) => {
   const router = useRouter();
-  const [values, setValue] = useState({
-    destinations: [],
-    dateRange: { startDate: null, endDate: null },
-  });
+  const [values, setValues] = useState(filterValues);
 
   useEffect(() => {
-    setValue(getValuesFromUrl(window.location.search));
-  }, []);
-
-  useEffect(() => {
-    if (!values.dateRange.endDate) return;
-
-    router.replace(searchUrl(values));
-  }, [values]);
+    setValues(filterValues);
+  }, [filterValues]);
 
   return (
     <div className="offer-filter-container">
       <OfferExtendedFilter
         values={values}
         onSubmit={(values) => {
-          setValue(values);
+          setValues(values);
+          router.push(searchUrl(values));
         }}
       />
     </div>

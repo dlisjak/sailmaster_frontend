@@ -238,11 +238,11 @@
   padding: 6px 0 6px 24px;
 }
 .cd-accordion-menu__label--toggle {
-  background: url(/static/media/ic-right.svg) center left no-repeat;
+  background: url(/media/ic-right.svg) center left no-repeat;
   cursor: pointer;
 }
 .cd-accordion-menu input[type='checkbox']:checked + label {
-  background-image: url(/static/media/ic-down.svg);
+  background-image: url(/media/ic-down.svg);
 }
 
 .cd-accordion-menu ul .cd-accordion-menu__label {
