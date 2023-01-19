@@ -1,28 +1,28 @@
-import { useState } from "react";
-import { Formik } from "formik";
-import * as Yup from "yup";
+import { useState } from 'react';
+import { Formik } from 'formik';
+import * as Yup from 'yup';
 import { useTranslation } from 'next-i18next';
-import Alert from "react-bootstrap/Alert";
-import Modal from "react-bootstrap/Modal";
-import Button from "react-bootstrap/Button";
+import Alert from 'react-bootstrap/Alert';
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
 
-import { ThankYouMessage } from "../components/ThankYouMessage";
-import { RequiredLabel, Field, Checkbox, CountrySelect } from "../components/forms/fields";
+import { ThankYouMessage } from './ThankYouMessage';
+import { RequiredLabel, Field, Checkbox, CountrySelect } from './forms/fields';
 
-import { DEFAULT_COUNTRY } from "../constants/index";
-import { getCountryId } from "../utils/miscUtils";
-import { createInquiry } from "../api/base";
-import { useCountriesEnquiry } from "../queries/queries";
+import { DEFAULT_COUNTRY } from '../constants/urls';
+import { getCountryId } from '../utils/miscUtils';
+import { createInquiry } from '../api/base';
+import { useCountriesEnquiry } from '../queries/queries';
 
 const InquiryModal = ({ showInquiry, onClose }) => {
   const { countriesEnquiry } = useCountriesEnquiry();
-  const { t } = useTranslation("common");
+  const { t } = useTranslation('common');
   const [finished, setFinished] = useState(false);
   const [error, setError] = useState(false);
 
   const selectedCountry = getCountryId(countriesEnquiry || [], DEFAULT_COUNTRY);
-  const requiredMsg = t("form_field_required");
-  const invalidEmail = t("form_field_email_invalid");
+  const requiredMsg = t('form_field_required');
+  const invalidEmail = t('form_field_email_invalid');
   const ValidationSchema = Yup.object().shape({
     name: Yup.string().required(requiredMsg),
     phone: Yup.string().required(requiredMsg),
@@ -31,24 +31,21 @@ const InquiryModal = ({ showInquiry, onClose }) => {
   });
 
   return (
-    <Modal
-      show={showInquiry}
-      onHide={onClose}
-      dialogClassName="inquiry-modal">
+    <Modal show={showInquiry} onHide={onClose} dialogClassName="inquiry-modal">
       <Modal.Header closeButton>
-        <h4 className="modal-title">{t("inquiry_title")}</h4>
+        <h4 className="modal-title">{t('inquiry_title')}</h4>
       </Modal.Header>
       <div className="modal-body">
         {error && <Alert variant="danger">{error}</Alert>}
         {!finished && (
           <Formik
             initialValues={{
-              name: "",
-              email: "",
-              phone: "",
-              address: "",
+              name: '',
+              email: '',
+              phone: '',
+              address: '',
               country: selectedCountry,
-              skipper: "",
+              skipper: '',
             }}
             validationSchema={ValidationSchema}
             onSubmit={async (values, { setSubmitting }) => {
@@ -57,7 +54,7 @@ const InquiryModal = ({ showInquiry, onClose }) => {
                 await createInquiry(values);
                 setFinished(true);
               } catch (e) {
-                setError("error");
+                setError(e);
               }
             }}
           >
@@ -66,39 +63,35 @@ const InquiryModal = ({ showInquiry, onClose }) => {
                 <div className="form-group">
                   <Field
                     name="name"
-                    label={<RequiredLabel name={t("inquiry_name")} />}
+                    label={<RequiredLabel name={t('inquiry_name')} />}
                     formikBag={formikBag}
                   />
                 </div>
                 <div className="form-group">
                   <Field
                     name="email"
-                    label={<RequiredLabel name={t("inquiry_email")} />}
+                    label={<RequiredLabel name={t('inquiry_email')} />}
                     formikBag={formikBag}
                     type="email"
                   />
                 </div>
                 <div className="form-group">
-                  <RequiredLabel name={t("inquiry_phone")} />
+                  <RequiredLabel name={t('inquiry_phone')} />
                   <Field
                     name="phone"
-                    label={<RequiredLabel name={t("inquiry_phone")} />}
+                    label={<RequiredLabel name={t('inquiry_phone')} />}
                     formikBag={formikBag}
                   />
                 </div>
                 <div className="form-row">
                   <div className="form-group col-sm-6">
-                    <Field
-                      name="address"
-                      label={t("inquiry_address")}
-                      formikBag={formikBag}
-                    />
+                    <Field name="address" label={t('inquiry_address')} formikBag={formikBag} />
                   </div>
                   <div className="form-group col-sm-6">
                     <CountrySelect
                       countries={countriesEnquiry}
                       name="country"
-                      label={<RequiredLabel name={t("inquiry_country")} />}
+                      label={<RequiredLabel name={t('inquiry_country')} />}
                       formikBag={formikBag}
                     />
                   </div>
@@ -108,23 +101,23 @@ const InquiryModal = ({ showInquiry, onClose }) => {
                     name="content"
                     as="textarea"
                     rows={5}
-                    label={t("inquiry_comment")}
+                    label={t('inquiry_comment')}
                     formikBag={formikBag}
-                    placeholder={t("inquiry_comment_placeholder")}
+                    placeholder={t('inquiry_comment_placeholder')}
                   />
                 </div>
-                {false &&
+                {false && (
                   <div className="form-group">
                     <Checkbox
                       id="inquiry_skipper"
                       name="skipper"
-                      label={t("inquiry_skipper")}
+                      label={t('inquiry_skipper')}
                       formikBag={formikBag}
                     />
                   </div>
-                }
+                )}
                 <Button type="submit" disabled={formikBag.isSubmitting}>
-                  {t("inquiry_submit")}
+                  {t('inquiry_submit')}
                 </Button>
               </form>
             )}
@@ -132,8 +125,8 @@ const InquiryModal = ({ showInquiry, onClose }) => {
         )}
         {finished && (
           <ThankYouMessage
-            title={t("successful_enquiry")}
-            content={<p>{t("inquiry_success")}</p>}
+            title={t('successful_enquiry')}
+            content={<p>{t('inquiry_success')}</p>}
           />
         )}
       </div>

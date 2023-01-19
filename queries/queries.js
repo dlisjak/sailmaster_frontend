@@ -2,7 +2,7 @@ import useSWR from "swr";
 
 import { getWishlistFromLocalStorage } from "../utils/wishlistUtils";
 
-const fetcher = (...args) => fetch(...args).then(res => res.json())
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 export const useFeaturedYachts = (lang = "si") => {
   const { data, error } = useSWR(`/api/featured-yachts?lang=${lang}`, fetcher);
@@ -24,7 +24,7 @@ export const useDestinations = (lang = "si") => {
   };
 };
 
-export const useSearchDestinations = (term) => {
+export const useSearchDestinations = () => {
   const { data, error } = useSWR(`/api/destinations/search`, fetcher);
 
   return {
@@ -41,8 +41,8 @@ export const useCountriesEnquiry = () => {
     countriesEnquiry: data,
     isLoading: !error && !data,
     isError: error,
-  }
-}
+  };
+};
 
 export const useYachtTypes = () => {
   const { data, error } = useSWR(`/api/yacht-types`, fetcher);
@@ -51,8 +51,8 @@ export const useYachtTypes = () => {
     yachtTypes: data,
     isLoading: !error && !data,
     isError: error,
-  }
-}
+  };
+};
 
 export const useYachtBrands = () => {
   const { data, error } = useSWR(`/api/yacht-brands`, fetcher);
@@ -61,8 +61,8 @@ export const useYachtBrands = () => {
     yachtBrands: data,
     isLoading: !error && !data,
     isError: error,
-  }
-}
+  };
+};
 
 export const useSearch = (search) => {
   const { data, error } = useSWR(`/api/search?${search}`, fetcher);
@@ -71,8 +71,8 @@ export const useSearch = (search) => {
     yachtTypes: data,
     isLoading: !error && !data,
     isError: error,
-  }
-}
+  };
+};
 
 export const useTestimonials = () => {
   const { data, error } = useSWR(`/api/testimonials`, fetcher);
@@ -81,16 +81,16 @@ export const useTestimonials = () => {
     testimonials: data,
     isLoading: !error && !data,
     isError: error,
-  }
-}
+  };
+};
 
 export const useWishlist = () => {
-  const { data, error } = useSWR("localWishlist", getWishlistFromLocalStorage);
+  const { data, mutate, error } = useSWR("localWishlist", getWishlistFromLocalStorage);
 
   return {
     wishlist: data,
     isLoading: !error && !data,
     isError: error,
-  }
-}
-
+    mutateWishlist: mutate,
+  };
+};

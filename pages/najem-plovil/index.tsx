@@ -1,7 +1,10 @@
-import { useEffect, useState } from 'react';
-import InfiniteScroll from 'react-infinite-scroller';
+import { useCallback, useEffect, useState } from 'react';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import nextI18nextConfig from '../../next-i18next.config';
 import { useTranslation } from 'next-i18next';
-import { Helmet } from 'react-helmet';
+import { useRouter } from 'next/router';
+import InfiniteScroll from 'react-infinite-scroller';
+import Head from 'next/head';
 import Alert from 'react-bootstrap/Alert';
 
 import Loader from '../../components/Loader';
@@ -20,12 +23,9 @@ import { formatOfferPeriod, formatOfferPrice } from '../../utils/offerUtils';
 import { getValuesFromUrl, valuesToSearch } from '../../utils/search_utils';
 import { handleHeartClick } from '../../utils/wishlistUtils';
 import { wishlistClickedReducerAction } from '../../actions/wishlist';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import nextI18nextConfig from '../../next-i18next.config';
 import { getSearchResults } from '../../queries/getters';
-import { useRouter } from 'next/router';
-
 import { OFFERS_URL } from '../../constants/urls';
+import { useWishlist } from '../../queries/queries';
 
 const NoResults = () => {
   const { t } = useTranslation();
@@ -37,40 +37,45 @@ const NoResults = () => {
   );
 };
 
-const OffersPage = ({
-  search,
-  error,
-  results,
-  next,
-  dispatch,
-  wishlist,
-  count,
-  destination,
-  loading,
-}) => {
+const OffersPage = ({ error, results, next, count, destination, loading }) => {
   const { t } = useTranslation();
   const router = useRouter();
   const [showEnquiryModal, setShowEnquiryModal] = useState(false);
-  const [enquiryProps, setEnquiryProps] = useState({});
+  const [enquiryProps, setEnquiryProps] = useState({
+    offerId: null,
+    yachtModel: null,
+    yachtTerm: null,
+    yachtPrice: null,
+  });
   const [displayTotalPrice, setDisplayTotalPrice] = useState(true);
   const [filterValues, setFilterValues] = useState({});
+  const [yachts, setYachts] = useState([]);
+  const [loadNext, setLoadNext] = useState(next);
+  const { wishlist, mutateWishlist } = useWishlist();
 
   useEffect(() => {
-    setTimeout(() => {
-      setFilterValues(getValuesFromUrl(window.location.search));
-    }, 250);
+    setFilterValues(getValuesFromUrl(window.location.search));
+    setYachts([]);
+    setLoadNext(next);
   }, [router]);
+
+  const handleLoadMore = useCallback(async () => {
+    const { data } = await getSearchResults(loadNext);
+
+    setYachts((prev) => [...prev, ...data.results]);
+    setLoadNext(data.next);
+  }, [loadNext]);
 
   return (
     <>
-      <Helmet>
+      <Head>
         <title>
           {t('seo_offers_title', {
             destination: destination ? `: ${destination.name}` : '',
           })}
         </title>
         <meta name="description" content={t('offers_seo_desc')} />
-      </Helmet>
+      </Head>
 
       <LayoutWithSidebar
         rowClassName="offers-row"
@@ -99,24 +104,27 @@ const OffersPage = ({
         )}
         {loading && <Loader />}
         {destination && <DestinationTeaser destination={destination} />}
-        {!results?.length && <NoResults />}
+        {![...results, ...yachts].length && <NoResults />}
         {count ? <p className="offers_num_result">{t('offers_num_result', { count })}</p> : ''}
-        {results && (
+        {[...results, ...yachts] && (
           <InfiniteScroll
             pageStart={0}
-            loadMore={() => next && dispatch({ type: 'SEARCH_LOAD_MORE', next })}
-            hasMore={!!next}
+            loadMore={handleLoadMore}
+            hasMore={!!loadNext}
             loader={<Loader key={0} />}
             threshold={1200}
           >
-            {results.map((offer, index) => (
+            {[...results, ...yachts]?.map((offer, index) => (
               <OfferTeaser
                 displayTotalPrice={displayTotalPrice}
                 key={offer.id}
                 offer={offer}
-                // inWishlist={wishlist.array.contains(offer.id.toString())}
+                inWishlist={wishlist.array.contains(offer.id.toString())}
                 handleHeartClick={(id) => {
                   const result = handleHeartClick(id);
+                  console.log({ result });
+                  return;
+                  mutateWishlist({ ...result, success: true });
                   dispatch(
                     wishlistClickedReducerAction({
                       ...result,
@@ -138,31 +146,18 @@ const OffersPage = ({
           </InfiniteScroll>
         )}
       </LayoutWithSidebar>
-      {/* <OfferInquiry
-        {...enquiryProps}
-        onClose={() => setShowEnquiryModal(false)}
+      <OfferInquiry
         show={showEnquiryModal}
-        countries={countries}
+        onClose={() => setShowEnquiryModal(false)}
         onSubmit={createOfferInquiry}
-      /> */}
+        offerId={enquiryProps.offerId}
+        yachtModel={enquiryProps.yachtModel}
+        yachtTerm={enquiryProps.yachtTerm}
+        yachtPrice={enquiryProps.yachtPrice}
+      />
     </>
   );
 };
-
-function mapStateToProps(state) {
-  return {
-    error: state.search.error,
-    results: state.search.results,
-    next: state.search.next,
-    loading: state.search.loading,
-    wishlist: state.wishlist,
-    destination: state.search.destination,
-    count: state.search.count,
-    yachtType: state.yachtType,
-    brands: state.brands,
-    countries: state.countriesEnquiry || [],
-  };
-}
 
 export const getServerSideProps = async (ctx) => {
   const search = ctx.req.url;
@@ -177,6 +172,8 @@ export const getServerSideProps = async (ctx) => {
     props: {
       results: data?.results,
       destination: data?.destination || null,
+      count: data?.count || null,
+      next: data?.next || null,
       ...translations,
     },
   };

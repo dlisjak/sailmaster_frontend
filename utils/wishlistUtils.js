@@ -31,5 +31,6 @@ export const getWishlistFromLocalStorage = () => {
   if (wishlist) {
     arr = fromJS(localStorage.getItem("wishlist").split(","));
   }
+
   return arr;
 };

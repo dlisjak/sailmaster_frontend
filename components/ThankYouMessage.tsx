@@ -1,6 +1,4 @@
-import React from "react";
-
-export const ThankYouMessage = ({ title, content, children }) => {
+export const ThankYouMessage = ({ title, content, children = <></> }) => {
   return (
     <div>
       <div className="thank-you-message">

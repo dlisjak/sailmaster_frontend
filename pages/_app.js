@@ -43,20 +43,6 @@ const MyApp = ({ Component, pageProps, router }) => {
     }
 
     handlePromoModal();
-
-    // dispatch({
-    //   type: "COUNTRIES_ENQUIRY_SAGA",
-    //   payload: { lang },
-    // });
-    // dispatch({
-    //   type: "YACHT_TYPE_FETCH",
-    //   payload: { lang },
-    // });
-    // dispatch({
-    //   type: "BRANDS_SAGA",
-    //   payload: { lang },
-    // });
-    // );
   }, []);
 
   return (

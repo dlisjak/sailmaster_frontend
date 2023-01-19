@@ -1,23 +1,18 @@
-import Alert from "react-bootstrap/Alert";
-import React, { useState } from "react";
-import { Formik } from "formik";
+import Alert from 'react-bootstrap/Alert';
+import { useState } from 'react';
+import { Formik } from 'formik';
 import { useTranslation } from 'next-i18next';
-import Form from "react-bootstrap/Form";
-import Col from "react-bootstrap/Col";
-import * as Yup from "yup";
-import Modal from "react-bootstrap/Modal";
-import Button from "react-bootstrap/Button";
+import * as Yup from 'yup';
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
 
-import { language } from "../constants";
-import {
-  RequiredLabel,
-  Field,
-  Checkbox,
-  CountrySelect,
-} from "components/forms/fields";
-import { DEFAULT_COUNTRY } from "constants/index";
-import { getCountryId } from "utils/miscUtils";
-import { ThankYouMessage } from "components/ThankYouMessage";
+import { RequiredLabel, Field, Checkbox, CountrySelect } from '../components/forms/fields';
+import { ThankYouMessage } from '../components/ThankYouMessage';
+import { DEFAULT_COUNTRY } from '../constants/urls';
+import { getCountryId } from '../utils/miscUtils';
+import { useCountriesEnquiry } from '../queries/queries';
+
+const language = process.env.NEXT_PUBLIC_REACT_APP_LANGUAGE;
 
 const Details = ({ yachtModel, yachtTerm, yachtPrice }) => {
   const { t } = useTranslation();
@@ -25,41 +20,33 @@ const Details = ({ yachtModel, yachtTerm, yachtPrice }) => {
     <div className="inquiry__header-description">
       {yachtModel && (
         <div className="enquiry-modal-title-data-item">
-          <span>{t("model")}:</span> {yachtModel}
+          <span>{t('model')}:</span> {yachtModel}
         </div>
       )}
 
       {yachtTerm && (
         <div className="enquiry-modal-title-data-item">
-          <span>{t("term")}:</span> {yachtTerm}
+          <span>{t('term')}:</span> {yachtTerm}
         </div>
       )}
 
       {yachtPrice && (
         <div className="enquiry-modal-title-data-item">
-          <span>{t("price")}:</span> {yachtPrice}
+          <span>{t('price')}:</span> {yachtPrice}
         </div>
       )}
     </div>
   );
 };
 
-const OfferInquiry = ({
-  offerId,
-  show,
-  onClose,
-  onSubmit,
-  countries = [],
-  yachtModel,
-  yachtTerm,
-  yachtPrice,
-}) => {
+const OfferInquiry = ({ offerId, show, onClose, onSubmit, yachtModel, yachtTerm, yachtPrice }) => {
   const [finished, setFinished] = useState(false);
   const [error, setError] = useState(false);
   const { t } = useTranslation();
+  const { countriesEnquiry } = useCountriesEnquiry();
 
-  const requiredMsg = t("form_field_required");
-  const invalidEmail = t("form_field_email_invalid");
+  const requiredMsg = t('form_field_required');
+  const invalidEmail = t('form_field_email_invalid');
   const ValidationSchema = Yup.object().shape({
     name: Yup.string().required(requiredMsg),
     phone: Yup.string().required(requiredMsg),
@@ -73,19 +60,11 @@ const OfferInquiry = ({
   };
 
   return (
-    <Modal
-      show={show}
-      onHide={onCloseClearMessage}
-      dialogClassName="inquiry-modal"
-    >
+    <Modal show={show} onHide={onCloseClearMessage} dialogClassName="inquiry-modal">
       <Modal.Header closeButton>
         <Modal.Title>
-          {t("enquiry")}
-          <Details
-            yachtModel={yachtModel}
-            yachtTerm={yachtTerm}
-            yachtPrice={yachtPrice}
-          />
+          {t('enquiry')}
+          <Details yachtModel={yachtModel} yachtTerm={yachtTerm} yachtPrice={yachtPrice} />
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
@@ -93,11 +72,11 @@ const OfferInquiry = ({
         {!finished && (
           <Formik
             initialValues={{
-              name: "",
-              email: "",
-              phone: "",
-              address: "",
-              country: getCountryId(countries, DEFAULT_COUNTRY),
+              name: '',
+              email: '',
+              phone: '',
+              address: '',
+              country: getCountryId(countriesEnquiry, DEFAULT_COUNTRY),
             }}
             validationSchema={ValidationSchema}
             onSubmit={async (values, { setSubmitting }) => {
@@ -106,93 +85,85 @@ const OfferInquiry = ({
                 await onSubmit({ id: offerId, ...values });
                 setFinished(true);
               } catch (e) {
-                setError("error");
+                setError(e);
               }
             }}
           >
             {(formikBag) => (
-              <Form noValidate onSubmit={formikBag.handleSubmit}>
-                <Form.Group controlId="name">
+              <form noValidate onSubmit={formikBag.handleSubmit}>
+                <div className="form-group">
                   <Field
                     name="name"
-                    label={<RequiredLabel name={t("inquiry_name")} />}
+                    label={<RequiredLabel name={t('inquiry_name')} />}
                     formikBag={formikBag}
                   />
-                </Form.Group>
-                <Form.Row>
-                  <Form.Group controlId="email" as={Col} sm="6">
+                </div>
+                <div className="form-row">
+                  <div className="mb-4 w-full sm:w-1/2 pr-1 pl-1">
                     <Field
                       name="email"
-                      label={<RequiredLabel name={t("inquiry_email")} />}
+                      label={<RequiredLabel name={t('inquiry_email')} />}
                       formikBag={formikBag}
                       type="email"
                     />
-                  </Form.Group>
-                  <Form.Group controlId="phone" as={Col} sm="6">
+                  </div>
+                  <div className="mb-4 w-full sm:w-1/2 pr-1 pl-1">
                     <Field
                       name="phone"
-                      label={<RequiredLabel name={t("inquiry_phone")} />}
+                      label={<RequiredLabel name={t('inquiry_phone')} />}
                       formikBag={formikBag}
                     />
-                  </Form.Group>
-                </Form.Row>
-                <Form.Row>
-                  <Form.Group controlId="address" as={Col} sm="6">
-                    <Field
-                      name="address"
-                      label={t("inquiry_address")}
-                      formikBag={formikBag}
-                    />
-                  </Form.Group>
-                  <Form.Group controlId="zip" as={Col} sm="6">
-                    <Field
-                      name="zip"
-                      label={t("inquiry_zip_code")}
-                      formikBag={formikBag}
-                    />
-                  </Form.Group>
-                </Form.Row>
-                <Form.Group controlId="country">
+                  </div>
+                </div>
+                <div className="form-row">
+                  <div className="mb-4 w-full sm:w-1/2 pr-1 pl-1">
+                    <Field name="address" label={t('inquiry_address')} formikBag={formikBag} />
+                  </div>
+                  <div className="mb-4 w-full sm:w-1/2 pr-1 pl-1">
+                    <Field name="zip" label={t('inquiry_zip_code')} formikBag={formikBag} />
+                  </div>
+                </div>
+                <div className="mb-4">
                   <CountrySelect
-                    countries={countries}
+                    countries={countriesEnquiry}
                     name="country"
-                    label={<RequiredLabel name={t("inquiry_country")} />}
+                    label={<RequiredLabel name={t('inquiry_country')} />}
                     formikBag={formikBag}
                   />
-                </Form.Group>
-                <Form.Group controlId="comment">
+                </div>
+                <div className="mb-4">
                   <Field
                     name="comment"
                     as="textarea"
                     rows={5}
-                    label={t("inquiry_comment")}
+                    label={t('inquiry_comment')}
                     formikBag={formikBag}
                   />
-                </Form.Group>
+                </div>
                 {false && (
-                  <Form.Group>
+                  <div className="mb-4">
                     <Checkbox
                       id="inquiry_skipper"
                       name="skipper"
-                      label={t("inquiry_skipper")}
+                      label={t('inquiry_skipper')}
                       formikBag={formikBag}
                     />
-                  </Form.Group>
+                  </div>
                 )}
 
                 <Button type="submit" disabled={formikBag.isSubmitting}>
-                  {t("send_enquiry")}
+                  {t('send_enquiry')}
                 </Button>
-              </Form>
+              </form>
             )}
           </Formik>
         )}
         {finished && (
           <ThankYouMessage
-            title={t("successful_enquiry")}
-            content={<p>{t("successful_enquiry_message")}</p>}
+            title={t('successful_enquiry')}
+            content={<p>{t('successful_enquiry_message')}</p>}
           >
-            {language === "si" && (
+            {language === 'si' && (
               <a
                 className="enquiry-link"
                 target="_blank"

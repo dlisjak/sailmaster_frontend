@@ -100,8 +100,8 @@ export const getYachtBrands = async () => {
 };
 
 export const getSearchResults = async (search) => {
-  const idx = search.indexOf("?");
-  const query = search.substring(idx);
+  const idx = search?.indexOf("?");
+  const query = search?.substring(idx);
 
   const url = process.env.NEXT_PUBLIC_API_URL + `/search/${idx > 0 ? query : ""}`;
 
