@@ -1,3 +1,4 @@
+import fetch from 'node-fetch';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useState } from 'react';
 import { createOfferInquiry } from '../../api/base';
@@ -7,13 +8,13 @@ import OfferDetail from '../../components/OfferDetail';
 import OfferInquiry from '../../components/OfferInquiry';
 
 import nextI18nextConfig from '../../next-i18next.config';
-import { getAllYachts, getYachtOffer } from '../../queries/getters';
 import { useWishlist } from '../../queries/queries';
 import { formatOfferPeriod, formatOfferPrice } from '../../utils/offerUtils';
 import { yachtSlug } from '../../utils/url_utils';
 import { handleHeartClick } from '../../utils/wishlistUtils';
 
 const OfferDetailPage = ({ yachtOffer }) => {
+  console.log({ yachtOffer });
   const { wishlist, mutateWishlist } = useWishlist();
   const [showEnquiryModal, setShowEnquiryModal] = useState(false);
   const [filterValues, setFilterValues] = useState({});
@@ -48,15 +49,20 @@ const OfferDetailPage = ({ yachtOffer }) => {
 };
 
 export const getStaticPaths = async () => {
-  const { count } = await getAllYachts();
+  const url = process.env.NEXT_PUBLIC_API_URL + `/yachts/?limit=10&offset=10`;
+  const response = await fetch(url);
+  const data: any = await response.json();
+  const count = data.count;
   const promises = [];
 
   // for (let i = 1; i < count; i++) {
   for (let i = 1; i < 5; i++) {
     const promise = new Promise((resolve, reject) => {
       setTimeout(async () => {
-        const { results } = await getAllYachts(10 * i);
-        if (results.length) resolve(results);
+        const url = process.env.NEXT_PUBLIC_API_URL + `/yachts/?limit=10&offset=${10 * i}`;
+        const response = await fetch(url);
+        const data: any = await response.json();
+        if (data.results.length) resolve(data.results);
       }, 1000 * i);
     });
 
@@ -85,9 +91,16 @@ export const getStaticProps = async (ctx) => {
 
   const idx = slug.indexOf('-');
   const yachtId = slug.substring(0, idx);
-  const yachtSlug = slug.substring(idx + 1);
 
-  const yachtOffer = await getYachtOffer(yachtId);
+  const url = process.env.NEXT_PUBLIC_API_URL + '/yacht-offer/' + yachtId + '/';
+  const response = await fetch(url);
+  const yachtOffer: any = await response.json();
+
+  if (yachtOffer.detail === 'Not found.') {
+    return {
+      notFound: true,
+    };
+  }
 
   return {
     props: {

@@ -5,7 +5,7 @@ export const Flag = ({ code }) => {
   return <span className={`fi fi-${code.toLowerCase()}`}></span>;
 };
 
-const Location = ({ location, onLocationClick }) => {
+const Location = ({ location, onLocationClick = null }) => {
   return (
     <div className="location">
       <Flag code={location.country_iso_code} />{" "}

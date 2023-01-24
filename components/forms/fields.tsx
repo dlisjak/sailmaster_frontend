@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
-import Form from "react-bootstrap/Form";
-import FormLabel from "react-bootstrap/FormLabel";
-import FormGroup from "react-bootstrap/FormGroup";
-import Select from "react-select";
-import InputRange from "react-input-range";
+import { useState, useEffect } from 'react';
+import Form from 'react-bootstrap/Form';
+import FormLabel from 'react-bootstrap/FormLabel';
+import FormGroup from 'react-bootstrap/FormGroup';
+import Select from 'react-select';
+import InputRange from 'react-input-range';
 import { useTranslation } from 'next-i18next';
 
-import { customTheme, customStyles } from "utils/reactSelectTheme";
+import { customTheme, customStyles } from '../../utils/reactSelectTheme';
 
 export const RequiredLabel = ({ name }) => (
   <>
@@ -30,9 +30,7 @@ export const Field = ({
         isInvalid={touched[name] && errors[name]}
         {...props}
       />
-      <Form.Control.Feedback type="invalid">
-        {errors[name]}
-      </Form.Control.Feedback>
+      <Form.Control.Feedback type="invalid">{errors[name]}</Form.Control.Feedback>
     </>
   );
 };
@@ -55,9 +53,7 @@ export const Checkbox = ({
           isInvalid={touched[name] && errors[name]}
         />
         <Form.Check.Label>{label}</Form.Check.Label>
-        <Form.Control.Feedback type="invalid">
-          {errors[name]}
-        </Form.Control.Feedback>
+        <Form.Control.Feedback type="invalid">{errors[name]}</Form.Control.Feedback>
       </Form.Check>
     </>
   );
@@ -75,7 +71,6 @@ export const DefaultSelectField = ({
       {label && <Form.Label>{label}</Form.Label>}
       <Form.Control
         as="select"
-        custom
         name={name}
         value={values[name]}
         onChange={handleChange}
@@ -88,16 +83,18 @@ export const DefaultSelectField = ({
           </option>
         ))}
       </Form.Control>
-      <Form.Control.Feedback type="invalid">
-        {errors[name]}
-      </Form.Control.Feedback>
+      <Form.Control.Feedback type="invalid">{errors[name]}</Form.Control.Feedback>
     </>
   );
 };
 
-export const CountrySelect = ({ countries, ...props }) => {
+export const CountrySelect = ({ countries, name, label, formikBag, ...props }) => {
   return (
     <DefaultSelectField
+      countries={countries}
+      name={name}
+      label={label}
+      formikBag={formikBag}
       items={countries.map((country) => ({
         id: country.id,
         name: country.name.name,
@@ -134,13 +131,11 @@ export const RangeField = ({
       <FormLabel>
         {label}:
         <span>
-          {" "}
+          {' '}
           {formatValue(currrentOrDefault.min)}
-          {" - "}
+          {' - '}
           {formatValue(currrentOrDefault.max)}
-          {displayAndMore &&
-            currrentOrDefault.max === maxValue &&
-            " " + t("and_more")}
+          {displayAndMore && currrentOrDefault.max === maxValue && ' ' + t('and_more')}
         </span>
       </FormLabel>
       <div className="range-wrapper">
@@ -170,9 +165,7 @@ export const SelectField = ({
   formGroupProps = null,
   placeholder,
 }) => {
-  const value = options?.find(
-    (item) => String(item.value) === String(values[fieldName])
-  );
+  const value = options?.find((item) => String(item.value) === String(values[fieldName]));
   return (
     <FormGroup {...formGroupProps}>
       <FormLabel>{label}</FormLabel>

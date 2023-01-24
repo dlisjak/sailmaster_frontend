@@ -181,7 +181,7 @@ const OfferExtendedFilter = ({ values, onSubmit }) => {
   );
 };
 
-const ConnectedOfferFilter = ({ filterValues, searchComponent }) => {
+const ConnectedOfferFilter = ({ filterValues, searchComponent = null }) => {
   const router = useRouter();
   const [values, setValues] = useState(filterValues);
   const SearchComponent = searchComponent || OfferExtendedFilter;

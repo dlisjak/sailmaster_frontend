@@ -1,7 +1,6 @@
 import Card from 'react-bootstrap/Card';
 import Accordion from 'react-bootstrap/Accordion';
 
-//compatibility with Bootstrap 3 panel
 const Panel = ({ header, children, eventKey }) => {
   return (
     <Accordion.Item as={Card} className="panel__header" eventKey={eventKey}>

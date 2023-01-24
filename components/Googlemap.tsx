@@ -16,7 +16,7 @@ const GoogleMap = ({ lat, lng }) => {
       defaultZoom={11}
       options={(maps) => ({ styles: GOOGLE_MAPS_OPTIONS })}
     >
-      <Marker lat={lat} lng={lng} />
+      <Marker />
     </GoogleMapReact>
   );
 };

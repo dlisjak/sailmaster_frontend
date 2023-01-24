@@ -1,5 +1,5 @@
 import moment from "moment";
-import formatMoney from "components/common/utils/formatMoney";
+import formatMoney from "../components/common/utils/formatMoney";
 
 export function formatLength(value, defaultValue = "/") {
   return value || value === 0 ? `${value}m` : defaultValue;

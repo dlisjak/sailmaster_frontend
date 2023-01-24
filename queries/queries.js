@@ -64,16 +64,6 @@ export const useYachtBrands = () => {
   };
 };
 
-export const useSearch = (search) => {
-  const { data, error } = useSWR(`/api/search?${search}`, fetcher);
-
-  return {
-    yachtTypes: data,
-    isLoading: !error && !data,
-    isError: error,
-  };
-};
-
 export const useTestimonials = () => {
   const { data, error } = useSWR(`/api/testimonials`, fetcher);
 

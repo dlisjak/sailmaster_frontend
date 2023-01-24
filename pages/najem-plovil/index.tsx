@@ -88,54 +88,56 @@ const OffersPage = ({ error, results, next, count, destination, loading }) => {
           </>
         }
       >
-        <OffersHeader
-          filterValues={filterValues}
-          onSetOrdering={(o) =>
-            router.push(`${OFFERS_URL}?${valuesToSearch({ ...filterValues, o })}`)
-          }
-          displayTotalPrice={displayTotalPrice}
-          setDisplayTotalPrice={setDisplayTotalPrice}
-        />
-        {error && (
-          <Alert className="mt-3" variant="danger">
-            {t(error)}
-          </Alert>
-        )}
-        {loading && <Loader />}
-        {destination && <DestinationTeaser destination={destination} />}
-        {!yachts.length && <NoResults />}
-        {count ? <p className="offers_num_result">{t('offers_num_result', { count })}</p> : ''}
-        {yachts.length > 0 && (
-          <InfiniteScroll
-            pageStart={0}
-            loadMore={handleLoadMore}
-            hasMore={!!loadNext}
-            loader={<Loader key={0} />}
-            threshold={1200}
-          >
-            {yachts?.map((offer, index) => (
-              <OfferTeaser
-                displayTotalPrice={displayTotalPrice}
-                key={offer.id}
-                offer={offer}
-                inWishlist={wishlist && Array.from(wishlist).includes(offer.id.toString())}
-                handleHeartClick={(id) => {
-                  const { array } = handleHeartClick(id);
-                  mutateWishlist({ ...array });
-                }}
-                onEnquiry={() => {
-                  setEnquiryProps({
-                    offerId: offer.id,
-                    yachtModel: offer.yacht.yacht_model.name,
-                    yachtTerm: formatOfferPeriod(offer),
-                    yachtPrice: formatOfferPrice(offer),
-                  });
-                  setShowEnquiryModal(true);
-                }}
-              />
-            ))}
-          </InfiniteScroll>
-        )}
+        <>
+          <OffersHeader
+            filterValues={filterValues}
+            onSetOrdering={(o) =>
+              router.push(`${OFFERS_URL}?${valuesToSearch({ ...filterValues, o })}`)
+            }
+            displayTotalPrice={displayTotalPrice}
+            setDisplayTotalPrice={setDisplayTotalPrice}
+          />
+          {error && (
+            <Alert className="mt-3" variant="danger">
+              {t(error)}
+            </Alert>
+          )}
+          {loading && <Loader />}
+          {destination && <DestinationTeaser destination={destination} />}
+          {!yachts.length && <NoResults />}
+          {count ? <p className="offers_num_result">{t('offers_num_result', { count })}</p> : ''}
+          {yachts.length > 0 && (
+            <InfiniteScroll
+              pageStart={0}
+              loadMore={handleLoadMore}
+              hasMore={!!loadNext}
+              loader={<Loader key={0} />}
+              threshold={1200}
+            >
+              {yachts?.map((offer, index) => (
+                <OfferTeaser
+                  displayTotalPrice={displayTotalPrice}
+                  key={offer.id}
+                  offer={offer}
+                  inWishlist={wishlist && Array.from(wishlist).includes(offer.id.toString())}
+                  handleHeartClick={(id) => {
+                    const { array } = handleHeartClick(id);
+                    mutateWishlist({ ...array });
+                  }}
+                  onEnquiry={() => {
+                    setEnquiryProps({
+                      offerId: offer.id,
+                      yachtModel: offer.yacht.yacht_model.name,
+                      yachtTerm: formatOfferPeriod(offer),
+                      yachtPrice: formatOfferPrice(offer),
+                    });
+                    setShowEnquiryModal(true);
+                  }}
+                />
+              ))}
+            </InfiniteScroll>
+          )}
+        </>
       </LayoutWithSidebar>
       <OfferInquiry
         show={showEnquiryModal}

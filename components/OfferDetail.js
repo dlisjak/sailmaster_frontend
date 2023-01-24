@@ -13,10 +13,10 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
 
-import { LayoutWithSidebar } from '../components/BaseLayout';
-import QuickContact from '../components/QuickContact';
-import Location from '../components/Location';
-import PriceBlock from '../components/PriceBlock';
+import { LayoutWithSidebar } from './BaseLayout';
+import QuickContact from './QuickContact';
+import Location from './Location';
+import PriceBlock from './PriceBlock';
 import {
   formatMoneyAmount,
   formatVolume,
@@ -28,11 +28,11 @@ import {
   diffDays,
 } from '../utils/formats';
 import { optionalServices, obligatoryServices } from '../utils/offerUtils';
-import SimilarOffersCarousel from '../components/SimilarOffersCarousel';
-import GoogleMap from '../components/Googlemap';
+import SimilarOffersCarousel from './SimilarOffersCarousel';
+import GoogleMap from './Googlemap';
 import { stripHtmlTags } from '../utils/miscUtils';
-import Faq from '../components/Faq';
-import SidebarTestimonials from '../components/SidebarTestimonials';
+import Faq from './Faq';
+import SidebarTestimonials from './SidebarTestimonials';
 
 import Heart from '../public/icons/priljubljeno.svg';
 import PinIcon from '../public/icons/zemljevid1.svg';

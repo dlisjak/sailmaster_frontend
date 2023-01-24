@@ -1,4 +1,4 @@
-import { OFFERS_URL } from "../constants";
+import { OFFERS_URL } from "../constants/urls";
 import { valuesToSearch } from "./search_utils";
 
 function convertToSlug(Text) {

@@ -5,7 +5,6 @@ import nextI18NextConfig from '../next-i18next.config.js';
 
 import Header from '../components/Home/Header';
 import Destinations from '../components/Destinations';
-import HomeSpecialOffers from '../components/Home/HomeSpecialOffers';
 import HomeIcons from '../components/Home/HomeIcons';
 import HomeBlogs from '../components/Home/HomeBlogs';
 import Testimonials from '../components/Testimonials';
