@@ -9,7 +9,6 @@ import chunk from 'lodash/chunk';
 import zip from 'lodash/zip';
 
 import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
@@ -40,6 +39,7 @@ import PinIcon from '../public/icons/zemljevid1.svg';
 import ShareIcon from '../public/icons/deli.svg';
 import Check from '../public/icons/check.svg';
 import { INSURANCE_URL } from '../constants/urls';
+import Image from 'next/image';
 
 export const OfferImageGalery = ({ offer }) => {
   const items = offer.yacht.pictures.map((url) => ({
@@ -59,21 +59,21 @@ const Section = ({ title = '', children }) => (
 const Equipment = ({ category, items }) => {
   const size = Math.ceil(items.length / 2);
   return (
-    <Row className="equipment">
+    <div className="row flex equipment">
       <Col sm={4}>
         <div className="equipment__category">{category}</div>
       </Col>
       {chunk(items, size).map((colItems, colIndex) => (
         <Col key={colIndex} sm={4}>
           {colItems.map((item, index) => (
-            <div key={index} className="equipment__item">
+            <div key={index} className="equipment__item flex items-center">
               <Check className="equipment__item-check" />
               {item.name}
             </div>
           ))}
         </Col>
       ))}
-    </Row>
+    </div>
   );
 };
 
@@ -142,11 +142,13 @@ const AdditionalEquipment = ({ items }) => {
 const Attribute = ({ label, value, icon = null, comment = null }) => {
   return (
     <div className="attribute">
-      <div className="attribute__label">
+      <div className="attribute__label flex">
         {icon && (
-          <img
+          <Image
             className="attribute__icon"
-            src={`${process.env.PUBLIC_URL}/images/attributes/${icon}`}
+            src={`/images/attributes/${icon}`}
+            width={32}
+            height={32}
             alt={label}
           />
         )}
@@ -233,14 +235,14 @@ const BaseAttributes = ({ yacht }) => {
   return (
     <div className="base-attributes">
       {zip(col1, col2).map((row, index) => (
-        <Row key={index}>
+        <div className="row" key={index}>
           <Col sm="6">
             <Attribute label={row[0].label} value={row[0].value} icon={row[0].icon} />
           </Col>
           <Col sm="6">
             <Attribute label={row[1].label} value={row[1].value} icon={row[1].icon} />
           </Col>
-        </Row>
+        </div>
       ))}
     </div>
   );
@@ -252,7 +254,7 @@ const OfferSelectedPeriod = ({ offer, onEnquiry }) => {
   return (
     <div className="offer-selected-period">
       <Container>
-        <Row className="offer-selected-period__header">
+        <div className="row offer-selected-period__header">
           <Col sm={6} className="offer-selected-period__period">
             <div className="offer-selected-period__label">
               {t('offer-selected-period__period-from')}
@@ -265,7 +267,7 @@ const OfferSelectedPeriod = ({ offer, onEnquiry }) => {
             </div>
             <div className="offer-selected-period__date">{formatDateLong(offer.period_to)}</div>
           </Col>
-        </Row>
+        </div>
       </Container>
       <div className="offer-selected-period__other-dates">
         <SimilarOffersCarousel
@@ -275,7 +277,7 @@ const OfferSelectedPeriod = ({ offer, onEnquiry }) => {
           currentOffer={offer.id}
         />
       </div>
-      <Row className="offer-selected-period__main">
+      <div className="row offer-selected-period__main">
         <Col sm={6} className="offer-selected-period__info">
           <div className="offer-selected-period__info-name">
             {offer.yacht.yacht_model.category_name} - {offer.yacht.yacht_model.name}
@@ -292,7 +294,7 @@ const OfferSelectedPeriod = ({ offer, onEnquiry }) => {
             {t('offer-selected-period__inquiry')}
           </Button>
         </Col>
-      </Row>
+      </div>
     </div>
   );
 };
@@ -372,19 +374,23 @@ const OfferDetail = ({
                 location={offer.location_from}
                 onLocationClick={() => setShowMap(!showMap)}
               />
-              <div className="offer-detail__buttons">
-                <Button href={emailLink} variant="info">
-                  {/* <ShareIcon /> */}
+              <div className="offer-detail__buttons flex">
+                <Link className="btn btn-info flex" href={emailLink}>
+                  <ShareIcon />
                   {t('offer_share_email')}
-                </Button>
-                <Button variant="info" onClick={handleHeartClick}>
-                  {/* <Heart /> */}
+                </Link>
+                <button className="btn btn-info flex" role="button" onClick={handleHeartClick}>
+                  <Heart />
                   {inWishlist ? t('wishlist_remove') : t('wishlist_add')}
-                </Button>
-                <Button variant="info" onClick={() => setShowMap(!showMap)}>
-                  {/* <PinIcon /> */}
+                </button>
+                <button
+                  className="btn btn-info flex"
+                  role="button"
+                  onClick={() => setShowMap(!showMap)}
+                >
+                  <PinIcon />
                   {showMap ? t('hide_map') : t('show_map')}
-                </Button>
+                </button>
               </div>
             </div>
           </div>

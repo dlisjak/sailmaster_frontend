@@ -8,7 +8,7 @@ import OfferInquiry from '../../components/OfferInquiry';
 
 import nextI18nextConfig from '../../next-i18next.config';
 import { getAllYachts, getYachtOffer } from '../../queries/getters';
-import { useWishlist, useCountriesEnquiry } from '../../queries/queries';
+import { useWishlist } from '../../queries/queries';
 import { formatOfferPeriod, formatOfferPrice } from '../../utils/offerUtils';
 import { yachtSlug } from '../../utils/url_utils';
 import { handleHeartClick } from '../../utils/wishlistUtils';
@@ -17,8 +17,6 @@ const OfferDetailPage = ({ yachtOffer }) => {
   const { wishlist, mutateWishlist } = useWishlist();
   const [showEnquiryModal, setShowEnquiryModal] = useState(false);
   const [filterValues, setFilterValues] = useState({});
-
-  console.log({ yachtOffer });
 
   if (!yachtOffer) {
     return <NotFound />;
