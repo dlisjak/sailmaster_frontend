@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form';
 import FormLabel from 'react-bootstrap/FormLabel';
 import FormGroup from 'react-bootstrap/FormGroup';
 import Select from 'react-select';
-import InputRange from 'react-input-range';
+import InputRange from 'react-input-range-fork-for-react-18';
 import { useTranslation } from 'next-i18next';
 
 import { customTheme, customStyles } from '../../utils/reactSelectTheme';
