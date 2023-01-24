@@ -26,11 +26,11 @@ const Destinacije = ({ destinations }) => {
 
 export const getStaticProps = async ({ locale }) => {
   const translations = await serverSideTranslations(locale, ['home', 'common'], nextI18nextConfig);
-  const destinationsResponse = await getDestinations(locale, true);
+  const destinationsResponse = await getDestinations(true);
 
   return {
     props: {
-      destinations: destinationsResponse?.data,
+      destinations: destinationsResponse,
       ...translations,
     },
     revalidate: 3600,

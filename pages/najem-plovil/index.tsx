@@ -49,20 +49,19 @@ const OffersPage = ({ error, results, next, count, destination, loading }) => {
   });
   const [displayTotalPrice, setDisplayTotalPrice] = useState(true);
   const [filterValues, setFilterValues] = useState({});
-  const [yachts, setYachts] = useState([]);
+  const [yachts, setYachts] = useState(results);
   const [loadNext, setLoadNext] = useState(next);
   const { wishlist, mutateWishlist } = useWishlist();
 
   useEffect(() => {
     setFilterValues(getValuesFromUrl(window.location.search));
-    setYachts([]);
+    setYachts(results);
     setLoadNext(next);
   }, [router]);
 
   const handleLoadMore = useCallback(async () => {
     const { data } = await getSearchResults(loadNext);
-
-    setYachts((prev) => [...prev, ...data.results]);
+    setYachts((prev) => [...new Set([...prev, ...data.results])]);
     setLoadNext(data.next);
   }, [loadNext]);
 
@@ -104,9 +103,9 @@ const OffersPage = ({ error, results, next, count, destination, loading }) => {
         )}
         {loading && <Loader />}
         {destination && <DestinationTeaser destination={destination} />}
-        {![...results, ...yachts].length && <NoResults />}
+        {!yachts.length && <NoResults />}
         {count ? <p className="offers_num_result">{t('offers_num_result', { count })}</p> : ''}
-        {[...results, ...yachts] && (
+        {yachts.length > 0 && (
           <InfiniteScroll
             pageStart={0}
             loadMore={handleLoadMore}
@@ -114,23 +113,15 @@ const OffersPage = ({ error, results, next, count, destination, loading }) => {
             loader={<Loader key={0} />}
             threshold={1200}
           >
-            {[...results, ...yachts]?.map((offer, index) => (
+            {yachts?.map((offer, index) => (
               <OfferTeaser
                 displayTotalPrice={displayTotalPrice}
                 key={offer.id}
                 offer={offer}
-                inWishlist={wishlist.array.contains(offer.id.toString())}
+                inWishlist={wishlist && Array.from(wishlist).includes(offer.id.toString())}
                 handleHeartClick={(id) => {
-                  const result = handleHeartClick(id);
-                  console.log({ result });
-                  return;
-                  mutateWishlist({ ...result, success: true });
-                  dispatch(
-                    wishlistClickedReducerAction({
-                      ...result,
-                      success: true,
-                    })
-                  );
+                  const { array } = handleHeartClick(id);
+                  mutateWishlist({ ...array });
                 }}
                 onEnquiry={() => {
                   setEnquiryProps({

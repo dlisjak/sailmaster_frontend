@@ -20,3 +20,11 @@ export function offerUrl(yacht_id, yacht_model_name, pk) {
 export function offerLink(offer) {
   return offerUrl(offer.yacht.id, offer.yacht.yacht_model.name, offer.id)
 }
+export function yachtSlug(yacht_id, yacht_model_name) {
+  return `${yacht_id}-${convertToSlug(
+    yacht_model_name
+  )}`;
+}
+export function yachtLink(offer) {
+  return yachtSlug(offer.yacht.id, offer.yacht.yacht_model.name)
+}

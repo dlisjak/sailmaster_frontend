@@ -99,6 +99,23 @@ export const getYachtBrands = async () => {
   return data.map(item => ({ value: item.id, label: item.name }))
 };
 
+export const getYachtOffer = async (yachtId) => {
+  const url = process.env.NEXT_PUBLIC_API_URL + '/yacht-offer/' + yachtId + "/";
+
+  const { data } = await axios.get(url);
+
+  return data;
+};
+
+export const getAllYachts = async (offset = 0) => {
+  const limit = 10;
+  const url = process.env.NEXT_PUBLIC_API_URL + `/yachts/?limit=${limit}&offset=${offset}`;
+
+  const { data } = await axios.get(url);
+
+  return data;
+};
+
 export const getSearchResults = async (search) => {
   const idx = search?.indexOf("?");
   const query = search?.substring(idx);

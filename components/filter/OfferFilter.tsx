@@ -33,13 +33,13 @@ export const BasicSearch = ({ values, onSubmit, ...props }) => {
             setValue={(value) => {
               setValue('destinations', value);
             }}
-            value={currentValues.destinations}
+            value={currentValues?.destinations}
           />
         </FormGroup>
         <FormGroup>
           <FormLabel>{t('date_range')}</FormLabel>
           <DateRangeSelect
-            value={currentValues.dateRange}
+            value={currentValues?.dateRange}
             onSelect={(value) => setValue('dateRange', value)}
           />
         </FormGroup>
@@ -181,9 +181,10 @@ const OfferExtendedFilter = ({ values, onSubmit }) => {
   );
 };
 
-const ConnectedOfferFilter = ({ filterValues }) => {
+const ConnectedOfferFilter = ({ filterValues, searchComponent }) => {
   const router = useRouter();
   const [values, setValues] = useState(filterValues);
+  const SearchComponent = searchComponent || OfferExtendedFilter;
 
   useEffect(() => {
     setValues(filterValues);
@@ -191,7 +192,14 @@ const ConnectedOfferFilter = ({ filterValues }) => {
 
   return (
     <div className="offer-filter-container">
-      <OfferExtendedFilter
+      {/* <OfferExtendedFilter
+        values={values}
+        onSubmit={(values) => {
+          setValues(values);
+          router.push(searchUrl(values));
+        }}
+        /> */}
+      <SearchComponent
         values={values}
         onSubmit={(values) => {
           setValues(values);
