@@ -443,7 +443,7 @@ h4,
 h5,
 h6 {
   margin-bottom: 0.5rem;
-  font-family: 'Open Sans', sans-serif;
+   
   font-weight: 600;
   line-height: 1.2;
 }
@@ -13675,7 +13675,7 @@ a.text-dark:hover {
 
 body {
   color: #2b3b42;
-  font-family: 'Open Sans', sans-serif;
+   
 }
 
 .thank-you-message {
@@ -14119,7 +14119,7 @@ body {
   font-size: 16px;
   font-weight: 700;
   float: left;
-  font-family: 'Open Sans', sans-serif;
+   
   border: 0;
   border-radius: 0;
   outline: 0;
@@ -14142,7 +14142,7 @@ body {
   text-transform: uppercase;
   font-size: 11px;
   float: left;
-  font-family: 'Open Sans', sans-serif;
+   
   border-radius: 0;
   outline: 0;
   color: #ceb896;
@@ -14166,7 +14166,7 @@ body {
   text-transform: uppercase;
   font-size: 11px;
   float: left;
-  font-family: 'Open Sans', sans-serif;
+   
   border-radius: 0;
   outline: 0;
   color: #fff;
@@ -14302,7 +14302,7 @@ body {
   margin-left: 20px;
   font-weight: 300;
   font-size: 18px;
-  font-family: 'Open Sans', sans-serif;
+   
 }
 
 .filter-side-menu-wrapper {
@@ -14571,7 +14571,7 @@ body {
   border: 1px solid #fff !important;
   box-shadow: none !important;
   text-transform: uppercase;
-  font-family: 'Open Sans', sans-serif;
+   
   color: #fff;
   font-size: 13px;
   font-weight: 400;
@@ -14666,7 +14666,7 @@ body {
   background: #253238;
   color: #fff;
   padding: 35px 0 0;
-  font-family: 'Open Sans', sans-serif;
+   
   float: left;
   width: 100%;
 }
@@ -14686,7 +14686,7 @@ body {
 .footer h6 {
   font-size: 17px;
   padding: 0 0 25px;
-  font-family: 'Open Sans', sans-serif;
+   
   margin: 0;
   font-weight: 700;
 }
@@ -14915,7 +14915,7 @@ body {
 
 .CookieLaw .CookieLaw__left .CookieLaw__left__info {
   display: inline-block;
-  font-family: 'Open Sans', sans-serif;
+   
   font-size: 19px;
   border-radius: 50%;
   color: #fff;
@@ -15004,7 +15004,7 @@ body {
 
 .promo-modal form,
 .promo-modal form select {
-  font-family: 'Open Sans', sans-serif;
+   
 }
 
 .promo-modal form select {
@@ -15029,7 +15029,7 @@ body {
 
 .promo-modal form .text-input input {
   border: 1px solid #ddd;
-  font-family: 'Open Sans', sans-serif;
+   
   padding: 0 15px;
 }
 
@@ -15056,7 +15056,7 @@ body {
 }
 
 .promo-modal form label {
-  font-family: 'Open Sans', sans-serif;
+   
   display: inline-block;
   cursor: pointer;
   color: #444;
@@ -15077,7 +15077,7 @@ body {
 }
 
 .promo-modal .promo-bold {
-  font-family: 'Open Sans', sans-serif;
+   
   font-size: 18px;
   margin: 30px 0 35px;
 }
@@ -15085,7 +15085,7 @@ body {
 .promo-modal .promo-footer {
   padding: 50px 30px 0;
   font-weight: 700;
-  font-family: 'Open Sans', sans-serif;
+   
   font-size: 12px;
   text-align: center;
 }
@@ -15159,7 +15159,7 @@ body {
   color: #fff;
   font-size: 17px;
   font-weight: 700;
-  font-family: 'Open Sans', sans-serif;
+   
 }
 
 .google-map .google-map-open {
@@ -15170,7 +15170,7 @@ body {
   z-index: 9999;
   background: #fff;
   left: -169px;
-  font-family: 'Open Sans', sans-serif;
+   
   padding: 15px;
   border-bottom: 6px solid #ceb896;
   -webkit-animation-name: pin-in-animation;
@@ -15274,7 +15274,7 @@ body {
   padding: 12px 8px 12px 24px;
   font-size: 13px;
   font-weight: 400;
-  font-family: 'Open Sans', sans-serif;
+   
 }
 
 .destinations .dropdown-with-seatch {
@@ -15300,7 +15300,7 @@ body {
 
 .destinations .dropdown-with-seatch .cd-accordion-menu > li {
   padding: 12px 8px 0 12px;
-  font-family: 'Open Sans', sans-serif;
+   
   color: #000;
   font-size: 13px;
   font-weight: 400;
@@ -15333,7 +15333,7 @@ body {
 
 .destinations .dropdown-with-seatch .cd-accordion-menu a,
 .destinations .dropdown-with-seatch .cd-accordion-menu label {
-  font-family: 'Open Sans', sans-serif;
+   
   color: #000;
   font-size: 13px;
   font-weight: 400;
@@ -15415,7 +15415,7 @@ body {
   text-align: center;
   color: #fff;
   font-size: 38px;
-  font-family: 'Open Sans', sans-serif;
+   
   position: relative;
   float: left;
 }
@@ -15544,7 +15544,7 @@ body {
 
 .home-header__content h1 {
   width: 100%;
-  font-family: 'Open Sans', sans-serif;
+   
   font-size: 30px;
   font-weight: 700;
   text-align: center;
@@ -15553,7 +15553,7 @@ body {
 }
 
 .home-header__content h2 {
-  font-family: 'Open Sans', sans-serif;
+   
   font-size: 15px;
   text-transform: uppercase;
   text-shadow: 3px 3px 10px #222;
@@ -15715,7 +15715,7 @@ body {
   transform: rotate(45deg);
   text-align: center;
   font-size: 18px;
-  font-family: 'Open Sans', sans-serif;
+   
   font-weight: 700;
 }
 
@@ -15731,7 +15731,7 @@ body {
   right: 0;
   background: #fff;
   overflow: hidden;
-  font-family: 'Open Sans', sans-serif;
+   
   color: #2b3b42;
 }
 
@@ -15743,7 +15743,7 @@ body {
   display: flex;
   align-items: center;
   -webkit-align-items: center;
-  font-family: 'Open Sans', sans-serif;
+   
 }
 
 .home-offers .home-offer .home-offer--body .home-offer--destination {
@@ -15784,7 +15784,7 @@ body {
 
 .home-offers .home-offer .home-offer--body .home-offer--destination .home-offer--destination-text {
   float: left;
-  font-family: 'Open Sans', sans-serif;
+   
   color: #2b3b42;
   font-size: 16px;
 }
@@ -15993,7 +15993,7 @@ body {
 
 .home-offers .home-offer .home-offer--body .home-offer--others ul li .home-offer--others-text {
   float: left;
-  font-family: 'Open Sans', sans-serif;
+   
   color: #2b3b42;
   font-size: 16px;
 }
@@ -16182,7 +16182,7 @@ body {
 .home-icon-wrapper .home-icon .home-icon--title {
   font-size: 17px;
   padding: 18px 0 9px;
-  font-family: 'Open Sans', sans-serif;
+   
   font-weight: 700;
   width: 100%;
 }
@@ -16200,7 +16200,7 @@ body {
 .home-icon-wrapper .home-icon .home-icon--text {
   color: #2b3b42;
   font-size: 14px;
-  font-family: 'Open Sans', sans-serif;
+   
   width: 100%;
 }
 
@@ -16297,7 +16297,7 @@ body {
   border-top: 1px solid #ceb896;
   padding: 13px 0 15px;
   font-size: 14px;
-  font-family: 'Open Sans', sans-serif;
+   
   text-align: left;
   flex: 1 0 auto;
 }
@@ -16398,7 +16398,7 @@ body {
 }
 
 .home-newsletter .newsletter-success-wrapper .newsletter-success {
-  font-family: 'Open Sans', sans-serif;
+   
   font-size: 17px;
   font-weight: 700;
   color: #fff;
@@ -16408,7 +16408,7 @@ body {
   text-align: center;
   color: #fff;
   font-size: 38px;
-  font-family: 'Open Sans', sans-serif;
+   
   position: relative;
   float: left;
 }
@@ -16426,7 +16426,7 @@ body {
 .home-newsletter p {
   color: #fff;
   padding: 15px 0;
-  font-family: 'Open Sans', sans-serif;
+   
   font-size: 17px;
   font-weight: 400;
 }
@@ -16506,7 +16506,7 @@ body {
   padding: 10px 15px 10px 24px;
   cursor: pointer;
   color: #2b3b42;
-  font-family: 'Open Sans', sans-serif;
+   
   font-size: 14px;
   font-weight: 400;
 }
@@ -16692,7 +16692,7 @@ body {
 .offer .similar-term .similar-term-period {
   margin: 4px 0;
   font-size: 12px;
-  font-family: 'Open Sans', sans-serif;
+   
   display: flex;
   align-items: center;
   -webkit-align-items: center;
@@ -16704,7 +16704,7 @@ body {
 .offer .similar-term .similar-term-price {
   font-size: 20px;
   font-weight: 700;
-  font-family: 'Open Sans', sans-serif;
+   
   text-align: center;
   padding: 10px 0 12px;
   color: #ceb896;
@@ -16761,7 +16761,7 @@ body {
 .offer .tabs .tab-pane .info-item {
   padding: 8px 31px 8px 15px;
   font-size: 16px;
-  font-family: 'Open Sans', sans-serif;
+   
 }
 
 .offer .tabs .tab-pane .info-item span {
@@ -16771,7 +16771,7 @@ body {
 .offer .tabs .tab-pane .equipment {
   padding: 8px 31px 8px 15px;
   font-size: 16px;
-  font-family: 'Open Sans', sans-serif;
+   
 }
 
 .offer .tabs .tab-pane .equipment span {
@@ -16781,7 +16781,7 @@ body {
 .offer .tabs .tab-pane .offer-price {
   padding: 8px 31px 8px 15px;
   font-size: 16px;
-  font-family: 'Open Sans', sans-serif;
+   
 }
 
 .offer .tabs .tab-pane .offer-price span {
@@ -16791,7 +16791,7 @@ body {
 .offer .tabs .tab-pane .offer-service {
   padding: 8px 31px 8px 15px;
   font-size: 16px;
-  font-family: 'Open Sans', sans-serif;
+   
 }
 
 .offer .tabs .tab-pane .offer-service span {
@@ -16803,7 +16803,7 @@ body {
 }
 
 .offer .tabs h2 {
-  font-family: 'Open Sans', sans-serif;
+   
   color: #2b3b42;
   font-weight: 300;
   font-size: 28px;
@@ -16830,7 +16830,7 @@ body {
   display: block;
   padding: 16px 50px 16px 0;
   font-size: 16px;
-  font-family: 'Open Sans', sans-serif;
+   
   border: 0;
   color: #b8bdc1;
   transition: all 0.5s;
@@ -17014,7 +17014,7 @@ body {
 .offer-header p {
   color: #fff;
   padding: 15px 0;
-  font-family: 'Open Sans', sans-serif;
+   
   font-size: 17px;
   font-weight: 400;
   text-align: center;
@@ -17031,7 +17031,7 @@ body {
   text-align: center;
   color: #fff;
   font-size: 38px;
-  font-family: 'Open Sans', sans-serif;
+   
   position: relative;
   float: left;
 }
@@ -17080,14 +17080,14 @@ body {
   font-size: 31px;
   padding: 0 0 25px;
   color: #2b3b42;
-  font-family: 'Open Sans', sans-serif;
+   
 }
 
 .not-found .text-wrapper p {
   line-height: 1.5;
   padding: 0 0 20px;
   font-size: 15px;
-  font-family: 'Open Sans', sans-serif;
+   
   color: #2b3b42;
 }
 
@@ -17136,7 +17136,7 @@ body {
 .contact .col-inner div > li {
   line-height: 1.5;
   font-size: 15px;
-  font-family: 'Open Sans', sans-serif;
+   
   color: #2b3b42;
 }
 
@@ -17151,7 +17151,7 @@ body {
 .contact .col-inner h3,
 .contact .col-inner h4,
 .contact .col-inner p {
-  font-family: 'Open Sans', sans-serif;
+   
 }
 
 .contact .col-inner p {
@@ -17176,7 +17176,7 @@ body {
   line-height: 1.5;
   padding-bottom: 5px;
   font-size: 15px;
-  font-family: 'Open Sans', sans-serif;
+   
   color: #2b3b42;
   margin: 0;
 }
@@ -17200,7 +17200,7 @@ body {
   line-height: 1.5;
   padding: 0 0 30px;
   font-size: 18px;
-  font-family: 'Open Sans', sans-serif;
+   
   color: #2b3b42;
   margin: 0;
 }
@@ -17228,7 +17228,7 @@ body {
   line-height: 1.5;
   padding: 0 0 30px;
   font-size: 18px;
-  font-family: 'Open Sans', sans-serif;
+   
   color: #2b3b42;
   margin: 0;
 }
@@ -17286,7 +17286,7 @@ body {
 }
 
 .contact .col-inner .contact-form {
-  font-family: 'Open Sans', sans-serif;
+   
   margin-top: 10px;
 }
 
@@ -17302,7 +17302,7 @@ body {
   height: 45px;
   font-weight: 300;
   border: 1px solid #ddd;
-  font-family: 'Open Sans', sans-serif;
+   
   padding: 0 15px;
   margin-bottom: 19px;
 }
@@ -17313,7 +17313,7 @@ body {
 
 .contact .col-inner .contact-form .text-input input {
   border: 1px solid #ddd;
-  font-family: 'Open Sans', sans-serif;
+   
   padding: 0 15px;
 }
 
@@ -17336,7 +17336,7 @@ body {
 }
 
 .contact .col-inner .contact-form label {
-  font-family: 'Open Sans', sans-serif;
+   
   display: inline-block;
   cursor: pointer;
   color: #444;
@@ -17367,7 +17367,7 @@ body {
 .contact .col-inner ol li {
   line-height: 1.5;
   font-size: 15px;
-  font-family: 'Open Sans', sans-serif;
+   
   color: #2b3b42;
   margin: 0;
   list-style: decimal outside;
@@ -17412,7 +17412,7 @@ body {
 .contact .col-inner .panel .panel-collapse {
   line-height: 1.5;
   font-size: 15px;
-  font-family: 'Open Sans', sans-serif;
+   
   color: #2b3b42;
   position: relative;
 }
@@ -17556,7 +17556,7 @@ body {
   font-size: 13px;
   line-height: 1;
   color: #2b3b42;
-  font-family: 'Open Sans', sans-serif;
+   
 }
 
 .price-block .discount {
@@ -17638,7 +17638,7 @@ body {
 .page-home__title h2 {
   color: #2b3b42;
   font-size: 38px;
-  font-family: 'Open Sans', sans-serif;
+   
   position: relative;
   float: left;
 }
@@ -17672,7 +17672,7 @@ body {
 
 .blog .col-inner div > li,
 .blog .col-inner h1 {
-  font-family: 'Open Sans', sans-serif;
+   
   color: #2b3b42;
 }
 
@@ -17685,7 +17685,7 @@ body {
 .blog .col-inner h3,
 .blog .col-inner h4,
 .blog .col-inner p {
-  font-family: 'Open Sans', sans-serif;
+   
 }
 
 .blog .col-inner p {
@@ -17723,7 +17723,7 @@ body {
   font-size: 28px;
   padding: 0;
   text-align: left;
-  font-family: 'Open Sans', sans-serif;
+   
   line-height: 31px;
 }
 
@@ -17731,7 +17731,7 @@ body {
   margin: 1.4em 0;
   line-height: 20px;
   font-size: 15px;
-  font-family: 'Open Sans', sans-serif;
+   
 }
 
 .blog .col-inner .blog-item .gold-border-button {
@@ -17780,7 +17780,7 @@ body {
   font-size: 35px;
   text-align: left;
   color: #2b3b42;
-  font-family: 'Open Sans', sans-serif;
+   
 }
 
 .blog-single .col-inner .blog-border {
@@ -17822,7 +17822,7 @@ body {
 }
 
 .blog-single .col-inner .subtitle-wrapper .wrote {
-  font-family: 'Open Sans', sans-serif;
+   
   color: #2b3b42;
   font-size: 18px;
   padding-top: 2px;
@@ -17830,20 +17830,20 @@ body {
 }
 
 .blog-single .col-inner .subtitle-wrapper .wrote span {
-  font-family: 'Open Sans', sans-serif;
+   
   color: #ceb896;
   margin-left: 5px;
 }
 
 .blog-single .col-inner .subtitle-wrapper .blog-date {
-  font-family: 'Open Sans', sans-serif;
+   
   color: #2b3b42;
   font-size: 18px;
   padding-top: 2px;
 }
 
 .blog-single .col-inner .subtitle-wrapper .blog-date span {
-  font-family: 'Open Sans', sans-serif;
+   
   color: #2b3b42;
   font-size: 18px;
   margin: 0;
@@ -17852,12 +17852,12 @@ body {
 .blog-single .col-inner div > li {
   line-height: 1.5;
   font-size: 15px;
-  font-family: 'Open Sans', sans-serif;
+   
   color: #2b3b42;
 }
 
 .blog-single .col-inner h1 {
-  font-family: 'Open Sans', sans-serif;
+   
   padding-bottom: 15px;
   color: #2b3b42;
   margin-top: 0;
@@ -17866,7 +17866,7 @@ body {
 .blog-single .col-inner h2,
 .blog-single .col-inner h3,
 .blog-single .col-inner h4 {
-  font-family: 'Open Sans', sans-serif;
+   
   margin-top: 5px;
 }
 
@@ -17874,7 +17874,7 @@ body {
   line-height: 1.5;
   padding: 0 0 20px;
   font-size: 15px;
-  font-family: 'Open Sans', sans-serif;
+   
   color: #2b3b42;
   margin: 0;
 }
@@ -17900,7 +17900,7 @@ body {
   font-size: 28px;
   padding: 0;
   text-align: left;
-  font-family: 'Open Sans', sans-serif;
+   
   line-height: 31px;
 }
 
@@ -17908,7 +17908,7 @@ body {
   margin: 1.4em 0;
   line-height: 20px;
   font-size: 15px;
-  font-family: 'Open Sans', sans-serif;
+   
 }
 
 .blog-single .col-inner .blog-item .gold-border-button {
@@ -17966,7 +17966,7 @@ body {
   padding: 10px 15px 10px 24px;
   cursor: pointer;
   color: #2b3b42;
-  font-family: 'Open Sans', sans-serif;
+   
   font-size: 14px;
   font-weight: 400;
 }
@@ -18090,7 +18090,7 @@ body {
 }
 
 .wishlist .wishlist-offer .wishlist-offer-row {
-  font-family: 'Open Sans', sans-serif;
+   
   color: #2b3b42;
   font-size: 16px;
 }
@@ -18460,7 +18460,7 @@ table.season-items th {
 .offer-selected-period__info-name {
   font-size: 16px;
   font-weight: 700;
-  font-family: 'Open Sans', sans-serif;
+   
   margin-bottom: 0.5rem;
   padding-bottom: 0.5rem;
   border-bottom: 1px solid #ceb896;
@@ -19870,7 +19870,7 @@ table.season-items th {
 
 .no-results .no-results__text {
   margin-top: 50px;
-  font-family: 'Open Sans', sans-serif;
+   
   font-weight: 400;
   font-size: 31px;
   color: #2b3b42;

@@ -24,7 +24,6 @@
         font-size: 35px;
         text-align: left;
         color: #2b3b42;
-        font-family: 'Open Sans', sans-serif;
       }
     }
 
@@ -66,27 +65,23 @@
       }
 
       .wrote {
-        font-family: 'Open Sans', sans-serif;
         color: #2b3b42;
         font-size: 18px;
         padding-top: 2px;
         margin-left: 10px;
 
         span {
-          font-family: 'Open Sans', sans-serif;
           color: #ceb896;
           margin-left: 5px;
         }
       }
 
       .blog-date {
-        font-family: 'Open Sans', sans-serif;
         color: #2b3b42;
         font-size: 18px;
         padding-top: 2px;
 
         span {
-          font-family: 'Open Sans', sans-serif;
           color: #2b3b42;
           font-size: 18px;
           margin: 0;
@@ -98,13 +93,12 @@
       & > li {
         line-height: 1.5;
         font-size: 15px;
-        font-family: 'Open Sans', sans-serif;
+
         color: #2b3b42;
       }
     }
 
     h1 {
-      font-family: 'Open Sans', sans-serif;
       padding-bottom: 15px;
       color: #2b3b42;
       margin-top: 0;
@@ -113,7 +107,6 @@
     h2,
     h3,
     h4 {
-      font-family: 'Open Sans', sans-serif;
       margin-top: 5px;
     }
 
@@ -121,7 +114,7 @@
       line-height: 1.5;
       padding: 0 0 20px;
       font-size: 15px;
-      font-family: 'Open Sans', sans-serif;
+
       color: #2b3b42;
       margin: 0;
     }
@@ -146,7 +139,7 @@
         font-size: 28px;
         padding: 0;
         text-align: left;
-        font-family: 'Open Sans', sans-serif;
+
         line-height: 31px;
       }
 
@@ -154,7 +147,6 @@
         margin: 1.4em 0 1.4em;
         line-height: 20px;
         font-size: 15px;
-        font-family: 'Open Sans', sans-serif;
       }
 
       .gold-border-button {

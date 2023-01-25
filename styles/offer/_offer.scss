@@ -17,7 +17,7 @@
         padding: 10px 15px 10px 24px;
         cursor: pointer;
         color: #2b3b42;
-        font-family: 'Open Sans', sans-serif;
+
         font-size: 14px;
         font-weight: 400;
 
@@ -198,7 +198,7 @@
     .similar-term-period {
       margin: 4px 0;
       font-size: 12px;
-      font-family: 'Open Sans', sans-serif;
+
       display: flex;
       align-items: center;
       justify-content: center;
@@ -208,7 +208,7 @@
     .similar-term-price {
       font-size: 20px;
       font-weight: 700;
-      font-family: 'Open Sans', sans-serif;
+
       text-align: center;
       padding: 10px 0 12px;
       color: #ceb896;
@@ -266,7 +266,6 @@
       .info-item {
         padding: 8px 31px 8px 15px;
         font-size: 16px;
-        font-family: 'Open Sans', sans-serif;
 
         span {
           font-weight: 600;
@@ -276,7 +275,6 @@
       .equipment {
         padding: 8px 31px 8px 15px;
         font-size: 16px;
-        font-family: 'Open Sans', sans-serif;
 
         span {
           font-weight: 600;
@@ -286,7 +284,6 @@
       .offer-price {
         padding: 8px 31px 8px 15px;
         font-size: 16px;
-        font-family: 'Open Sans', sans-serif;
 
         span {
           font-weight: 600;
@@ -296,7 +293,6 @@
       .offer-service {
         padding: 8px 31px 8px 15px;
         font-size: 16px;
-        font-family: 'Open Sans', sans-serif;
 
         span {
           font-weight: 600;
@@ -309,7 +305,6 @@
     }
 
     h2 {
-      font-family: 'Open Sans', sans-serif;
       color: #2b3b42;
       font-weight: 300;
       font-size: 28px;
@@ -341,7 +336,7 @@
           display: block;
           padding: 16px 50px 16px 0;
           font-size: 16px;
-          font-family: 'Open Sans', sans-serif;
+
           border: 0;
           color: $grey;
           transition: all 0.5s;

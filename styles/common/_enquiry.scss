@@ -14,12 +14,11 @@
     h4,
     .h4 {
       color: white;
-      font-family: 'Open Sans', sans-serif;
 
       .enquiry-modal-title-data {
         font-size: 14px;
         margin-top: 12px;
-        font-family: 'Open Sans', sans-serif;
+
         color: white;
 
         span {
@@ -67,8 +66,6 @@
     }
 
     .enquiry-form {
-      font-family: 'Open Sans', sans-serif;
-
       select {
         background: white;
         width: 100%;
@@ -84,7 +81,7 @@
         height: 45px;
         font-weight: 300;
         border: 1px solid #ddd;
-        font-family: 'Open Sans', sans-serif;
+
         padding: 0 15px;
         margin-bottom: 19px;
       }
@@ -94,7 +91,7 @@
 
         input {
           border: 1px solid #ddd;
-          font-family: 'Open Sans', sans-serif;
+
           padding: 0 15px;
         }
 
@@ -119,7 +116,6 @@
       }
 
       label {
-        font-family: 'Open Sans', sans-serif;
         display: inline-block;
         cursor: pointer;
         color: #444;
