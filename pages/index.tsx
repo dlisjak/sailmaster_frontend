@@ -1,4 +1,6 @@
 import Head from 'next/head';
+import { SWRConfig } from 'swr';
+import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import nextI18NextConfig from '../next-i18next.config.js';
@@ -19,11 +21,7 @@ import {
   getYachtTypes,
 } from '../queries/getters.js';
 import { subscribeNewsletter } from '../lib/base';
-
-import { searchDestinations } from '../lib/search';
-import { SWRConfig } from 'swr';
 import { OFFERS_URL } from '../constants/urls';
-import { useRouter } from 'next/router';
 import { valuesToSearch } from '../utils/search_utils.js';
 
 const Index = ({ fallback, yachtTypes, featuredYachts, destinations, testimonials, homeBlogs }) => {

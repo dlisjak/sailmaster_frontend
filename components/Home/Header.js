@@ -31,6 +31,7 @@ const Header = ({ yachtTypes, onSearch }) => {
             alt="Sailmaster - najem jadrnice, katamarana, plovil"
             width={1920}
             height={1080}
+            priority
           />
         </Background>
         <Container className="home-header__container">
