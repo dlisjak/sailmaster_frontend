@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form';
 import FormLabel from 'react-bootstrap/FormLabel';
 import FormGroup from 'react-bootstrap/FormGroup';
 import Select from 'react-select';
-import InputRange from 'react-input-range-fork-for-react-18';
+import InputRange from '../InputRange';
 import { useTranslation } from 'next-i18next';
 
 import { customTheme, customStyles } from '../../utils/reactSelectTheme';
@@ -120,22 +120,22 @@ export const RangeField = ({
   }, [value]);
   const { t } = useTranslation();
   const [current, setCurrent] = useState(value);
-
-  const currrentOrDefault = current || { min: minValue, max: maxValue };
+  const currentOrDefault = current || { min: minValue, max: maxValue };
 
   if (!formatValue) {
     formatValue = (value) => value;
   }
+
   return (
     <FormGroup className="range-line">
       <FormLabel>
         {label}:
         <span>
           {' '}
-          {formatValue(currrentOrDefault.min)}
+          {formatValue(currentOrDefault.min)}
           {' - '}
-          {formatValue(currrentOrDefault.max)}
-          {displayAndMore && currrentOrDefault.max === maxValue && ' ' + t('and_more')}
+          {formatValue(currentOrDefault.max)}
+          {displayAndMore && currentOrDefault.max === maxValue && ' ' + t('and_more')}
         </span>
       </FormLabel>
       <div className="range-wrapper">
@@ -143,7 +143,7 @@ export const RangeField = ({
           allowSameValues
           minValue={minValue}
           maxValue={maxValue}
-          value={currrentOrDefault}
+          value={currentOrDefault}
           onChangeComplete={(value) => {
             setValue(fieldName, value);
           }}
