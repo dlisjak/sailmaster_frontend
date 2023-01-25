@@ -22,7 +22,6 @@ import { createOfferInquiry } from '../../lib/base';
 import { formatOfferPeriod, formatOfferPrice } from '../../utils/offerUtils';
 import { getValuesFromUrl, valuesToSearch } from '../../utils/search_utils';
 import { handleHeartClick } from '../../utils/wishlistUtils';
-import { wishlistClickedReducerAction } from '../../actions/wishlist';
 import { getSearchResults } from '../../queries/getters';
 import { OFFERS_URL } from '../../constants/urls';
 import { useWishlist } from '../../queries/queries';

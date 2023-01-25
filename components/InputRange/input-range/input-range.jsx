@@ -11,6 +11,7 @@ import { useAsyncReference } from "../../../utils/hooks";
 
 const InputRange = (props) => {
   const { allowSameValues = false, ariaLabelledby, ariaControls, classNames = DEFAULT_CLASS_NAMES, disabled = false, draggableTrack, formatLabel, maxValue = 10, minValue = 0, name, onChangeStart, onChange, onChangeComplete, step = 1, value } = props;
+  const asyncValue = useAsyncReference(value, true);
   const [isSliderDragging, setIsSliderDragging] = useState(false);
   const [lastKeyMoved, setLastKeyMoved] = useState(null);
   const [startValue, setStartValue] = useState(null);
@@ -126,21 +127,25 @@ const InputRange = (props) => {
   }
 
   const addDocumentMouseUpListener = () => {
+    if (!node.current) return;
     removeDocumentMouseUpListener();
-    ((node.current || {}).ownerDocument || {}).addEventListener('mouseup', handleMouseUp);
+    node.current.ownerDocument.addEventListener('mouseup', handleMouseUp);
   }
 
   const addDocumentTouchEndListener = () => {
+    if (!node.current) return;
     removeDocumentTouchEndListener();
-    ((node.current || {}).ownerDocument || {}).addEventListener('touchend', handleTouchEnd);
+    node.current.ownerDocument.addEventListener('touchend', handleTouchEnd);
   }
 
   const removeDocumentMouseUpListener = () => {
-    ((node.current || {}).ownerDocument || {}).removeEventListener('mouseup', handleMouseUp);
+    if (!node.current) return;
+    node.current.ownerDocument.removeEventListener('mouseup', handleMouseUp);
   }
 
   const removeDocumentTouchEndListener = () => {
-    ((node.current || {}).ownerDocument || {}).removeEventListener('touchend', handleTouchEnd);
+    if (!node.current) return;
+    node.current.ownerDocument.removeEventListener('touchend', handleTouchEnd);
   }
 
   const handleSliderDrag = (event, key) => {
@@ -227,7 +232,7 @@ const InputRange = (props) => {
 
   const handleInteractionStart = () => {
     if (onChangeStart) {
-      onChangeStart(value);
+      onChangeStart(asyncValue.current);
     }
 
     if (onChangeComplete && !isDefined(startValue)) {
@@ -243,8 +248,8 @@ const InputRange = (props) => {
       return;
     }
 
-    if (startValue !== value) {
-      onChangeComplete(value);
+    if (startValue !== asyncValue.current) {
+      onChangeComplete(asyncValue.current);
     }
 
     setStartValue(null)

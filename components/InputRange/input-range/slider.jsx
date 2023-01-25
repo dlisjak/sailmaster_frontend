@@ -27,39 +27,47 @@ const Slider = (props) => {
   }
 
   const addDocumentMouseMoveListener = () => {
+    if (!node.current) return;
     removeDocumentMouseMoveListener();
-    ((node.current || {}).ownerDocument || {}).addEventListener('mousemove', handleMouseMove);
+    node.current.ownerDocument.addEventListener('mousemove', handleMouseMove);
   }
 
   const addDocumentMouseUpListener = () => {
+    if (!node.current) return;
     removeDocumentMouseUpListener();
-    ((node.current || {}).ownerDocument || {}).addEventListener('mouseup', handleMouseUp);
+    node.current.ownerDocument.addEventListener('mouseup', handleMouseUp);
   }
 
   const addDocumentTouchMoveListener = () => {
+    if (!node.current) return;
     removeDocumentTouchMoveListener();
-    ((node.current || {}).ownerDocument || {}).addEventListener('touchmove', handleTouchMove);
+    node.current.ownerDocument.addEventListener('touchmove', handleTouchMove);
   }
 
   const addDocumentTouchEndListener = () => {
+    if (!node.current) return;
     removeDocumentTouchEndListener();
-    ((node.current || {}).ownerDocument || {}).addEventListener('touchend', handleTouchEnd);
+    node.current.ownerDocument.addEventListener('touchend', handleTouchEnd);
   }
 
   const removeDocumentMouseMoveListener = () => {
-    ((node.current || {}).ownerDocument || {}).removeEventListener('mousemove', handleMouseMove);
+    if (!node.current) return;
+    node.current.ownerDocument.removeEventListener('mousemove', handleMouseMove);
   }
 
   const removeDocumentMouseUpListener = () => {
-    ((node.current || {}).ownerDocument || {}).removeEventListener('mouseup', handleMouseUp);
+    if (!node.current) return;
+    node.current.ownerDocument.removeEventListener('mouseup', handleMouseUp);
   }
 
   const removeDocumentTouchMoveListener = () => {
-    ((node.current || {}).ownerDocument || {}).removeEventListener('touchmove', handleTouchMove);
+    if (!node.current) return;
+    node.current.ownerDocument.removeEventListener('touchmove', handleTouchMove);
   }
 
   const removeDocumentTouchEndListener = () => {
-    ((node.current || {}).ownerDocument || {}).removeEventListener('touchend', handleTouchEnd);
+    if (!node.current) return;
+    node.current.ownerDocument.removeEventListener('touchend', handleTouchEnd);
   }
 
   const handleMouseDown = () => {
