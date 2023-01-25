@@ -39,7 +39,6 @@ const Index = ({ fallback, yachtTypes, featuredYachts, destinations, testimonial
         </Head>
 
         <Header
-          searchDestinations={searchDestinations}
           yachtTypes={yachtTypes}
           onSearch={(values) => {
             router.push(OFFERS_URL + '?' + valuesToSearch(values));
