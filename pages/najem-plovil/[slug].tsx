@@ -100,9 +100,17 @@ export const getStaticProps = async (ctx) => {
 
   const url = process.env.NEXT_PUBLIC_API_URL + '/yacht-offer/' + yachtId + '/';
   const response = await fetch(url);
-  const yachtOffer: any = await response.json();
+  const contentType = response.headers.get('content-type');
+  let yachtOffer: any;
+  if (contentType && contentType.indexOf('application/json') !== -1) {
+    yachtOffer = await response.json();
+  } else {
+    return response.text().then((text) => {
+      yachtOffer = null;
+    });
+  }
 
-  if (yachtOffer.detail === 'Not found.') {
+  if (!yachtOffer || yachtOffer === 'Not found.') {
     return {
       notFound: true,
     };
