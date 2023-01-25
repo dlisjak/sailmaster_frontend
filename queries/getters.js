@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { postData } from "../api/base";
+import { postData } from "../lib/base";
 
 export const getFeaturedYachts = async () => {
   const lang = process.env.NEXT_PUBLIC_REACT_APP_LANGUAGE;

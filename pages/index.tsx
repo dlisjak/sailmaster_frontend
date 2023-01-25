@@ -18,9 +18,9 @@ import {
   getYachtBrands,
   getYachtTypes,
 } from '../queries/getters.js';
-import { subscribeNewsletter } from '../api/base';
+import { subscribeNewsletter } from '../lib/base';
 
-import { searchDestinations } from '../api/search';
+import { searchDestinations } from '../lib/search';
 import { SWRConfig } from 'swr';
 // import { OFFERS_URL } from '../constants/index';
 // import { valuesToSearch } from '../utils/search_utils';

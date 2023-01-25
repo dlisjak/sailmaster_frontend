@@ -11,7 +11,7 @@ import { RequiredLabel, Field, Checkbox, CountrySelect } from './forms/fields';
 
 import { DEFAULT_COUNTRY } from '../constants/urls';
 import { getCountryId } from '../utils/miscUtils';
-import { createInquiry } from '../api/base';
+import { createInquiry } from '../lib/base';
 import { useCountriesEnquiry } from '../queries/queries';
 
 const InquiryModal = ({ showInquiry, onClose }) => {

@@ -10,7 +10,7 @@ import {
   newsletterInitialValues,
 } from "utils/newsletterFormUtils";
 
-import { subscribeNewsletterGift } from "../api/base";
+import { subscribeNewsletterGift } from "../lib/base";
 
 const PromoModal = ({ showModal, onClose }) => {
   const { t, i18n } = useTranslation();

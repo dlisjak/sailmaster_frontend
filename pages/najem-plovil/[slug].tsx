@@ -1,7 +1,7 @@
 import fetch from 'node-fetch';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useState } from 'react';
-import { createOfferInquiry } from '../../api/base';
+import { createOfferInquiry } from '../../lib/base';
 import { ConnectedBasicSearch } from '../../components/filter/OfferFilter';
 import NotFound from '../../components/NotFound';
 import OfferDetail from '../../components/OfferDetail';

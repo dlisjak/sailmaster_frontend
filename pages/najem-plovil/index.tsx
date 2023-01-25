@@ -18,7 +18,7 @@ import OffersHeader from '../../components/OffersHeader';
 import OfferInquiry from '../../components/OfferInquiry';
 import SidebarTestimonials from '../../components/SidebarTestimonials';
 
-import { createOfferInquiry } from '../../api/base';
+import { createOfferInquiry } from '../../lib/base';
 import { formatOfferPeriod, formatOfferPrice } from '../../utils/offerUtils';
 import { getValuesFromUrl, valuesToSearch } from '../../utils/search_utils';
 import { handleHeartClick } from '../../utils/wishlistUtils';

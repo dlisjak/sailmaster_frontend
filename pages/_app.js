@@ -11,7 +11,7 @@ import Footer from "../components/common/Footer";
 import CookieLaw from "../components/common/CookieLaw";
 import InquiryModal from "../components/Inquiry";
 import PromoModal from "../components/PromoModal";
-import { subscribeNewsletterGift } from "../api/base";
+import { subscribeNewsletterGift } from "../lib/base";
 import ErrorBoundary from "../components/ErrorBoundary";
 
 import '../styles/main.css';
