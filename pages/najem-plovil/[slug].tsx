@@ -62,7 +62,7 @@ export const getStaticPaths = async () => {
         const response = await fetch(url);
         const data: any = await response.json();
         if (data.results.length) resolve(data.results);
-      }, 1000 * i);
+      }, 5000 * i);
     });
 
     promises.push(promise);
