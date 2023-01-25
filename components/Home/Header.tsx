@@ -1,18 +1,18 @@
-import Container from "react-bootstrap/Container";
+import Container from 'react-bootstrap/Container';
 import { useTranslation } from 'next-i18next';
-import { Parallax, Background } from "react-parallax";
-import Image from "next/image";
+import { Parallax, Background } from 'react-parallax';
+import Image from 'next/image';
 
-import HomeFilter from "../filter/HomeFilter"
-import IconsLine from "./IconsLine";
+import HomeFilter from '../filter/HomeFilter';
+import IconsLine from './IconsLine';
 
-import HEADER from "../../public/media/header-opt.jpg";
+import HEADER from '../../public/media/header-opt.jpg';
 
 const Header = ({ searchDestinations, yachtTypes, onSearch }) => {
   const { t } = useTranslation('common');
 
-  const description = t("description")
-    .split("\n")
+  const description = t('description')
+    .split('\n')
     .map((item, key) => {
       return (
         <span key={key}>
@@ -24,25 +24,29 @@ const Header = ({ searchDestinations, yachtTypes, onSearch }) => {
 
   return (
     <header className="home-header">
-      <Parallax
-        className="home-header__paralax"
-        strength={300}
-      >
-        <Background className="custom-bg w-full min-h-[1080px]">
-          <Image src={HEADER} alt="Sailmaster - najem jadrnice, katamarana, plovil" width={1920} height={1080} />
-        </Background>
-        <Container className="home-header__container">
-          <div className="home-header__content">
-            <h1>{t("page_name")}</h1>
-            <h2>{description}</h2>
-            <HomeFilter
-              searchDestinations={searchDestinations}
-              onSubmit={onSearch}
-              yachtTypes={yachtTypes}
+      <Parallax className="home-header__paralax" strength={300}>
+        <>
+          <Background className="custom-bg w-full min-h-[1080px]">
+            <Image
+              src={HEADER}
+              alt="Sailmaster - najem jadrnice, katamarana, plovil"
+              width={1920}
+              height={1080}
             />
-          </div>
-        </Container>
-        <IconsLine />
+          </Background>
+          <Container className="home-header__container">
+            <div className="home-header__content">
+              <h1>{t('page_name')}</h1>
+              <h2>{description}</h2>
+              <HomeFilter
+                searchDestinations={searchDestinations}
+                onSubmit={onSearch}
+                yachtTypes={yachtTypes}
+              />
+            </div>
+          </Container>
+          <IconsLine />
+        </>
       </Parallax>
     </header>
   );
