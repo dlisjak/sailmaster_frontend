@@ -11,7 +11,6 @@ import { useAsyncReference } from "../../../utils/hooks";
 
 const InputRange = (props) => {
   const { allowSameValues = false, ariaLabelledby, ariaControls, classNames = DEFAULT_CLASS_NAMES, disabled = false, draggableTrack, formatLabel, maxValue = 10, minValue = 0, name, onChangeStart, onChange, onChangeComplete, step = 1, value } = props;
-  const asyncValue = useAsyncReference(value, true);
   const [isSliderDragging, setIsSliderDragging] = useState(false);
   const [lastKeyMoved, setLastKeyMoved] = useState(null);
   const [startValue, setStartValue] = useState(null);
@@ -228,7 +227,7 @@ const InputRange = (props) => {
 
   const handleInteractionStart = () => {
     if (onChangeStart) {
-      onChangeStart(asyncValue.current);
+      onChangeStart(value);
     }
 
     if (onChangeComplete && !isDefined(startValue)) {
@@ -244,8 +243,8 @@ const InputRange = (props) => {
       return;
     }
 
-    if (startValue !== asyncValue.current) {
-      onChangeComplete(asyncValue.current);
+    if (startValue !== value) {
+      onChangeComplete(value);
     }
 
     setStartValue(null)
