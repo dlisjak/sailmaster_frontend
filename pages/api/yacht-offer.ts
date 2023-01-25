@@ -6,7 +6,7 @@ export default async function handler(req, res) {
   const { yachtId } = req.query;
 
   try {
-    if (!allowedMethods.includes(req.method!) || req.method == 'OPTIONS') {
+    if (!allowedMethods.includes(req.method) || req.method == 'OPTIONS') {
       return res.status(405).send({ message: 'Method not allowed.' });
     }
 

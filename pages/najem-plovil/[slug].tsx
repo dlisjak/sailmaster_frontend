@@ -14,7 +14,6 @@ import { yachtSlug } from '../../utils/url_utils';
 import { handleHeartClick } from '../../utils/wishlistUtils';
 
 const OfferDetailPage = ({ yachtOffer }) => {
-  console.log({ yachtOffer });
   const { wishlist, mutateWishlist } = useWishlist();
   const [showEnquiryModal, setShowEnquiryModal] = useState(false);
   const [filterValues, setFilterValues] = useState({});
