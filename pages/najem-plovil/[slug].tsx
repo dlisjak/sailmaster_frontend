@@ -69,7 +69,7 @@ export const getStaticPaths = async () => {
             reject(text);
           });
         }
-      }, 5000 * i);
+      }, 1000 * i);
     });
 
     promises.push(promise);
