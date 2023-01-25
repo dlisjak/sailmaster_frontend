@@ -83,7 +83,7 @@ export const getStaticPaths = async () => {
 
   return {
     paths,
-    fallback: 'blocking', // can also be true or 'blocking'
+    fallback: false, // can also be true or 'blocking'
   };
 };
 
@@ -105,21 +105,33 @@ export const getStaticProps = async (ctx) => {
   if (contentType && contentType.indexOf('application/json') !== -1) {
     yachtOffer = await response.json();
   } else {
-    yachtOffer = null;
-  }
-
-  if (!yachtOffer || yachtOffer === 'Not found.') {
     return {
       notFound: true,
     };
   }
 
+  console.log(!yachtOffer);
+
+  if (!yachtOffer) {
+    return {
+      notFound: true,
+    };
+  }
+
+  console.log(!!yachtOffer.detail);
+
+  if (!!yachtOffer.detail) {
+    return {
+      notFound: true,
+    };
+  }
+
+  console.log(yachtOffer);
   return {
     props: {
       yachtOffer,
       ...translations,
     },
-    revalidate: 3600,
   };
 };
 
