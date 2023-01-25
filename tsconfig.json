@@ -16,13 +16,6 @@
     "jsx": "preserve",
     "allowSyntheticDefaultImports": true
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "pages/sitemap.xml.js",
-    "pages/_app.js",
-    "components/OfferDetail.js"
-  ],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/sitemap.xml.js", "pages/_app.js"],
   "exclude": ["node_modules"]
 }
