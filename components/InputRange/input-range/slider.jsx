@@ -28,38 +28,38 @@ const Slider = (props) => {
 
   const addDocumentMouseMoveListener = () => {
     removeDocumentMouseMoveListener();
-    (node.current || {}).ownerDocument.addEventListener('mousemove', handleMouseMove);
+    ((node.current || {}).ownerDocument || {}).addEventListener('mousemove', handleMouseMove);
   }
 
   const addDocumentMouseUpListener = () => {
     removeDocumentMouseUpListener();
-    (node.current || {}).ownerDocument.addEventListener('mouseup', handleMouseUp);
+    ((node.current || {}).ownerDocument || {}).addEventListener('mouseup', handleMouseUp);
   }
 
   const addDocumentTouchMoveListener = () => {
     removeDocumentTouchMoveListener();
-    (node.current || {}).ownerDocument.addEventListener('touchmove', handleTouchMove);
+    ((node.current || {}).ownerDocument || {}).addEventListener('touchmove', handleTouchMove);
   }
 
   const addDocumentTouchEndListener = () => {
     removeDocumentTouchEndListener();
-    (node.current || {}).ownerDocument.addEventListener('touchend', handleTouchEnd);
+    ((node.current || {}).ownerDocument || {}).addEventListener('touchend', handleTouchEnd);
   }
 
   const removeDocumentMouseMoveListener = () => {
-    (node.current || {}).ownerDocument.removeEventListener('mousemove', handleMouseMove);
+    ((node.current || {}).ownerDocument || {}).removeEventListener('mousemove', handleMouseMove);
   }
 
   const removeDocumentMouseUpListener = () => {
-    (node.current || {}).ownerDocument.removeEventListener('mouseup', handleMouseUp);
+    ((node.current || {}).ownerDocument || {}).removeEventListener('mouseup', handleMouseUp);
   }
 
   const removeDocumentTouchMoveListener = () => {
-    (node.current || {}).ownerDocument.removeEventListener('touchmove', handleTouchMove);
+    ((node.current || {}).ownerDocument || {}).removeEventListener('touchmove', handleTouchMove);
   }
 
   const removeDocumentTouchEndListener = () => {
-    (node.current || {}).ownerDocument.removeEventListener('touchend', handleTouchEnd);
+    ((node.current || {}).ownerDocument || {}).removeEventListener('touchend', handleTouchEnd);
   }
 
   const handleMouseDown = () => {

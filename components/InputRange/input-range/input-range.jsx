@@ -127,20 +127,20 @@ const InputRange = (props) => {
 
   const addDocumentMouseUpListener = () => {
     removeDocumentMouseUpListener();
-    node.current.ownerDocument.addEventListener('mouseup', handleMouseUp);
+    ((node.current || {}).ownerDocument || {}).addEventListener('mouseup', handleMouseUp);
   }
 
   const addDocumentTouchEndListener = () => {
     removeDocumentTouchEndListener();
-    node.current.ownerDocument.addEventListener('touchend', handleTouchEnd);
+    ((node.current || {}).ownerDocument || {}).addEventListener('touchend', handleTouchEnd);
   }
 
   const removeDocumentMouseUpListener = () => {
-    node.current.ownerDocument.removeEventListener('mouseup', handleMouseUp);
+    ((node.current || {}).ownerDocument || {}).removeEventListener('mouseup', handleMouseUp);
   }
 
   const removeDocumentTouchEndListener = () => {
-    node.current.ownerDocument.removeEventListener('touchend', handleTouchEnd);
+    ((node.current || {}).ownerDocument || {}).removeEventListener('touchend', handleTouchEnd);
   }
 
   const handleSliderDrag = (event, key) => {

@@ -6,11 +6,11 @@ const Track = (props, ref) => {
   const node = useRef(null);
 
   useImperativeHandle(ref, () => ({
-    getClientRect: () => node.current.getBoundingClientRect()
+    getClientRect: () => (node.current || {}).getBoundingClientRect()
   }))
 
   const getClientRect = () => {
-    const rect = node.current.getBoundingClientRect();
+    const rect = (node.current || {}).getBoundingClientRect();
 
     return rect;
   }
@@ -24,20 +24,20 @@ const Track = (props, ref) => {
 
   const addDocumentMouseMoveListener = () => {
     removeDocumentMouseMoveListener();
-    node.current.ownerDocument.addEventListener('mousemove', handleMouseMove);
+    ((node.current || {}).ownerDocument || {}).addEventListener('mousemove', handleMouseMove);
   }
 
   const addDocumentMouseUpListener = () => {
     removeDocumentMouseUpListener();
-    node.current.ownerDocument.addEventListener('mouseup', handleMouseUp);
+    ((node.current || {}).ownerDocument || {}).addEventListener('mouseup', handleMouseUp);
   }
 
   const removeDocumentMouseMoveListener = () => {
-    node.current.ownerDocument.removeEventListener('mousemove', handleMouseMove);
+    ((node.current || {}).ownerDocument || {}).removeEventListener('mousemove', handleMouseMove);
   }
 
   const removeDocumentMouseUpListener = () => {
-    node.current.ownerDocument.removeEventListener('mouseup', handleMouseUp);
+    ((node.current || {}).ownerDocument || {}).removeEventListener('mouseup', handleMouseUp);
   }
 
   const handleMouseMove = (event) => {
