@@ -76,7 +76,7 @@ export const getStaticPaths = async () => {
 
   return {
     paths,
-    fallback: false, // can also be true or 'blocking'
+    fallback: 'blocking', // can also be true or 'blocking'
   };
 };
 
@@ -106,6 +106,7 @@ export const getStaticProps = async (ctx) => {
       yachtOffer,
       ...translations,
     },
+    revalidate: 3600,
   };
 };
 
