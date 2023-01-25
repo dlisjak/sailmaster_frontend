@@ -98,7 +98,6 @@ h3 {
 }
 
 html {
-  font-family: sans-serif;
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -119,9 +118,6 @@ section {
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
-    'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
-    'Noto Color Emoji';
   font-size: 0.85rem;
   font-weight: 400;
   line-height: 1.5;
@@ -14217,7 +14213,6 @@ body {
 
 .input-range__label {
   color: #001117;
-  font-family: 'Open sans';
   font-size: 16px;
   font-weight: 300;
   transform: translateZ(0);
@@ -14926,7 +14921,6 @@ body {
 
 .CookieLaw .CookieLaw__left .CookieLaw__left__infoText {
   margin-left: 3px;
-  font-family: 'Open sans';
   font-size: 16px;
   color: #fff;
 }
@@ -15422,7 +15416,6 @@ body {
 
 .destinations .destination .description {
   color: #fff;
-  font-family: 'Lato', sans-serif;
   font-size: 17px;
   font-weight: 400;
   text-align: center;
