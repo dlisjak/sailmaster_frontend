@@ -105,9 +105,7 @@ export const getStaticProps = async (ctx) => {
   if (contentType && contentType.indexOf('application/json') !== -1) {
     yachtOffer = await response.json();
   } else {
-    return response.text().then((text) => {
-      yachtOffer = null;
-    });
+    yachtOffer = null;
   }
 
   if (!yachtOffer || yachtOffer === 'Not found.') {
