@@ -110,15 +110,11 @@ export const getStaticProps = async (ctx) => {
     };
   }
 
-  console.log(!yachtOffer);
-
   if (!yachtOffer) {
     return {
       notFound: true,
     };
   }
-
-  console.log(!!yachtOffer.detail);
 
   if (!!yachtOffer.detail) {
     return {
@@ -126,7 +122,6 @@ export const getStaticProps = async (ctx) => {
     };
   }
 
-  console.log(yachtOffer);
   return {
     props: {
       yachtOffer,
