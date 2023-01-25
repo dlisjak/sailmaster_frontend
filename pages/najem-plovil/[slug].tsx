@@ -60,8 +60,15 @@ export const getStaticPaths = async () => {
       setTimeout(async () => {
         const url = process.env.NEXT_PUBLIC_API_URL + `/yachts/?limit=10&offset=${10 * i}`;
         const response = await fetch(url);
-        const data: any = await response.json();
-        if (data.results.length) resolve(data.results);
+        const contentType = response.headers.get('content-type');
+        if (contentType && contentType.indexOf('application/json') !== -1) {
+          const data: any = await response.json();
+          if (data.results.length) resolve(data.results);
+        } else {
+          return response.text().then((text) => {
+            reject(text);
+          });
+        }
       }, 5000 * i);
     });
 
