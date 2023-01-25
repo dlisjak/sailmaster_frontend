@@ -1,6 +1,4 @@
-import React, { useEffect, useRef } from 'react';
-import PropTypes from 'prop-types';
-import autobind from 'autobind-decorator';
+import { useEffect, useRef } from 'react';
 import Label from './label';
 
 /**

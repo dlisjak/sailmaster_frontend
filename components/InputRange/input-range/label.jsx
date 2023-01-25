@@ -1,6 +1,3 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-
 /**
  * @ignore
  * @param {Object} props
@@ -19,17 +16,3 @@ export default function Label(props) {
     </span>
   );
 }
-
-/**
- * @type {Object}
- * @property {Function} children
- * @property {Function} classNames
- * @property {Function} formatLabel
- * @property {Function} type
- */
-Label.propTypes = {
-  children: PropTypes.node.isRequired,
-  classNames: PropTypes.objectOf(PropTypes.string).isRequired,
-  formatLabel: PropTypes.func,
-  type: PropTypes.string.isRequired,
-};

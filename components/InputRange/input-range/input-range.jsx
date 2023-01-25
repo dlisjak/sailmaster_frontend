@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { getPercentagesFromValues, getValueFromProps, getValueFromPosition, getStepValueFromValue, getPositionsFromValues, getPositionFromEvent } from './value-transformer';
 import DEFAULT_CLASS_NAMES from './default-class-names';
 import Label from './label';
