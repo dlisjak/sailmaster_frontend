@@ -1,5 +1,5 @@
 import React from "react";
-import { withTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import ReactDOM from "react-dom";
 
 // Import components
@@ -67,7 +67,7 @@ class YachtCabins extends React.Component {
   }
 
   /*
-	Handle input term search term change
+  Handle input term search term change
   */
   onInputSearchTermChange(search_term) {
     if (!isNaN(search_term)) {
@@ -88,7 +88,7 @@ class YachtCabins extends React.Component {
   }
 
   /*
-	Action that perform when somebody click to single menu item
+  Action that perform when somebody click to single menu item
   */
   onClick(info) {
     let id = info.key;
@@ -109,12 +109,12 @@ class YachtCabins extends React.Component {
   }
 
   /*
-	Hangle changes when submenu open
+  Hangle changes when submenu open
   */
-  onOpenChange(openKeys) {}
+  onOpenChange(openKeys) { }
 
   /*
-	Render values
+  Render values
   */
   renderValues() {
     return this.state.values.map(function (value) {
@@ -123,6 +123,7 @@ class YachtCabins extends React.Component {
   }
 
   render() {
+    const { t } = useTranslation("common");
     const values = this.renderValues(this.state.values);
 
     return (
@@ -167,4 +168,4 @@ YachtCabins.defaultProps = {
   values: [],
 };
 
-export default withTranslation()(YachtCabins);
+export default YachtCabins;

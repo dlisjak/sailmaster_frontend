@@ -4,7 +4,7 @@ import { useTranslation } from 'next-i18next';
 import JERNEJ from "../public/media/quick-contact.jpg"
 
 const QuickContact = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("common");
 
   return (
     <div className="quick-contact">

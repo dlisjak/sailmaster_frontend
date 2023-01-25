@@ -8,7 +8,7 @@ import Link from "next/link";
 import { useTranslation } from 'next-i18next';
 
 const SimiliarOffer = ({ offer, current, link }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("common");
   const classNames = classnames("similar-offers__offer", {
     "similar-offers__offer--disabled": !offer.final_price,
     "similar-offers__offer--current": current,

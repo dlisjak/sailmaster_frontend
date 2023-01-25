@@ -8,7 +8,7 @@ import Properties from './Properties';
 import { offerUrl } from '../utils/url_utils';
 
 const FeaturedYacht = ({ item }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('common');
 
   const yachtProperties = [
     { name: t('yacht_build_year'), value: item.build_year || '/' },

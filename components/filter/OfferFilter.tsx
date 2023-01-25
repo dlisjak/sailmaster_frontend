@@ -13,7 +13,7 @@ import { searchUrl } from '../../utils/url_utils';
 import { useYachtBrands, useYachtTypes } from '../../queries/queries';
 
 export const BasicSearch = ({ values, onSubmit, ...props }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('common');
   const { yachtTypes } = useYachtTypes();
   const [currentValues, setCurrentValues] = useState(values);
 
@@ -58,7 +58,7 @@ export const BasicSearch = ({ values, onSubmit, ...props }) => {
 
 export const OfferFilter = ({ values, onSubmit, ...props }) => {
   const { yachtTypes } = useYachtTypes();
-  const { t } = useTranslation();
+  const { t } = useTranslation('common');
   const setValue = (k, v) => {
     const newValues = {
       ...values,
@@ -101,7 +101,7 @@ export const OfferFilter = ({ values, onSubmit, ...props }) => {
 
 export const ExtendedFilter = ({ values, onSubmit }) => {
   const { yachtBrands } = useYachtBrands();
-  const { t } = useTranslation();
+  const { t } = useTranslation('common');
   const setValue = (k, v) => {
     const newValues = {
       ...values,

@@ -5,13 +5,14 @@ import RenderSelectField from "./fields/RenderSelectField";
 import RenderTextAreaField from "./fields/RenderTextAreaField";
 import { ENQUIRY } from "../../actions/enquiry";
 
-import { withTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 
 import { Row, Col } from "react-bootstrap";
 
 import { Field, reduxForm } from "redux-form";
 
 let EnquiryForm = (props) => {
+  const { t } = useTranslation("common");
   const { handleSubmit, submitting, submitFailed } = props;
   const submit = handleSubmit(ENQUIRY); // creating our submit handler by passing our action
 
@@ -171,9 +172,7 @@ let EnquiryForm = (props) => {
 
 EnquiryForm = EnquiryForm;
 
-export default withTranslation()(
-  reduxForm({
-    form: "enquiryForm", // a unique identifier for this form
-    validate: ValidateEnquiryForm,
-  })(EnquiryForm)
-);
+export default reduxForm({
+  form: "enquiryForm", // a unique identifier for this form
+  validate: ValidateEnquiryForm,
+})(EnquiryForm);

@@ -9,7 +9,7 @@ const Phone = () => (
     y="0px"
     viewBox="0 0 82 82.1"
   >
-    <g transform="withTranslation(0,-952.36218)">
+    <g transform="translate(0,-952.36218)">
       <path
         className="cls-1"
         d="M17.6,952.4c-0.6,0-1.1,0.1-1.7,0.2c-1.1,0.2-2.2,0.7-3.4,1.3c-2.3,1.2-4.8,2.9-6.8,5l0,0c-5,5-6.4,11.7-5.4,18.2

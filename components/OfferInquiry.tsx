@@ -15,7 +15,7 @@ import { useCountriesEnquiry } from '../queries/queries';
 const language = process.env.NEXT_PUBLIC_REACT_APP_LANGUAGE;
 
 const Details = ({ yachtModel, yachtTerm, yachtPrice }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('common');
   return (
     <div className="inquiry__header-description">
       {yachtModel && (
@@ -42,7 +42,7 @@ const Details = ({ yachtModel, yachtTerm, yachtPrice }) => {
 const OfferInquiry = ({ offerId, show, onClose, onSubmit, yachtModel, yachtTerm, yachtPrice }) => {
   const [finished, setFinished] = useState(false);
   const [error, setError] = useState(false);
-  const { t } = useTranslation();
+  const { t } = useTranslation('common');
   const { countriesEnquiry } = useCountriesEnquiry();
 
   const requiredMsg = t('form_field_required');

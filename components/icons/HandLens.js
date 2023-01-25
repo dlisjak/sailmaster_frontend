@@ -14,7 +14,6 @@ const HandLens = () => {
       <path
         className="cls-2"
         d="M2069.27,1340.7a9.91,9.91,0,0,1,9.91,9.91"
-        transform="withTranslation(-2049.77 -1331.1)"
       />
       <line className="cls-1" x1="31.82" y1="31.82" x2="43.06" y2="43.06" />
     </svg>

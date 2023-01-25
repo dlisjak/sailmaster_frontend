@@ -6,7 +6,7 @@ import RegisterForm from "../register/RegisterForm";
 import ForgotPasswordForm from "../forgot-password/ForgotPasswordForm";
 import Close from "../../icons/Close";
 
-import { withTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 
 import { Modal, Row, Col } from "react-bootstrap";
 
@@ -64,6 +64,7 @@ class AuthModal extends React.Component {
   // @param link_key: link key for i18n
   // @param type: 'REGISTER' or 'LOGIN'
   renderFooter(title_key, link_key, type) {
+    const { t } = useTranslation("common");
     return (
       <div className="auth-modal-footer">
         <div className="footer-title">
@@ -85,7 +86,7 @@ class AuthModal extends React.Component {
             this.changeType(type);
           }}
         >
-          {this.props.t("" + link_key)}
+          {t("" + link_key)}
         </div>
       </div>
     );
@@ -93,6 +94,8 @@ class AuthModal extends React.Component {
 
   // Render forgot password body
   renderForgotPassword() {
+    const { t } = useTranslation("common");
+
     return (
       <div className="forgot-password-body">
         <div>
@@ -102,8 +105,7 @@ class AuthModal extends React.Component {
           />
         </div>
         <div className="forgot-password-text">
-          {this.props
-            .t("FORGOT_PASSWORD_TEXT")
+          {t("FORGOT_PASSWORD_TEXT")
             .split("\n")
             .map((item, key) => {
               return (
@@ -123,6 +125,7 @@ class AuthModal extends React.Component {
 
   // Render login body
   renderLogin() {
+    const { t } = useTranslation("common");
     if (this.state.forgotPassword) {
       return this.renderForgotPassword();
     }
@@ -131,7 +134,7 @@ class AuthModal extends React.Component {
       <div>
         <LoginForm onSubmit={this.submitLoginForm} />
         <div className="forgot-password" onClick={this.toggleForgotPassword}>
-          {this.props.t("FORGOT_PASSWORD")}
+          {t("FORGOT_PASSWORD")}
         </div>
       </div>
     );
@@ -158,11 +161,13 @@ class AuthModal extends React.Component {
 
   // Get modal title (left side)
   getTitle() {
+    const { t } = useTranslation("common");
+
     switch (this.state.type) {
       case "LOGIN":
-        return this.props.t("LOGIN");
+        return t("LOGIN");
       case "REGISTER":
-        return this.props.t("REGISTER");
+        return t("REGISTER");
     }
   }
 
@@ -202,6 +207,7 @@ class AuthModal extends React.Component {
   }
 
   render() {
+    const { t } = useTranslation("common");
     const title = this.getTitle();
     const footer = this.getFooter();
     const body = this.renderBody();
@@ -244,4 +250,4 @@ class AuthModal extends React.Component {
   }
 }
 
-export default withTranslation(["common"], { wait: true })(AuthModal);
+export default AuthModal;

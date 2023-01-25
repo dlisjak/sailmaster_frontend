@@ -13,7 +13,7 @@ import {
 import { subscribeNewsletterGift } from "../lib/base";
 
 const PromoModal = ({ showModal, onClose }) => {
-  const { t, i18n } = useTranslation();
+  const { t, i18n } = useTranslation("common");
   const [finished, setFinished] = useState(false);
   const [error, setError] = useState(false);
   const language = i18n.language;

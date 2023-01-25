@@ -22,28 +22,30 @@ class Partners extends React.Component {
   }
 
   render() {
+    const { t } = useTranslation("common");
+
     return (
       <FilterSideWrapper location={this.props.location.pathname}>
         <Helmet>
-          <title>{this.props.t("partners_seo_title")}</title>
+          <title>{t("partners_seo_title")}</title>
           <meta
             name="description"
-            content={this.props.t("partners_seo_desc")}
+            content={t("partners_seo_desc")}
           />
           <meta
             property="og:title"
-            content={this.props.t("partners_seo_title")}
+            content={t("partners_seo_title")}
           />
           <meta
             property="og:description"
-            content={this.props.t("partners_seo_desc")}
+            content={t("partners_seo_desc")}
           />
         </Helmet>
         <div className="contact">
           <div className="row">
             <Col xs={12} sm={12}>
               <div className="col-inner">
-                <h1>{this.props.t("for_partners")}</h1>
+                <h1>{t("for_partners")}</h1>
                 <p>
                   <Trans
                     i18nKey="partners_text"
@@ -54,7 +56,7 @@ class Partners extends React.Component {
                 {!this.state.showPartnersForm ? (
                   <div className="thank-you-message">
                     <p>
-                      <b>{this.props.t("successful_email")}</b>
+                      <b>{t("successful_email")}</b>
                     </p>
                     <p>
                       <Trans
@@ -86,4 +88,4 @@ class Partners extends React.Component {
 //   };
 // }
 
-export default withTranslation()(Partners);
+export default Partners;

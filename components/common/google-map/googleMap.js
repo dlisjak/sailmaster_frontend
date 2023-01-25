@@ -3,7 +3,7 @@ import GoogleMapReact from "google-map-react";
 import { fitBounds } from "google-map-react/utils";
 import supercluster from "points-cluster";
 
-import { withTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 
 import {
   GOOGLE_MAPS_OPTIONS,
@@ -231,6 +231,7 @@ class GoogleMap extends React.Component {
   }
 
   render() {
+    const { t } = useTranslation("common");
     let pins = "";
 
     if (this.state.markers.length > 0) {
@@ -281,4 +282,4 @@ class GoogleMap extends React.Component {
     );
   }
 }
-export default withTranslation()(GoogleMap);
+export default GoogleMap;

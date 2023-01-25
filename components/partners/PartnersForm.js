@@ -3,13 +3,14 @@ import RenderSelectField from "../common/fields/RenderSelectField";
 import RenderTextAreaField from "../common/fields/RenderTextAreaField";
 import { PARTNERS } from "../../actions/contact";
 
-import { withTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 
 import { Row, Col } from "react-bootstrap";
 
 import { Field, reduxForm } from "redux-form";
 
 let PartnersForm = (props) => {
+  const { t } = useTranslation("common");
   const { handleSubmit, submitting, submitFailed } = props;
   const submit = handleSubmit(PARTNERS); // creating our submit handler by passing our action
 
@@ -114,8 +115,6 @@ let PartnersForm = (props) => {
 
 PartnersForm = PartnersForm;
 
-export default withTranslation()(
-  reduxForm({
-    form: "partnersForm", // a unique identifier for this form
-  })(PartnersForm)
-);
+export default reduxForm({
+  form: "partnersForm", // a unique identifier for this form
+})(PartnersForm);

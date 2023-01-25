@@ -3,7 +3,7 @@ import { CSSTransitionGroup } from "react-transition-group";
 
 // Import other modules
 //import { browserHistory } from "react-router-dom";
-import { withTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 // import { connect } from "react-redux";
 import {
   Navbar,
@@ -33,6 +33,7 @@ class StickyNavigation extends React.Component {
   }
 
   render() {
+    const { t } = useTranslation("common");
     let logo = "";
 
     if (this.lang === "it") {
@@ -46,7 +47,7 @@ class StickyNavigation extends React.Component {
             <Navbar.Brand>
               <a
                 onClick={() =>
-                  this.changeRoute(this.props.t("home_route"))
+                  this.changeRoute(t("home_route"))
                 }
               >
                 {logo}
@@ -60,29 +61,29 @@ class StickyNavigation extends React.Component {
                 eventKey={1}
                 href="#"
                 className={
-                  this.props.route === this.props.t("home_route")
+                  this.props.route === t("home_route")
                     ? "active"
                     : ""
                 }
                 onClick={() =>
-                  this.changeRoute(this.props.t("home_route"))
+                  this.changeRoute(t("home_route"))
                 }
               >
-                {this.props.t("home")}
+                {t("home")}
               </NavItem>
               <NavItem
                 eventKey={2}
                 href="#"
                 className={
-                  this.props.route.includes(this.props.t("offers_route"))
+                  this.props.route.includes(t("offers_route"))
                     ? "active"
                     : ""
                 }
                 onClick={() =>
-                  this.changeRoute(this.props.t("offers_route"))
+                  this.changeRoute(t("offers_route"))
                 }
               >
-                {this.props.t("regular_offer")}
+                {t("regular_offer")}
               </NavItem>
             </Nav>
             <Nav pullRight>
@@ -90,29 +91,29 @@ class StickyNavigation extends React.Component {
                 eventKey={1}
                 href="#"
                 className={
-                  this.props.route === this.props.t("destinations_route")
+                  this.props.route === t("destinations_route")
                     ? "active"
                     : ""
                 }
                 onClick={() =>
-                  this.changeRoute(this.props.t("destinations_route"))
+                  this.changeRoute(t("destinations_route"))
                 }
               >
-                {this.props.t("destinations")}
+                {t("destinations")}
               </NavItem>
               <NavItem
                 eventKey={2}
                 href="#"
                 className={
-                  this.props.route === this.props.t("contact_route")
+                  this.props.route === t("contact_route")
                     ? "active"
                     : ""
                 }
                 onClick={() =>
-                  this.changeRoute(this.props.t("contact_route"))
+                  this.changeRoute(t("contact_route"))
                 }
               >
-                {this.props.t("contact")}
+                {t("contact")}
               </NavItem>
             </Nav>
           </Navbar.Collapse>
@@ -122,4 +123,4 @@ class StickyNavigation extends React.Component {
   }
 }
 
-export default withTranslation()(StickyNavigation);
+export default StickyNavigation;

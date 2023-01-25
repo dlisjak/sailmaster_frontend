@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Helmet } from "react-helmet";
-import { withTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 
 import { Row, Col, Button } from "react-bootstrap";
 
@@ -74,6 +74,8 @@ class Home extends React.Component {
   }
 
   renderTestimonial() {
+    const { t } = useTranslation("common");
+
     if (this.props.testimonials.results) {
       return this.props.testimonials.results.map((item, index) => {
         const image = item.image.thumbnail || item.profile_photo_url;
@@ -124,21 +126,23 @@ class Home extends React.Component {
 
   // render
   render() {
+    const { t } = useTranslation("common");
+
     return (
       <div className="page-home">
         <Helmet>
-          <title>{this.props.t("home_seo_title")}</title>
+          <title>{t("home_seo_title")}</title>
           <meta
             name="description"
-            content={this.props.t("home_seo_desc")}
+            content={t("home_seo_desc")}
           />
           <meta
             property="og:title"
-            content={this.props.t("home_seo_title")}
+            content={t("home_seo_title")}
           />
           <meta
             property="og:description"
-            content={this.props.t("home_seo_desc")}
+            content={t("home_seo_desc")}
           />
         </Helmet>
 
@@ -193,7 +197,7 @@ class Home extends React.Component {
           <div className="container">
             <div className="row">
               <Col xs={12} className="page-title">
-                <h2>{this.props.t("testimonials_title")}</h2>
+                <h2>{t("testimonials_title")}</h2>
               </Col>
             </div>
             <div className="row">{this.renderTestimonial()}</div>
@@ -206,7 +210,7 @@ class Home extends React.Component {
                   <img
                     className="google-review-icon"
                     src="/media/GoogleReview_logo.png"
-                    alt={this.props.t("testimonials_more")}
+                    alt={t("testimonials_more")}
                   />
                 </a>
               </Col>
@@ -218,15 +222,15 @@ class Home extends React.Component {
           <div className="container">
             <div className="row">
               <Col xs={12} className="page-title">
-                <h2>{this.props.t("home_blog_title")}</h2>
+                <h2>{t("home_blog_title")}</h2>
               </Col>
             </div>
             <div className="row">{this.renderBlog()}</div>
             <div className="row">
-              <Link href={this.props.t("blog_route")}>
+              <Link href={t("blog_route")}>
                 <Col xs={12} sm={4} smOffset={4}>
                   <Button className="gold-border-button">
-                    {this.props.t("all_blogs")}
+                    {thist("all_blogs")}
                   </Button>
                 </Col>
               </Link>
@@ -238,11 +242,11 @@ class Home extends React.Component {
           <div className="container">
             <div className="row">
               <Col xs={12} className="text-center page-title">
-                <h2>{this.props.t("newsletter_title")}</h2>
+                <h2>{t("newsletter_title")}</h2>
               </Col>
               <Col xs={12}>
                 <div className="text-center">
-                  <div>{this.props.t("newsletter_subtitle")}</div>
+                  <div>{t("newsletter_subtitle")}</div>
                 </div>
               </Col>
               {!this.state.addNewsletter ? (
@@ -252,7 +256,7 @@ class Home extends React.Component {
               ) : (
                 <Col xs={12} className="text-center newsletter-success-wrapper">
                   <div className="newsletter-success fade-in">
-                    {this.props.t("newsletter_success")}
+                    {thist("newsletter_success")}
                   </div>
                 </Col>
               )}
@@ -273,4 +277,4 @@ class Home extends React.Component {
 //   };
 // }
 
-export default withTranslation()(Home);
+export default Home;

@@ -1,5 +1,5 @@
 // import { connect } from "react-redux";
-import { withTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import { Row, Col } from "react-bootstrap";
 import Link from "next/link";
 import { Helmet } from "react-helmet";
@@ -44,6 +44,8 @@ class Blog extends React.Component {
   }
 
   renderBlog() {
+    const { t } = useTranslation("common");
+
     if (!this.props.blog_page.results) {
       return <div />;
     }
@@ -65,7 +67,7 @@ class Blog extends React.Component {
               <div className="blog-desc">{item.descrtiption}</div>
               <Link href={getBlogLink(item.slug)}>
                 <button className="gold-border-button">
-                  {this.props.t("read_more")}
+                  {t("read_more")}
                 </button>
               </Link>
             </Col>
@@ -76,31 +78,33 @@ class Blog extends React.Component {
   }
 
   render() {
+    const { t } = useTranslation("common");
+
     return (
       <FilterSideWrapper
         location={this.props.location.pathname}
         FilterSideWrapperClassName="background-white"
       >
         <Helmet>
-          <title>{this.props.t("blog_seo_title")}</title>
+          <title>{t("blog_seo_title")}</title>
           <meta
             name="description"
-            content={this.props.t("blog_seo_desc")}
+            content={t("blog_seo_desc")}
           />
           <meta
             property="og:title"
-            content={this.props.t("blog_seo_title")}
+            content={t("blog_seo_title")}
           />
           <meta
             property="og:description"
-            content={this.props.t("blog_seo_desc")}
+            content={t("blog_seo_desc")}
           />
         </Helmet>
         <div className="blog">
           <div className="row">
             <Col xs={12} sm={12}>
               <div className="col-inner">
-                <h1>{this.props.t("blog")}</h1>
+                <h1>{t("blog")}</h1>
                 <InfiniteScroll
                   pageStart={0}
                   loadMore={this.loadMore}
@@ -119,10 +123,4 @@ class Blog extends React.Component {
   }
 }
 
-// function mapStateToProps(state) {
-//   return {
-//     blog_page: state.blog_page || {},
-//   };
-// }
-
-export default withTranslation()(Blog);
+export default Blog;

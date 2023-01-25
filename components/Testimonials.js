@@ -6,7 +6,7 @@ import Testimonial from "./common/Testimonial";
 import GOOGLE_REVIEW from "../public/media/GoogleReview_logo.png";
 
 const Testimonials = ({ items }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("common");
 
   return (
     <div className="testimonial-wrapper testimonials testimonials--standalone mb-3">

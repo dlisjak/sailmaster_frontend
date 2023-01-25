@@ -1,6 +1,6 @@
 import React from "react";
 import { Modal } from "react-bootstrap";
-import { withTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import Link from "next/link";
 
 import SubscribeForm from "./SubscribeForm";
@@ -9,9 +9,9 @@ const PromoModal = ({
   promoModalSucess,
   showModal,
   closeModal,
-  i18n: { language },
-  t,
 }) => {
+  const { t, i18n: { language } } = useTranslation("common");
+
   return (
     <Modal
       show={showModal || promoModalSucess}
@@ -61,4 +61,4 @@ const PromoModal = ({
   );
 };
 
-export default withTranslation()(PromoModal);
+export default PromoModal;

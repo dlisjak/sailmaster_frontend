@@ -11,7 +11,7 @@ import { useTestimonials } from '../queries/queries';
 
 export const SidebarTestimonials = () => {
   const { testimonials } = useTestimonials();
-  const { t } = useTranslation();
+  const { t } = useTranslation('common');
 
   if (!testimonials?.results) {
     return null;

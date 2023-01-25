@@ -22,11 +22,13 @@ import { subscribeNewsletter } from '../lib/base';
 
 import { searchDestinations } from '../lib/search';
 import { SWRConfig } from 'swr';
-// import { OFFERS_URL } from '../constants/index';
-// import { valuesToSearch } from '../utils/search_utils';
+import { OFFERS_URL } from '../constants/urls';
+import { useRouter } from 'next/router';
+import { valuesToSearch } from '../utils/search_utils.js';
 
 const Index = ({ fallback, yachtTypes, featuredYachts, destinations, testimonials, homeBlogs }) => {
   const { t } = useTranslation('home');
+  const router = useRouter();
 
   return (
     <SWRConfig value={{ fallback }}>
@@ -40,7 +42,7 @@ const Index = ({ fallback, yachtTypes, featuredYachts, destinations, testimonial
           searchDestinations={searchDestinations}
           yachtTypes={yachtTypes}
           onSearch={(values) => {
-            // history.push(OFFERS_URL + '?' + valuesToSearch(values));
+            router.push(OFFERS_URL + '?' + valuesToSearch(values));
           }}
         />
 
@@ -80,7 +82,7 @@ export const getStaticProps = async ({ locale }) => {
   const yachtBrands = await getYachtBrands();
   const featuredYachts = await getFeaturedYachts();
   const destinations = await getDestinations(true);
-  const testimonials = await getTestimonials();
+  const testimonials = await getTestimonials(4);
   const homeBlogs = await getHomeBlogs();
 
   return {

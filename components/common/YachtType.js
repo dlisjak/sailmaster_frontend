@@ -1,5 +1,5 @@
 import React from "react";
-import { withTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import ReactDOM from "react-dom";
 
 // Import components
@@ -75,7 +75,7 @@ class YachtType extends React.Component {
   }
 
   /*
-	Handle input term search term change
+  Handle input term search term change
   */
   onInputSearchTermChange(search_term) {
     if (search_term.length > 0) {
@@ -89,7 +89,7 @@ class YachtType extends React.Component {
   }
 
   /*
-	Action that perform when somebody click to single menu item
+  Action that perform when somebody click to single menu item
   */
   onClick(info) {
     let id = typeof info.key === "string" ? parseInt(info.key, 10) : info.key;
@@ -110,12 +110,12 @@ class YachtType extends React.Component {
   }
 
   /*
-	Hangle changes when submenu open
+  Hangle changes when submenu open
   */
-  onOpenChange(openKeys) {}
+  onOpenChange(openKeys) { }
 
   /*
-	Render values
+  Render values
   */
   renderValues() {
     return this.state.values.map((value) => {
@@ -124,6 +124,7 @@ class YachtType extends React.Component {
   }
 
   render() {
+    const { t } = useTranslation("common");
     const values = this.renderValues(this.state.values);
 
     return (
@@ -147,7 +148,7 @@ class YachtType extends React.Component {
         <FormControl
           type="text"
           value={this.state.search_term}
-          placeholder={this.props.t("yacht_type")}
+          placeholder={t("yacht_type")}
           onChange={(event) => this.onInputSearchTermChange(event.target.value)}
           onFocus={() => this.props.changeFocus(true)}
           onBlur={() => this.props.changeFocus(true)}
@@ -179,4 +180,4 @@ YachtType.defaultProps = {
   values: [],
 };
 
-export default withTranslation()(YachtType);
+export default YachtType;

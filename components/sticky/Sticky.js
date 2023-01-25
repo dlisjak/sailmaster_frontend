@@ -16,6 +16,7 @@ class Sticky extends Component {
   }
 
   componentWillMount() {
+    console.log("sticky")
     if (!this.context.subscribe)
       throw new TypeError(
         "Expected Sticky to be mounted within StickyContainer"
@@ -53,7 +54,7 @@ class Sticky extends Component {
     const isSticky = preventingStickyStateChanges
       ? wasSticky
       : distanceFromTop <= -this.props.topOffset &&
-        distanceFromBottom > -this.props.bottomOffset;
+      distanceFromBottom > -this.props.bottomOffset;
 
     distanceFromBottom =
       (this.props.relative
@@ -63,19 +64,19 @@ class Sticky extends Component {
     const style = !isSticky
       ? {}
       : {
-          position: "fixed",
-          top:
-            bottomDifference > 0
-              ? this.props.relative
-                ? parent.offsetTop - parent.offsetParent.scrollTop
-                : 0
-              : bottomDifference,
-          left: placeholderClientRect.left,
-          width: placeholderClientRect.width,
-        };
+        position: "fixed",
+        top:
+          bottomDifference > 0
+            ? this.props.relative
+              ? parent.offsetTop - parent.offsetParent.scrollTop
+              : 0
+            : bottomDifference,
+        left: placeholderClientRect.left,
+        width: placeholderClientRect.width,
+      };
 
     if (!this.props.disableHardwareAcceleration) {
-      style.transform = "withTranslationZ(0)";
+      style.transform = "translateZ(0)";
     }
 
     this.setState({

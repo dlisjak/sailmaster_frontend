@@ -1,5 +1,5 @@
 import React from "react";
-import { withTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import ReactDOM from "react-dom";
 
 // Import components
@@ -113,7 +113,7 @@ class DropdownWithSearch extends React.Component {
   }
 
   /*
-	Filter values by search_term state when it changed
+  Filter values by search_term state when it changed
   */
   filterValuesByValue(values, search_term, array) {
     let _search_term = search_term.toLowerCase();
@@ -150,7 +150,7 @@ class DropdownWithSearch extends React.Component {
   }
 
   /*
-	Handle input term search term change
+  Handle input term search term change
   */
   onInputSearchTermChange(search_term) {
     this.setState({ search_term });
@@ -163,7 +163,7 @@ class DropdownWithSearch extends React.Component {
   }
 
   /*
-	Action that perform when somebody click to single menu item
+  Action that perform when somebody click to single menu item
   */
   onClick(info, item) {
     let id = info.key;
@@ -181,7 +181,7 @@ class DropdownWithSearch extends React.Component {
   }
 
   /*
-	Hangle changes when submenu open
+  Hangle changes when submenu open
   */
   onOpenChange(openKeys) {
     this.setState({
@@ -201,7 +201,7 @@ class DropdownWithSearch extends React.Component {
   }
 
   /*
-	Render values
+  Render values
   */
   renderValues(values) {
     let _this = this;
@@ -245,6 +245,7 @@ class DropdownWithSearch extends React.Component {
   }
 
   render() {
+    const { t } = useTranslation("common");
     const values = this.renderValues(this.state.values);
 
     return (
@@ -263,7 +264,7 @@ class DropdownWithSearch extends React.Component {
         <FormControl
           type="text"
           value={this.state.search_term}
-          placeholder={this.props.t("starting_point_placeholder")}
+          placeholder={t("starting_point_placeholder")}
           onChange={(event) => this.onInputSearchTermChange(event.target.value)}
           onFocus={() => this.changeFocusDestination(true)}
           autoComplete="off"
@@ -293,4 +294,4 @@ DropdownWithSearch.defaultProps = {
   values: [],
 };
 
-export default withTranslation(["search"], { wait: true })(DropdownWithSearch);
+export default DropdownWithSearch;

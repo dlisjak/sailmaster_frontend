@@ -1,8 +1,7 @@
-import React from "react";
 import ValidateSubscribeForm from "./ValidateSubscribeForm";
 import RenderField from "../common/fields/RenderField";
 
-import { withTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 
 import { Row, Col } from "react-bootstrap";
 
@@ -11,6 +10,7 @@ import { Field, reduxForm } from "redux-form";
 import { SUBSCRIBE } from "../../actions/newsletter";
 
 const SubscribeForm = (props) => {
+  const { t } = useTranslation("common");
   const { handleSubmit, pristine, reset, submitting, lang } = props;
   const submit = handleSubmit(SUBSCRIBE);
 
@@ -69,9 +69,7 @@ const SubscribeForm = (props) => {
   );
 };
 
-export default withTranslation()(
-  reduxForm({
-    form: "SubscribeForm", // a unique identifier for this form
-    validate: ValidateSubscribeForm, // <--- validation function given to redux-form
-  })(SubscribeForm)
-);
+export default reduxForm({
+  form: "SubscribeForm", // a unique identifier for this form
+  validate: ValidateSubscribeForm, // <--- validation function given to redux-form
+})(SubscribeForm);

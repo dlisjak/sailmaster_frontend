@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useTranslation } from 'next-i18next';
 
 const HomeIcon = (props) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("common");
   return (
     <div className="home-icon flex flex-col items-center text-center">
       <div className="home-icon--icon">

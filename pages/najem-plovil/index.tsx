@@ -27,7 +27,7 @@ import { OFFERS_URL } from '../../constants/urls';
 import { useWishlist } from '../../queries/queries';
 
 const NoResults = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('common');
   return (
     <div className="no-results">
       <Compass />
@@ -37,7 +37,7 @@ const NoResults = () => {
 };
 
 const OffersPage = ({ error, results, next, count, destination, loading }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('common');
   const router = useRouter();
   const [showEnquiryModal, setShowEnquiryModal] = useState(false);
   const [enquiryProps, setEnquiryProps] = useState({

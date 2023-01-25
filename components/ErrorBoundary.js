@@ -5,7 +5,7 @@ import * as Sentry from "@sentry/react";
 import { useTranslation } from 'next-i18next';
 
 const ErrorBoundary = ({ children }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("common");
   return (
     <Sentry.ErrorBoundary
       fallback={

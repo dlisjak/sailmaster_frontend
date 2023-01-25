@@ -14,7 +14,7 @@ const isDayBlocked = (day) => {
 };
 
 const DateRangeSelect = ({ onSelect, value }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("common");
   const [focusedInput, setFocusedInput] = useState();
 
   return (

@@ -1,5 +1,5 @@
 // import { connect } from "react-redux";
-import { withTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import { Row, Col } from "react-bootstrap";
 import { Helmet } from "react-helmet";
 import Lightbox from "react-images";
@@ -89,6 +89,8 @@ class BlogSingle extends React.Component {
   }
 
   renderGallery() {
+    const { t } = useTranslation("common");
+
     if (this.props.blog_single.gallery) {
       const gallery = this.props.blog_single.gallery.map((item, index) => {
         return (
@@ -108,6 +110,9 @@ class BlogSingle extends React.Component {
   }
 
   render() {
+    const { t } = useTranslation("common");
+
+
     if (!this.props.blog_single.id) {
       return <div />;
     }
@@ -175,7 +180,7 @@ class BlogSingle extends React.Component {
                   </GooglePlusShareButton>
 
                   <div className="wrote">
-                    {this.props.t("wrote")}
+                    {t("wrote")}
 
                     <span>thesailmaster</span>
                   </div>
@@ -216,4 +221,4 @@ class BlogSingle extends React.Component {
 //     blog_single: state.blog_single || {},
 //   };
 // }
-export default withTranslation()(BlogSingle);
+export default BlogSingle;

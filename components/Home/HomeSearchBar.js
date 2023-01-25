@@ -1,4 +1,4 @@
-import { withTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import { browserHistory } from "react-router-dom";
 import classNames from "classnames";
 import moment from "moment";
@@ -200,7 +200,7 @@ class HomeSearchBar extends React.Component {
       const data = {
         destination: search.destination,
         lang: search.lang,
-        link: this.props.t("offers_link"),
+        link: t("offers_link"),
         params: search,
       };
 
@@ -209,13 +209,14 @@ class HomeSearchBar extends React.Component {
       const queryString = getFormData(search);
 
       browserHistory.push({
-        pathname: `/${this.props.t("offers_link")}`,
+        pathname: `/${t("offers_link")}`,
         search: `?${queryString}`,
       });
     }
   }
 
   render() {
+    const { t } = useTranslation("common");
     const dateRangeClass = classNames({
       focused: !!this.state.focusedInput,
       "date-range-wrapper": true,
@@ -227,7 +228,7 @@ class HomeSearchBar extends React.Component {
       <form>
         <FormGroup controlId="homeSearchBar">
           <Col xs={12} sm={12} md={3} lg={3}>
-            <FormLabel>{this.props.t("starting_point")}</FormLabel>
+            <FormLabel>{t("starting_point")}</FormLabel>
             <DropdownWithSearch
               value={this.state.home_search.destinationString}
               values={this.props.locations}
@@ -237,8 +238,8 @@ class HomeSearchBar extends React.Component {
             />
           </Col>
           <Col xs={12} sm={12} md={4} lg={4} className="date-range">
-            <FormLabel>{this.props.t("from_date")}</FormLabel>
-            <FormLabel>{this.props.t("to_date")}</FormLabel>
+            <FormLabel>{t("from_date")}</FormLabel>
+            <FormLabel>{t("to_date")}</FormLabel>
             <div className="triangle triangle-first" />
             <div className="triangle triangle-last" />
             <div className={dateRangeClass}>
@@ -260,7 +261,7 @@ class HomeSearchBar extends React.Component {
             </div>
           </Col>
           <Col xs={12} sm={6} md={2} lg={2}>
-            <FormLabel>{this.props.t("yacht_type")}</FormLabel>
+            <FormLabel>{t("yacht_type")}</FormLabel>
             <YachtType
               value={this.state.home_search.yachtTypeString}
               values={this.props.yachtType}
@@ -271,9 +272,9 @@ class HomeSearchBar extends React.Component {
           </Col>
           <Col xs={12} sm={6} md={1} lg={1} className="yacht-cabins-wrapper">
             <FormLabel>
-              {this.props.t("yacht_cabins").length > 9
-                ? this.props.t("yacht_cabins").substring(0, 7) + "."
-                : this.props.t("yacht_cabins")}
+              {t("yacht_cabins").length > 9
+                ? t("yacht_cabins").substring(0, 7) + "."
+                : t("yacht_cabins")}
             </FormLabel>
             <YachtCabins
               value={this.state.home_search.yachtCabins}
@@ -289,7 +290,7 @@ class HomeSearchBar extends React.Component {
               type="button"
               onClick={this.onSubmit}
             >
-              {this.props.t("search")}
+              {t("search")}
             </button>
           </Col>
         </FormGroup>
@@ -306,4 +307,4 @@ function mapStateToProps(state) {
     filter: state.filter || {},
   };
 }
-export default withTranslation()(HomeSearchBar);
+export default HomeSearchBar;

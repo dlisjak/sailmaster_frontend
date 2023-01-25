@@ -118,7 +118,7 @@ export const RangeField = ({
   useEffect(() => {
     setCurrent(value);
   }, [value]);
-  const { t } = useTranslation();
+  const { t } = useTranslation('common');
   const [current, setCurrent] = useState(value);
   const currentOrDefault = current || { min: minValue, max: maxValue };
 
@@ -165,7 +165,10 @@ export const SelectField = ({
   formGroupProps = null,
   placeholder,
 }) => {
-  const value = options?.find((item) => String(item.value) === String(values[fieldName]));
+  const value = values
+    ? options?.find((item) => String(item.value) === String(values[fieldName]))
+    : null;
+
   return (
     <FormGroup {...formGroupProps}>
       <FormLabel>{label}</FormLabel>

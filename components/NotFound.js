@@ -4,7 +4,7 @@ import { useTranslation } from 'next-i18next';
 import Compass from "./icons/Compass";
 
 const NotFound = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("common");
   return (
     <div className="not-found">
       <div className="container">

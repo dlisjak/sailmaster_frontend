@@ -1,5 +1,6 @@
 import { Row, Col } from "react-bootstrap";
 import { withTranslation, Trans } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import { Helmet } from "react-helmet";
 import ContactForm from "./ContactForm";
 import FilterSideWrapper from "../common/FilterSideWrapper";
@@ -37,40 +38,42 @@ class Contact extends React.Component {
   }
 
   render() {
+    const { t } = useTranslation("common");
+
     return (
       <FilterSideWrapper location={this.props.location.pathname}>
         <Helmet>
-          <title>{this.props.t("contact_seo_title")}</title>
+          <title>{t("contact_seo_title")}</title>
           <meta
             name="description"
-            content={this.props.t("contact_seo_desc")}
+            content={t("contact_seo_desc")}
           />
           <meta
             property="og:title"
-            content={this.props.t("contact_seo_title")}
+            content={t("contact_seo_title")}
           />
           <meta
             property="og:description"
-            content={this.props.t("contact_seo_desc")}
+            content={t("contact_seo_desc")}
           />
         </Helmet>
         <div className="contact">
           <div className="row">
             <Col xs={12} sm={12}>
               <div className="col-inner">
-                <h1>{this.props.t("contact_us")}</h1>
-                <Row className="contact-data">
+                <h1>{t("contact_us")}</h1>
+                <div className="row contact-data">
                   <div className="contact-data-inner">
                     <Col xs={12} sm={6}>
                       <ul>
-                        <li>{this.props.t("company_name")}</li>
-                        <li>{this.props.t("company_address")}</li>
-                        <li>{this.props.t("company_zip")}</li>
+                        <li>{t("company_name")}</li>
+                        <li>{t("company_address")}</li>
+                        <li>{t("company_zip")}</li>
                       </ul>
                       <ul>
-                        <li>{this.props.t("tax_number")}</li>
-                        <li>{this.props.t("tax_payer")}</li>
-                        <li>{this.props.t("company_number")}</li>
+                        <li>{t("tax_number")}</li>
+                        <li>{t("tax_payer")}</li>
+                        <li>{t("company_number")}</li>
                       </ul>
                     </Col>
                     <Col xs={12} sm={6}>
@@ -79,39 +82,39 @@ class Contact extends React.Component {
                           <div className="contact-icon">
                             <Mail />
                           </div>
-                          {this.props.t("mail")}
+                          {t("mail")}
                         </li>
                         <li>
                           <div className="contact-icon">
                             <Skype />
                           </div>
-                          {this.props.t("skype")}
+                          {t("skype")}
                         </li>
                         <li>
                           <div className="contact-icon">
                             <Phone />
                           </div>
-                          {this.props.t("phone386")}
+                          {t("phone386")}
                         </li>
                         <li>
                           <div className="contact-icon">
                             <Smartphone />
                           </div>
-                          {this.props.t("mobile_phone386")}
+                          {t("mobile_phone386")}
                         </li>
                       </ul>
                     </Col>
 
                     <Col xs={12} sm={12} className="last-ul">
                       <ul>
-                        <li>{this.props.t("contact_info_1")}</li>
-                        <li>{this.props.t("contact_info_2")}</li>
-                        <li>{this.props.t("contact_info_3")}</li>
+                        <li>{t("contact_info_1")}</li>
+                        <li>{t("contact_info_2")}</li>
+                        <li>{t("contact_info_3")}</li>
                       </ul>
                     </Col>
                   </div>
-                </Row>
-                <p>{this.props.t("contact_text")}</p>
+                </div>
+                <p>{t("contact_text")}</p>
 
                 {!this.state.showContactForm ? (
                   <div
@@ -121,7 +124,7 @@ class Contact extends React.Component {
                     }}
                   >
                     <p>
-                      <b>{this.props.t("successful_email")}</b>
+                      <b>{t("successful_email")}</b>
                     </p>
                     <p>
                       <Trans
@@ -140,7 +143,7 @@ class Contact extends React.Component {
                 <ContactForm lang={this.props.i18n.language} />
               </div>
             </Col>
-          </Row>
+          </div>
         </div>
       </FilterSideWrapper>
     );
@@ -153,4 +156,4 @@ class Contact extends React.Component {
 //   };
 // }
 
-export default withTranslation()(Contact);
+export default Contact;

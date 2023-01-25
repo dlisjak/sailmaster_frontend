@@ -78,7 +78,7 @@ const Equipment = ({ category, items }) => {
 };
 
 export const ServicePrice = ({ amount, measure, obligatory }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("common");
   const legendClassName = classnames('service-price__legend', {
     'service-price__legend--obligatory': obligatory,
   });
@@ -163,7 +163,7 @@ const Attribute = ({ label, value, icon = null, comment = null }) => {
 };
 
 const BaseAttributes = ({ yacht }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("common");
   const berths = joinPlus(yacht.berths_cabin, yacht.berths_salon, yacht.berths_crew);
   const cabins = joinPlus(yacht.cabins, yacht.cabins_crew);
   const col1 = [
@@ -249,7 +249,7 @@ const BaseAttributes = ({ yacht }) => {
 };
 
 const OfferSelectedPeriod = ({ offer, onEnquiry }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("common");
 
   return (
     <div className="offer-selected-period">
@@ -308,7 +308,7 @@ const OfferDetail = ({
 }) => {
   const [showMap, setShowMap] = useState(false);
   const router = useRouter();
-  const { t } = useTranslation();
+  const { t } = useTranslation("common");
   const yacht = offer.yacht;
   const yacht_model = yacht.yacht_model;
   const services = obligatoryServices(

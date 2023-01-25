@@ -7,7 +7,7 @@ import HomeOffer from "./HomeOffer";
 import { offerLink } from "utils/url_utils";
 
 const HomeOffers = ({ items }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("common");
   const offers = items.map((item, i) => {
     const dateFrom = moment(item.period_from.substring(0, 10)).format(
       "DD.MM.YYYY"

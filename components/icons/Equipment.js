@@ -15,7 +15,6 @@ const Equipment = () => (
           y="17.22"
           width="2"
           height="46.31"
-          transform="withTranslation(-16.8 39.74) rotate(-44.55)"
         />
         <path
           className="cls-1"
@@ -27,7 +26,6 @@ const Equipment = () => (
           y="39.37"
           width="46.3"
           height="2"
-          transform="withTranslation(-21.92 28.43) rotate(-45.47)"
         />
         <path
           className="cls-1"

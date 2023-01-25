@@ -1,6 +1,6 @@
 // import { connect } from "react-redux";
 import { Modal } from "react-bootstrap";
-import { withTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import EnquiryForm from "./EnquiryForm";
 
 class EnquryModal extends React.Component {
@@ -37,6 +37,8 @@ class EnquryModal extends React.Component {
   }
 
   render() {
+    const { t } = useTranslation("common");
+
     let offerId = "";
 
     if (this.props.offerId) {
@@ -51,25 +53,25 @@ class EnquryModal extends React.Component {
       >
         <Modal.Header closeButton>
           <Modal.Title>
-            {this.props.t("enquiry")}
+            {t("enquiry")}
             <div className="enquiry-modal-title-data">
               {this.props.yachtModel && (
                 <div className="enquiry-modal-title-data-item">
-                  <span>{this.props.t("model")}:</span>{" "}
+                  <span>{t("model")}:</span>{" "}
                   {this.props.yachtModel}
                 </div>
               )}
 
               {this.props.yachtTerm && (
                 <div className="enquiry-modal-title-data-item">
-                  <span>{this.props.t("term")}:</span>{" "}
+                  <span>{t("term")}:</span>{" "}
                   {this.props.yachtTerm}
                 </div>
               )}
 
               {this.props.yachtPrice && (
                 <div className="enquiry-modal-title-data-item">
-                  <span>{this.props.t("price")}:</span>{" "}
+                  <span>{t("price")}:</span>{" "}
                   {this.props.yachtPrice}
                 </div>
               )}
@@ -81,9 +83,9 @@ class EnquryModal extends React.Component {
             <div>
               <div className="thank-you-message">
                 <p>
-                  <b>{this.props.t("successful_enquiry")}</b>
+                  <b>{t("successful_enquiry")}</b>
                 </p>
-                <p>{this.props.t("successful_enquiry_message")}</p>
+                <p>{t("successful_enquiry_message")}</p>
               </div>
               <a
                 className="enquiry-link"
@@ -114,4 +116,4 @@ class EnquryModal extends React.Component {
 //     enquiryForm: state.form.enquiryForm || {},
 //   };
 // }
-export default withTranslation()(EnquryModal);
+export default EnquryModal;

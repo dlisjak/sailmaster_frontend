@@ -16,7 +16,7 @@ import { ThankYouMessage } from "components/ThankYouMessage";
 const PartnerForm = ({ onSubmit }) => {
   const [finished, setFinished] = useState(false);
   const [error, setError] = useState(false);
-  const { t } = useTranslation();
+  const { t } = useTranslation("common");
 
   const requiredMsg = t("form_field_required");
   const invalidEmail = t("form_field_email_invalid");

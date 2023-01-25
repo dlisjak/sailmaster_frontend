@@ -8,7 +8,7 @@ import { getDiscountedPrice, getDiscount, pricePerPerson } from '../utils/prices
 const Discount = ({ discount }) => <span className="discount">-{Math.round(discount)}</span>;
 
 const PriceBlock = ({ offer, className = '', displayTotalPrice = true }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('common');
   const numGuests = !displayTotalPrice && offer.yacht.berths_total > 0 && offer.yacht.berths_total;
   const price = getDiscountedPrice(offer.client_price, offer.discount);
 

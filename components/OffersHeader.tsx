@@ -4,7 +4,7 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Button from 'react-bootstrap/Button';
 
 const OffersHeader = ({ filterValues, onSetOrdering, displayTotalPrice, setDisplayTotalPrice }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('common');
 
   const ORDERING = {
     '': t('ordering_recommended'),

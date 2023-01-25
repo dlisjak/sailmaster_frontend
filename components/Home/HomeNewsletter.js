@@ -2,7 +2,7 @@ import React from "react";
 import ValidateNewsletterForm from "./ValidateNewsletterForm";
 import RenderField from "../common/fields/RenderField";
 
-import { withTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 
 import { Row, Col } from "react-bootstrap";
 
@@ -11,6 +11,7 @@ import { Field, reduxForm } from "redux-form";
 import { NEWSLETTER } from "../../actions/newsletter";
 
 const HomeNewsletter = (props) => {
+  const { t } = useTranslation("common");
   const { handleSubmit, pristine, reset, submitting } = props;
   const submit = handleSubmit(NEWSLETTER);
   let isSubmitted = false;
@@ -61,9 +62,7 @@ const HomeNewsletter = (props) => {
   );
 };
 
-export default withTranslation()(
-  reduxForm({
-    form: "homeNewsletter", // a unique identifier for this form
-    validate: ValidateNewsletterForm, // <--- validation function given to redux-form
-  })(HomeNewsletter)
-);
+export default reduxForm({
+  form: "homeNewsletter", // a unique identifier for this form
+  validate: ValidateNewsletterForm, // <--- validation function given to redux-form
+})(HomeNewsletter);

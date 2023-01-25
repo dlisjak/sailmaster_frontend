@@ -1,6 +1,6 @@
 import ReactDOM from "react-dom";
 import { browserHistory } from "react-router-dom";
-import { withTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 
 import { getInitialFilterValues } from "../utils/getInitialFilterValues";
 import getDateFormat from "../utils/getDateFormat";
@@ -77,13 +77,15 @@ class GoogleMapPin extends React.Component {
     filter.lang = this.props.i18n.language;
 
     browserHistory.push({
-      pathname: this.props.t("offers_route"),
+      pathname: t("offers_route"),
       search: `?destination=${filter["destination"]}&destinationString=${filter["destinationString"]}`,
     });
   }
 
   // Render method
   render() {
+    const { t } = useTranslation("common");
+
     return (
       <div ref="googleMapPin">
         {this.state.open && this.props.location ? (
@@ -110,7 +112,7 @@ class GoogleMapPin extends React.Component {
                 className="gold-border-button"
                 onClick={this.setFilter}
               >
-                {this.props.t("check_offer")}
+                {t("check_offer")}
               </button>
             </div>
           </div>
@@ -139,4 +141,4 @@ class GoogleMapPin extends React.Component {
 //   };
 // }
 
-export default withTranslation()(GoogleMapPin);
+export default GoogleMapPin;

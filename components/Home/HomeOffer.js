@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { Motion, spring } from "react-motion";
-import { withTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import PinIcon from "../icons/PinIcon";
 import PriceTag from "../icons/PriceTag";
 import Yacht from "../icons/Yacht";
@@ -29,6 +29,7 @@ class HomeOffer extends React.Component {
 
   render() {
     // const discount = this.props.price !== this.props.price_list_price ? parseInt(100 - (this.props.price * 100.0 / this.props.price_list_price), 10) : 0;
+    const { t } = useTranslation("common");
     const discount = getDiscount(
       this.props.price_list_price,
       this.props.price,
@@ -62,7 +63,7 @@ class HomeOffer extends React.Component {
               />
               <div className="home-offer--body" style={{ top: `${x}px` }}>
                 <div className="home-offer--name">
-                  {this.props.model.replace("cab.", this.props.t("cab"))}{" "}
+                  {this.props.model.replace("cab.", t("cab"))}{" "}
                   ({this.props.buildYear})
                 </div>
 
@@ -166,4 +167,4 @@ class HomeOffer extends React.Component {
   }
 }
 
-export default withTranslation()(HomeOffer);
+export default HomeOffer;

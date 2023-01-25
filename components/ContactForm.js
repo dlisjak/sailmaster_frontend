@@ -1,24 +1,22 @@
+import { useState } from "react";
 import Alert from "react-bootstrap/Alert";
-import React, { useState } from "react";
 import { Formik } from "formik";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import { useTranslation } from 'next-i18next';
-import Form from "react-bootstrap/Form";
 import * as Yup from "yup";
+import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 
-import Mail from "components/icons/Mail";
-import { ReactComponent as Phone } from "icons/phone.svg";
-import Smartphone from "components/icons/Smartphone";
-import Skype from "components/icons/SkypeNew";
-import { RequiredLabel, Field } from "components/forms/fields";
-import { ThankYouMessage } from "components/ThankYouMessage";
+import Mail from "../components/icons/Mail";
+import Smartphone from "../components/icons/Smartphone";
+import Skype from "../components/icons/SkypeNew";
+import Phone from "../components/icons/Phone";
+import { RequiredLabel, Field } from "../components/forms/fields";
+import { ThankYouMessage } from "../components/ThankYouMessage";
 
 export const IdCard = () => {
-  const { t } = useTranslation();
-  return (
+  const { t } = useTranslation("common");
 
+  return (
     <div className="contact-data">
       <div className="row">
         <Col xs={12} sm={6}>
@@ -77,7 +75,7 @@ export const IdCard = () => {
 const ContactForm = ({ onSubmit }) => {
   const [finished, setFinished] = useState(false);
   const [error, setError] = useState(false);
-  const { t } = useTranslation();
+  const { t } = useTranslation("common");
 
   const requiredMsg = t("form_field_required");
   const invalidEmail = t("form_field_email_invalid");
@@ -111,30 +109,30 @@ const ContactForm = ({ onSubmit }) => {
           }}
         >
           {(formikBag) => (
-            <Form noValidate onSubmit={formikBag.handleSubmit}>
-              <Form.Group controlId="name">
+            <form noValidate onSubmit={formikBag.handleSubmit}>
+              <div className="form-group">
                 <Field
                   name="name"
                   label={<RequiredLabel name={t("inquiry_name")} />}
                   formikBag={formikBag}
                 />
-              </Form.Group>
-              <Form.Group controlId="email">
+              </div>
+              <div className="form-group">
                 <Field
                   name="email"
                   label={<RequiredLabel name={t("inquiry_email")} />}
                   formikBag={formikBag}
                   type="email"
                 />
-              </Form.Group>
-              <Form.Group controlId="phone">
+              </div>
+              <div className="form-group">
                 <Field
                   name="phone"
                   label={<RequiredLabel name={t("inquiry_phone")} />}
                   formikBag={formikBag}
                 />
-              </Form.Group>
-              <Form.Group controlId="comment">
+              </div>
+              <div className="form-group">
                 <Field
                   name="comment"
                   as="textarea"
@@ -142,12 +140,12 @@ const ContactForm = ({ onSubmit }) => {
                   label={t("inquiry_comment")}
                   formikBag={formikBag}
                 />
-              </Form.Group>
+              </div>
 
               <Button type="submit" disabled={formikBag.isSubmitting}>
                 {t("send_message")}
               </Button>
-            </Form>
+            </form>
           )}
         </Formik>
       )}

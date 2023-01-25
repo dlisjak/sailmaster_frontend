@@ -1,4 +1,4 @@
-import { withTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import { Helmet } from "react-helmet";
 import { Row, Col } from "react-bootstrap";
 import { fromJS, List } from "immutable";
@@ -92,6 +92,7 @@ class Wishlist extends React.Component {
   }
 
   render() {
+    const { t } = useTranslation("common");
     let arr = [];
     if (this.props.wishlist.offers) {
       arr = this.props.wishlist.offers;
@@ -163,7 +164,7 @@ class Wishlist extends React.Component {
           </div>
           <div className="wishlist-offer-row">
             <div className="wishlist-offer-row--title">
-              {this.props.t("yacht_type")}
+              {t("yacht_type")}
             </div>
             <div className="wishlist-offer-row--value">
               {item.yacht.yacht_model.category.name.name}
@@ -172,16 +173,16 @@ class Wishlist extends React.Component {
 
           <div className="wishlist-offer-row">
             <div className="wishlist-offer-row--title">
-              {this.props.t("model")}
+              {t("model")}
             </div>
             <div className="wishlist-offer-row--value">
-              {item.yacht.yacht_model.name.replace("cab.", this.props.t("cab"))}
+              {item.yacht.yacht_model.name.replace("cab.", t("cab"))}
             </div>
           </div>
 
           <div className="wishlist-offer-row">
             <div className="wishlist-offer-row--title">
-              {this.props.t("build_year")}
+              {t("build_year")}
             </div>
             <div className="wishlist-offer-row--value">
               {item.yacht.build_year}
@@ -190,7 +191,7 @@ class Wishlist extends React.Component {
 
           <div className="wishlist-offer-row">
             <div className="wishlist-offer-row--title">
-              {this.props.t("country")}
+              {t("country")}
             </div>
             <div className="wishlist-offer-row--value">
               {item.yacht.location.region.country.name.name}
@@ -199,7 +200,7 @@ class Wishlist extends React.Component {
 
           <div className="wishlist-offer-row">
             <div className="wishlist-offer-row--title">
-              {this.props.t("marina")}
+              {t("marina")}
             </div>
             <div className="wishlist-offer-row--value wishlist-offer-row--marina">
               {item.yacht.location.name.name}
@@ -208,7 +209,7 @@ class Wishlist extends React.Component {
 
           <div className="wishlist-offer-row">
             <div className="wishlist-offer-row--title">
-              {this.props.t("cabins")}
+              {t("cabins")}
             </div>
             <div className="wishlist-offer-row--value">
               {item.yacht.cabins_total ? item.yacht.cabins_total : "/"}
@@ -217,7 +218,7 @@ class Wishlist extends React.Component {
 
           <div className="wishlist-offer-row">
             <div className="wishlist-offer-row--title">
-              {this.props.t("people")}
+              {t("people")}
             </div>
             <div className="wishlist-offer-row--value">
               {item.yacht.berths_total ? item.yacht.berths_total : "/"}
@@ -226,7 +227,7 @@ class Wishlist extends React.Component {
 
           <div className="wishlist-offer-row">
             <div className="wishlist-offer-row--title">
-              {this.props.t("wc")}
+              {t("wc")}
             </div>
             <div className="wishlist-offer-row--value">
               {item.yacht.wc ? item.yacht.yacht_model.wc : "/"}
@@ -235,7 +236,7 @@ class Wishlist extends React.Component {
 
           <div className="wishlist-offer-row">
             <div className="wishlist-offer-row--title">
-              {this.props.t("length")}
+              {t("length")}
             </div>
             <div className="wishlist-offer-row--value">
               {item.yacht.yacht_model.loa
@@ -246,7 +247,7 @@ class Wishlist extends React.Component {
 
           <div className="wishlist-offer-row">
             <div className="wishlist-offer-row--title">
-              {this.props.t("width")}
+              {t("width")}
             </div>
             <div className="wishlist-offer-row--value">
               {item.yacht.yacht_model.beam
@@ -257,7 +258,7 @@ class Wishlist extends React.Component {
 
           <div className="wishlist-offer-row">
             <div className="wishlist-offer-row--title">
-              {this.props.t("draft")}
+              {t("draft")}
             </div>
             <div className="wishlist-offer-row--value">
               {item.yacht.draft
@@ -268,7 +269,7 @@ class Wishlist extends React.Component {
 
           <div className="wishlist-offer-row">
             <div className="wishlist-offer-row--title">
-              {this.props.t("term")}
+              {t("term")}
             </div>
             <div className="wishlist-offer-row--value">
               <div>{periodFrom}</div>
@@ -278,7 +279,7 @@ class Wishlist extends React.Component {
 
           <div className="wishlist-offer-row">
             <div className="wishlist-offer-row--title">
-              {this.props.t("price")}
+              {t("price")}
             </div>
             <div className="wishlist-offer-row--value">{price}</div>
           </div>
@@ -290,12 +291,12 @@ class Wishlist extends React.Component {
       <div className="wishlist">
         <Helmet>
           <title>
-            {this.props.t("wishlist_seo_title")} - TheSailmaster.si | Najem
+            {t("wishlist_seo_title")} - TheSailmaster.si | Najem
             jadrnice, katamarana, jahte - last minute
           </title>
           <meta
             name="description"
-            content={this.props.t("wishlist_seo_description")}
+            content={t("wishlist_seo_description")}
           />
           <meta
             property="og:title"
@@ -305,13 +306,13 @@ class Wishlist extends React.Component {
           />
           <meta
             property="og:description"
-            content={this.props.t("wishlist_seo_description")}
+            content={t("wishlist_seo_description")}
           />
         </Helmet>
 
         <div className="wishlist-main">
           <div className="container base-layout">
-            <h1>{`${this.props.t("wishlist_header")} (${this.props.wishlist.count
+            <h1>{`${t("wishlist_header")} (${this.props.wishlist.count
               })`}</h1>
             <div className="row">
               <Col xs={12} sm={12} md={3} className="menu-side">
@@ -319,7 +320,7 @@ class Wishlist extends React.Component {
                   <li>
                     <div className="anchor-wrapper">
                       <Anchor />
-                      <span className="menu-class">{this.props.t("menu")}</span>
+                      <span className="menu-class">{t("menu")}</span>
                     </div>
                   </li>
                   <li>
@@ -327,7 +328,7 @@ class Wishlist extends React.Component {
                       onClick={this.openEnquiryModal}
                       className="gold-button"
                     >
-                      {this.props.t("enquiry")}
+                      {t("enquiry")}
                     </button>
                   </li>
                 </ul>
@@ -337,7 +338,7 @@ class Wishlist extends React.Component {
                   <div className="row">{offers}</div>
                 ) : (
                   <Alert variant="warning">
-                    {this.props.t("wishlist_empty")}
+                    {t("wishlist_empty")}
                   </Alert>
                 )}
               </Col>
@@ -363,4 +364,4 @@ class Wishlist extends React.Component {
 //     countriesEnquiry: state.countriesEnquiry || [],
 //   };
 // }
-export default withTranslation()(Wishlist);
+export default Wishlist;

@@ -5,7 +5,7 @@ import { useTranslation } from 'next-i18next';
 import { useSearchDestinations } from "../../queries/queries";
 
 const CustomOption = ({ children, ...props }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("common");
 
   return (
     <div>
@@ -23,7 +23,7 @@ const DestinationSelect = ({
   value,
   setValue,
 }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("common");
   const { searchDestinations } = useSearchDestinations();
 
   return (
