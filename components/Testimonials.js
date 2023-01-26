@@ -7,7 +7,7 @@ import Testimonial from "./common/Testimonial";
 import GOOGLE_REVIEW from "../public/media/GoogleReview_logo.png";
 import { useTestimonials } from "../queries/queries";
 
-const Testimonials = () => {
+const Testimonials = ({ items }) => {
   const { t } = useTranslation("common");
   const { testimonials } = useTestimonials();
 
@@ -18,7 +18,7 @@ const Testimonials = () => {
           <h2>{t("testimonials_title")}</h2>
         </div>
         <div className="row">
-          {testimonials.results.map((item, index) => {
+          {(testimonials || items).results.map((item, index) => {
             const image = item.profile_photo_url || item.image.thumbnail;
             const country = item.country ? item.country.name : null;
             return (

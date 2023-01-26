@@ -43,13 +43,13 @@ const FeaturedYacht = ({ item }) => {
   );
 };
 
-const FeaturedYachts = () => {
+const FeaturedYachts = ({ items }) => {
   const { featuredYachts } = useFeaturedYachts();
 
   return (
     <div className="featured-yachts">
       <div className="row">
-        {featuredYachts.results
+        {(featuredYachts || items).results
           .filter((item) => !!item.offer_id)
           .map((item) => (
             <div

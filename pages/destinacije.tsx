@@ -7,7 +7,7 @@ import Destinations from '../components/Destinations';
 
 import { getDestinations } from '../queries/getters';
 
-const Destinacije = () => {
+const Destinacije = ({ destinations }) => {
   const { t } = useTranslation('common');
 
   return (
@@ -18,7 +18,7 @@ const Destinacije = () => {
       </Helmet>
       <div className="base-layout container">
         <h1>{t('page_destinations_title')}</h1>
-        <Destinations />
+        <Destinations items={destinations} />
       </div>
     </>
   );

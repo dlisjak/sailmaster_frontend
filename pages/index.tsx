@@ -42,7 +42,7 @@ const Index = ({ fallback, featuredYachts, destinations, testimonials, homeBlogs
             <div className="page-home__title">
               <h2>{t('featured_yachts')}</h2>
             </div>
-            <FeaturedYachts />
+            <FeaturedYachts items={featuredYachts} />
           </div>
 
           <div className="page-home__block">
@@ -53,10 +53,10 @@ const Index = ({ fallback, featuredYachts, destinations, testimonials, homeBlogs
             <div className="page-home__title">
               <h2>{t('page_destinations_title')}</h2>
             </div>
-            <Destinations />
+            <Destinations items={destinations} />
           </div>
 
-          <Testimonials />
+          <Testimonials items={testimonials} />
         </div>
         <HomeBlogs items={homeBlogs?.results} />
         <HomeNewsletter onSubmit={subscribeNewsletter} />
@@ -76,6 +76,7 @@ export const getStaticProps = async ({ locale }) => {
 
   return {
     props: {
+      destinations,
       homeBlogs,
       ...translations,
       fallback: {

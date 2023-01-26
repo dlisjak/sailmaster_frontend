@@ -21,13 +21,13 @@ const Destination = ({ destination }) => {
   );
 };
 
-const Destinations = () => {
+const Destinations = ({ items }) => {
   const { destinations } = useDestinations();
 
   return (
     <div className="destinations2">
       <div className="row">
-        {destinations.results.map((destination) => (
+        {(destinations || items).results.map((destination) => (
           <div
             className="col--destinations2 w-full lg:w-1/4 pr-4 pl-4 md:w-1/3 pr-4 pl-4 sm:w-1/2 pr-4 pl-4"
             key={destination.id}
