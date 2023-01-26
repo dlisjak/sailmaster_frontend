@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
-import FormLabel from 'react-bootstrap/FormLabel';
-import FormGroup from 'react-bootstrap/FormGroup';
 import Select from 'react-select';
 import InputRange from '../InputRange';
 import { useTranslation } from 'next-i18next';
@@ -127,8 +125,8 @@ export const RangeField = ({
   }
 
   return (
-    <FormGroup className="range-line">
-      <FormLabel>
+    <div className="range-line form-group">
+      <label className="form-label">
         {label}:
         <span>
           {' '}
@@ -137,7 +135,7 @@ export const RangeField = ({
           {formatValue(currentOrDefault.max)}
           {displayAndMore && currentOrDefault.max === maxValue && ' ' + t('and_more')}
         </span>
-      </FormLabel>
+      </label>
       <div className="range-wrapper">
         <InputRange
           allowSameValues
@@ -152,7 +150,7 @@ export const RangeField = ({
           }}
         />
       </div>
-    </FormGroup>
+    </div>
   );
 };
 
@@ -170,8 +168,8 @@ export const SelectField = ({
     : null;
 
   return (
-    <FormGroup {...formGroupProps}>
-      <FormLabel>{label}</FormLabel>
+    <div className="form-group" {...formGroupProps}>
+      <label className="form-label">{label}</label>
       <Select
         styles={customStyles}
         theme={customTheme}
@@ -185,6 +183,6 @@ export const SelectField = ({
         }}
         placeholder={placeholder}
       />
-    </FormGroup>
+    </div>
   );
 };

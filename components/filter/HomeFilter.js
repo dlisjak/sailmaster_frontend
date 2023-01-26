@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useTranslation } from 'next-i18next';
 import Link from "next/link";
 
-import FormLabel from "react-bootstrap/FormLabel";
 import Col from "react-bootstrap/Col";
 
 import DestinationSelect from "./DestinationSelect";
@@ -34,7 +33,7 @@ const HomeFilter = () => {
     <div className="home-filter">
       <div className="row">
         <div className="form-group w-full xl:w-2/5 lg:w-1/3 md:w-1/4 pr-4 pl-4 md:pr-1 md:pl-1">
-          <FormLabel>{t("starting_point")}</FormLabel>
+          <label className="form-label">{t("starting_point")}</label>
           <DestinationSelect
             setValue={(value) => {
               setValue("destinations", value);
@@ -43,7 +42,7 @@ const HomeFilter = () => {
           />
         </div>
         <div className="form-group w-full xl:w-1/4 lg:w-1/3 md:w-2/5 pr-4 pl-4 md:pr-1 md:pl-1">
-          <FormLabel>{t("date_range")}</FormLabel>
+          <label className="form-label">{t("date_range")}</label>
           <DateRangeSelect
             value={values.dateRange}
             onSelect={(value) => setValue("dateRange", value)}

@@ -12,12 +12,8 @@ import YachtCabins from "./../common/YachtCabins";
 import getDateFormat from "./../common/utils/getDateFormat";
 import Calendar from "../icons/Calendar";
 import {
-  Row,
   Col,
   FormGroup,
-  FormControl,
-  FormLabel,
-  DropdownButton,
 } from "react-bootstrap";
 import { getInitialFilterValues } from "../common/utils/getInitialFilterValues";
 import generateQueryString from "../common/utils/generateQueryString";
@@ -226,9 +222,9 @@ class HomeSearchBar extends React.Component {
 
     return (
       <form>
-        <FormGroup controlId="homeSearchBar">
+        <div className="form-group" controlId="homeSearchBar">
           <Col xs={12} sm={12} md={3} lg={3}>
-            <FormLabel>{t("starting_point")}</FormLabel>
+            <label className="form-label">{t("starting_point")}</label>
             <DropdownWithSearch
               value={this.state.home_search.destinationString}
               values={this.props.locations}
@@ -238,8 +234,8 @@ class HomeSearchBar extends React.Component {
             />
           </Col>
           <Col xs={12} sm={12} md={4} lg={4} className="date-range">
-            <FormLabel>{t("from_date")}</FormLabel>
-            <FormLabel>{t("to_date")}</FormLabel>
+            <label className="form-label">{t("from_date")}</label>
+            <label className="form-label">{t("to_date")}</label>
             <div className="triangle triangle-first" />
             <div className="triangle triangle-last" />
             <div className={dateRangeClass}>
@@ -261,7 +257,7 @@ class HomeSearchBar extends React.Component {
             </div>
           </Col>
           <Col xs={12} sm={6} md={2} lg={2}>
-            <FormLabel>{t("yacht_type")}</FormLabel>
+            <label className="form-label">{t("yacht_type")}</label>
             <YachtType
               value={this.state.home_search.yachtTypeString}
               values={this.props.yachtType}
@@ -271,11 +267,11 @@ class HomeSearchBar extends React.Component {
             />
           </Col>
           <Col xs={12} sm={6} md={1} lg={1} className="yacht-cabins-wrapper">
-            <FormLabel>
+            <label className="form-label">
               {t("yacht_cabins").length > 9
                 ? t("yacht_cabins").substring(0, 7) + "."
                 : t("yacht_cabins")}
-            </FormLabel>
+            </label>
             <YachtCabins
               value={this.state.home_search.yachtCabins}
               values={this.state.yachtCabins}
@@ -293,7 +289,7 @@ class HomeSearchBar extends React.Component {
               {t("search")}
             </button>
           </Col>
-        </FormGroup>
+        </div className="form-group">
       </form>
     );
   }

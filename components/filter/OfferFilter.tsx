@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react';
-import FormLabel from 'react-bootstrap/FormLabel';
-import FormGroup from 'react-bootstrap/FormGroup';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 
 import DestinationSelect from './DestinationSelect';
 import DateRangeSelect from './DateRangeSelect';
-import { RANGE_FIELDS_MAX } from '../../utils/search_utils';
-import { formatMoneyAmount, formatLength } from '../../utils/formats';
 import { RangeField, SelectField } from '../../components/forms/fields';
+
+import { formatMoneyAmount, formatLength } from '../../utils/formats';
+import { RANGE_FIELDS_MAX } from '../../utils/search_utils';
 import { searchUrl } from '../../utils/url_utils';
 import { useYachtBrands, useYachtTypes } from '../../queries/queries';
 
@@ -27,22 +26,22 @@ export const BasicSearch = ({ values, onSubmit, ...props }) => {
   return (
     <div className="offer-filter ofer-filter--basic-search">
       <div className="search-box search-box--primary">
-        <FormGroup>
-          <FormLabel>{t('starting_point')}</FormLabel>
+        <div className="form-group">
+          <label className="form-label">{t('starting_point')}</label>
           <DestinationSelect
             setValue={(value) => {
               setValue('destinations', value);
             }}
             value={currentValues?.destinations}
           />
-        </FormGroup>
-        <FormGroup>
-          <FormLabel>{t('date_range')}</FormLabel>
+        </div>
+        <div className="form-group">
+          <label className="form-label">{t('date_range')}</label>
           <DateRangeSelect
             value={currentValues?.dateRange}
             onSelect={(value) => setValue('dateRange', value)}
           />
-        </FormGroup>
+        </div>
         <SelectField
           fieldName="yacht__yacht_model__category__yachtdisplaycategory"
           label={t('yacht_type')}
@@ -70,22 +69,22 @@ export const OfferFilter = ({ values, onSubmit, ...props }) => {
   return (
     <div className="offer-filter">
       <div className="search-box search-box--primary">
-        <FormGroup>
-          <FormLabel>{t('starting_point')}</FormLabel>
+        <div className="form-group">
+          <label className="form-label">{t('starting_point')}</label>
           <DestinationSelect
             setValue={(value) => {
               setValue('destinations', value);
             }}
             value={values.destinations}
           />
-        </FormGroup>
-        <FormGroup>
-          <FormLabel>{t('date_range')}</FormLabel>
+        </div>
+        <div className="form-group">
+          <label className="form-label">{t('date_range')}</label>
           <DateRangeSelect
             value={values.dateRange}
             onSelect={(value) => setValue('dateRange', value)}
           />
-        </FormGroup>
+        </div>
         <SelectField
           fieldName="yacht__yacht_model__category__yachtdisplaycategory"
           label={t('yacht_type')}
