@@ -3,8 +3,8 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import nextI18nextConfig from '../../next-i18next.config';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
-import InfiniteScroll from 'react-infinite-scroller';
 import Head from 'next/head';
+import InfiniteScroll from 'react-infinite-scroller';
 import Alert from 'react-bootstrap/Alert';
 
 import Loader from '../../components/Loader';

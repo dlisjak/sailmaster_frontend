@@ -2,6 +2,7 @@ import Link from "next/link";
 import { valuesToSearch, parseDestinations } from "utils/search_utils";
 
 import { OFFERS_URL } from "../constants";
+import { useDestinations } from "../queries/queries";
 
 const Destination = ({ destination }) => {
   const link =
@@ -20,11 +21,13 @@ const Destination = ({ destination }) => {
   );
 };
 
-const Destinations = ({ destinations }) => {
+const Destinations = () => {
+  const { destinations } = useDestinations();
+
   return (
     <div className="destinations2">
       <div className="row">
-        {destinations?.map((destination) => (
+        {destinations.results.map((destination) => (
           <div
             className="col--destinations2 w-full lg:w-1/4 pr-4 pl-4 md:w-1/3 pr-4 pl-4 sm:w-1/2 pr-4 pl-4"
             key={destination.id}

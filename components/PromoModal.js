@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Formik } from "formik";
 import { useTranslation } from 'next-i18next';
 import Modal from "react-bootstrap/Modal";
@@ -12,14 +12,29 @@ import {
 
 import { subscribeNewsletterGift } from "../lib/base";
 
-const PromoModal = ({ showModal, onClose }) => {
+const PromoModal = () => {
   const { t, i18n } = useTranslation("common");
   const [finished, setFinished] = useState(false);
   const [error, setError] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
   const language = i18n.language;
 
+  useEffect(() => {
+    const handlePromoModal = () => {
+      if (!localStorage.getItem("promoModal")) {
+        setTimeout(() => {
+          setShowModal(true)
+          localStorage.setItem("promoModal", 1)
+        }, 1000)
+      }
+    }
+
+    handlePromoModal();
+  }, []);
+
   return (
-    <Modal show={showModal} onHide={onClose} dialogClassName="promo-modal">
+    <Modal show={showModal} onHide={() => setShowModal(false)} dialogClassName="promo-modal">
       <Modal.Header closeButton>
         <Modal.Title></Modal.Title>
       </Modal.Header>

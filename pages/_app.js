@@ -1,14 +1,16 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import dynamic from "next/dynamic.js";
 import { appWithTranslation } from 'next-i18next'
 import nextI18NextConfig from '../next-i18next.config.js'
 import SSRProvider from 'react-bootstrap/SSRProvider';
 import ScrollToTop from "react-scroll-to-top";
 
 import Navigation from "../components/Navigation";
-import Footer from "../components/common/Footer";
-import CookieLaw from "../components/common/CookieLaw";
-import InquiryModal from "../components/Inquiry";
-import PromoModal from "../components/PromoModal";
+
+const InquiryModal = dynamic(() => import("../components/Inquiry"));
+const PromoModal = dynamic(() => import("../components/PromoModal"));
+const CookieLaw = dynamic(() => import("../components/common/CookieLaw"));
+const Footer = dynamic(() => import("../components/common/Footer"));
 
 import ErrorBoundary from "../components/ErrorBoundary";
 import { language } from '../constants'
@@ -20,7 +22,6 @@ const MyApp = ({ Component, pageProps, router }) => {
   const route = router.route;
   const lang = process.env.NEXT_PUBLIC_REACT_APP_LANGUAGE;
   const [showInquiry, setShowInquiry] = useState(false);
-  const [showModal, setShowModal] = useState(false);
 
   // useEffect(() => {
   //   setTimeout(() => {
@@ -30,19 +31,6 @@ const MyApp = ({ Component, pageProps, router }) => {
   //   return
   // }, [route])
 
-  useEffect(() => {
-    const handlePromoModal = () => {
-      if (!localStorage.getItem("promoModal")) {
-        setTimeout(() => {
-          setShowModal(true)
-          localStorage.setItem("promoModal", 1)
-        }, 1000)
-      }
-    }
-
-    handlePromoModal();
-  }, []);
-
   return (
     <SSRProvider>
       <ScrollToTop smooth color="#ceb896" />
@@ -50,10 +38,7 @@ const MyApp = ({ Component, pageProps, router }) => {
       <Component {...pageProps} route={route} key={route} lang={lang} />
       <Footer lang={lang} />
       <CookieLaw />
-      <PromoModal
-        showModal={showModal}
-        onClose={() => setShowModal(false)}
-      />
+      <PromoModal />
       <InquiryModal
         showInquiry={showInquiry}
         onClose={() => setShowInquiry(false)}

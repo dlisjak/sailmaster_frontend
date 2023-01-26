@@ -4,8 +4,8 @@ import { getWishlistFromLocalStorage } from "../utils/wishlistUtils";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
-export const useFeaturedYachts = (lang = "si") => {
-  const { data, error } = useSWR(`/api/featured-yachts?lang=${lang}`, fetcher, {
+export const useFeaturedYachts = () => {
+  const { data, error } = useSWR(`/api/featured-yachts`, fetcher, {
     revalidateOnFocus: false,
   });
 
@@ -16,8 +16,8 @@ export const useFeaturedYachts = (lang = "si") => {
   };
 };
 
-export const useDestinations = (lang = "si") => {
-  const { data, error } = useSWR(`/api/destinations?lang=${lang}`, fetcher, {
+export const useDestinations = () => {
+  const { data, error } = useSWR(`/api/destinations`, fetcher, {
     revalidateOnFocus: false,
   });
 

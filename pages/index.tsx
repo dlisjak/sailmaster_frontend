@@ -22,7 +22,7 @@ import {
 } from '../queries/getters.js';
 import { subscribeNewsletter } from '../lib/base';
 
-const Index = ({ fallback, yachtTypes, featuredYachts, destinations, testimonials, homeBlogs }) => {
+const Index = ({ fallback, featuredYachts, destinations, testimonials, homeBlogs }) => {
   const { t } = useTranslation('home');
 
   return (
@@ -42,7 +42,7 @@ const Index = ({ fallback, yachtTypes, featuredYachts, destinations, testimonial
             <div className="page-home__title">
               <h2>{t('featured_yachts')}</h2>
             </div>
-            <FeaturedYachts items={featuredYachts?.results} />
+            <FeaturedYachts />
           </div>
 
           <div className="page-home__block">
@@ -53,10 +53,10 @@ const Index = ({ fallback, yachtTypes, featuredYachts, destinations, testimonial
             <div className="page-home__title">
               <h2>{t('page_destinations_title')}</h2>
             </div>
-            <Destinations destinations={destinations?.results} />
+            <Destinations />
           </div>
 
-          <Testimonials items={testimonials?.results} />
+          <Testimonials />
         </div>
         <HomeBlogs items={homeBlogs?.results} />
         <HomeNewsletter onSubmit={subscribeNewsletter} />
@@ -76,13 +76,11 @@ export const getStaticProps = async ({ locale }) => {
 
   return {
     props: {
-      yachtTypes,
-      featuredYachts,
-      destinations,
-      testimonials,
       homeBlogs,
       ...translations,
       fallback: {
+        '/api/featured-yachts': featuredYachts,
+        '/api/destinations': destinations,
         '/api/yacht-brands': yachtBrands,
         '/api/testimonials': testimonials,
         '/api/yacht-types': yachtTypes,

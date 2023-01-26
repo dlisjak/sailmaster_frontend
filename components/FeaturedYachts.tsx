@@ -6,6 +6,7 @@ import Location from './Location';
 import Properties from './Properties';
 
 import { offerUrl } from '../utils/url_utils';
+import { useFeaturedYachts } from '../queries/queries';
 
 const FeaturedYacht = ({ item }) => {
   const { t } = useTranslation('common');
@@ -42,11 +43,13 @@ const FeaturedYacht = ({ item }) => {
   );
 };
 
-const FeaturedYachts = ({ items }) => {
+const FeaturedYachts = () => {
+  const { featuredYachts } = useFeaturedYachts();
+
   return (
     <div className="featured-yachts">
       <div className="row">
-        {items
+        {featuredYachts.results
           .filter((item) => !!item.offer_id)
           .map((item) => (
             <div

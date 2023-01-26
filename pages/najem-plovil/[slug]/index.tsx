@@ -9,7 +9,6 @@ import OfferInquiry from '../../../components/OfferInquiry';
 import nextI18nextConfig from '../../../next-i18next.config';
 import { useWishlist } from '../../../queries/queries';
 import { formatOfferPeriod, formatOfferPrice } from '../../../utils/offerUtils';
-// import { yachtSlug } from '../../../utils/url_utils';
 import { handleHeartClick } from '../../../utils/wishlistUtils';
 
 const OfferDetailPage = ({ yachtOffer }) => {

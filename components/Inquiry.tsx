@@ -76,7 +76,6 @@ const InquiryModal = ({ showInquiry, onClose }) => {
                   />
                 </div>
                 <div className="form-group">
-                  <RequiredLabel name={t('inquiry_phone')} />
                   <Field
                     name="phone"
                     label={<RequiredLabel name={t('inquiry_phone')} />}

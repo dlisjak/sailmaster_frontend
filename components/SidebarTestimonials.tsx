@@ -13,10 +13,6 @@ export const SidebarTestimonials = () => {
   const { testimonials } = useTestimonials();
   const { t } = useTranslation('common');
 
-  if (!testimonials?.results) {
-    return null;
-  }
-
   return (
     <div className="sidebar__testimonials sidebar-testimonials">
       <Link
