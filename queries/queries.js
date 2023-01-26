@@ -5,7 +5,9 @@ import { getWishlistFromLocalStorage } from "../utils/wishlistUtils";
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 export const useFeaturedYachts = (lang = "si") => {
-  const { data, error } = useSWR(`/api/featured-yachts?lang=${lang}`, fetcher);
+  const { data, error } = useSWR(`/api/featured-yachts?lang=${lang}`, fetcher, {
+    revalidateOnFocus: false,
+  });
 
   return {
     featuredYachts: data,
@@ -15,7 +17,9 @@ export const useFeaturedYachts = (lang = "si") => {
 };
 
 export const useDestinations = (lang = "si") => {
-  const { data, error } = useSWR(`/api/destinations?lang=${lang}`, fetcher);
+  const { data, error } = useSWR(`/api/destinations?lang=${lang}`, fetcher, {
+    revalidateOnFocus: false,
+  });
 
   return {
     destinations: data,
@@ -25,7 +29,9 @@ export const useDestinations = (lang = "si") => {
 };
 
 export const useSearchDestinations = () => {
-  const { data, error } = useSWR(`/api/destinations/search`, fetcher);
+  const { data, error } = useSWR(`/api/destinations/search`, fetcher, {
+    revalidateOnFocus: false,
+  });
 
   return {
     searchDestinations: data,
@@ -35,7 +41,9 @@ export const useSearchDestinations = () => {
 };
 
 export const useCountriesEnquiry = () => {
-  const { data, error } = useSWR("/api/countries-enquiry", fetcher);
+  const { data, error } = useSWR("/api/countries-enquiry", fetcher, {
+    revalidateOnFocus: false,
+  });
 
   return {
     countriesEnquiry: data,
@@ -45,7 +53,9 @@ export const useCountriesEnquiry = () => {
 };
 
 export const useYachtTypes = () => {
-  const { data, error } = useSWR(`/api/yacht-types`, fetcher);
+  const { data, error } = useSWR(`/api/yacht-types`, fetcher, {
+    revalidateOnFocus: false,
+  });
 
   return {
     yachtTypes: data,
@@ -55,7 +65,9 @@ export const useYachtTypes = () => {
 };
 
 export const useYachtBrands = () => {
-  const { data, error } = useSWR(`/api/yacht-brands`, fetcher);
+  const { data, error } = useSWR(`/api/yacht-brands`, fetcher, {
+    revalidateOnFocus: false,
+  });
 
   return {
     yachtBrands: data,
@@ -65,7 +77,9 @@ export const useYachtBrands = () => {
 };
 
 export const useTestimonials = () => {
-  const { data, error } = useSWR(`/api/testimonials`, fetcher);
+  const { data, error } = useSWR(`/api/testimonials`, fetcher, {
+    revalidateOnFocus: false,
+  });
 
   return {
     testimonials: data,

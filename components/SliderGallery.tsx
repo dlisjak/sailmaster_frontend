@@ -23,23 +23,28 @@ const SliderGallery = ({ yacht }) => {
           <YouTube videoId={youtube} opts={{ height: '210', width: '100%' }} />
         </div>
       )}
-      {pictures.map((image, i) => (
-        <div
-          className={`carousel-item ${idx === i ? 'active' : ''}`}
-          key={`${image}-${i}`}
-          style={{ display: idx === i ? 'flex' : 'none' }}
-        >
-          <div className="featuredYacht__imageContainer relative w-full h-full flex overflow-hidden mb-1 aspect-[16/9] md:aspect-[4/3]">
-            <Image
-              className="carousel-offer-item object-cover"
-              src={image}
-              alt={`${yacht.yacht_model.name} ${yacht.yacht_model.category_name}`}
-              width={480}
-              height={325}
-            />
+      {pictures.map((image, i) => {
+        const priority = i === 0;
+
+        return (
+          <div
+            className={`carousel-item ${idx === i ? 'active' : ''}`}
+            key={`${image}-${i}`}
+            style={{ display: idx === i ? 'flex' : 'none' }}
+          >
+            <div className="featuredYacht__imageContainer relative w-full h-full flex overflow-hidden mb-1 aspect-[16/9] md:aspect-[4/3]">
+              <Image
+                className="carousel-offer-item object-cover"
+                src={image}
+                alt={`${yacht.yacht_model.name} ${yacht.yacht_model.category_name}`}
+                width={480}
+                height={325}
+                priority={priority}
+              />
+            </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
       <ol className="carousel-indicators">
         {pictures.map((image, i) => (
           <li className={idx === i ? 'active' : ''} key={`${image}-${i}`}></li>

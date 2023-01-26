@@ -43,10 +43,23 @@ import { INSURANCE_URL } from '../constants/urls';
 import ZAVAROVANJE_IMAGE from "../public/media/yacht-pool-Financial_System_2022.jpg"
 
 export const OfferImageGalery = ({ offer }) => {
-  const items = offer.yacht.pictures.map((url) => ({
-    original: url,
-    thumbnail: url,
-  }));
+  const items = offer.yacht.pictures.map((url, i) => {
+    const alt = `${offer.yacht.yacht_model.category_name} ${offer.yacht.yacht_model.name} ${offer.location_from.region_name}, ${offer.location_from.country_name} ${i + 1}`;
+
+    return ({
+      thumbnail: url,
+      renderItem: () => (
+        <div className='relative'>
+          <Image src={url} alt={alt} width={825} height={550} priority={i === 0} quality={80} />
+        </div>
+      ),
+      renderThumbInner: () => (
+        <div className='relative min-h-[69px]'>
+          <Image src={url} alt={`${alt} thumbnail`} width={150} height={100} quality={20} />
+        </div>
+      )
+    })
+  });
   return <ImageGallery items={items} />;
 };
 

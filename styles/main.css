@@ -10,6 +10,24 @@ h3 {
   text-align: left;
 }
 
+.image-gallery-content .image-gallery-slide img {
+  max-height: calc(100vh - 80px);
+  width: 100%;
+}
+
+.image-gallery-content:not(.fullscreen) .image-gallery-slide img {
+  max-height: 550px;
+}
+
+.image-gallery-thumbnail .relative img {
+  max-height: 69px;
+  width: auto;
+}
+
+.image-gallery-slide .relative img {
+  object-fit: contain;
+}
+
 .visually-hidden {
   clip: rect(0 0 0 0); 
   clip-path: inset(50%);
