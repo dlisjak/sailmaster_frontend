@@ -389,17 +389,17 @@ const OfferDetail = ({
                 location={offer.location_from}
                 onLocationClick={() => setShowMap(!showMap)}
               />
-              <div className="offer-detail__buttons flex">
-                <Link className="btn btn-info flex" href={emailLink}>
+              <div className="offer-detail__buttons flex flex-wrap">
+                <Link className="btn btn-info flex items-center" href={emailLink}>
                   <ShareIcon />
                   {t('offer_share_email')}
                 </Link>
-                <button className="btn btn-info flex" role="button" onClick={handleHeartClick}>
+                <button className="btn btn-info flex items-center" role="button" onClick={handleHeartClick}>
                   <Heart />
                   {inWishlist ? t('wishlist_remove') : t('wishlist_add')}
                 </button>
                 <button
-                  className="btn btn-info flex"
+                  className="btn btn-info flex items-center"
                   role="button"
                   onClick={() => setShowMap(!showMap)}
                 >
