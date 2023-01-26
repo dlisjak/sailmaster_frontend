@@ -160,15 +160,15 @@ export const SelectField = ({
   label,
   options,
   setValue,
-  formGroupProps = null,
   placeholder,
+  className = '',
 }) => {
   const value = values
     ? options?.find((item) => String(item.value) === String(values[fieldName]))
     : null;
 
   return (
-    <div className="form-group" {...formGroupProps}>
+    <div className={`form-group ${className}`}>
       <label className="form-label">{label}</label>
       <Select
         styles={customStyles}

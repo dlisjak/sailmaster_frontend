@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import { SWRConfig } from 'swr';
-import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import nextI18NextConfig from '../next-i18next.config.js';

@@ -49,10 +49,7 @@ const HomeFilter = () => {
           />
         </div>
         <SelectField
-          formGroupProps={{
-            as: Col,
-            md: 2,
-          }}
+          className="w-full md:w-1/6 pr-4 pl-4 md:pr-1 md:pl-1"
           fieldName="yacht__yacht_model__category__yachtdisplaycategory"
           label={t("yacht_type")}
           options={yachtTypes}

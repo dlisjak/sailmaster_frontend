@@ -32,7 +32,7 @@ const FeaturedYacht = ({ item }) => {
       <div>
         {item.image && (
           <div className="featuredYacht__imageContainer relative w-full flex overflow-hidden mb-1 aspect-[4/3]">
-            <Image src={item.image} alt={item.title} width={640} height={640} />
+            <Image src={item.image} alt={item.title} width={506} height={380} />
           </div>
         )}
         <div>
