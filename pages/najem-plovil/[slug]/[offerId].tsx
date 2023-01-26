@@ -10,7 +10,6 @@ import nextI18nextConfig from '../../../next-i18next.config';
 import { useWishlist } from '../../../queries/queries';
 import { formatOfferPeriod, formatOfferPrice } from '../../../utils/offerUtils';
 import { handleHeartClick } from '../../../utils/wishlistUtils';
-import { yachtSlug } from '../../../utils/url_utils';
 
 const OfferDetailPage = ({ offer }) => {
   const { wishlist, mutateWishlist } = useWishlist();
@@ -46,44 +45,45 @@ const OfferDetailPage = ({ offer }) => {
   );
 };
 
-export const getStaticPaths = async () => {
-  const url = process.env.NEXT_PUBLIC_API_URL + `/yachts/?limit=10&offset=10`;
-  const response = await fetch(url);
-  const data: any = await response.json();
-  const count = data.count;
-  const promises = [];
+// export const getStaticPaths = async () => {
+//   const url = process.env.NEXT_PUBLIC_API_URL + `/yachts/?limit=10&offset=10`;
+//   const response = await fetch(url);
+//   const data: any = await response.json();
+//   const count = data.count;
+//   const promises = [];
 
-  for (let i = 1; i < count; i++) {
-    const promise = new Promise((resolve, reject) => {
-      setTimeout(async () => {
-        const url = process.env.NEXT_PUBLIC_API_URL + `/yachts/?limit=10&offset=${10 * i}`;
-        const response = await fetch(url);
-        const contentType = response.headers.get('content-type');
-        if (contentType && contentType.indexOf('application/json') !== -1) {
-          const data: any = await response.json();
-          if (data.results.length) resolve(data.results);
-        } else {
-          return response.text().then((text) => {
-            reject(text);
-          });
-        }
-      }, 1000 * i);
-    });
+//   // for (let i = 1; i < count; i++) {
+//   for (let i = 1; i < 20; i++) {
+//     const promise = new Promise((resolve, reject) => {
+//       setTimeout(async () => {
+//         const url = process.env.NEXT_PUBLIC_API_URL + `/yachts/?limit=10&offset=${10 * i}`;
+//         const response = await fetch(url);
+//         const contentType = response.headers.get('content-type');
+//         if (contentType && contentType.indexOf('application/json') !== -1) {
+//           const data: any = await response.json();
+//           if (data.results.length) resolve(data.results);
+//         } else {
+//           return response.text().then((text) => {
+//             reject(text);
+//           });
+//         }
+//       }, 1000 * i);
+//     });
 
-    promises.push(promise);
-  }
+//     promises.push(promise);
+//   }
 
-  const yachts = await Promise.all(promises).then((arr) => arr.flat());
+//   const yachts = await Promise.all(promises).then((arr) => arr.flat());
 
-  const paths = yachts.map((yacht) => ({
-    params: { slug: yachtSlug(yacht.yacht_model.id, yacht.yacht_model.name) },
-  }));
+//   const paths = yachts.map((yacht) => ({
+//     params: { slug: yachtSlug(yacht.yacht_model.id, yacht.yacht_model.name) },
+//   }));
 
-  return {
-    paths,
-    fallback: false, // can also be true or 'blocking'
-  };
-};
+//   return {
+//     paths,
+//     fallback: false, // can also be true or 'blocking'
+//   };
+// };
 
 export const getServerSideProps = async (ctx) => {
   const fetch = (await import('node-fetch')).default;
