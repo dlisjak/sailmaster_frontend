@@ -154,11 +154,7 @@ const OffersPage = ({ error, results, next, count, destination, loading }) => {
 export const getServerSideProps = async (ctx) => {
   const search = ctx.req.url;
   const { data } = await getSearchResults(search);
-  const translations = await serverSideTranslations(
-    ctx.locale,
-    ['home', 'common'],
-    nextI18nextConfig
-  );
+  const translations = await serverSideTranslations(ctx.locale, ['common'], nextI18nextConfig);
 
   return {
     props: {

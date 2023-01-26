@@ -25,22 +25,22 @@ const SliderGallery = ({ yacht }) => {
       )}
       {pictures.map((image, i) => {
         const priority = i === 0;
+        const loading = i === 0 ? 'eager' : 'lazy';
 
         return (
-          <div
-            className={`carousel-item ${idx === i ? 'active' : ''}`}
-            key={`${image}-${i}`}
-            style={{ display: idx === i ? 'flex' : 'none' }}
-          >
+          <div className={`carousel-item ${idx === i ? 'active' : ''}`} key={`${image}-${i}`}>
             <div className="featuredYacht__imageContainer relative w-full h-full flex overflow-hidden mb-1 aspect-[16/9] md:aspect-[4/3]">
-              <Image
-                className="carousel-offer-item object-cover"
-                src={image}
-                alt={`${yacht.yacht_model.name} ${yacht.yacht_model.category_name}`}
-                width={480}
-                height={325}
-                priority={priority}
-              />
+              {idx === i && (
+                <Image
+                  className="carousel-offer-item object-cover"
+                  src={image}
+                  alt={`${yacht.yacht_model.name} ${yacht.yacht_model.category_name}`}
+                  width={480}
+                  height={325}
+                  priority={priority}
+                  loading={loading}
+                />
+              )}
             </div>
           </div>
         );
