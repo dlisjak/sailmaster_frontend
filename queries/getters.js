@@ -107,6 +107,14 @@ export const getYachtOffer = async (yachtId) => {
   return data;
 };
 
+export const getOffer = async (offerId) => {
+  const url = process.env.NEXT_PUBLIC_API_URL + '/offers/' + offerId + "/";
+
+  const { data } = await axios.get(url);
+
+  return data;
+};
+
 export const getAllYachts = async (offset = 0) => {
   const limit = 10;
   const url = process.env.NEXT_PUBLIC_API_URL + `/yachts/?limit=${limit}&offset=${offset}`;
