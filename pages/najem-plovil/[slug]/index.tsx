@@ -86,7 +86,7 @@ export const getStaticPaths = async () => {
   };
 };
 
-export const getServerSideProps = async (ctx) => {
+export const getStaticProps = async (ctx) => {
   const fetch = (await import('node-fetch')).default;
   const { slug } = ctx.params;
   const translations = await serverSideTranslations(
