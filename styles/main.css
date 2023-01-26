@@ -5,6 +5,11 @@ h3 {
   font-weight: 500;
 }
 
+.accordion-header button {
+  width: 100%;
+  text-align: left;
+}
+
 .visually-hidden {
   clip: rect(0 0 0 0); 
   clip-path: inset(50%);

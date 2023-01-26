@@ -10,7 +10,6 @@ import CookieLaw from "../components/common/CookieLaw";
 import InquiryModal from "../components/Inquiry";
 import PromoModal from "../components/PromoModal";
 
-import { subscribeNewsletterGift } from "../lib/base";
 import ErrorBoundary from "../components/ErrorBoundary";
 import { language } from '../constants'
 

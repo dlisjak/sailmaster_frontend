@@ -3,13 +3,13 @@ import ImageGallery from 'react-image-gallery';
 import { Helmet } from 'react-helmet';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useTranslation } from 'next-i18next';
 import classnames from 'classnames';
 import chunk from 'lodash/chunk';
 import zip from 'lodash/zip';
 
 import Container from 'react-bootstrap/Container';
-import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
 
@@ -17,6 +17,7 @@ import { LayoutWithSidebar } from './BaseLayout';
 import QuickContact from './QuickContact';
 import Location from './Location';
 import PriceBlock from './PriceBlock';
+import Faq from './Faq';
 import {
   formatMoneyAmount,
   formatVolume,
@@ -31,7 +32,6 @@ import { optionalServices, obligatoryServices } from '../utils/offerUtils';
 import SimilarOffersCarousel from './SimilarOffersCarousel';
 import GoogleMap from './Googlemap';
 import { stripHtmlTags } from '../utils/miscUtils';
-import Faq from './Faq';
 import SidebarTestimonials from './SidebarTestimonials';
 
 import Heart from '../public/icons/priljubljeno.svg';
@@ -39,7 +39,8 @@ import PinIcon from '../public/icons/zemljevid1.svg';
 import ShareIcon from '../public/icons/deli.svg';
 import Check from '../public/icons/check.svg';
 import { INSURANCE_URL } from '../constants/urls';
-import Image from 'next/image';
+
+import ZAVAROVANJE_IMAGE from "../public/media/yacht-pool-Financial_System_2022.jpg"
 
 export const OfferImageGalery = ({ offer }) => {
   const items = offer.yacht.pictures.map((url) => ({
@@ -60,18 +61,18 @@ const Equipment = ({ category, items }) => {
   const size = Math.ceil(items.length / 2);
   return (
     <div className="row flex equipment">
-      <Col sm={4}>
+      <div className='w-full sm:w-1/3 pr-4 pl-4'>
         <div className="equipment__category">{category}</div>
-      </Col>
+      </div>
       {chunk(items, size).map((colItems, colIndex) => (
-        <Col key={colIndex} sm={4}>
+        <div className='w-full sm:w-1/3 pr-4 pl-4' key={colIndex}>
           {colItems.map((item, index) => (
             <div key={index} className="equipment__item flex items-center">
               <Check className="equipment__item-check" />
               {item.name}
             </div>
           ))}
-        </Col>
+        </div>
       ))}
     </div>
   );
@@ -145,10 +146,10 @@ const Attribute = ({ label, value, icon = null, comment = null }) => {
       <div className="attribute__label flex">
         {icon && (
           <Image
-            className="attribute__icon"
+            className="mr-2"
             src={`/images/attributes/${icon}`}
-            width={32}
-            height={32}
+            width={24}
+            height={24}
             alt={label}
           />
         )}
@@ -236,12 +237,12 @@ const BaseAttributes = ({ yacht }) => {
     <div className="base-attributes">
       {zip(col1, col2).map((row, index) => (
         <div className="row" key={index}>
-          <Col sm="6">
+          <div className='w-full sm:w-1/2 pr-4 pl-4'>
             <Attribute label={row[0].label} value={row[0].value} icon={row[0].icon} />
-          </Col>
-          <Col sm="6">
+          </div>
+          <div className='w-full sm:w-1/2 pr-4 pl-4'>
             <Attribute label={row[1].label} value={row[1].value} icon={row[1].icon} />
-          </Col>
+          </div>
         </div>
       ))}
     </div>
@@ -255,18 +256,18 @@ const OfferSelectedPeriod = ({ offer, onEnquiry }) => {
     <div className="offer-selected-period">
       <Container>
         <div className="row offer-selected-period__header">
-          <Col sm={6} className="offer-selected-period__period">
+          <div className="w-full sm:w-1/2 pr-4 pl-4 offer-selected-period__period">
             <div className="offer-selected-period__label">
               {t('offer-selected-period__period-from')}
             </div>
             <div className="offer-selected-period__date">{formatDateLong(offer.period_from)}</div>
-          </Col>
-          <Col sm={6} className="offer-selected-period__period">
+          </div>
+          <div className="w-full sm:w-1/2 pr-4 pl-4 offer-selected-period__period">
             <div className="offer-selected-period__label">
               {t('offer-selected-period__period-to')}
             </div>
             <div className="offer-selected-period__date">{formatDateLong(offer.period_to)}</div>
-          </Col>
+          </div>
         </div>
       </Container>
       <div className="offer-selected-period__other-dates">
@@ -278,7 +279,7 @@ const OfferSelectedPeriod = ({ offer, onEnquiry }) => {
         />
       </div>
       <div className="row offer-selected-period__main">
-        <Col sm={6} className="offer-selected-period__info">
+        <div className="w-full sm:w-1/2 pr-4 pl-4 offer-selected-period__info">
           <div className="offer-selected-period__info-name">
             {offer.yacht.yacht_model.category_name} - {offer.yacht.yacht_model.name}
           </div>
@@ -288,12 +289,12 @@ const OfferSelectedPeriod = ({ offer, onEnquiry }) => {
               numDays: diffDays(offer.period_to, offer.period_from),
             })}
           </div>
-        </Col>
-        <Col sm={6} className="offer-selected-period__inquiry">
+        </div>
+        <div className="w-full sm:w-1/2 pr-4 pl-4 offer-selected-period__inquiry">
           <Button size="lg" className="btn--inquiry" variant="secondary" onClick={onEnquiry}>
             {t('offer-selected-period__inquiry')}
           </Button>
-        </Col>
+        </div>
       </div>
     </div>
   );
@@ -322,50 +323,51 @@ const OfferDetail = ({
   const emailLink = `mailto:?subject=${pageTitle}&body=${router.asPath}`;
 
   return (
-    <LayoutWithSidebar
-      className="container--offer offer-detail"
-      sidebar={
-        <>
-          <div className="vertical-space-half">
-            <Button
-              className="w-100 mb-1"
-              variant="secondary"
-              onClick={() => setShowEnquiryModal(true)}
-            >
-              {t('enquiry')}
-            </Button>
-            <Button
-              onClick={() => router.back()}
-              className="w-100 mb-1"
-              variant="outline-secondary"
-            >
-              {t('offer_back_button')}
-            </Button>
-          </div>
-          <div className="d-none d-md-block">
-            {/* {searchComponent} */}
-            <QuickContact />
+    <>
+      <Helmet>
+        <title>
+          {pageTitle} {t('seo_title')}
+        </title>
+        <meta name="description" content={stripHtmlTags(yacht.get_description)} />
+      </Helmet>
+      <LayoutWithSidebar
+        className="container--offer offer-detail"
+        sidebar={
+          <>
+            <div className="vertical-space-half">
+              <Button
+                className="w-100 mb-1"
+                variant="secondary"
+                onClick={() => setShowEnquiryModal(true)}
+              >
+                {t('enquiry')}
+              </Button>
+              <Button
+                onClick={() => router.back()}
+                className="w-100 mb-1"
+                variant="outline-secondary"
+              >
+                {t('offer_back_button')}
+              </Button>
+            </div>
+            <div className="d-none d-md-block">
+              {/* {searchComponent} */}
+              <QuickContact />
 
-            <SidebarTestimonials />
+              <SidebarTestimonials />
 
-            <Link href={INSURANCE_URL}>
-              <img
-                className="img-fluid"
-                src="/media/yacht-pool-Financial_System_2022.jpg"
-                alt={t('insurance')}
-              />
-            </Link>
-          </div>
-        </>
-      }
-    >
-      <>
-        <Helmet>
-          <title>
-            {pageTitle} {t('seo_title')}
-          </title>
-          <meta name="description" content={stripHtmlTags(yacht.get_description)} />
-        </Helmet>
+              <Link href={INSURANCE_URL}>
+                <Image
+                  src={ZAVAROVANJE_IMAGE}
+                  alt={t('insurance')}
+                  width={255}
+                  height={250}
+                />
+              </Link>
+            </div>
+          </>
+        }
+      >
         <>
           <div className="offer-detail__header">
             <h1>{pageTitle}</h1>
@@ -475,8 +477,8 @@ const OfferDetail = ({
             />
           </Section>
         </>
-      </>
-    </LayoutWithSidebar>
+      </LayoutWithSidebar>
+    </>
   );
 };
 

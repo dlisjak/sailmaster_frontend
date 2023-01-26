@@ -1,17 +1,16 @@
-import fetch from 'node-fetch';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useState } from 'react';
-import { createOfferInquiry } from '../../lib/base';
-import { ConnectedBasicSearch } from '../../components/filter/OfferFilter';
-import NotFound from '../../components/NotFound';
-import OfferDetail from '../../components/OfferDetail';
-import OfferInquiry from '../../components/OfferInquiry';
+import { createOfferInquiry } from '../../../lib/base';
+import { ConnectedBasicSearch } from '../../../components/filter/OfferFilter';
+import NotFound from '../../../components/NotFound';
+import OfferDetail from '../../../components/OfferDetail';
+import OfferInquiry from '../../../components/OfferInquiry';
 
-import nextI18nextConfig from '../../next-i18next.config';
-import { useWishlist } from '../../queries/queries';
-import { formatOfferPeriod, formatOfferPrice } from '../../utils/offerUtils';
-import { yachtSlug } from '../../utils/url_utils';
-import { handleHeartClick } from '../../utils/wishlistUtils';
+import nextI18nextConfig from '../../../next-i18next.config';
+import { useWishlist } from '../../../queries/queries';
+import { formatOfferPeriod, formatOfferPrice } from '../../../utils/offerUtils';
+import { yachtSlug } from '../../../utils/url_utils';
+import { handleHeartClick } from '../../../utils/wishlistUtils';
 
 const OfferDetailPage = ({ yachtOffer }) => {
   const { wishlist, mutateWishlist } = useWishlist();
@@ -88,6 +87,7 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async (ctx) => {
+  const fetch = (await import('node-fetch')).default;
   const { slug } = ctx.params;
   const translations = await serverSideTranslations(
     ctx.locale,
