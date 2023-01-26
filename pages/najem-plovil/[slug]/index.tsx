@@ -47,6 +47,7 @@ const OfferDetailPage = ({ yachtOffer }) => {
 };
 
 export const getStaticPaths = async () => {
+  const fetch = (await import('node-fetch')).default;
   const url = process.env.NEXT_PUBLIC_API_URL + `/yachts/?limit=10&offset=10`;
   const response = await fetch(url);
   const data: any = await response.json();
