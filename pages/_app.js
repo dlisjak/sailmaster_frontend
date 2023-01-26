@@ -3,7 +3,6 @@ import { appWithTranslation } from 'next-i18next'
 import nextI18NextConfig from '../next-i18next.config.js'
 import SSRProvider from 'react-bootstrap/SSRProvider';
 import ScrollToTop from "react-scroll-to-top";
-import { Open_Sans } from '@next/font/google'
 
 import Navigation from "../components/Navigation";
 import Footer from "../components/common/Footer";
@@ -16,13 +15,7 @@ import ErrorBoundary from "../components/ErrorBoundary";
 import { language } from '../constants'
 
 import '../styles/main.css';
-// import "../styles/main.scss";
 import "../node_modules/flag-icons/css/flag-icons.min.css";
-
-const openSans = Open_Sans({
-  weight: ["300", "400", "500", "600", "700"],
-  subsets: ['latin']
-});
 
 const MyApp = ({ Component, pageProps, router }) => {
   const route = router.route;
@@ -52,23 +45,21 @@ const MyApp = ({ Component, pageProps, router }) => {
   }, []);
 
   return (
-    <main className={openSans.className}>
-      <SSRProvider>
-        <ScrollToTop smooth color="#ceb896" />
-        <Navigation setShowInquiry={setShowInquiry} />
-        <Component {...pageProps} route={route} key={route} lang={lang} />
-        <Footer lang={lang} />
-        <CookieLaw />
-        <PromoModal
-          showModal={showModal}
-          onClose={() => setShowModal(false)}
-        />
-        <InquiryModal
-          showInquiry={showInquiry}
-          onClose={() => setShowInquiry(false)}
-        />
-      </SSRProvider>
-    </main>
+    <SSRProvider>
+      <ScrollToTop smooth color="#ceb896" />
+      <Navigation setShowInquiry={setShowInquiry} />
+      <Component {...pageProps} route={route} key={route} lang={lang} />
+      <Footer lang={lang} />
+      <CookieLaw />
+      <PromoModal
+        showModal={showModal}
+        onClose={() => setShowModal(false)}
+      />
+      <InquiryModal
+        showInquiry={showInquiry}
+        onClose={() => setShowInquiry(false)}
+      />
+    </SSRProvider>
   );
 };
 

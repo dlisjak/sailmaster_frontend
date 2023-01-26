@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import React from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import YouTube from 'react-youtube';
 
@@ -10,7 +9,7 @@ export default function Gallery({ yacht }) {
     <Carousel interval={10000000} className="offer-carousel__carousel">
       {youtube && (
         <Carousel.Item>
-          <YouTube videoId={this.props.youtube} opts={{ height: '210', width: '100%' }} />
+          <YouTube videoId={youtube} opts={{ height: '210', width: '100%' }} />
         </Carousel.Item>
       )}
       {pictures.map((image, i) => (
