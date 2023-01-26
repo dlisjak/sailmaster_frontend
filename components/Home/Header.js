@@ -8,7 +8,7 @@ import IconsLine from './IconsLine';
 
 import HEADER from '../../public/media/header-opt.jpg';
 
-const Header = ({ yachtTypes, onSearch }) => {
+const Header = () => {
   const { t } = useTranslation('common');
 
   const description = t('description')
@@ -38,7 +38,7 @@ const Header = ({ yachtTypes, onSearch }) => {
           <div className="home-header__content">
             <h1>{t('page_name')}</h1>
             <h2>{description}</h2>
-            <HomeFilter onSubmit={onSearch} yachtTypes={yachtTypes} />
+            <HomeFilter />
           </div>
         </Container>
         <IconsLine />

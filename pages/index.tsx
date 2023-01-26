@@ -21,12 +21,9 @@ import {
   getYachtTypes,
 } from '../queries/getters.js';
 import { subscribeNewsletter } from '../lib/base';
-import { OFFERS_URL } from '../constants/urls';
-import { valuesToSearch } from '../utils/search_utils.js';
 
 const Index = ({ fallback, yachtTypes, featuredYachts, destinations, testimonials, homeBlogs }) => {
   const { t } = useTranslation('home');
-  const router = useRouter();
 
   return (
     <SWRConfig value={{ fallback }}>
@@ -36,12 +33,7 @@ const Index = ({ fallback, yachtTypes, featuredYachts, destinations, testimonial
           <meta name="description" content={t('meta_description')} />
         </Head>
 
-        <Header
-          yachtTypes={yachtTypes}
-          onSearch={(values) => {
-            router.push(OFFERS_URL + '?' + valuesToSearch(values));
-          }}
-        />
+        <Header />
 
         <div className="container container-xl mx-auto px-4 py-8">
           {/* {specialOffers.data && <HomeSpecialOffers specialOffers={specialOffers.data.results} />} */}

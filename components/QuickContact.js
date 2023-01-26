@@ -20,6 +20,8 @@ const QuickContact = () => {
         alt="Jernej"
         className="img-responsive quick-contact__img"
         src={JERNEJ}
+        width={130}
+        height={130}
       />
       <div className="quick-contact__contacts">
         Jernej

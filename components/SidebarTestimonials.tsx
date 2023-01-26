@@ -24,7 +24,13 @@ export const SidebarTestimonials = () => {
         target="_blank"
         rel="noopener noreferrer"
       >
-        <Image className="google-review-icon" src={GOOGLE_REVIEW} alt={t('testimonials_more')} />
+        <Image
+          className="google-review-icon"
+          src={GOOGLE_REVIEW}
+          alt={t('testimonials_more')}
+          width={113}
+          height={56}
+        />
       </Link>
       <Carousel indicators={false} interval={30000} className="sidebar-testimonials__carousel">
         {testimonials?.results.map((item, index) => {

@@ -1,17 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from 'next-i18next';
+import Link from "next/link";
 
 import FormLabel from "react-bootstrap/FormLabel";
 import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
 
 import DestinationSelect from "./DestinationSelect";
 import DateRangeSelect from "./DateRangeSelect";
 import { SelectField } from "../forms/fields"
+import { OFFERS_URL } from "../../constants/urls";
+import { valuesToSearch } from "../../utils/search_utils";
+import { useYachtTypes } from "../../queries/queries";
 
-const HomeFilter = ({ searchDestinations, onSubmit, yachtTypes }) => {
+const HomeFilter = () => {
   const [values, setValues] = useState({});
+  const [searchQuery, setSearchQuery] = useState("");
   const { t } = useTranslation('common');
+  const { yachtTypes } = useYachtTypes();
 
   const setValue = (k, v) => {
     const newValues = {
@@ -21,14 +26,12 @@ const HomeFilter = ({ searchDestinations, onSubmit, yachtTypes }) => {
     setValues(newValues);
   };
 
+  useEffect(() => {
+    setSearchQuery(valuesToSearch(values));
+  }, [values]);
+
   return (
-    <form
-      className="home-filter"
-      onSubmit={(event) => {
-        event.preventDefault();
-        onSubmit(values);
-      }}
-    >
+    <div className="home-filter">
       <div className="row">
         <div className="form-group w-full xl:w-2/5 lg:w-1/3 md:w-1/4 pr-4 pl-4 md:pr-1 md:pl-1">
           <FormLabel>{t("starting_point")}</FormLabel>
@@ -59,12 +62,12 @@ const HomeFilter = ({ searchDestinations, onSubmit, yachtTypes }) => {
           placeholder={t("offer_filter_yacht_type_placeholder")}
         />
         <div className="w-full md:w-1/6 pr-4 pl-4 md:pr-1 md:pl-1">
-          <Button className="btn--home-filter" size="lg" variant="secondary" type="submit">
+          <Link className="btn--home-filter btn btn-secondary btn-lg" href={`${OFFERS_URL}?${searchQuery}`}>
             {t("search")}
-          </Button>
+          </Link>
         </div>
       </div>
-    </form>
+    </div>
   );
 };
 
