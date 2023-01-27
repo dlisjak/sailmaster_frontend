@@ -77,6 +77,8 @@ export const getStaticPaths = async () => {
 
   const yachts = await Promise.all(promises).then((arr) => arr.flat());
 
+  console.log(yachts);
+
   const paths = yachts.map((yacht) => ({
     params: { slug: yachtSlug(yacht.yacht_model.id, yacht.yacht_model.name) },
   }));
