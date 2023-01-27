@@ -83,7 +83,7 @@ export const getStaticPaths = async () => {
 
   return {
     paths,
-    fallback: false, // can also be true or 'blocking'
+    fallback: 'blocking', // can also be true or 'blocking'
   };
 };
 
@@ -98,6 +98,8 @@ export const getStaticProps = async (ctx) => {
 
   const idx = slug.indexOf('-');
   const yachtId = slug.substring(0, idx);
+
+  console.log({ yachtId });
 
   const url = process.env.NEXT_PUBLIC_API_URL + '/yacht-offer/' + yachtId + '/';
   const response = await fetch(url);
@@ -128,6 +130,7 @@ export const getStaticProps = async (ctx) => {
       yachtOffer,
       ...translations,
     },
+    revalidate: 3600 * 6,
   };
 };
 
