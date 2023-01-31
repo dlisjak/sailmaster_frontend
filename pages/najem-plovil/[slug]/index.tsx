@@ -58,6 +58,7 @@ export const getStaticPaths = async () => {
     const promise = new Promise((resolve, reject) => {
       setTimeout(async () => {
         const url = process.env.NEXT_PUBLIC_API_URL + `/yachts/?limit=10&offset=${10 * i}`;
+        console.log(url);
         const response = await fetch(url);
         const contentType = response.headers.get('content-type');
         if (contentType && contentType.indexOf('application/json') !== -1) {
@@ -76,6 +77,8 @@ export const getStaticPaths = async () => {
   }
 
   const yachts = await Promise.all(promises).then((arr) => arr.flat());
+
+  console.log(yachts.length);
 
   const paths = yachts.map((yacht) => ({
     params: { slug: yachtSlug(yacht.yacht_model.id, yacht.yacht_model.name) },
@@ -100,7 +103,6 @@ export const getStaticProps = async (ctx) => {
   const yachtId = slug.substring(0, idx);
 
   const url = process.env.NEXT_PUBLIC_API_URL + '/yacht-offer/' + yachtId + '/';
-  console.log(url);
   const response = await fetch(url);
   const contentType = response.headers.get('content-type');
   let yachtOffer: any;
