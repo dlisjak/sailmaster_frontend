@@ -11,6 +11,7 @@ import nextI18nextConfig from '../../../next-i18next.config';
 import { useWishlist } from '../../../queries/queries';
 import { formatOfferPeriod, formatOfferPrice } from '../../../utils/offerUtils';
 import { handleHeartClick } from '../../../utils/wishlistUtils';
+import { yachtSlug } from '../../../utils/url_utils';
 
 const OfferDetailPage = ({ offer }) => {
   const { wishlist, mutateWishlist } = useWishlist();
@@ -50,7 +51,7 @@ export const getStaticPaths = async () => {
   const data: any = fs.readFileSync('yachts.json');
 
   const paths = data.map((offer) => ({
-    params: { offerId: offer.id },
+    params: { slug: yachtSlug(offer.yacht.id, offer.yacht.yacht_model.name), offerId: offer.id },
   }));
 
   return {
