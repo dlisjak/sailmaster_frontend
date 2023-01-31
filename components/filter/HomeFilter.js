@@ -12,6 +12,8 @@ import { useYachtTypes } from "../../queries/queries";
 const DateRangeSelect = dynamic(() => import("./DateRangeSelect"))
 
 const HomeFilter = () => {
+  const [mounted, setMounted] = useState(false);
+  const [hideCover, setHideCover] = useState(false);
   const [values, setValues] = useState({});
   const [searchQuery, setSearchQuery] = useState("");
   const { t } = useTranslation('common');
@@ -24,6 +26,13 @@ const HomeFilter = () => {
     };
     setValues(newValues);
   };
+
+  useEffect(() => {
+    setMounted(true)
+    setTimeout(() => {
+      setHideCover(true)
+    }, 1000)
+  }, []);
 
   useEffect(() => {
     setSearchQuery(valuesToSearch(values));
@@ -41,12 +50,18 @@ const HomeFilter = () => {
             value={values.destinations}
           />
         </div>
-        <div className="form-group w-full xl:w-1/4 lg:w-1/3 md:w-2/5 pr-4 pl-4 md:pr-1 md:pl-1">
+        <div className="relative min-h-[76px] form-group w-full xl:w-1/4 lg:w-1/3 md:w-2/5 pr-4 pl-4 md:pr-1 md:pl-1">
           <label className="form-label">{t("date_range")}</label>
-          <DateRangeSelect
-            value={values.dateRange}
-            onSelect={(value) => setValue("dateRange", value)}
-          />
+          <div className="daterangepicker__cover absolute z-0 bottom-0 bg-white border h-12 flex items-center pr-4 pl-4" style={{ display: hideCover ? "none" : "" }}>
+            <div className='mr-auto'>Od</div>
+            <div className='mr-auto'>Do</div>
+          </div>
+          {mounted && (
+            <DateRangeSelect
+              value={values.dateRange}
+              onSelect={(value) => setValue("dateRange", value)}
+            />
+          )}
         </div>
         <SelectField
           className="w-full md:w-1/6 pr-4 pl-4 md:pr-1 md:pl-1"

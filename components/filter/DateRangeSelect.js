@@ -5,7 +5,6 @@ import { useTranslation } from 'next-i18next';
 import moment from "moment";
 
 import "moment/locale/sl";
-import "moment/locale/it";
 
 moment.locale(process.env.NEXT_PUBLIC_REACT_APP_MOMENT_LANGUAGE);
 
