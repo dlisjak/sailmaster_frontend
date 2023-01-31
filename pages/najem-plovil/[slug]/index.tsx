@@ -54,7 +54,7 @@ export const getStaticPaths = async () => {
   const count = data.count;
   const promises = [];
 
-  for (let i = 1; i < count / 10; i++) {
+  for (let i = 0; i < count / 10; i++) {
     const promise = new Promise((resolve, reject) => {
       setTimeout(async () => {
         const url = process.env.NEXT_PUBLIC_API_URL + `/yachts/?limit=10&offset=${10 * i}`;
