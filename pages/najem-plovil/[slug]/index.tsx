@@ -132,7 +132,8 @@ export const getStaticProps = async (ctx) => {
       yachtOffer,
       ...translations,
     },
-    revalidate: 3600 * 6,
+    // 12h
+    revalidate: 60 * 60 * 12,
   };
 };
 
