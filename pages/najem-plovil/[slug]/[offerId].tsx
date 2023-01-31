@@ -1,22 +1,20 @@
 import { useState } from 'react';
-import fs from 'fs';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { createOfferInquiry } from '../../../lib/base';
-import { ConnectedBasicSearch } from '../../../components/filter/OfferFilter';
-import NotFound from '../../../components/NotFound';
-import OfferDetail from '../../../components/OfferDetail';
-import OfferInquiry from '../../../components/OfferInquiry';
 
-import nextI18nextConfig from '../../../next-i18next.config';
-import { useWishlist } from '../../../queries/queries';
+import { ConnectedBasicSearch } from '../../../components/filter/OfferFilter';
+import OfferInquiry from '../../../components/OfferInquiry';
+import OfferDetail from '../../../components/OfferDetail';
+import NotFound from '../../../components/NotFound';
+
 import { formatOfferPeriod, formatOfferPrice } from '../../../utils/offerUtils';
 import { handleHeartClick } from '../../../utils/wishlistUtils';
+import nextI18nextConfig from '../../../next-i18next.config';
+import { createOfferInquiry } from '../../../lib/base';
+import { useWishlist } from '../../../queries/queries';
 import { yachtSlug } from '../../../utils/url_utils';
 
 const OfferDetailPage = ({ offer }) => {
-  const { wishlist, mutateWishlist } = useWishlist();
   const [showEnquiryModal, setShowEnquiryModal] = useState(false);
-  const [filterValues, setFilterValues] = useState({});
+  const { wishlist, mutateWishlist } = useWishlist();
 
   if (!offer) {
     return <NotFound />;
@@ -48,6 +46,7 @@ const OfferDetailPage = ({ offer }) => {
 };
 
 export const getStaticPaths = async () => {
+  const fs = (await import('fs')).default;
   const data: any = fs.readFileSync('yachts.json');
 
   const arr = JSON.parse(data);
@@ -67,6 +66,8 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (ctx) => {
   const fetch = (await import('node-fetch')).default;
+  const serverSideTranslations = (await import('next-i18next/serverSideTranslations'))
+    .serverSideTranslations;
   const { offerId } = ctx.params;
   const translations = await serverSideTranslations(
     ctx.locale,

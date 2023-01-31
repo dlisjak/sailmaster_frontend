@@ -1,30 +1,29 @@
 import { useCallback, useEffect, useState } from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import nextI18nextConfig from '../../next-i18next.config';
+import InfiniteScroll from 'react-infinite-scroller';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
-import InfiniteScroll from 'react-infinite-scroller';
-import Alert from 'react-bootstrap/Alert';
 
-import Loader from '../../components/Loader';
-import Compass from '../../components/icons/Compass';
-import OfferTeaser from '../../components/OfferTeaser';
-import { LayoutWithSidebar } from '../../components/BaseLayout';
+import SidebarTestimonials from '../../components/SidebarTestimonials';
 import DestinationTeaser from '../../components/DestinationTeaser';
-import QuickContact from '../../components/QuickContact';
+import { LayoutWithSidebar } from '../../components/BaseLayout';
 import OfferFilter from '../../components/filter/OfferFilter';
 import OffersHeader from '../../components/OffersHeader';
 import OfferInquiry from '../../components/OfferInquiry';
-import SidebarTestimonials from '../../components/SidebarTestimonials';
+import QuickContact from '../../components/QuickContact';
+import OfferTeaser from '../../components/OfferTeaser';
+import Compass from '../../components/icons/Compass';
+import Loader from '../../components/Loader';
 
-import { createOfferInquiry } from '../../lib/base';
 import { formatOfferPeriod, formatOfferPrice } from '../../utils/offerUtils';
 import { getValuesFromUrl, valuesToSearch } from '../../utils/search_utils';
 import { handleHeartClick } from '../../utils/wishlistUtils';
+import nextI18nextConfig from '../../next-i18next.config';
 import { getSearchResults } from '../../queries/getters';
-import { OFFERS_URL } from '../../constants/urls';
+import { createOfferInquiry } from '../../lib/base';
 import { useWishlist } from '../../queries/queries';
+import { OFFERS_URL } from '../../constants/urls';
 
 const NoResults = () => {
   const { t } = useTranslation('common');
@@ -36,16 +35,7 @@ const NoResults = () => {
   );
 };
 
-const OffersPage = ({
-  yachtType,
-  results,
-  next,
-  count,
-  destination,
-  loading,
-  destinations,
-  canonicalUrl,
-}) => {
+const OffersPage = ({ yachtType, results, next, count, destination, loading, canonicalUrl }) => {
   const { t } = useTranslation('najemplovil');
   const router = useRouter();
   const [showEnquiryModal, setShowEnquiryModal] = useState(false);

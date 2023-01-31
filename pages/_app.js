@@ -3,7 +3,6 @@ import dynamic from "next/dynamic.js";
 import { appWithTranslation } from 'next-i18next'
 import nextI18NextConfig from '../next-i18next.config.js'
 import SSRProvider from 'react-bootstrap/SSRProvider';
-import ScrollToTop from "react-scroll-to-top";
 
 import Navigation from "../components/Navigation";
 
@@ -11,12 +10,13 @@ const InquiryModal = dynamic(() => import("../components/Inquiry"));
 const PromoModal = dynamic(() => import("../components/PromoModal"));
 const CookieLaw = dynamic(() => import("../components/common/CookieLaw"));
 const Footer = dynamic(() => import("../components/common/Footer"));
+const ScrollToTop = dynamic(() => import("react-scroll-to-top"));
+// import ScrollToTop from "react-scroll-to-top";
 
 import ErrorBoundary from "../components/ErrorBoundary";
 // import { language } from '../constants'
 
 import '../styles/main.css';
-import "../node_modules/flag-icons/css/flag-icons.min.css";
 
 const MyApp = ({ Component, pageProps, router }) => {
   const route = router.route;

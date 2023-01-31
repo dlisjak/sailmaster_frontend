@@ -1,12 +1,11 @@
 import { useState } from 'react';
-import fs from 'fs';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { createOfferInquiry } from '../../../lib/base';
-import { ConnectedBasicSearch } from '../../../components/filter/OfferFilter';
-import NotFound from '../../../components/NotFound';
+
 import OfferDetail from '../../../components/OfferDetail';
 import OfferInquiry from '../../../components/OfferInquiry';
+import NotFound from '../../../components/NotFound';
+import { ConnectedBasicSearch } from '../../../components/filter/OfferFilter';
 
+import { createOfferInquiry } from '../../../lib/base';
 import nextI18nextConfig from '../../../next-i18next.config';
 import { useWishlist } from '../../../queries/queries';
 import { formatOfferPeriod, formatOfferPrice } from '../../../utils/offerUtils';
@@ -16,7 +15,6 @@ import { yachtSlug } from '../../../utils/url_utils';
 const OfferDetailPage = ({ yachtOffer }) => {
   const { wishlist, mutateWishlist } = useWishlist();
   const [showEnquiryModal, setShowEnquiryModal] = useState(false);
-  const [filterValues, setFilterValues] = useState({});
 
   if (!yachtOffer) {
     return <NotFound />;
@@ -49,6 +47,8 @@ const OfferDetailPage = ({ yachtOffer }) => {
 
 export const getStaticPaths = async () => {
   const fetch = (await import('node-fetch')).default;
+  const fs = (await import('fs')).default;
+
   const url = process.env.NEXT_PUBLIC_API_URL + `/search/?limit=10&offset=10`;
   const response = await fetch(url);
   const data: any = await response.json();
@@ -91,6 +91,8 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async (ctx) => {
+  const serverSideTranslations = (await import('next-i18next/serverSideTranslations'))
+    .serverSideTranslations;
   const fetch = (await import('node-fetch')).default;
   const { slug } = ctx.params;
 

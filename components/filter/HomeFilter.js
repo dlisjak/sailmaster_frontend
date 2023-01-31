@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
 import { useTranslation } from 'next-i18next';
+import { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 
-import Col from "react-bootstrap/Col";
-
 import DestinationSelect from "./DestinationSelect";
-import DateRangeSelect from "./DateRangeSelect";
 import { SelectField } from "../forms/fields"
 import { OFFERS_URL } from "../../constants/urls";
 import { valuesToSearch } from "../../utils/search_utils";
 import { useYachtTypes } from "../../queries/queries";
+
+const DateRangeSelect = dynamic(() => import("./DateRangeSelect"))
 
 const HomeFilter = () => {
   const [values, setValues] = useState({});

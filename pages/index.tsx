@@ -1,8 +1,7 @@
-import Head from 'next/head';
-import { SWRConfig } from 'swr';
-import { useTranslation } from 'next-i18next';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import nextI18NextConfig from '../next-i18next.config.js';
+import { useTranslation } from 'next-i18next';
+import { SWRConfig } from 'swr';
+import Head from 'next/head';
 
 import Header from '../components/Home/Header';
 import Destinations from '../components/Destinations';
@@ -82,6 +81,8 @@ const Index = ({ fallback, featuredYachts, destinations, testimonials, homeBlogs
 };
 
 export const getStaticProps = async ({ locale }) => {
+  const serverSideTranslations = (await import('next-i18next/serverSideTranslations'))
+    .serverSideTranslations;
   const translations = await serverSideTranslations(locale, ['home', 'common'], nextI18NextConfig);
   const yachtTypes = await getYachtTypes();
   const yachtBrands = await getYachtBrands();
