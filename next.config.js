@@ -38,5 +38,5 @@ module.exports = {
     return config
   },
   i18n,
-  staticPageGenerationTimeout: 6000
+  staticPageGenerationTimeout: 3600 * 4
 }
