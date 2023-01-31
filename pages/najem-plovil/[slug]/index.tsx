@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import fs from 'fs';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { createOfferInquiry } from '../../../lib/base';
 import { ConnectedBasicSearch } from '../../../components/filter/OfferFilter';
@@ -48,17 +49,16 @@ const OfferDetailPage = ({ yachtOffer }) => {
 
 export const getStaticPaths = async () => {
   const fetch = (await import('node-fetch')).default;
-  const url = process.env.NEXT_PUBLIC_API_URL + `/yachts/?limit=10&offset=10`;
+  const url = process.env.NEXT_PUBLIC_API_URL + `/search/?limit=10&offset=10`;
   const response = await fetch(url);
   const data: any = await response.json();
   const count = data.count;
   const promises = [];
 
-  for (let i = 0; i < count / 10; i++) {
+  for (let i = 0; i < Math.ceil(count / 10); i++) {
     const promise = new Promise((resolve, reject) => {
       setTimeout(async () => {
-        const url = process.env.NEXT_PUBLIC_API_URL + `/yachts/?limit=10&offset=${10 * i}`;
-        console.log(url);
+        const url = process.env.NEXT_PUBLIC_API_URL + `/search/?limit=10&offset=${10 * i}`;
         const response = await fetch(url);
         const contentType = response.headers.get('content-type');
         if (contentType && contentType.indexOf('application/json') !== -1) {
@@ -77,11 +77,11 @@ export const getStaticPaths = async () => {
   }
 
   const yachts = await Promise.all(promises).then((arr) => arr.flat());
-
+  fs.writeFileSync('yachts.json', JSON.stringify(yachts));
   console.log(yachts.length);
 
-  const paths = yachts.map((yacht) => ({
-    params: { yachtId: yacht.yacht_model.id },
+  const paths = yachts.map(({ yacht }) => ({
+    params: { slug: yachtSlug(yacht.id, yacht.yacht_model.name) },
   }));
 
   return {
@@ -92,7 +92,11 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (ctx) => {
   const fetch = (await import('node-fetch')).default;
-  const { yachtId } = ctx.params;
+  const { slug } = ctx.params;
+
+  const idx = slug.indexOf('-');
+  const yachtId = slug.substring(0, idx);
+
   const translations = await serverSideTranslations(
     ctx.locale,
     ['home', 'common'],
