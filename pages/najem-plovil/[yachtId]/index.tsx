@@ -70,7 +70,7 @@ export const getStaticPaths = async () => {
             return reject(text);
           });
         }
-      }, 600 * i);
+      }, 200 * i);
     });
 
     promises.push(promise);
@@ -81,7 +81,7 @@ export const getStaticPaths = async () => {
   console.log(yachts.length);
 
   const paths = yachts.map((yacht) => ({
-    params: { slug: yachtSlug(yacht.yacht_model.id, yacht.yacht_model.name) },
+    params: { yachtId: yacht.yacht_model.id },
   }));
 
   return {
@@ -92,15 +92,12 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (ctx) => {
   const fetch = (await import('node-fetch')).default;
-  const { slug } = ctx.params;
+  const { yachtId } = ctx.params;
   const translations = await serverSideTranslations(
     ctx.locale,
     ['home', 'common'],
     nextI18nextConfig
   );
-
-  const idx = slug.indexOf('-');
-  const yachtId = slug.substring(0, idx);
 
   const url = process.env.NEXT_PUBLIC_API_URL + '/yacht-offer/' + yachtId + '/';
   const response = await fetch(url);
