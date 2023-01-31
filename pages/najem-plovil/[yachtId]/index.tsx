@@ -70,7 +70,7 @@ export const getStaticPaths = async () => {
             return reject(text);
           });
         }
-      }, 200 * i);
+      }, 400 * i);
     });
 
     promises.push(promise);
