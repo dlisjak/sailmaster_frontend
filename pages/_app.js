@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import dynamic from "next/dynamic.js";
 import { appWithTranslation } from 'next-i18next'
 import nextI18NextConfig from '../next-i18next.config.js'
@@ -22,6 +22,7 @@ const MyApp = ({ Component, pageProps, router }) => {
   const route = router.route;
   const lang = process.env.NEXT_PUBLIC_REACT_APP_LANGUAGE;
   const [showInquiry, setShowInquiry] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   // useEffect(() => {
   //   setTimeout(() => {
@@ -31,6 +32,20 @@ const MyApp = ({ Component, pageProps, router }) => {
   //   return
   // }, [route])
 
+  useEffect(() => {
+    const handlePromoModal = () => {
+      if (!localStorage.getItem("promoModal")) {
+        setTimeout(() => {
+          setShowModal(true)
+          localStorage.setItem("promoModal", 1)
+        }, 3000)
+      }
+    }
+
+    handlePromoModal();
+  }, []);
+
+
   return (
     <SSRProvider>
       <ScrollToTop smooth color="#ceb896" />
@@ -38,11 +53,8 @@ const MyApp = ({ Component, pageProps, router }) => {
       <Component {...pageProps} route={route} key={route} lang={lang} />
       <Footer lang={lang} />
       <CookieLaw />
-      <PromoModal />
-      <InquiryModal
-        showInquiry={showInquiry}
-        onClose={() => setShowInquiry(false)}
-      />
+      {showModal && <PromoModal onHide={() => setShowModal(false)} />}
+      {showInquiry && <InquiryModal onClose={() => setShowInquiry(false)} />}
     </SSRProvider>
   );
 };

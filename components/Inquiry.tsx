@@ -14,7 +14,7 @@ import { getCountryId } from '../utils/miscUtils';
 import { createInquiry } from '../lib/base';
 import { useCountriesEnquiry } from '../queries/queries';
 
-const InquiryModal = ({ showInquiry, onClose }) => {
+const InquiryModal = ({ onClose }) => {
   const { countriesEnquiry } = useCountriesEnquiry();
   const { t } = useTranslation('common');
   const [finished, setFinished] = useState(false);
@@ -31,7 +31,7 @@ const InquiryModal = ({ showInquiry, onClose }) => {
   });
 
   return (
-    <Modal show={showInquiry} onHide={onClose} dialogClassName="inquiry-modal">
+    <Modal show={true} onHide={onClose} dialogClassName="inquiry-modal">
       <Modal.Header closeButton>
         <h4 className="modal-title">{t('inquiry_title')}</h4>
       </Modal.Header>
@@ -88,7 +88,7 @@ const InquiryModal = ({ showInquiry, onClose }) => {
                   </div>
                   <div className="form-group col-sm-6">
                     <CountrySelect
-                      countries={countriesEnquiry}
+                      countries={countriesEnquiry || []}
                       name="country"
                       label={<RequiredLabel name={t('inquiry_country')} />}
                       formikBag={formikBag}
