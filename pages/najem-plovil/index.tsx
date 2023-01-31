@@ -36,7 +36,16 @@ const NoResults = () => {
   );
 };
 
-const OffersPage = ({ error, results, next, count, destination, loading }) => {
+const OffersPage = ({
+  yachtType,
+  results,
+  next,
+  count,
+  destination,
+  loading,
+  destinations,
+  canonicalUrl,
+}) => {
   const { t } = useTranslation('najemplovil');
   const router = useRouter();
   const [showEnquiryModal, setShowEnquiryModal] = useState(false);
@@ -69,22 +78,25 @@ const OffersPage = ({ error, results, next, count, destination, loading }) => {
       <Head>
         <title>
           {t('rental_meta_title', {
+            yachtType: yachtType ? yachtType : 'Plovil',
             destination: destination ? destination.name : 'na Jadranu',
           })}
         </title>
         <meta
           name="title"
           content={t('rental_meta_title', {
+            yachtType: yachtType ? yachtType : 'Plovil',
             destination: destination ? destination.name : 'na Jadranu',
           })}
         />
         <meta name="description" content={t('rental_meta_description')} />
 
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={`${process.env.NEXT_PUBLIC_DOMAIN_URL}/najem-plovil`} />
+        <meta property="og:url" content={canonicalUrl} />
         <meta
           property="og:title"
           content={t('rental_meta_title', {
+            yachtType: yachtType ? yachtType : 'Plovil',
             destination: destination ? destination.name : 'na Jadranu',
           })}
         />
@@ -92,20 +104,18 @@ const OffersPage = ({ error, results, next, count, destination, loading }) => {
         <meta property="og:image" content={`/media/header-opt.jpg`} />
 
         <meta property="twitter:card" content="summary_large_image" />
-        <meta
-          property="twitter:url"
-          content={`${process.env.NEXT_PUBLIC_DOMAIN_URL}/najem-plovil`}
-        />
+        <meta property="twitter:url" content={canonicalUrl} />
         <meta
           property="twitter:title"
           content={t('rental_meta_title', {
+            yachtType: yachtType ? yachtType : 'Plovil',
             destination: destination ? destination.name : 'na Jadranu',
           })}
         />
         <meta property="twitter:description" content={t('rental_meta_description')} />
         <meta property="twitter:image" content={`/media/header-opt.jpg`} />
 
-        <link rel="canonical" href={`${process.env.NEXT_PUBLIC_DOMAIN_URL}/najem-plovil`} />
+        <link rel="canonical" href={canonicalUrl} />
       </Head>
 
       <LayoutWithSidebar
@@ -130,7 +140,7 @@ const OffersPage = ({ error, results, next, count, destination, loading }) => {
             setDisplayTotalPrice={setDisplayTotalPrice}
           />
           {loading && <Loader />}
-          {destination && <DestinationTeaser destination={destination} />}
+          <DestinationTeaser t={t} destination={destination} yachtType={yachtType} />
           {!yachts.length && <NoResults />}
           {count && <p className="offers_num_result">{t('offers_num_result', { count })}</p>}
           {yachts.length > 0 && (
@@ -182,18 +192,48 @@ const OffersPage = ({ error, results, next, count, destination, loading }) => {
 export const getServerSideProps = async (ctx) => {
   const search = ctx.req.url;
   const { data } = await getSearchResults(search);
+  const { destinations, yacht__yacht_model__category__yachtdisplaycategory } = ctx.query;
+  const destination = data?.destination || null;
   const translations = await serverSideTranslations(
     ctx.locale,
     ['najemplovil', 'common'],
     nextI18nextConfig
   );
 
+  const yachtTypes = [
+    { id: 1, value: 'Jadrnice' },
+    { id: 2, value: 'Katamarana' },
+    { id: 10, value: 'Motornega katamarana' },
+    { id: 6, value: 'Jahte' },
+    { id: 5, value: 'Gumenjaka' },
+    { id: 3, value: 'Guleta' },
+    { id: 9, value: 'Luksuzne motorne jahte' },
+    { id: 8, value: 'Luksuzne jadrnice' },
+    { id: 4, value: 'Jet ski' },
+    { id: 7, value: 'Trimarana' },
+  ];
+
+  const yachtType = yachtTypes.find(
+    (type) => type.id == yacht__yacht_model__category__yachtdisplaycategory
+  );
+
+  const canonicalUrl =
+    destination && !yachtType?.id
+      ? `/najem-plovil?destinations=${destinations}`
+      : !destination && yachtType?.id
+      ? `/najem-plovil?yacht__yacht_model__category__yachtdisplaycategory=${yachtType?.id}`
+      : destination && yachtType?.id
+      ? `/najem-plovil?destinations=${destinations}&yacht__yacht_model__category__yachtdisplaycategory=${yachtType?.id}`
+      : '/najem-plovil';
+
   return {
     props: {
+      destination,
+      yachtType: yachtType?.value || null,
       results: data?.results,
-      destination: data?.destination || null,
       count: data?.count || null,
       next: data?.next || null,
+      canonicalUrl: process.env.NEXT_PUBLIC_DOMAIN_URL + canonicalUrl,
       ...translations,
     },
   };
