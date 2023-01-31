@@ -50,8 +50,15 @@ const OfferDetailPage = ({ offer }) => {
 export const getStaticPaths = async () => {
   const data: any = fs.readFileSync('yachts.json');
 
-  const paths = data.map((offer) => ({
-    params: { slug: yachtSlug(offer.yacht.id, offer.yacht.yacht_model.name), offerId: offer.id },
+  const arr = JSON.parse(data);
+
+  console.log(arr);
+
+  const paths = arr.map((offer) => ({
+    params: {
+      slug: yachtSlug(offer.yacht.id, offer.yacht.yacht_model.name),
+      offerId: `${offer.id}`,
+    },
   }));
 
   return {
