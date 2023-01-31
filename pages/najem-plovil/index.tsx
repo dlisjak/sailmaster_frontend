@@ -146,7 +146,7 @@ const OffersPage = ({ yachtType, results, next, count, destination, loading, can
                   displayTotalPrice={displayTotalPrice}
                   key={offer.id}
                   offer={offer}
-                  inWishlist={wishlist && Array.from(wishlist).includes(offer.id.toString())}
+                  inWishlist={wishlist && Array.from(wishlist).includes(offer.yacht.id.toString())}
                   handleHeartClick={(id) => {
                     const { array } = handleHeartClick(id);
                     mutateWishlist({ ...array });

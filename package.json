@@ -15,6 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "@fullhuman/postcss-purgecss": "^5.0.0",
+    "@next/bundle-analyzer": "^13.1.6",
     "@next/font": "^13.1.5",
     "@sentry/react": "^7.29.0",
     "@sentry/tracing": "^7.29.0",
@@ -89,6 +90,7 @@
     "prettier": "^2.8.3",
     "sass": "^1.57.1",
     "tailwindcss": "^3.0.15",
-    "typescript": "^4.5.4"
+    "typescript": "^4.5.4",
+    "webpack-bundle-analyzer": "^4.7.0"
   }
 }

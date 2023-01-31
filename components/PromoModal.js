@@ -4,11 +4,11 @@ import { useTranslation } from 'next-i18next';
 import Modal from "react-bootstrap/Modal";
 import Alert from "react-bootstrap/Alert";
 
-import { Field } from "components/forms/fields";
+import { Field } from "../components/forms/fields";
 import {
   newsletterValidationSchema,
   newsletterInitialValues,
-} from "utils/newsletterFormUtils";
+} from "../utils/newsletterFormUtils";
 
 import { subscribeNewsletterGift } from "../lib/base";
 

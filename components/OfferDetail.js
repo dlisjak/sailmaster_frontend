@@ -394,7 +394,7 @@ const OfferDetail = ({
                   <ShareIcon />
                   {t('offer_share_email')}
                 </Link>
-                <button className="btn btn-info flex items-center" role="button" onClick={handleHeartClick}>
+                <button className="btn btn-info flex items-center" role="button" onClick={() => handleHeartClick(offer.yacht.id)}>
                   <Heart />
                   {inWishlist ? t('wishlist_remove') : t('wishlist_add')}
                 </button>

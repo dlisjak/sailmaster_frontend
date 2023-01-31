@@ -3,8 +3,8 @@ import { Parallax, Background } from 'react-parallax';
 import Image from 'next/image';
 import Container from 'react-bootstrap/Container';
 
-import HomeFilter from '../filter/HomeFilter';
 import IconsLine from './IconsLine';
+import HomeFilter from '../filter/HomeFilter';
 
 import HEADER from '../../public/media/header-opt.jpg';
 

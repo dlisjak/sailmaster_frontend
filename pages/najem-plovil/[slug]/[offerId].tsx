@@ -15,6 +15,7 @@ import { yachtSlug } from '../../../utils/url_utils';
 const OfferDetailPage = ({ offer }) => {
   const [showEnquiryModal, setShowEnquiryModal] = useState(false);
   const { wishlist, mutateWishlist } = useWishlist();
+  const inWishlist = wishlist && Array.from(wishlist).includes(offer.yacht.id.toString());
 
   if (!offer) {
     return <NotFound />;
@@ -24,7 +25,7 @@ const OfferDetailPage = ({ offer }) => {
     <>
       <OfferDetail
         offer={offer}
-        inWishlist={wishlist && Array.from(wishlist).includes(offer.id.toString())}
+        inWishlist={inWishlist}
         setShowEnquiryModal={setShowEnquiryModal}
         handleHeartClick={(id) => {
           const { array } = handleHeartClick(id);

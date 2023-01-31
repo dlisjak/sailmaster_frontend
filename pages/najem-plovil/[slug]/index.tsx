@@ -24,7 +24,7 @@ const OfferDetailPage = ({ yachtOffer }) => {
     <>
       <OfferDetail
         offer={yachtOffer}
-        inWishlist={wishlist && Array.from(wishlist).includes(yachtOffer.id.toString())}
+        inWishlist={wishlist && Array.from(wishlist).includes(yachtOffer.yacht.id.toString())}
         setShowEnquiryModal={setShowEnquiryModal}
         handleHeartClick={(id) => {
           const { array } = handleHeartClick(id);
