@@ -59,7 +59,7 @@ export const getStaticPaths = async () => {
   };
 };
 
-export const getServerSideProps = async (ctx) => {
+export const getStaticProps = async (ctx) => {
   const fetch = (await import('node-fetch')).default;
   const { offerId } = ctx.params;
   const translations = await serverSideTranslations(
