@@ -1,0 +1,5 @@
+{
+  "rental_meta_title": "Najem Plovil {{ destination }} | TheSailmaster.si",
+  "rental_meta_description": "Iskanje plovila za najem je lahko enostavno in učinkovito. Oglejte si naš izbor plovil in najdite svoje sanjsko plovilo že danes!",
+  "offers_num_result": "Št. rezultatov: {{ count }}"
+}

@@ -26,16 +26,16 @@ const Destinations = ({ items }) => {
 
   return (
     <div className="destinations2">
-      <div className="row">
+      <ul className="row">
         {(destinations || items).results.map((destination) => (
-          <div
+          <li
             className="col--destinations2 w-full lg:w-1/4 pr-4 pl-4 md:w-1/3 pr-4 pl-4 sm:w-1/2 pr-4 pl-4"
             key={destination.id}
           >
             <Destination destination={destination} />
-          </div>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 };

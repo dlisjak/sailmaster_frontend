@@ -1,9 +1,0 @@
-@mixin shadow {
-  box-shadow: 0px 10px 62px -18px rgba(0,0,0,0.34);
-}
-@mixin sidebar-box {
-  @include shadow;
-  padding: 23px 15px 20px;
-  margin-bottom: $vertical-space/2;
-}
-

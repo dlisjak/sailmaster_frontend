@@ -37,7 +37,7 @@ const NoResults = () => {
 };
 
 const OffersPage = ({ error, results, next, count, destination, loading }) => {
-  const { t } = useTranslation('common');
+  const { t } = useTranslation('najemplovil');
   const router = useRouter();
   const [showEnquiryModal, setShowEnquiryModal] = useState(false);
   const [enquiryProps, setEnquiryProps] = useState({
@@ -68,11 +68,44 @@ const OffersPage = ({ error, results, next, count, destination, loading }) => {
     <>
       <Head>
         <title>
-          {t('seo_offers_title', {
-            destination: destination ? `: ${destination.name}` : '',
+          {t('rental_meta_title', {
+            destination: destination ? destination.name : 'na Jadranu',
           })}
         </title>
-        <meta name="description" content={t('offers_seo_desc')} />
+        <meta
+          name="title"
+          content={t('rental_meta_title', {
+            destination: destination ? destination.name : 'na Jadranu',
+          })}
+        />
+        <meta name="description" content={t('rental_meta_description')} />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`${process.env.NEXT_PUBLIC_DOMAIN_URL}/najem-plovil`} />
+        <meta
+          property="og:title"
+          content={t('rental_meta_title', {
+            destination: destination ? destination.name : 'na Jadranu',
+          })}
+        />
+        <meta property="og:description" content={t('rental_meta_description')} />
+        <meta property="og:image" content={`/media/header-opt.jpg`} />
+
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta
+          property="twitter:url"
+          content={`${process.env.NEXT_PUBLIC_DOMAIN_URL}/najem-plovil`}
+        />
+        <meta
+          property="twitter:title"
+          content={t('rental_meta_title', {
+            destination: destination ? destination.name : 'na Jadranu',
+          })}
+        />
+        <meta property="twitter:description" content={t('rental_meta_description')} />
+        <meta property="twitter:image" content={`/media/header-opt.jpg`} />
+
+        <link rel="canonical" href={`${process.env.NEXT_PUBLIC_DOMAIN_URL}/najem-plovil`} />
       </Head>
 
       <LayoutWithSidebar
@@ -96,15 +129,10 @@ const OffersPage = ({ error, results, next, count, destination, loading }) => {
             displayTotalPrice={displayTotalPrice}
             setDisplayTotalPrice={setDisplayTotalPrice}
           />
-          {error && (
-            <Alert className="mt-3" variant="danger">
-              {t(error)}
-            </Alert>
-          )}
           {loading && <Loader />}
           {destination && <DestinationTeaser destination={destination} />}
           {!yachts.length && <NoResults />}
-          {count ? <p className="offers_num_result">{t('offers_num_result', { count })}</p> : ''}
+          {count && <p className="offers_num_result">{t('offers_num_result', { count })}</p>}
           {yachts.length > 0 && (
             <InfiniteScroll
               pageStart={0}
@@ -154,7 +182,11 @@ const OffersPage = ({ error, results, next, count, destination, loading }) => {
 export const getServerSideProps = async (ctx) => {
   const search = ctx.req.url;
   const { data } = await getSearchResults(search);
-  const translations = await serverSideTranslations(ctx.locale, ['common'], nextI18nextConfig);
+  const translations = await serverSideTranslations(
+    ctx.locale,
+    ['najemplovil', 'common'],
+    nextI18nextConfig
+  );
 
   return {
     props: {

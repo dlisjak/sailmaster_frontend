@@ -9,18 +9,7 @@ import IconsLine from './IconsLine';
 import HEADER from '../../public/media/header-opt.jpg';
 
 const Header = () => {
-  const { t } = useTranslation('common');
-
-  const description = t('description')
-    .split('\n')
-    .map((item, key) => {
-      return (
-        <span key={key}>
-          {item}
-          <br />
-        </span>
-      );
-    });
+  const { t } = useTranslation('home');
 
   return (
     <header className="home-header">
@@ -36,8 +25,10 @@ const Header = () => {
         </Background>
         <Container className="home-header__container">
           <div className="home-header__content">
-            <h1>{t('page_name')}</h1>
-            <h2>{description}</h2>
+            <div className='flex flex-col max-w-[640px] m-auto'>
+              <h1>{t("index_h1_title")}</h1>
+              <p className="text-white text-center lg:text-lg lg:mb-12 uppercase">{t('index_subtitle')}</p>
+            </div>
             <HomeFilter />
           </div>
         </Container>

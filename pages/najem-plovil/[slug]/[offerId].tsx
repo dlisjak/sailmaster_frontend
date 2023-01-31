@@ -52,8 +52,6 @@ export const getStaticPaths = async () => {
 
   const arr = JSON.parse(data);
 
-  console.log(arr);
-
   const paths = arr.map((offer) => ({
     params: {
       slug: yachtSlug(offer.yacht.id, offer.yacht.yacht_model.name),

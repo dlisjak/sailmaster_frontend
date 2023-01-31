@@ -27,7 +27,6 @@
   "inquiry_submit": "Richiedi l'offerta",
   "inquiry_success": "Grazie per la richiesta, vi risponderemo il prima possibile.",
 
-
   "seo_title": "TheSailmaster.it | Noleggio barche, barca a vela, catamarano, yacht al miglior prezzo - last minute",
   "seo_destinations_title": "Destinazioni",
   "seo_destinations_description": "",
@@ -64,7 +63,7 @@
   "service_optional": "Opzionale",
   "service_required": "Obbligatorio",
 
-  "offers_num_result": "No. risultati: {{count}}",
+  "offers_num_result_1": "No. risultati: {{count}}",
   "offer_yacht_selected_period": "Data selezionata",
   "offer_yacht_description": "Descrizione yacht",
   "offer_yacht_equipment": "Dotazioni yacht",
