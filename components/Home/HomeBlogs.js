@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { useTranslation } from 'next-i18next';
-import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 
 import HomeBlogItem from "./HomeBlogItem";
@@ -15,7 +14,7 @@ const HomeBlogs = ({ items }) => {
           <h2>{t("home_blog_title")}</h2>
         </div>
         <div className="row">
-          {items?.map((item, index) => {
+          {items.map((item, index) => {
             return (
               <div
                 className="page-title sm:w-1/3 pr-4 pl-4 w-full"
@@ -32,8 +31,8 @@ const HomeBlogs = ({ items }) => {
           })}
         </div>
         <div className="d-flex mt-3 justify-content-center">
-          <Link href={t("blog_route")}>
-            <Button size="lg" variant="outline-secondary">{t("all_blogs")}</Button>
+          <Link className="btn btn-outline-secondary btn-lg" href={t("blog_route")}>
+            {t("all_blogs")}
           </Link>
         </div>
       </Container>

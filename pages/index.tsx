@@ -28,8 +28,8 @@ const Index = ({ fallback, featuredYachts, destinations, testimonials, homeBlogs
     <SWRConfig value={{ fallback }}>
       <div className="page-home">
         <Head>
-          <title>{t('meta_title')}</title>
-          <meta name="description" content={t('meta_description')} />
+          <title>{t('index_meta_title')}</title>
+          <meta name="description" content={t('index_meta_description')} />
         </Head>
 
         <Header />

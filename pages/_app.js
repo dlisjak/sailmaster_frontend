@@ -13,7 +13,7 @@ const CookieLaw = dynamic(() => import("../components/common/CookieLaw"));
 const Footer = dynamic(() => import("../components/common/Footer"));
 
 import ErrorBoundary from "../components/ErrorBoundary";
-import { language } from '../constants'
+// import { language } from '../constants'
 
 import '../styles/main.css';
 import "../node_modules/flag-icons/css/flag-icons.min.css";

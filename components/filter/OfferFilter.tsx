@@ -50,6 +50,13 @@ export const BasicSearch = ({ values, onSubmit, ...props }) => {
           setValue={setValue}
           placeholder={t('offer_filter_yacht_type_placeholder')}
         />
+        <button
+          className="btn--search btn btn-secondary btn-xl"
+          type="button"
+          onClick={() => onSubmit(currentValues)}
+        >
+          {t('search')}
+        </button>
       </div>
     </div>
   );

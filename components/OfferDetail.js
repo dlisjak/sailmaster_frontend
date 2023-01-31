@@ -364,7 +364,7 @@ const OfferDetail = ({
               </Button>
             </div>
             <div className="d-none d-md-block">
-              {/* {searchComponent} */}
+              {searchComponent}
               <QuickContact />
 
               <SidebarTestimonials />
