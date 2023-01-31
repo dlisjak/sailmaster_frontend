@@ -14035,6 +14035,10 @@ body {
   }
 }
 
+.destination2:hover .btn.btn-lg.btn-primary {
+  background-color: #1c262b;
+}
+
 .home-icon-wrapper {
   display: flex;
   justify-content: center;
@@ -15536,7 +15540,6 @@ body {
   font-size: 13px;
   line-height: 1;
   color: #2b3b42;
-   
 }
 
 .price-block .discount {

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { valuesToSearch, parseDestinations } from "utils/search_utils";
 
@@ -13,10 +14,13 @@ const Destination = ({ destination }) => {
     });
 
   return (
-    <div className="destination2" style={{ backgroundImage: `url(${destination.image.thumbnail})` }}>
-      <Link className="destinations2__link btn btn-lg btn-primary" href={link}>
-        {destination.name}
+    <div className="destination2 w-full flex relative items-center justify-center">
+      <Link className="w-full h-full" href={link}>
+        <Image className="object-cover object-center h-full" src={destination.image.thumbnail} width={253} height={200} alt={`Najem plovil ${destination.name}`} />
       </Link>
+      <div className="absolute btn btn-lg btn-primary">
+        {destination.name}
+      </div>
     </div>
   );
 };

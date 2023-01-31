@@ -48,7 +48,7 @@ const Index = ({ fallback, featuredYachts, destinations, testimonials, homeBlogs
 
         <Header />
 
-        <div className="container container-xl mx-auto px-4">
+        <div className="container-xl container mx-auto px-4">
           {/* {specialOffers.data && <HomeSpecialOffers specialOffers={specialOffers.data.results} />} */}
 
           <div className="page-home__block lg:py-4">
