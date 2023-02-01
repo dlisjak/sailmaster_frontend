@@ -21,8 +21,12 @@ const PromoModal = ({ onHide }) => {
 
   return (
     <Modal show={true} onHide={onHide} dialogClassName="promo-modal">
-      <Modal.Header closeButton>
+      <Modal.Header>
         <Modal.Title></Modal.Title>
+        <button type="button" className="close" onClick={onHide}>
+          <span aria-hidden="true">x</span>
+          <span className="sr-only">Close</span>
+        </button>
       </Modal.Header>
       <Modal.Body>
         <div className="promo-img">

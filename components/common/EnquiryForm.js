@@ -7,7 +7,7 @@ import { ENQUIRY } from "../../actions/enquiry";
 
 import { useTranslation } from "next-i18next";
 
-import { Row, Col } from "react-bootstrap";
+import { Col } from "react-bootstrap";
 
 import { Field, reduxForm } from "redux-form";
 
