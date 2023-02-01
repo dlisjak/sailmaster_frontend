@@ -111,7 +111,8 @@ const OfferTeaser = ({
                   >
                     <Heart />
                   </div>
-                  <SliderGallery yacht={offer.yacht} />
+                  {/* <SliderGallery yacht={offer.yacht} />*/}
+                  <Gallery yacht={offer.yacht} />
                 </div>
               </div>
             </div>
