@@ -86,7 +86,7 @@ export const Navigation = ({ setShowInquiry }) => {
     <Navbar variant="light" fixed="top" expand="lg" className="navbar--navbar2" expanded={expanded}>
       <Container>
         <div className="flex">
-          <Link className="flex items-center w-[221px] h-[78px]" href={linkHome}>
+          <Link className="flex h-[78px] w-[221px] items-center" href={linkHome}>
             <Logo />
           </Link>
         </div>

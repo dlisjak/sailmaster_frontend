@@ -14,14 +14,14 @@ const Destination = ({ destination }) => {
     });
 
   return (
-    <div className="destination2 w-full flex relative items-center justify-center">
-      <Link className="w-full h-full" href={link}>
-        <Image className="object-cover object-center h-full" src={destination.image.thumbnail} width={253} height={200} alt={`Najem plovil ${destination.name}`} />
-      </Link>
-      <div className="absolute btn btn-lg btn-primary">
-        {destination.name}
+    <Link className="w-full h-full" href={link}>
+      <div className="destination2 w-full flex relative items-center justify-center">
+        <Image className="object-cover object-center w-full h-full" src={destination.image.thumbnail} width={253} height={200} alt={`Najem plovil ${destination.name}`} />
+        <h3 className="absolute btn btn-lg btn-primary">
+          {destination.name}
+        </h3>
       </div>
-    </div>
+    </Link>
   );
 };
 

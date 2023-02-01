@@ -22,7 +22,7 @@ const Footer = ({ lang }) => {
       <div className="container">
         <div className="footer-upper row">
           <div className="footer-upper-col md:w-1/4 pr-4 pl-4 sm:w-1/2 pr-4 pl-4 w-full">
-            <h6>{t("why_us")}</h6>
+            <h3>{t("why_us")}</h3>
             <ul className="check">
               <li
                 onClick={() => {
@@ -72,7 +72,7 @@ const Footer = ({ lang }) => {
             </ul>
           </div>
           <div className="footer-upper-col md:w-1/4 pr-4 pl-4 sm:w-1/2 pr-4 pl-4 w-full">
-            <h6>{t("footer_informations")}</h6>
+            <h3>{t("footer_informations")}</h3>
             <ul className="squares">
               <li
                 onClick={() => {
@@ -140,7 +140,7 @@ const Footer = ({ lang }) => {
             </ul>
           </div>
           <div className="footer-upper-col md:w-1/4 pr-4 pl-4 sm:w-1/2 pr-4 pl-4 w-full">
-            <h6>{t("footer_sailmaster")}</h6>
+            <h3>{t("footer_sailmaster")}</h3>
             <ul className="squares">
               <li
                 onClick={() => {
@@ -172,7 +172,7 @@ const Footer = ({ lang }) => {
             </ul>
           </div>
           <div className="footer-upper-col md:w-1/4 pr-4 pl-4 sm:w-1/2 pr-4 pl-4 w-full">
-            <h6>{t("contact")}</h6>
+            <h3>{t("contact")}</h3>
             <p>
               {t("company_name")} <br />
               {t("company_address")}, {t("company_zip")}
@@ -187,7 +187,7 @@ const Footer = ({ lang }) => {
         </div>
         <div className="footer-upper footer-middle row">
           <div className="footer-upper-col md:w-1/2 pr-4 pl-4 sm:w-full pr-4 pl-4 w-full">
-            <h6>{t("partners")}</h6>
+            <h3>{t("partners")}</h3>
             <div className="p-logos">
               <a
                 href="https://www.vzajemna.si/"
@@ -217,7 +217,7 @@ const Footer = ({ lang }) => {
             </div>
           </div>
           <div className="footer-upper-col md:w-1/4 pr-4 pl-4 sm:w-full pr-4 pl-4 w-full">
-            <h6>{t("follow_us")}</h6>
+            <h3>{t("follow_us")}</h3>
             <div className="social">
               <a
                 href="https://www.facebook.com/TheSailmaster/"

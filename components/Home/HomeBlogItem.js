@@ -15,7 +15,7 @@ const HomeBlogItem = ({ slug, image, title, text }) => {
         </Link>
       </div>
       <div className="home-blog-bottom">
-        <div className="home-blog-title">{title}</div>
+        <h3 className="home-blog-title">{title}</h3>
         <div className="home-blog-text">{text}</div>
         <div className="home-blog-button">
           <Link href={getBlogLink(slug)}>

@@ -22,7 +22,7 @@ const Testimonial = ({ country, author_url, image, name, rating, text }) => {
       </div>
       <div className="testimonial-name">
         <Link href={author_url}>
-          <span>{name}</span>
+          <h3>{name}</h3>
         </Link>
         {modifiedCountry}
       </div>
