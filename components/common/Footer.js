@@ -212,6 +212,7 @@ const Footer = ({ lang }) => {
                   alt="YachtPool"
                   className="YachtPool-icon"
                   src="/media/YachtPool.svg"
+                  loading="lazy"
                 />
               </a>
             </div>
