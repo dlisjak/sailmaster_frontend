@@ -87,7 +87,7 @@ export const Navigation = ({ setShowInquiry }) => {
       <Container>
         <div className="flex">
           <Link className="flex h-[78px] w-[221px] items-center" href={linkHome}>
-            <Logo />
+            <Logo className="w-full" />
           </Link>
         </div>
         <Navbar.Toggle onClick={() => setExpanded(expanded ? false : true)} />
