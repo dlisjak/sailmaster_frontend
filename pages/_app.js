@@ -17,6 +17,7 @@ import ErrorBoundary from "../components/ErrorBoundary";
 // import { language } from '../constants'
 
 import '../styles/main.css';
+import "../node_modules/flag-icons/css/flag-icons.min.css";
 
 const MyApp = ({ Component, pageProps, router }) => {
   const route = router.route;
