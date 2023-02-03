@@ -16,10 +16,11 @@ const Header = () => {
       <Parallax className="home-header__paralax" strength={300}>
         <Background className="custom-bg w-full min-h-[1080px]">
           <Image
+            className='w-full'
             src={HEADER}
             alt="Sailmaster - najem jadrnice, katamarana, plovil"
-            width={1920}
-            height={1080}
+            width={3840}
+            height={2160}
             priority
           />
         </Background>

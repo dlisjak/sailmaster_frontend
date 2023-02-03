@@ -4,6 +4,8 @@ import { DateRangePicker } from "react-dates-gte-react-17";
 import { useTranslation } from 'next-i18next';
 import moment from "moment";
 
+import useWindowDimensions from "../../hooks/useWindowDimensions";
+
 import "moment/locale/sl";
 
 moment.locale(process.env.NEXT_PUBLIC_REACT_APP_MOMENT_LANGUAGE);
@@ -15,6 +17,7 @@ const isDayBlocked = (day) => {
 const DateRangeSelect = ({ onSelect, value }) => {
   const { t } = useTranslation("common");
   const [focusedInput, setFocusedInput] = useState();
+  const { width } = useWindowDimensions();
 
   return (
     <div className={`date-range-select--focus-${focusedInput || "none"}`}>
@@ -30,9 +33,10 @@ const DateRangeSelect = ({ onSelect, value }) => {
         onFocusChange={setFocusedInput}
         isDayBlocked={isDayBlocked}
         showClearDates
-        numberOfMonths={2}
+        numberOfMonths={width > 800 ? 2 : 1}
         block
         hideKeyboardShortcutsPanel
+        transitionDuration={0}
         renderCalendarInfo={() => (
           <div
             dangerouslySetInnerHTML={{ __html: t("date_info") }}
