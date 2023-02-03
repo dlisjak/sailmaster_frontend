@@ -320,10 +320,12 @@ const OfferDetail = ({
   handleHeartClick,
   setShowEnquiryModal,
 }) => {
+  console.log({ offer })
   const [showMap, setShowMap] = useState(false);
   const router = useRouter();
   const { t } = useTranslation("common");
   const yacht = offer.yacht;
+  console.log({ yacht })
   const yacht_model = yacht.yacht_model;
   const services = obligatoryServices(
     t,

@@ -18,7 +18,7 @@ const Header = () => {
           <Image
             className='w-full'
             src={HEADER}
-            alt="Sailmaster - najem jadrnice, katamarana, plovil"
+            alt="Najem plovil TheSailmaster.si"
             width={3840}
             height={2160}
             priority
@@ -26,9 +26,9 @@ const Header = () => {
         </Background>
         <Container className="home-header__container">
           <div className="home-header__content">
-            <div className='flex flex-col max-w-[640px] m-auto'>
-              <h1>{t("index_h1_title")}</h1>
-              <p className="text-white text-center lg:text-lg lg:mb-12 uppercase">{t('index_subtitle')}</p>
+            <div className='flex flex-col max-w-[720px] m-auto'>
+              <h1 className='text-2xl lg:text-4xl'>{t("index_h1_title")}</h1>
+              <p className="text-white text-center lg:text-xl lg:mb-12">{t('index_subtitle')}</p>
             </div>
             <HomeFilter />
           </div>
