@@ -39,7 +39,7 @@ const HomeFilter = () => {
   }, [values]);
 
   return (
-    <div className="home-filter">
+    <div className="home-filter mb-2 lg:mb-8">
       <div className="row">
         <div className="form-group w-full xl:w-2/5 lg:w-1/3 md:w-1/4 pr-4 pl-4 md:pr-1 md:pl-1">
           <label className="form-label">{t("starting_point")}</label>

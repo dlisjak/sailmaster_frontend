@@ -13515,7 +13515,7 @@ body {
 }
 
 .home-header__container {
-  min-height: 60vh;
+  min-height: 640px;
   max-height: calc(100vh - 78px);
   display: flex;
   align-items: center;
@@ -13548,7 +13548,6 @@ body {
 }
 
 .home-header__content h2 {
-   
   font-size: 15px;
   text-transform: uppercase;
   text-shadow: 3px 3px 10px #222;
@@ -13568,10 +13567,6 @@ body {
   .home-header__content h2 {
     font-size: 15.6px;
   }
-}
-
-.home-filter {
-  margin-bottom: 30px;
 }
 
 .home-filter label {

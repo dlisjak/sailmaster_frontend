@@ -27,10 +27,10 @@ const Header = () => {
         <Container className="home-header__container">
           <div className="home-header__content">
             <div className='flex flex-col max-w-[720px] m-auto'>
-              <h1 className='text-2xl lg:text-4xl'>{t("index_h1_title")}</h1>
-              <p className="text-white text-center lg:text-xl lg:mb-12">{t('index_subtitle')}</p>
+              <h1 className='text-2xl lg:text-4xl lg:mb-8'>{t("index_h1_title")}</h1>
             </div>
             <HomeFilter />
+            <p className="text-white text-center lg:text-xl my-4 lg:mb-12 max-w-[720px] mx-auto">{t('index_subtitle')}</p>
           </div>
         </Container>
         <IconsLine />
