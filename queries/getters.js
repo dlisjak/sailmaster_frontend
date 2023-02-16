@@ -2,6 +2,10 @@ import axios from "axios";
 
 import { postData } from "../lib/base";
 
+export const getFromApi = async (url) => {
+  return await axios.get(url);
+}
+
 export const getFeaturedYachts = async () => {
   const lang = process.env.NEXT_PUBLIC_REACT_APP_LANGUAGE;
   const url = process.env.NEXT_PUBLIC_API_URL + '/featured-yachts/';
@@ -123,6 +127,22 @@ export const getAllYachts = async (offset = 0) => {
 
   return data;
 };
+
+export const getBlogs = async (limit) => {
+  const url = process.env.NEXT_PUBLIC_API_URL + `/blog${limit ? "?limit=" + limit : ""}`;
+
+  const { data } = await axios.get(url);
+
+  return data;
+}
+
+export const getBlog = async (slug) => {
+  const url = process.env.NEXT_PUBLIC_API_URL + `/blog/slug/${slug}`;
+
+  const { data } = await axios.get(url);
+
+  return data;
+}
 
 export const getSearchResults = async (search) => {
   const idx = search?.indexOf("?");
