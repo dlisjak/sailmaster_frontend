@@ -20,8 +20,6 @@ const PromoModal = ({ onHide }) => {
   const [finished, setFinished] = useState(false);
   const [error, setError] = useState(false);
 
-  const language = i18n.language;
-
   return (
     <Modal show={true} onHide={onHide} dialogClassName="promo-modal">
       <Modal.Header>

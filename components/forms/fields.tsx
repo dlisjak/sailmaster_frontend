@@ -169,8 +169,11 @@ export const SelectField = ({
 
   return (
     <div className={`form-group ${className}`}>
-      <label className="form-label">{label}</label>
+      <label className="form-label" htmlFor={fieldName}>
+        {label}
+      </label>
       <Select
+        id={fieldName}
         styles={customStyles}
         theme={customTheme}
         className="react-select-container"

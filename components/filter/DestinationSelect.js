@@ -29,6 +29,7 @@ const DestinationSelect = ({
   return (
     <div>
       <Select
+        id="destination"
         styles={customStyles}
         theme={customTheme}
         className="react-select-container react-select-container--destinations"
