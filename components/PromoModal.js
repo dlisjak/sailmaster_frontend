@@ -12,6 +12,9 @@ import {
 
 import { subscribeNewsletterGift } from "../lib/base";
 
+import GIFT from "../public/media/gift_si.png";
+import Image from "next/image";
+
 const PromoModal = ({ onHide }) => {
   const { t, i18n } = useTranslation("common");
   const [finished, setFinished] = useState(false);
@@ -30,7 +33,7 @@ const PromoModal = ({ onHide }) => {
       </Modal.Header>
       <Modal.Body>
         <div className="promo-img">
-          <img src={`/media/gift_${language}.png`} alt="gift" />
+          <Image src={GIFT} alt="gift" width={210} height={192} />
         </div>
 
         {error && <Alert variant="danger">{error}</Alert>}

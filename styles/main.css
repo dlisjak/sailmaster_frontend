@@ -13515,7 +13515,6 @@ body {
 }
 
 .home-header__container {
-  min-height: 640px;
   max-height: calc(100vh - 78px);
   display: flex;
   align-items: center;
@@ -16602,8 +16601,8 @@ table.season-items th {
   height: 100%;
   text-align: center;
   background: 0 0;
-  border: 2px solid #00a699;
-  color: #00a699;
+  border: 2px solid transparent;
+  color: transparent;
   padding: 4px 12px;
   margin-right: 8px;
   font: inherit;
@@ -16620,7 +16619,7 @@ table.season-items th {
 
 .PresetDateRangePicker_button__selected {
   color: #fff;
-  background: #00a699;
+  background: transparent;
 }
 
 .SingleDatePickerInput {
@@ -16815,7 +16814,7 @@ table.season-items th {
 
 .DayPickerKeyboardShortcuts_show__bottomRight:before {
   border-top: 26px solid transparent;
-  border-right: 33px solid #00a699;
+  border-right: 33px solid transparent;
   bottom: 0;
   right: 0;
 }
@@ -16831,7 +16830,7 @@ table.season-items th {
 
 .DayPickerKeyboardShortcuts_show__topRight:before {
   border-bottom: 26px solid transparent;
-  border-right: 33px solid #00a699;
+  border-right: 33px solid transparent;
   top: 0;
   right: 0;
 }
@@ -16847,7 +16846,7 @@ table.season-items th {
 
 .DayPickerKeyboardShortcuts_show__topLeft:before {
   border-bottom: 26px solid transparent;
-  border-left: 33px solid #00a699;
+  border-left: 33px solid transparent;
   top: 0;
   left: 0;
 }
@@ -17008,8 +17007,8 @@ table.season-items th {
 .CalendarDay__selected,
 .CalendarDay__selected:active,
 .CalendarDay__selected:hover {
-  background: #00a699;
-  border: 1px double #00a699;
+  background: transparent;
+  border: 1px double transparent;
   color: #fff;
 }
 

@@ -12,7 +12,6 @@ import { useYachtTypes } from "../../queries/queries";
 const DateRangeSelect = dynamic(() => import("./DateRangeSelect"))
 
 const HomeFilter = () => {
-  const [mounted, setMounted] = useState(false);
   const [hideCover, setHideCover] = useState(false);
   const [values, setValues] = useState({});
   const [searchQuery, setSearchQuery] = useState("");
@@ -26,13 +25,6 @@ const HomeFilter = () => {
     };
     setValues(newValues);
   };
-
-  useEffect(() => {
-    setMounted(true)
-    setTimeout(() => {
-      setHideCover(true)
-    }, 1000)
-  }, []);
 
   useEffect(() => {
     setSearchQuery(valuesToSearch(values));
@@ -56,12 +48,10 @@ const HomeFilter = () => {
             <div className='mr-auto'>Od</div>
             <div className='mr-auto'>Do</div>
           </div>
-          {mounted && (
-            <DateRangeSelect
-              value={values.dateRange}
-              onSelect={(value) => setValue("dateRange", value)}
-            />
-          )}
+          <DateRangeSelect
+            value={values.dateRange}
+            onSelect={(value) => setValue("dateRange", value)}
+          />
         </div>
         <SelectField
           className="w-full md:w-1/6 pr-4 pl-4 md:pr-1 md:pl-1"

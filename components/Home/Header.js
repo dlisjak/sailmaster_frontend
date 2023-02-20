@@ -24,7 +24,7 @@ const Header = () => {
             priority
           />
         </Background>
-        <Container className="home-header__container">
+        <Container className="home-header__container md:min-h-[640px]">
           <div className="home-header__content">
             <div className='flex flex-col max-w-[720px] m-auto'>
               <h1 className='text-2xl lg:text-4xl lg:mb-8'>{t("index_h1_title")}</h1>
