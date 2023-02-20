@@ -6,7 +6,7 @@ import HEADER from '../public/media/header-opt.jpg';
 const DestinationTeaser = ({ destination, yachtType, t }) => (
   <div className="destination-teaser mb-4">
     <div className="row">
-      <div className="w-2/5 px-4">
+      <div className="w-full px-4 sm:w-2/5">
         {destination?.image ? (
           <Image
             className="destination-teaser__img img-fluid"
@@ -25,7 +25,7 @@ const DestinationTeaser = ({ destination, yachtType, t }) => (
           />
         )}
       </div>
-      <div className="w-3/5 px-4">
+      <div className="w-full px-4 sm:w-3/5">
         <h1 className="destination-title text-2xl">
           {t('rental_title', {
             yachtType: yachtType ? yachtType : 'Plovil',
