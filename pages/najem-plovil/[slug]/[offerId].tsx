@@ -32,9 +32,7 @@ const OfferDetailPage = ({ offer }) => {
   return (
     <>
       <Head>
-        <title>
-          {pageTitle} {t('seo_title')}
-        </title>
+        <title>{pageTitle + t('seo_title')}</title>
         <meta name="description" content={stripHtmlTags(yacht.get_description)} />
       </Head>
       <OfferDetail
