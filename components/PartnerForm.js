@@ -10,8 +10,8 @@ import {
   RequiredLabel,
   Field,
   DefaultSelectField,
-} from "components/forms/fields";
-import { ThankYouMessage } from "components/ThankYouMessage";
+} from "../components/forms/fields";
+import { ThankYouMessage } from "../components/ThankYouMessage";
 
 const PartnerForm = ({ onSubmit }) => {
   const [finished, setFinished] = useState(false);
@@ -65,14 +65,14 @@ const PartnerForm = ({ onSubmit }) => {
                   ]}
                 />
               </Form.Group>
-              <Form.Group controlId="person">
+              <Form.Group controlId="person" className="mt-3">
                 <Field
                   name="person"
                   label={<RequiredLabel name={t("inquiry_name")} />}
                   formikBag={formikBag}
                 />
               </Form.Group>
-              <Form.Group controlId="email">
+              <Form.Group controlId="email" className="mt-3">
                 <Field
                   name="email"
                   label={<RequiredLabel name={t("inquiry_email")} />}
@@ -80,14 +80,14 @@ const PartnerForm = ({ onSubmit }) => {
                   type="email"
                 />
               </Form.Group>
-              <Form.Group controlId="phone">
+              <Form.Group controlId="phone" className="mt-3">
                 <Field
                   name="phone"
                   label={<RequiredLabel name={t("inquiry_phone")} />}
                   formikBag={formikBag}
                 />
               </Form.Group>
-              <Form.Group controlId="comment">
+              <Form.Group controlId="comment" className="mt-3">
                 <Field
                   name="comment"
                   as="textarea"
@@ -97,7 +97,7 @@ const PartnerForm = ({ onSubmit }) => {
                 />
               </Form.Group>
 
-              <Button type="submit" disabled={formikBag.isSubmitting}>
+              <Button className="mt-4" type="submit" disabled={formikBag.isSubmitting}>
                 {t("send_message")}
               </Button>
             </Form>
