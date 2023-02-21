@@ -21,7 +21,6 @@ const Blog = ({ results, next }) => {
   const [loadNext, setLoadNext] = useState(next);
 
   const handleLoadMore = useCallback(async () => {
-    console.log({ loadNext });
     const { data } = await getFromApi(loadNext);
     setBlogs((prev) => [...new Set([...prev, ...data.results])]);
     setLoadNext(data.next);
@@ -88,7 +87,7 @@ const Blog = ({ results, next }) => {
   );
 };
 
-export const getServerSideProps = async (ctx) => {
+export const getStaticProps = async (ctx) => {
   const translations = await serverSideTranslations(ctx.locale, ['common'], nextI18nextConfig);
   const blog = await getBlogs();
 
