@@ -141,27 +141,29 @@ const OffersPage = ({ yachtType, results, next, count, destination, loading, can
               loader={<Loader key={0} />}
               threshold={1200}
             >
-              {yachts?.map((offer, index) => (
-                <OfferTeaser
-                  displayTotalPrice={displayTotalPrice}
-                  key={offer.id}
-                  offer={offer}
-                  inWishlist={wishlist && Array.from(wishlist).includes(offer.yacht.id.toString())}
-                  handleHeartClick={(id) => {
-                    const { array } = handleHeartClick(id);
-                    mutateWishlist({ ...array });
-                  }}
-                  onEnquiry={() => {
-                    setEnquiryProps({
-                      offerId: offer.id,
-                      yachtModel: offer.yacht.yacht_model.name,
-                      yachtTerm: formatOfferPeriod(offer),
-                      yachtPrice: formatOfferPrice(offer),
-                    });
-                    setShowEnquiryModal(true);
-                  }}
-                />
-              ))}
+              {yachts?.map((offer, index) => {
+                return (
+                  <OfferTeaser
+                    displayTotalPrice={displayTotalPrice}
+                    key={offer.id}
+                    offer={offer}
+                    inWishlist={Array.from(wishlist).includes(offer.id.toString())}
+                    handleHeartClick={(id) => {
+                      const { array } = handleHeartClick(id);
+                      mutateWishlist(array);
+                    }}
+                    onEnquiry={() => {
+                      setEnquiryProps({
+                        offerId: offer.id,
+                        yachtModel: offer.yacht.yacht_model.name,
+                        yachtTerm: formatOfferPeriod(offer),
+                        yachtPrice: formatOfferPrice(offer),
+                      });
+                      setShowEnquiryModal(true);
+                    }}
+                  />
+                );
+              })}
             </InfiniteScroll>
           )}
         </>

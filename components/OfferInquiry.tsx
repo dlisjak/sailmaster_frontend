@@ -39,7 +39,15 @@ const Details = ({ yachtModel, yachtTerm, yachtPrice }) => {
   );
 };
 
-const OfferInquiry = ({ offerId, show, onClose, onSubmit, yachtModel, yachtTerm, yachtPrice }) => {
+const OfferInquiry = ({
+  offerId,
+  show,
+  onClose,
+  onSubmit,
+  yachtModel = null,
+  yachtTerm = null,
+  yachtPrice = null,
+}) => {
   const [finished, setFinished] = useState(false);
   const [error, setError] = useState(false);
   const { t } = useTranslation('common');
@@ -99,7 +107,7 @@ const OfferInquiry = ({ offerId, show, onClose, onSubmit, yachtModel, yachtTerm,
                   />
                 </div>
                 <div className="form-row">
-                  <div className="mb-4 w-full sm:w-1/2 pr-1 pl-1">
+                  <div className="mb-4 w-full pr-1 pl-1 sm:w-1/2">
                     <Field
                       name="email"
                       label={<RequiredLabel name={t('inquiry_email')} />}
@@ -107,7 +115,7 @@ const OfferInquiry = ({ offerId, show, onClose, onSubmit, yachtModel, yachtTerm,
                       type="email"
                     />
                   </div>
-                  <div className="mb-4 w-full sm:w-1/2 pr-1 pl-1">
+                  <div className="mb-4 w-full pr-1 pl-1 sm:w-1/2">
                     <Field
                       name="phone"
                       label={<RequiredLabel name={t('inquiry_phone')} />}
@@ -116,10 +124,10 @@ const OfferInquiry = ({ offerId, show, onClose, onSubmit, yachtModel, yachtTerm,
                   </div>
                 </div>
                 <div className="form-row">
-                  <div className="mb-4 w-full sm:w-1/2 pr-1 pl-1">
+                  <div className="mb-4 w-full pr-1 pl-1 sm:w-1/2">
                     <Field name="address" label={t('inquiry_address')} formikBag={formikBag} />
                   </div>
-                  <div className="mb-4 w-full sm:w-1/2 pr-1 pl-1">
+                  <div className="mb-4 w-full pr-1 pl-1 sm:w-1/2">
                     <Field name="zip" label={t('inquiry_zip_code')} formikBag={formikBag} />
                   </div>
                 </div>

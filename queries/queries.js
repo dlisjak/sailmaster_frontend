@@ -92,6 +92,17 @@ export const useWishlist = () => {
   const { data, mutate, error } = useSWR("localWishlist", getWishlistFromLocalStorage);
 
   return {
+    wishlist: data || [],
+    isLoading: !error && !data,
+    isError: error,
+    mutateWishlist: mutate,
+  };
+};
+
+export const useWishlistApi = (ids) => {
+  const { data, mutate, error } = useSWR(`/api/wishlist?ids=${ids}`, getWishlistFromLocalStorage);
+
+  return {
     wishlist: data,
     isLoading: !error && !data,
     isError: error,

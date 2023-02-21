@@ -1,4 +1,5 @@
 import axios from "axios";
+import qs from "qs"
 
 import { postData } from "../lib/base";
 
@@ -140,6 +141,14 @@ export const getBlog = async (slug) => {
   const url = process.env.NEXT_PUBLIC_API_URL + `/blog/slug/${slug}`;
 
   const { data } = await axios.get(url);
+
+  return data;
+}
+
+export const getWishlist = async (wishlistIds) => {
+  const url = process.env.NEXT_PUBLIC_API_URL + `/offers/wishlist`;
+
+  const { data } = await axios.get(url, { params: { ids: wishlistIds } })
 
   return data;
 }

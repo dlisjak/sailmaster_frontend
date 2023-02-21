@@ -108,7 +108,7 @@ export const Navigation = ({ setShowInquiry }) => {
             >
               <Heart className="navbar-icon navbar-icon--heart" />
               <Badge pill bg="secondary" className="btn-wishlist__badge">
-                {wishlist?.size}
+                {wishlist?.size || wishlist?.length}
               </Badge>
             </Link>
             {links.map((link, index) => (

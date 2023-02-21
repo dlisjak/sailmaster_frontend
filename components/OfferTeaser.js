@@ -104,9 +104,7 @@ const OfferTeaser = ({
                 <div className="offer-carousel">
                   {offer.label && <OfferLabel label={offer.label} />}
                   <div
-                    className={classNames("heart-wrapper", {
-                      "heart-wrapper--active": inWishlist,
-                    })}
+                    className={`heart-wrapper ${inWishlist ? "heart-wrapper--active" : ""}`}
                     onClick={() => handleHeartClick(offer.id)}
                   >
                     <Heart />
