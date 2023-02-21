@@ -83,9 +83,7 @@ const Wishlist = () => {
 
     // Get discount
     const discount =
-      clientPrice !== priceListPrice
-        ? parseInt(100 - (clientPrice * 100.0) / priceListPrice, 10)
-        : 0;
+      clientPrice !== priceListPrice ? Number(100 - (clientPrice * 100.0) / priceListPrice) : 0;
 
     let price = <div className="wishlist-offer-final-price">{`${formatMoney(clientPrice)}€`}</div>;
 
