@@ -219,7 +219,7 @@ const Wishlist = () => {
 
       <div className="wishlist-main">
         <div className="base-layout container">
-          <h1>{`${t('wishlist_header')} (${wishlist?.size})`}</h1>
+          <h1>{`${t('wishlist_header')} (${Array.from(wishlist).length})`}</h1>
           <Row>
             <Col xs={12} sm={12} md={3} className="menu-side">
               <ul>
