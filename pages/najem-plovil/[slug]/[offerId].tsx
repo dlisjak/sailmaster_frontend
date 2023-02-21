@@ -11,18 +11,32 @@ import nextI18nextConfig from '../../../next-i18next.config';
 import { createOfferInquiry } from '../../../lib/base';
 import { useWishlist } from '../../../queries/queries';
 import { yachtSlug } from '../../../utils/url_utils';
+import { useTranslation } from 'next-i18next';
+import Head from 'next/head';
+import { stripHtmlTags } from '../../../utils/miscUtils';
 
 const OfferDetailPage = ({ offer }) => {
   const [showEnquiryModal, setShowEnquiryModal] = useState(false);
   const { wishlist, mutateWishlist } = useWishlist();
   const inWishlist = wishlist && Array.from(wishlist).includes(offer.yacht.id.toString());
+  const { t } = useTranslation('common');
 
   if (!offer) {
     return <NotFound />;
   }
 
+  const yacht = offer.yacht;
+  const yacht_model = yacht.yacht_model;
+  const pageTitle = `${yacht_model.category_name} - ${yacht_model.name}`;
+
   return (
     <>
+      <Head>
+        <title>
+          {pageTitle} {t('seo_title')}
+        </title>
+        <meta name="description" content={stripHtmlTags(yacht.get_description)} />
+      </Head>
       <OfferDetail
         offer={offer}
         inWishlist={inWishlist}

@@ -44,7 +44,7 @@ const Wishlist = () => {
   };
 
   const handleWishlistItemRemove = (id) => {
-    let arr = List();
+    let arr = null;
     let jsArray = [];
 
     if (localStorage.getItem('wishlist')) {

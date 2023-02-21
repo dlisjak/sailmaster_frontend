@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import ImageGallery from 'react-image-gallery';
-import { Helmet } from 'react-helmet';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -41,6 +40,7 @@ import Check from '../public/icons/check.svg';
 import { INSURANCE_URL } from '../constants/urls';
 
 import ZAVAROVANJE_IMAGE from "../public/media/yacht-pool-Financial_System_2022.jpg"
+import Head from 'next/head';
 
 export const OfferImageGalery = ({ offer }) => {
   const items = offer.yacht.pictures.map((url, i) => {
@@ -266,7 +266,7 @@ const OfferSelectedPeriod = ({ offer, onEnquiry }) => {
   const { t } = useTranslation("common");
 
   return (
-    <div className="offer-selected-period">
+    <div className="offer-selected-period max-h-[500px]">
       <Container>
         <div className="row offer-selected-period__header">
           <div className="w-full sm:w-1/2 pr-4 pl-4 offer-selected-period__period">
@@ -321,8 +321,8 @@ const OfferDetail = ({
   setShowEnquiryModal,
 }) => {
   const [showMap, setShowMap] = useState(false);
-  const router = useRouter();
   const { t } = useTranslation("common");
+  const router = useRouter();
   const yacht = offer.yacht;
   const yacht_model = yacht.yacht_model;
   const services = obligatoryServices(
@@ -331,18 +331,14 @@ const OfferDetail = ({
     yacht.deposit,
     offer.location_from.country_code
   );
+
   const optServices = optionalServices(offer.season_specific_data.services);
+
   const pageTitle = `${yacht_model.category_name} - ${yacht_model.name}`;
   const emailLink = `mailto:?subject=${pageTitle}&body=${router.asPath}`;
 
   return (
     <>
-      <Helmet>
-        <title>
-          {pageTitle} {t('seo_title')}
-        </title>
-        <meta name="description" content={stripHtmlTags(yacht.get_description)} />
-      </Helmet>
       <LayoutWithSidebar
         className="container--offer offer-detail"
         sidebar={

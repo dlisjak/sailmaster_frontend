@@ -2,7 +2,6 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { Row, Col } from 'react-bootstrap';
-import { Helmet } from 'react-helmet';
 import Image from 'next/image';
 import {
   FacebookShareButton,
@@ -16,6 +15,7 @@ import {
 import FilterSideWrapper from '../../../components/common/FilterSideWrapper';
 import nextI18nextConfig from '../../../next-i18next.config';
 import { getBlog, getBlogs } from '../../../queries/getters';
+import Head from 'next/head';
 
 const BlogSingle = ({ blog_single }) => {
   const { t } = useTranslation();
@@ -27,12 +27,12 @@ const BlogSingle = ({ blog_single }) => {
 
   return (
     <FilterSideWrapper location={router.pathname} FilterSideWrapperClassName="background-white">
-      <Helmet>
+      <Head>
         <title>{blog_single.title}</title>
         <meta name="description" content={blog_single.description} />
         <meta property="og:title" content={blog_single.title} />
         <meta property="og:description" content={blog_single.description} />
-      </Helmet>
+      </Head>
       <div className="blog-single mt-0">
         <Row>
           <Col xs={12} sm={12}>

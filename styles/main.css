@@ -1068,7 +1068,7 @@ pre code {
   font-family: 'slick';
   font-size: 20px;
   line-height: 1;
-  color: #ceb896;
+  color: #ceb896 !important;
   opacity: 0.75;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -1144,7 +1144,6 @@ pre code {
   outline: none;
   line-height: 0;
   font-size: 0;
-  color: transparent;
   padding: 5px;
 }
 

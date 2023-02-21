@@ -7,6 +7,8 @@ import { offerUrl } from "utils/url_utils";
 import Link from "next/link";
 import { useTranslation } from 'next-i18next';
 
+import "../node_modules/slick-carousel/slick/slick-theme.css"
+
 const SimiliarOffer = ({ offer, current, link }) => {
   const { t } = useTranslation("common");
   const classNames = classnames("similar-offers__offer", {

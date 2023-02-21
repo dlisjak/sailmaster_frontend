@@ -11,17 +11,31 @@ import { useWishlist } from '../../../queries/queries';
 import { formatOfferPeriod, formatOfferPrice } from '../../../utils/offerUtils';
 import { handleHeartClick } from '../../../utils/wishlistUtils';
 import { yachtSlug } from '../../../utils/url_utils';
+import { useTranslation } from 'next-i18next';
+import Head from 'next/head';
+import { stripHtmlTags } from '../../../utils/miscUtils';
 
 const OfferDetailPage = ({ yachtOffer }) => {
-  const { wishlist, mutateWishlist } = useWishlist();
   const [showEnquiryModal, setShowEnquiryModal] = useState(false);
+  const { wishlist, mutateWishlist } = useWishlist();
+  const { t } = useTranslation('common');
 
   if (!yachtOffer) {
     return <NotFound />;
   }
 
+  const yacht = yachtOffer.yacht;
+  const yacht_model = yacht.yacht_model;
+  const pageTitle = `${yacht_model.category_name} - ${yacht_model.name}`;
+
   return (
     <>
+      <Head>
+        <title>
+          {pageTitle} {t('seo_title')}
+        </title>
+        <meta name="description" content={stripHtmlTags(yacht.get_description)} />
+      </Head>
       <OfferDetail
         offer={yachtOffer}
         inWishlist={wishlist && Array.from(wishlist).includes(yachtOffer.yacht.id.toString())}

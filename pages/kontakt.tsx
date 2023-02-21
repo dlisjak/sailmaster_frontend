@@ -1,4 +1,3 @@
-import { Helmet } from 'react-helmet';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import nextI18nextConfig from '../next-i18next.config';
@@ -6,16 +5,17 @@ import nextI18nextConfig from '../next-i18next.config';
 import { LayoutQuickSearchSidebar } from '../components/BaseLayout';
 import ContactForm, { IdCard } from '../components/ContactForm';
 import { createContact } from '../lib/base';
+import Head from 'next/head';
 
 const Kontakt = (props) => {
   const { t } = useTranslation('common');
 
   return (
     <>
-      <Helmet>
+      <Head>
         <title>{t('contact_seo_title')}</title>
         <meta name="description" content={t('contact_seo_desc')} />
-      </Helmet>
+      </Head>
       <LayoutQuickSearchSidebar>
         <div className="page-inner">
           <h1>{t('contact_us')}</h1>
