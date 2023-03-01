@@ -37,7 +37,6 @@ const FeaturedYacht = ({ item }) => {
               alt={item.title}
               width={506}
               height={380}
-              style={{ objectFit: 'cover' }}
             />
           </div>
         )}
