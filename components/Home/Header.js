@@ -21,6 +21,7 @@ const Header = () => {
             alt="Najem plovil TheSailmaster.si"
             width={3840}
             height={2160}
+            quality={100}
             priority
           />
         </Background>

@@ -16,7 +16,7 @@ const Destination = ({ destination }) => {
   return (
     <Link className="w-full h-full" href={link}>
       <div className="destination2 w-full flex relative items-center justify-center">
-        <Image className="object-cover object-center w-full h-full" src={destination.image.thumbnail} width={253} height={200} alt={`Najem plovil ${destination.name}`} />
+        <Image className="object-cover object-center w-full h-full" src={destination.image.thumbnail} width={253} height={200} alt={`Najem plovil ${destination.name}`} quality={100} />
         <h3 className="absolute btn btn-lg btn-primary">
           {destination.name}
         </h3>

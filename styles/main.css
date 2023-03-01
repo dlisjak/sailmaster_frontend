@@ -16533,7 +16533,6 @@ table.season-items th {
 
 @media (min-width: 992px) {
   .offer-detail__buttons {
-    flex: 1 0 auto;
     text-align: right;
   }
 }

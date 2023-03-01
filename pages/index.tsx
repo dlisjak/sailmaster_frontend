@@ -55,7 +55,7 @@ const Index = ({ fallback, featuredYachts, destinations, testimonials, homeBlogs
             <div className="page-home__title flex">
               <h2>{t('featured_yachts')}</h2>
             </div>
-            <p className="mb-4 lg:mb-8">{t('featured_yachts_p')}</p>
+            {/* <p className="mb-4 lg:mb-8">{t('featured_yachts_p')}</p> */}
             <FeaturedYachts items={featuredYachts} />
           </div>
 
@@ -67,7 +67,7 @@ const Index = ({ fallback, featuredYachts, destinations, testimonials, homeBlogs
             <div className="page-home__title">
               <h2>{t('page_destinations_title')}</h2>
             </div>
-            <p className="mb-4 lg:mb-8">{t('page_destinations_p')}</p>
+            {/* <p className="mb-4 lg:mb-8">{t('page_destinations_p')}</p> */}
             <Destinations items={destinations} />
           </div>
 
