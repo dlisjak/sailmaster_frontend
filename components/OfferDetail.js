@@ -39,7 +39,7 @@ import ShareIcon from '../public/icons/deli.svg';
 import Check from '../public/icons/check.svg';
 import { INSURANCE_URL } from '../constants/urls';
 
-import ZAVAROVANJE_IMAGE from "../public/media/yacht-pool-Financial_System_2022.jpg"
+import ZAVAROVANJE_IMAGE from "../public/media/yacht-pool-Financial_System_2023-2.png"
 import Head from 'next/head';
 
 export const OfferImageGalery = ({ offer }) => {
