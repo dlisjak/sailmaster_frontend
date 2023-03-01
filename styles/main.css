@@ -12673,6 +12673,10 @@ body {
   margin: 0;
 }
 
+.featuredYacht__imageContainer img {
+  object-fit: cover;
+}
+
 .footer .footer-bottom .footer-bottom-text {
   padding: 20px 15px;
 }

@@ -31,8 +31,14 @@ const FeaturedYacht = ({ item }) => {
       </div>
       <div>
         {item.image && (
-          <div className="featuredYacht__imageContainer relative w-full flex overflow-hidden mb-1 aspect-[4/3]">
-            <Image src={item.image} alt={item.title} width={506} height={380} />
+          <div className="featuredYacht__imageContainer relative mb-1 flex aspect-[4/3] w-full overflow-hidden object-cover">
+            <Image
+              src={item.image}
+              alt={item.title}
+              width={506}
+              height={380}
+              style={{ objectFit: 'cover' }}
+            />
           </div>
         )}
         <div>
@@ -53,7 +59,7 @@ const FeaturedYachts = ({ items }) => {
           .filter((item) => !!item.offer_id)
           .map((item) => (
             <div
-              className="flex xl:w-1/4 pr-4 pl-4 md:w-1/3 pr-4 pl-4 sm:w-1/2 pr-4 pl-4"
+              className="flex pr-4 pr-4 pr-4 pl-4 pl-4 pl-4 sm:w-1/2 md:w-1/3 xl:w-1/4"
               key={item.yacht_id}
             >
               <FeaturedYacht item={item} />
