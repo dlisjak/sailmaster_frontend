@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
 const DestinationTeaser = ({ destination }) => (
-  <div className="destination-teaser">
+  <div className="destination-teaser mb-2">
     <div className="row">
       <div className="w-full pr-4 pl-4 sm:w-2/5">
         {destination?.image && (

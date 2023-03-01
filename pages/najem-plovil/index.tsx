@@ -130,7 +130,7 @@ const OffersPage = ({ yachtType, results, next, count, destination, loading, can
             setDisplayTotalPrice={setDisplayTotalPrice}
           />
           {loading && <Loader />}
-          <DestinationTeaser t={t} destination={destination} yachtType={yachtType} />
+          <DestinationTeaser destination={destination} />
           {!yachts.length && <NoResults />}
           {count && <p className="offers_num_result">{t('offers_num_result', { count })}</p>}
           {yachts.length > 0 && (
