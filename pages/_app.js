@@ -5,11 +5,11 @@ import nextI18NextConfig from '../next-i18next.config.js'
 import SSRProvider from 'react-bootstrap/SSRProvider';
 
 import Navigation from "../components/Navigation";
+import Footer from "../components/common/Footer";
 
 const InquiryModal = dynamic(() => import("../components/Inquiry"));
 const PromoModal = dynamic(() => import("../components/PromoModal"));
 const CookieLaw = dynamic(() => import("../components/common/CookieLaw"));
-const Footer = dynamic(() => import("../components/common/Footer"));
 const ScrollToTop = dynamic(() => import("react-scroll-to-top"));
 // import ScrollToTop from "react-scroll-to-top";
 
