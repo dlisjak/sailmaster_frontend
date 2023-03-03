@@ -40,9 +40,8 @@ import Check from '../public/icons/check.svg';
 import { INSURANCE_URL } from '../constants/urls';
 
 import ZAVAROVANJE_IMAGE from "../public/media/yacht-pool-Financial_System_2023-2.png"
-import Head from 'next/head';
 
-export const OfferImageGalery = ({ offer }) => {
+export const OfferImageGallery = ({ offer }) => {
   const items = offer.yacht.pictures.map((url, i) => {
     const alt = `${offer.yacht.yacht_model.category_name} ${offer.yacht.yacht_model.name} ${offer.location_from.region_name}, ${offer.location_from.country_name} ${i + 1}`;
 
@@ -416,7 +415,7 @@ const OfferDetail = ({
           )}
 
           <Section>
-            <OfferImageGalery offer={offer} />
+            <OfferImageGallery offer={offer} />
           </Section>
 
           <Section>
