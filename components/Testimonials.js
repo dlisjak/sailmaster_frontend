@@ -22,7 +22,7 @@ const Testimonials = ({ items }) => {
             const image = item.profile_photo_url || item.image.thumbnail;
             const country = item.country ? item.country.name : null;
             return (
-              <div className="md:w-1/4 pr-4 pl-4 sm:w-1/2 pr-4 pl-4 w-full"
+              <div className="md:w-1/4 pr-[15px] pl-[15px] sm:w-1/2 pr-[15px] pl-[15px] w-full"
                 key={`testimonial-${index}`}
               >
                 <Testimonial

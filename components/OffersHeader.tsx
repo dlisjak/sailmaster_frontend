@@ -20,6 +20,7 @@ const OffersHeader = ({ filterValues, onSetOrdering, displayTotalPrice, setDispl
     <div className="offer-navigation">
       <div className="offer-navigation__div">
         <Form.Control
+          className="custom-select"
           as="select"
           onChange={(e) => onSetOrdering(e.target.value)}
           value={filterValues.o}

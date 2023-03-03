@@ -48,10 +48,10 @@ const Index = ({ fallback, featuredYachts, destinations, testimonials, homeBlogs
 
         <Header />
 
-        <div className="container-xl container mx-auto px-4">
+        <div className="container-xl container mx-auto">
           {/* {specialOffers.data && <HomeSpecialOffers specialOffers={specialOffers.data.results} />} */}
 
-          <div className="page-home__block lg:py-4">
+          <div className="page-home__block">
             <div className="page-home__title flex">
               <h2>{t('featured_yachts')}</h2>
             </div>
@@ -59,11 +59,11 @@ const Index = ({ fallback, featuredYachts, destinations, testimonials, homeBlogs
             <FeaturedYachts items={featuredYachts} />
           </div>
 
-          <div className="page-home__block lg:py-4">
+          <div className="page-home__block">
             <HomeIcons />
           </div>
 
-          <div className="page-home__block lg:py-4">
+          <div className="page-home__block">
             <div className="page-home__title">
               <h2>{t('page_destinations_title')}</h2>
             </div>

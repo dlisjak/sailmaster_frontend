@@ -13,26 +13,26 @@ const IconsLine = () => {
     <div className="icons-line">
       <div className="container">
         <div className="row">
-          <div className="icon_with_text_home_1 md:w-1/4 pr-4 pl-4 sm:w-1/2 pr-4 pl-4 w-full">
+          <div className="icon_with_text_home_1 w-full pr-[15px] pr-[15px] pl-[15px] pl-[15px] sm:w-1/2 md:w-1/4">
             <IconWithText text={t('icon_with_text_home_1')}>
               <Verified />
             </IconWithText>
           </div>
-          <div className="icon_with_text_home_2 md:w-1/4 pr-4 pl-4 sm:w-1/2 pr-4 pl-4 w-full">
+          <div className="icon_with_text_home_2 w-full pr-[15px] pr-[15px] pl-[15px] pl-[15px] sm:w-1/2 md:w-1/4">
             <IconWithText text={t('icon_with_text_home_2')}>
               <RealTime />
             </IconWithText>
           </div>
-          <div className="icon_with_text_home_3 md:w-1/4 pr-4 pl-4 sm:w-1/2 pr-4 pl-4 w-full">
+          <div className="icon_with_text_home_3 w-full pr-[15px] pr-[15px] pl-[15px] pl-[15px] sm:w-1/2 md:w-1/4">
             <IconWithText text={t('icon_with_text_home_3')}>
-              <div className="w-14 h-14">
+              <div className="h-14 w-14">
                 <TrustedDestination />
               </div>
             </IconWithText>
           </div>
-          <div className="icon_with_text_home_4 md:w-1/4 pr-4 pl-4 sm:w-1/2 pr-4 pl-4 w-full">
+          <div className="icon_with_text_home_4 w-full pr-[15px] pr-[15px] pl-[15px] pl-[15px] sm:w-1/2 md:w-1/4">
             <IconWithText text={t('icon_with_text_home_4')}>
-              <div className="w-14 h-14">
+              <div className="h-14 w-14">
                 <TalkIcon />
               </div>
             </IconWithText>

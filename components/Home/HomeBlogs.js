@@ -17,7 +17,7 @@ const HomeBlogs = ({ items }) => {
           {items.map((item, index) => {
             return (
               <div
-                className="page-title sm:w-1/3 pr-4 pl-4 w-full"
+                className="page-title sm:w-1/3 pr-[15px] pl-[15px] w-full"
                 key={`blog-${index}-${item.slug}`}
               >
                 <HomeBlogItem

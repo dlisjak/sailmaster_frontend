@@ -10,6 +10,16 @@ h3 {
   text-align: left;
 }
 
+.display-initial {
+  display: initial !important;
+}
+
+.calendar-date-info {
+  top: -1.5rem;
+  position: relative;
+  padding-bottom: 0;
+}
+
 .daterangepicker__cover {
   width: calc(100% - 2rem);
 }
@@ -338,9 +348,19 @@ button {
   border-radius: 0;
 }
 
-button:focus {
-  outline: 1px dotted;
-  outline: 5px auto -webkit-focus-ring-color;
+@media screen and (min-width: 768px) {
+  .offer-teaser__left {
+    max-width: 41.66667%;
+  }
+  .offer-teaser__center {
+    max-width: 58.33333%;
+  }
+}
+
+.offer-teaser__properties .row {
+  margin-bottom: 10px !important;
+  margin-left: -5px !important;
+  margin-right: -5px !important;
 }
 
 button,
@@ -7129,7 +7149,7 @@ a.close.disabled {
   list-style: none;
 }
 
-.carousel-indicators li {
+.carousel-indicators button {
   box-sizing: content-box;
   flex: 0 1 auto;
   width: 30px;
@@ -7147,7 +7167,7 @@ a.close.disabled {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .carousel-indicators li {
+  .carousel-indicators button {
     transition: none;
   }
 }
@@ -8888,13 +8908,11 @@ button.bg-dark:hover {
   padding-right: 0.5rem !important;
 }
 
-.pb-2,
-.py-2 {
+.pb-2 {
   padding-bottom: 0.5rem !important;
 }
 
-.pl-2,
-.px-2 {
+.pl-2 {
   padding-left: 0.5rem !important;
 }
 
@@ -8902,23 +8920,19 @@ button.bg-dark:hover {
   padding: 1rem !important;
 }
 
-.pt-3,
-.py-3 {
+.pt-3 {
   padding-top: 1rem !important;
 }
 
-.pr-3,
-.px-3 {
+.pr-3 {
   padding-right: 1rem !important;
 }
 
-.pb-3,
-.py-3 {
+.pb-3 {
   padding-bottom: 1rem !important;
 }
 
-.pl-3,
-.px-3 {
+.pl-3 {
   padding-left: 1rem !important;
 }
 
@@ -8926,23 +8940,19 @@ button.bg-dark:hover {
   padding: 3rem !important;
 }
 
-.pt-5,
-.py-5 {
+.pt-5 {
   padding-top: 3rem !important;
 }
 
-.pr-5,
-.px-5 {
+.pr-5{
   padding-right: 3rem !important;
 }
 
-.pb-5,
-.py-5 {
+.pb-5 {
   padding-bottom: 3rem !important;
 }
 
-.pl-5,
-.px-5 {
+.pl-5 {
   padding-left: 3rem !important;
 }
 
@@ -12663,6 +12673,13 @@ body {
    
   float: left;
   width: 100%;
+}
+
+ul {
+  list-style-type: disc;
+}
+ol, .carousel-indicators {
+  margin-bottom: 1rem;
 }
 
 .footer .footer-bottom {
@@ -17771,7 +17788,6 @@ table.season-items th {
 .flag {
   width: 25px;
   border-radius: 2px;
-  margin-top: -3px;
   margin-right: 5px;
 }
 

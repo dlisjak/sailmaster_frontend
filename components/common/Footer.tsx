@@ -1,213 +1,171 @@
 import { useTranslation } from 'next-i18next';
-import Link from "next/link";
-import { FacebookIcon } from "react-share";
+import Link from 'next/link';
+import { FacebookIcon } from 'react-share';
 
-import Navtika from "../icons/Navtika";
-import Vzajemna from "../icons/VZ_LOGO_sekundarni_RGB.svg";
-import Nausys from "../icons/Nausys";
-import SailmasterSiLe from "../icons/SailmasterSiLe";
-import SailmasterItLe from "../icons/SailmasterItLe";
+import Navtika from '../icons/Navtika';
+import Vzajemna from '../icons/VZ_LOGO_sekundarni_RGB.svg';
+import Nausys from '../icons/Nausys';
+import SailmasterSiLe from '../icons/SailmasterSiLe';
+import SailmasterItLe from '../icons/SailmasterItLe';
 
 const Footer = ({ lang }) => {
-  const { t } = useTranslation("common");
+  const { t } = useTranslation('common');
 
-  let logo = "";
+  let logo = <></>;
 
-  if (lang === "it") {
+  if (lang === 'it') {
     logo = <SailmasterItLe />;
-  } else if (lang === "si") logo = <SailmasterSiLe />;
+  } else if (lang === 'si') logo = <SailmasterSiLe />;
 
   return (
     <div className="footer">
       <div className="container">
         <div className="footer-upper row">
-          <div className="footer-upper-col md:w-1/4 pr-4 pl-4 sm:w-1/2 pr-4 pl-4 w-full">
-            <h3>{t("why_us")}</h3>
+          <div className="footer-upper-col w-full pr-[15px] pr-[15px] pl-[15px] pl-[15px] sm:w-1/2 md:w-1/4">
+            <h3>{t('why_us')}</h3>
             <ul className="check">
               <li
                 onClick={() => {
                   window.scrollTo(0, 0);
                 }}
               >
-                <Link href={t("why_us_route") + "?selected=1"}>
-                  {t("why_us_footer_1")}
-                </Link>
+                <Link href={t('why_us_route') + '?selected=1'}>{t('why_us_footer_1')}</Link>
               </li>
               <li
                 onClick={() => {
                   window.scrollTo(0, 0);
                 }}
               >
-                <Link href={t("why_us_route") + "?selected=2"}>
-                  {t("why_us_footer_2")}
-                </Link>
+                <Link href={t('why_us_route') + '?selected=2'}>{t('why_us_footer_2')}</Link>
               </li>
               <li
                 onClick={() => {
                   window.scrollTo(0, 0);
                 }}
               >
-                <Link href={t("why_us_route") + "?selected=3"}>
-                  {t("why_us_footer_3")}
-                </Link>
+                <Link href={t('why_us_route') + '?selected=3'}>{t('why_us_footer_3')}</Link>
               </li>
               <li
                 onClick={() => {
                   window.scrollTo(0, 0);
                 }}
               >
-                <Link href={t("why_us_route") + "?selected=4"}>
-                  {t("why_us_footer_4")}
-                </Link>
+                <Link href={t('why_us_route') + '?selected=4'}>{t('why_us_footer_4')}</Link>
               </li>
               <li
                 onClick={() => {
                   window.scrollTo(0, 0);
                 }}
               >
-                <Link href={t("why_us_route") + "?selected=5"}>
-                  {t("why_us_footer_5")}
-                </Link>
+                <Link href={t('why_us_route') + '?selected=5'}>{t('why_us_footer_5')}</Link>
               </li>
             </ul>
           </div>
-          <div className="footer-upper-col md:w-1/4 pr-4 pl-4 sm:w-1/2 pr-4 pl-4 w-full">
-            <h3>{t("footer_informations")}</h3>
+          <div className="footer-upper-col w-full pr-[15px] pr-[15px] pl-[15px] pl-[15px] sm:w-1/2 md:w-1/4">
+            <h3>{t('footer_informations')}</h3>
             <ul className="squares">
               <li
                 onClick={() => {
                   window.scrollTo(0, 0);
                 }}
               >
-                <Link href={t("reservations_steps_route")}>
-                  {t("informations_1")}
-                </Link>
+                <Link href={t('reservations_steps_route')}>{t('informations_1')}</Link>
               </li>
               <li
                 onClick={() => {
                   window.scrollTo(0, 0);
                 }}
               >
-                <Link href={t("payment_type_route")}>
-                  {t("informations_2")}
-                </Link>
+                <Link href={t('payment_type_route')}>{t('informations_2')}</Link>
               </li>
               <li
                 onClick={() => {
                   window.scrollTo(0, 0);
                 }}
               >
-                <Link href={t("terms_route")}>
-                  {t("informations_3")}
-                </Link>
+                <Link href={t('terms_route')}>{t('informations_3')}</Link>
               </li>
               <li
                 onClick={() => {
                   window.scrollTo(0, 0);
                 }}
               >
-                <Link href={t("data_privacy_route")}>
-                  {t("informations_4")}
-                </Link>
+                <Link href={t('data_privacy_route')}>{t('informations_4')}</Link>
               </li>
               <li
                 onClick={() => {
                   window.scrollTo(0, 0);
                 }}
               >
-                <Link href={t("faq_route")}>
-                  {t("informations_5")}
-                </Link>
+                <Link href={t('faq_route')}>{t('informations_5')}</Link>
               </li>
               <li
                 onClick={() => {
                   window.scrollTo(0, 0);
                 }}
               >
-                <Link href={t("partners_route")}>
-                  {t("for_partners")}
-                </Link>
+                <Link href={t('partners_route')}>{t('for_partners')}</Link>
               </li>
               <li
                 onClick={() => {
                   window.scrollTo(0, 0);
                 }}
               >
-                <Link href={t("insurance_route")}>
-                  {t("insurance")}
-                </Link>
+                <Link href={t('insurance_route')}>{t('insurance')}</Link>
               </li>
             </ul>
           </div>
-          <div className="footer-upper-col md:w-1/4 pr-4 pl-4 sm:w-1/2 pr-4 pl-4 w-full">
-            <h3>{t("footer_sailmaster")}</h3>
+          <div className="footer-upper-col w-full pr-[15px] pr-[15px] pl-[15px] pl-[15px] sm:w-1/2 md:w-1/4">
+            <h3>{t('footer_sailmaster')}</h3>
             <ul className="squares">
               <li
                 onClick={() => {
                   window.scrollTo(0, 0);
                 }}
               >
-                <Link href={t("why_charter_route")}>
-                  {t("why_charter")}
-                </Link>
+                <Link href={t('why_charter_route')}>{t('why_charter')}</Link>
               </li>
               <li
                 onClick={() => {
                   window.scrollTo(0, 0);
                 }}
               >
-                <Link href={t("abous_us_route")}>
-                  {t("abous_us")}
-                </Link>
+                <Link href={t('abous_us_route')}>{t('abous_us')}</Link>
               </li>
               <li
                 onClick={() => {
                   window.scrollTo(0, 0);
                 }}
               >
-                <Link href={t("blog_route")}>
-                  {t("blog").toUpperCase()}
-                </Link>
+                <Link href={t('blog_route')}>{t('blog').toUpperCase()}</Link>
               </li>
             </ul>
           </div>
-          <div className="footer-upper-col md:w-1/4 pr-4 pl-4 sm:w-1/2 pr-4 pl-4 w-full">
-            <h3>{t("contact")}</h3>
+          <div className="footer-upper-col w-full pr-[15px] pr-[15px] pl-[15px] pl-[15px] sm:w-1/2 md:w-1/4">
+            <h3>{t('contact')}</h3>
             <p>
-              {t("company_name")} <br />
-              {t("company_address")}, {t("company_zip")}
+              {t('company_name')} <br />
+              {t('company_address')}, {t('company_zip')}
             </p>
             <p>
-              {t("phone386")} <br />
-              {t("mobile_phone386")} <br />
-              {t("mail")}
+              {t('phone386')} <br />
+              {t('mobile_phone386')} <br />
+              {t('mail')}
             </p>
           </div>
           <div className="footer-border w-full" />
         </div>
         <div className="footer-upper footer-middle row">
-          <div className="footer-upper-col md:w-1/2 pr-4 pl-4 sm:w-full pr-4 pl-4 w-full">
-            <h3>{t("partners")}</h3>
+          <div className="footer-upper-col w-full pr-[15px] pr-[15px] pl-[15px] pl-[15px] sm:w-full md:w-1/2">
+            <h3>{t('partners')}</h3>
             <div className="p-logos">
-              <a
-                href="https://www.vzajemna.si/"
-                rel="noopener noreferrer"
-                target="_blank"
-              >
+              <a href="https://www.vzajemna.si/" rel="noopener noreferrer" target="_blank">
                 <Vzajemna />
               </a>
-              <a
-                href="http://enavtika.si/"
-                rel="noopener noreferrer"
-                target="_blank"
-              >
+              <a href="http://enavtika.si/" rel="noopener noreferrer" target="_blank">
                 <Navtika />
               </a>
-              <a
-                href="http://www.yacht-pool.com/"
-                rel="noopener noreferrer"
-                target="_blank"
-              >
+              <a href="http://www.yacht-pool.com/" rel="noopener noreferrer" target="_blank">
                 <img
                   alt="YachtPool"
                   className="YachtPool-icon"
@@ -217,8 +175,8 @@ const Footer = ({ lang }) => {
               </a>
             </div>
           </div>
-          <div className="footer-upper-col md:w-1/4 pr-4 pl-4 sm:w-full pr-4 pl-4 w-full">
-            <h3>{t("follow_us")}</h3>
+          <div className="footer-upper-col w-full pr-[15px] pr-[15px] pl-[15px] pl-[15px] sm:w-full md:w-1/4">
+            <h3>{t('follow_us')}</h3>
             <div className="social">
               <a
                 href="https://www.facebook.com/TheSailmaster/"
@@ -263,7 +221,7 @@ const Footer = ({ lang }) => {
               </a>
             </div>
           </div>
-          <div className="footer-upper-col md:w-1/4 pr-4 pl-4 sm:w-full pr-4 pl-4 w-full">
+          <div className="footer-upper-col w-full pr-[15px] pr-[15px] pl-[15px] pl-[15px] sm:w-full md:w-1/4">
             {logo}
             <Nausys />
           </div>
@@ -272,9 +230,7 @@ const Footer = ({ lang }) => {
       <div className="footer-bottom">
         <div className="container">
           <div className="row">
-            <div className="footer-bottom-text w-full">
-              {t("footer_bottom_text")}
-            </div>
+            <div className="footer-bottom-text w-full">{t('footer_bottom_text')}</div>
           </div>
         </div>
       </div>

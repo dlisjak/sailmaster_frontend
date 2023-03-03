@@ -33,7 +33,7 @@ const Destinations = ({ items }) => {
       <ul className="row">
         {(destinations || items).results.map((destination) => (
           <li
-            className="col--destinations2 w-full lg:w-1/4 pr-4 pl-4 md:w-1/3 pr-4 pl-4 sm:w-1/2 pr-4 pl-4"
+            className="col--destinations2 w-full lg:w-1/4 pr-[15px] pl-[15px] md:w-1/3 pr-[15px] pl-[15px] sm:w-1/2 pr-[15px] pl-[15px]"
             key={destination.id}
           >
             <Destination destination={destination} />

@@ -77,13 +77,13 @@ const OfferTeaser = ({
     <>
       <Container fluid className={wrapperClass} style={wrapperStyle}>
         <div className="row">
-          <div className="w-full md:w-2/3 pr-4 pl-4">
+          <div className="w-full md:w-2/3 pr-[15px] pl-[15px]">
             <h3>
               <Link href={link}>{offer.yacht.yacht_model.name}</Link>
             </h3>
 
             <div className="row">
-              <div className="offer-teaser__left w-full md:w-2/5 pr-4 pl-4">
+              <div className="offer-teaser__left w-full pr-[15px] pl-[15px]">
                 <div className="offer-teaser__location">
                   <Location location={offer.location_from} onLocationClick={() => setShowMap(!showMap)} />
                 </div>
@@ -100,7 +100,7 @@ const OfferTeaser = ({
                 </Button>
               </div>
 
-              <div className="offer-teaser__center w-full md:w-3/5 pr-4 pl-4">
+              <div className="offer-teaser__center w-full md:w-3/5 pr-[15px] pl-[15px]">
                 <div className="offer-carousel">
                   {offer.label && <OfferLabel label={offer.label} />}
                   <div
@@ -115,7 +115,7 @@ const OfferTeaser = ({
               </div>
             </div>
           </div>
-          <div className="offer-teaser__right w-full md:w-1/3 pr-4 pl-4">
+          <div className="offer-teaser__right w-full md:w-1/3 pr-[15px] pl-[15px]">
             <PriceBlock
               className="price-block--box price-block--hover"
               offer={offer}
@@ -134,7 +134,7 @@ const OfferTeaser = ({
         </div>
         {specialOffer && (
           <div className="row">
-            <div className="w-full px-4">
+            <div className="w-full px-[15px]">
               <SpecialOffer specialOffer={specialOffer} />
             </div>
           </div>

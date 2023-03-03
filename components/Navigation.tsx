@@ -40,13 +40,7 @@ const LANGUAGES = {
 const Lang = ({ lang }) => {
   return (
     <div className="flex">
-      <Image
-        src={`/media/langs/${lang.key}.svg`}
-        className="flag"
-        alt={lang.key}
-        width={24}
-        height={12}
-      />
+      <img src={`/media/langs/${lang.key}.svg`} className="flag" alt={lang.key} />
       <span>{lang.show}</span>
     </div>
   );

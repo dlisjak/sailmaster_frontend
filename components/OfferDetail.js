@@ -50,12 +50,12 @@ export const OfferImageGalery = ({ offer }) => {
       thumbnail: url,
       renderItem: () => (
         <div className='relative'>
-          <Image src={url} alt={alt} width={825} height={550} priority={i === 0} quality={80} />
+          <img src={url} alt={alt} />
         </div>
       ),
       renderThumbInner: () => (
         <div className='relative min-h-[69px]'>
-          <Image src={url} alt={`${alt} thumbnail`} width={150} height={100} quality={20} />
+          <img src={url} alt={`${alt} thumbnail`} width={150} height={100} />
         </div>
       )
     })
@@ -74,14 +74,14 @@ const Equipment = ({ category, items }) => {
   const size = Math.ceil(items.length / 2);
   return (
     <div className="row flex equipment">
-      <div className='w-full sm:w-1/3 pr-4 pl-4'>
+      <div className='w-full sm:w-1/3 pr-[15px] pl-[15px]'>
         <div className="equipment__category">{category}</div>
       </div>
       {chunk(items, size).map((colItems, colIndex) => (
-        <div className='w-full sm:w-1/3 pr-4 pl-4' key={colIndex}>
+        <div className='w-full sm:w-1/3 pr-[15px] pl-[15px]' key={colIndex}>
           {colItems.map((item, index) => (
-            <div key={index} className="equipment__item flex items-center">
-              <Check className="equipment__item-check" />
+            <div key={index} className="equipment__item">
+              <Check className="equipment__item-check display-initial" />
               {item.name}
             </div>
           ))}
@@ -156,10 +156,10 @@ const AdditionalEquipment = ({ items }) => {
 const Attribute = ({ label, value, icon = null, comment = null }) => {
   return (
     <div className="attribute">
-      <div className="attribute__label flex">
+      <div className="attribute__label">
         {icon && (
           <Image
-            className="mr-2"
+            className="mr-[10px] display-initial"
             src={`/images/attributes/${icon}`}
             width={24}
             height={24}
@@ -250,10 +250,10 @@ const BaseAttributes = ({ yacht }) => {
     <div className="base-attributes">
       {zip(col1, col2).map((row, index) => (
         <div className="row" key={index}>
-          <div className='w-full sm:w-1/2 pr-4 pl-4'>
+          <div className='w-full sm:w-1/2 pr-[15px] pl-[15px]'>
             <Attribute label={row[0].label} value={row[0].value} icon={row[0].icon} />
           </div>
-          <div className='w-full sm:w-1/2 pr-4 pl-4'>
+          <div className='w-full sm:w-1/2 pr-[15px] pl-[15px]'>
             <Attribute label={row[1].label} value={row[1].value} icon={row[1].icon} />
           </div>
         </div>
@@ -269,13 +269,13 @@ const OfferSelectedPeriod = ({ offer, onEnquiry }) => {
     <div className="offer-selected-period max-h-[500px]">
       <Container>
         <div className="row offer-selected-period__header">
-          <div className="w-full sm:w-1/2 pr-4 pl-4 offer-selected-period__period">
+          <div className="w-full sm:w-1/2 pr-[15px] pl-[15px] offer-selected-period__period">
             <div className="offer-selected-period__label">
               {t('offer-selected-period__period-from')}
             </div>
             <div className="offer-selected-period__date">{formatDateLong(offer.period_from)}</div>
           </div>
-          <div className="w-full sm:w-1/2 pr-4 pl-4 offer-selected-period__period">
+          <div className="w-full sm:w-1/2 pr-[15px] pl-[15px] offer-selected-period__period">
             <div className="offer-selected-period__label">
               {t('offer-selected-period__period-to')}
             </div>
@@ -292,7 +292,7 @@ const OfferSelectedPeriod = ({ offer, onEnquiry }) => {
         />
       </div>
       <div className="row offer-selected-period__main">
-        <div className="w-full sm:w-1/2 pr-4 pl-4 offer-selected-period__info">
+        <div className="w-full sm:w-1/2 pr-[15px] pl-[15px] offer-selected-period__info">
           <div className="offer-selected-period__info-name">
             {offer.yacht.yacht_model.category_name} - {offer.yacht.yacht_model.name}
           </div>
@@ -303,7 +303,7 @@ const OfferSelectedPeriod = ({ offer, onEnquiry }) => {
             })}
           </div>
         </div>
-        <div className="w-full sm:w-1/2 pr-4 pl-4 offer-selected-period__inquiry">
+        <div className="w-full sm:w-1/2 pr-[15px] pl-[15px] offer-selected-period__inquiry">
           <Button size="lg" className="btn--inquiry" variant="secondary" onClick={onEnquiry}>
             {t('offer-selected-period__inquiry')}
           </Button>
@@ -380,22 +380,22 @@ const OfferDetail = ({
         <>
           <div className="offer-detail__header">
             <h1>{pageTitle}</h1>
-            <div className="offer-detail__header-line">
+            <div className="flex offer-detail__header-line justify-between">
               <Location
                 location={offer.location_from}
                 onLocationClick={() => setShowMap(!showMap)}
               />
-              <div className="offer-detail__buttons flex flex-wrap">
-                <Link className="btn btn-info flex items-center" href={emailLink}>
+              <div className="offer-detail__buttons flex">
+                <Link className="btn btn-info flex items-end nowrap whitespace-nowrap" href={emailLink}>
                   <ShareIcon />
                   {t('offer_share_email')}
                 </Link>
-                <button className="btn btn-info flex items-center" role="button" onClick={() => handleHeartClick(offer.yacht.id)}>
+                <button className="btn btn-info flex items-end nowrap whitespace-nowrap" role="button" onClick={() => handleHeartClick(offer.yacht.id)}>
                   <Heart />
                   {inWishlist ? t('wishlist_remove') : t('wishlist_add')}
                 </button>
                 <button
-                  className="btn btn-info flex items-center"
+                  className="btn btn-info flex items-end nowrap whitespace-nowrap"
                   role="button"
                   onClick={() => setShowMap(!showMap)}
                 >

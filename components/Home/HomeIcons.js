@@ -7,7 +7,7 @@ import HomeIcon from "./HomeIcon";
 export default function HomeIcons() {
   return (
     <div className="row">
-      <div className="home-icon-wrapper sm:w-1/4 pr-4 pl-4 w-full">
+      <div className="home-icon-wrapper sm:w-1/4 pr-[15px] pl-[15px] w-full">
         <HomeIcon
           title="home_icon_1_title"
           link="home_icon_1_link"
@@ -16,7 +16,7 @@ export default function HomeIcons() {
           <HandLens />
         </HomeIcon>
       </div>
-      <div className="home-icon-wrapper sm:w-1/4 pr-4 pl-4 w-full">
+      <div className="home-icon-wrapper sm:w-1/4 pr-[15px] pl-[15px] w-full">
         <HomeIcon
           title="home_icon_2_title"
           link="home_icon_2_link"
@@ -25,7 +25,7 @@ export default function HomeIcons() {
           <Calendar />
         </HomeIcon>
       </div>
-      <div className="home-icon-wrapper sm:w-1/4 pr-4 pl-4 w-full">
+      <div className="home-icon-wrapper sm:w-1/4 pr-[15px] pl-[15px] w-full">
         <HomeIcon
           title="home_icon_3_title"
           link="home_icon_3_link"
@@ -34,7 +34,7 @@ export default function HomeIcons() {
           <Reservation />
         </HomeIcon>
       </div>
-      <div className="home-icon-wrapper sm:w-1/4 pr-4 pl-4 w-full">
+      <div className="home-icon-wrapper sm:w-1/4 pr-[15px] pl-[15px] w-full">
         <HomeIcon
           title="home_icon_4_title"
           link="home_icon_4_link"
