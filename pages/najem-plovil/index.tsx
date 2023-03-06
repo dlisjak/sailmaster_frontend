@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import InfiniteScroll from 'react-infinite-scroller';
 import { useTranslation } from 'next-i18next';
@@ -52,13 +52,21 @@ const OffersPage = ({ results, fallback, canonicalUrl }) => {
   const [filterValues, setFilterValues] = useState({});
   const { wishlist, mutateWishlist } = useWishlist();
 
+  const { data, isLoading } = useSearch(search);
   const [yachts, setYachts] = useState([]);
   const [loadNext, setLoadNext] = useState(null);
-  const { data, isLoading } = useSearch(search);
+  const [destination, setDestination] = useState(null);
 
   useEffect(() => {
     setFilterValues(getValuesFromUrl(window.location.search));
     setYachts([]);
+    setDestination((prev) => {
+      if (data?.destination) {
+        if (prev?.id !== data?.destination?.id) {
+          return data?.destination;
+        }
+      }
+    });
     setLoadNext(data?.next);
   }, [data]);
 
@@ -167,7 +175,7 @@ const OffersPage = ({ results, fallback, canonicalUrl }) => {
           )}
           {isLoading && <Loader />}
 
-          <DestinationTeaser destination={data?.destination} />
+          <DestinationTeaser destination={destination} />
           {!isLoading && !data?.count && <NoResults />}
           {data?.count && (
             <p className="offers_num_result">{t('offers_num_result', { count: data?.count })}</p>
