@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Carousel from 'react-bootstrap/Carousel';
 import YouTube from 'react-youtube';
 
@@ -16,14 +15,10 @@ export default function Gallery({ yacht, priority = false }) {
         return (
           <Carousel.Item key={`${image}-${i}`}>
             <div className="featuredYacht__imageContainer relative mb-1 flex aspect-[16/9] h-full w-full overflow-hidden md:aspect-[4/3]">
-              <Image
+              <img
                 className="carousel-offer-item object-cover"
                 src={image}
                 alt={`${yacht.yacht_model.name} ${yacht.yacht_model.category_name}`}
-                width={480}
-                height={325}
-                priority={priority}
-                quality={90}
               />
             </div>
           </Carousel.Item>

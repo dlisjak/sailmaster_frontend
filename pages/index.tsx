@@ -19,7 +19,6 @@ import {
   getYachtTypes,
 } from '../queries/getters.js';
 import { subscribeNewsletter } from '../lib/base';
-import nextI18nextConfig from '../next-i18next.config.js';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations.js';
 
 const Index = ({ fallback, featuredYachts, destinations, testimonials, homeBlogs }) => {

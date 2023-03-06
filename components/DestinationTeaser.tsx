@@ -1,7 +1,6 @@
 import Image from 'next/image';
 
 const DestinationTeaser = ({ destination }) => {
-  if (!destination) return;
   return (
     <div className="destination-teaser mb-2">
       <div className="row">

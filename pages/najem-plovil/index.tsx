@@ -4,7 +4,7 @@ import InfiniteScroll from 'react-infinite-scroller';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
-import useSWR, { SWRConfig } from 'swr';
+import { SWRConfig } from 'swr';
 
 import SidebarTestimonials from '../../components/SidebarTestimonials';
 import DestinationTeaser from '../../components/DestinationTeaser';
