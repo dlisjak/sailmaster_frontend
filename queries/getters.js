@@ -1,5 +1,4 @@
 import axios from "axios";
-import qs from "qs"
 
 import { postData } from "../lib/base";
 
@@ -154,10 +153,23 @@ export const getWishlist = async (wishlistIds) => {
 }
 
 export const getSearchResults = async (search) => {
+  const url = `${process.env.NEXT_PUBLIC_API_ROUTES_URL}${search}`;
+
+  return await axios.get(url);
+};
+
+export const getSearchResultsFromApi = async (search) => {
   const idx = search?.indexOf("?");
   const query = search?.substring(idx);
 
-  const url = process.env.NEXT_PUBLIC_API_URL + `/search/${idx > 0 ? query : ""}`;
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/search/${idx > 0 ? query : ""}`;
 
-  return await axios.get(url);
+  let data;
+  if (idx > 0) {
+    data = await axios.get(url);
+  } else {
+    data = await axios.get(url);
+  }
+
+  return data;
 };

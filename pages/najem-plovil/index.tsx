@@ -4,6 +4,8 @@ import InfiniteScroll from 'react-infinite-scroller';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
+import fs from 'fs';
+import path from 'path';
 
 import SidebarTestimonials from '../../components/SidebarTestimonials';
 import DestinationTeaser from '../../components/DestinationTeaser';
@@ -20,10 +22,12 @@ import { formatOfferPeriod, formatOfferPrice } from '../../utils/offerUtils';
 import { getValuesFromUrl, valuesToSearch } from '../../utils/search_utils';
 import { handleHeartClick } from '../../utils/wishlistUtils';
 import nextI18nextConfig from '../../next-i18next.config';
-import { getSearchResults } from '../../queries/getters';
+import { getSearchResults, getSearchResultsFromApi } from '../../queries/getters';
 import { createOfferInquiry } from '../../lib/base';
 import { useWishlist } from '../../queries/queries';
 import { OFFERS_URL } from '../../constants/urls';
+import fetch from 'node-fetch';
+import axios from 'axios';
 
 const NoResults = () => {
   const { t } = useTranslation('common');
@@ -144,6 +148,7 @@ const OffersPage = ({ yachtType, results, next, count, destination, loading, can
               {yachts?.map((offer, index) => {
                 return (
                   <OfferTeaser
+                    priority={index < 2}
                     displayTotalPrice={displayTotalPrice}
                     key={offer.id}
                     offer={offer}
@@ -182,16 +187,13 @@ const OffersPage = ({ yachtType, results, next, count, destination, loading, can
 };
 
 export const getServerSideProps = async (ctx) => {
-  const search = ctx.req.url;
-  const { data } = await getSearchResults(search);
-  const { destinations, yacht__yacht_model__category__yachtdisplaycategory } = ctx.query;
-  const destination = data?.destination || null;
   const translations = await serverSideTranslations(
-    ctx.locale,
+    ctx.locale ?? 'si',
     ['najemplovil', 'common'],
     nextI18nextConfig
   );
-
+  const search = ctx.req.url;
+  const { destinations, yacht__yacht_model__category__yachtdisplaycategory } = ctx.query;
   const yachtTypes = [
     { id: 1, value: 'Jadrnice' },
     { id: 2, value: 'Katamarana' },
@@ -204,6 +206,54 @@ export const getServerSideProps = async (ctx) => {
     { id: 4, value: 'Jet ski' },
     { id: 7, value: 'Trimarana' },
   ];
+
+  if (fs.existsSync(path.resolve(path.join(process.cwd(), `/public${search}.json`)))) {
+    const dataFromFile = fs.readFileSync(
+      path.resolve(path.join(process.cwd(), `/public${search}.json`)),
+      'utf8'
+    );
+
+    if (dataFromFile) {
+      console.log('dataFromFile');
+      const data = JSON.parse(dataFromFile);
+      const yachtType = yachtTypes.find(
+        (type) => type.id == yacht__yacht_model__category__yachtdisplaycategory
+      );
+      const destination = data?.destination || null;
+
+      const canonicalUrl =
+        destination && !yachtType?.id
+          ? `/najem-plovil?destinations=${destinations}`
+          : !destination && yachtType?.id
+          ? `/najem-plovil?yacht__yacht_model__category__yachtdisplaycategory=${yachtType?.id}`
+          : destination && yachtType?.id
+          ? `/najem-plovil?destinations=${destinations}&yacht__yacht_model__category__yachtdisplaycategory=${yachtType?.id}`
+          : '/najem-plovil';
+
+      return {
+        props: {
+          destination: data?.destination || null,
+          yachtType: yachtType?.value || null,
+          results: data?.results || [],
+          count: data?.count || null,
+          next: data?.next || null,
+          canonicalUrl: process.env.NEXT_PUBLIC_DOMAIN_URL + canonicalUrl,
+          ...translations,
+        },
+      };
+    }
+  }
+
+  const { data } = await getSearchResultsFromApi(search);
+
+  if (!fs.existsSync(path.resolve(path.join(process.cwd(), `/public${search}.json`)))) {
+    fs.writeFileSync(
+      path.resolve(path.join(process.cwd(), `/public${search}.json`)),
+      JSON.stringify(data)
+    );
+  }
+
+  const destination = data?.destination || null;
 
   const yachtType = yachtTypes.find(
     (type) => type.id == yacht__yacht_model__category__yachtdisplaycategory
@@ -222,7 +272,7 @@ export const getServerSideProps = async (ctx) => {
     props: {
       destination,
       yachtType: yachtType?.value || null,
-      results: data?.results,
+      results: data?.results || [],
       count: data?.count || null,
       next: data?.next || null,
       canonicalUrl: process.env.NEXT_PUBLIC_DOMAIN_URL + canonicalUrl,

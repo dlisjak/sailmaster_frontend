@@ -1,0 +1,8 @@
+{
+  "rental_meta_title": "Najem {{ yachtType }} {{ destination }} | TheSailmaster.si",
+  "rental_meta_description": "Iskanje plovila za najem je lahko enostavno in učinkovito. Oglejte si naš izbor plovil in najdite svoje sanjsko plovilo že danes!",
+  "offers_num_result": "Št. rezultatov: {{ count }}",
+  "rental_title": "Najem {{ yachtType }} {{ destination }}",
+  "rental_subtitle": "V naši floti imamo široko paleto plovil, od manjših jaht do večjih plovil za skupinsko jadranje. Vse naše jahte so opremljene z vrhunskimi napravami in opremo, kar zagotavlja varnost in udobje med plovbo.",
+  "destination_teaser": "S kristalno čistim morjem, osupljivo obalo in očarljivimi pristanišči ponuja Jadran edinstveno mešanico naravnih lepot in kulturne dediščine. Ne glede na to, ali iščete sprostitev, pustolovščino ali oboje, vam čarter plovila v Jadranu obljublja nepozabne počitnice. Od živahnih hrvaških mest do mirnih črnogorskih otokov - Jadran ponuja nekaj za vsakogar."
+}

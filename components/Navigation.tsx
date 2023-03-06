@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -50,9 +50,10 @@ export const Navigation = ({ setShowInquiry }) => {
   const router = useRouter();
   const [expanded, setExpanded] = useState(false);
   const { wishlist } = useWishlist();
+  const route = router.route;
 
   const { i18n, t } = useTranslation('common');
-  const language = i18n.language;
+  const language = i18n.language || 'si';
 
   const links = [
     {
@@ -75,6 +76,10 @@ export const Navigation = ({ setShowInquiry }) => {
       <QuickContact />
     </Popover>
   );
+
+  useEffect(() => {
+    setExpanded(false);
+  }, [route]);
 
   return (
     <Navbar variant="light" fixed="top" expand="lg" className="navbar--navbar2" expanded={expanded}>
