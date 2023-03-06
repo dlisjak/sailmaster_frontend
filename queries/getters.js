@@ -153,23 +153,16 @@ export const getWishlist = async (wishlistIds) => {
 }
 
 export const getSearchResults = async (search) => {
-  const url = `${process.env.NEXT_PUBLIC_API_ROUTES_URL}${search}`;
+  const url = search;
 
   return await axios.get(url);
 };
 
-export const getSearchResultsFromApi = async (search) => {
+export const getSearchResultsFromApi = async (search = "") => {
   const idx = search?.indexOf("?");
   const query = search?.substring(idx);
 
   const url = `${process.env.NEXT_PUBLIC_API_URL}/search/${idx > 0 ? query : ""}`;
 
-  let data;
-  if (idx > 0) {
-    data = await axios.get(url);
-  } else {
-    data = await axios.get(url);
-  }
-
-  return data;
+  return await axios.get(url);
 };

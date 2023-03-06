@@ -4,8 +4,7 @@ import InfiniteScroll from 'react-infinite-scroller';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
-import fs from 'fs';
-import path from 'path';
+import useSWR, { SWRConfig } from 'swr';
 
 import SidebarTestimonials from '../../components/SidebarTestimonials';
 import DestinationTeaser from '../../components/DestinationTeaser';
@@ -24,10 +23,8 @@ import { handleHeartClick } from '../../utils/wishlistUtils';
 import nextI18nextConfig from '../../next-i18next.config';
 import { getSearchResults, getSearchResultsFromApi } from '../../queries/getters';
 import { createOfferInquiry } from '../../lib/base';
-import { useWishlist } from '../../queries/queries';
+import { useSearch, useWishlist } from '../../queries/queries';
 import { OFFERS_URL } from '../../constants/urls';
-import fetch from 'node-fetch';
-import axios from 'axios';
 
 const NoResults = () => {
   const { t } = useTranslation('common');
@@ -39,9 +36,15 @@ const NoResults = () => {
   );
 };
 
-const OffersPage = ({ yachtType, results, next, count, destination, loading, canonicalUrl }) => {
+const Page = (index) => {
+  return <></>;
+};
+
+const OffersPage = ({ fallback, canonicalUrl }) => {
   const { t } = useTranslation('najemplovil');
   const router = useRouter();
+  const search = router.asPath;
+
   const [showEnquiryModal, setShowEnquiryModal] = useState(false);
   const [enquiryProps, setEnquiryProps] = useState({
     offerId: null,
@@ -51,36 +54,39 @@ const OffersPage = ({ yachtType, results, next, count, destination, loading, can
   });
   const [displayTotalPrice, setDisplayTotalPrice] = useState(true);
   const [filterValues, setFilterValues] = useState({});
-  const [yachts, setYachts] = useState(results);
-  const [loadNext, setLoadNext] = useState(next);
   const { wishlist, mutateWishlist } = useWishlist();
+
+  const { data, isLoading } = useSearch(search);
+  const [yachts, setYachts] = useState([]);
+  const [loadNext, setLoadNext] = useState(null);
 
   useEffect(() => {
     setFilterValues(getValuesFromUrl(window.location.search));
-    setYachts(results);
-    setLoadNext(next);
-  }, [router]);
+    setYachts([]);
+    setLoadNext(data?.next);
+  }, [data]);
 
   const handleLoadMore = useCallback(async () => {
-    const { data } = await getSearchResults(loadNext);
-    setYachts((prev) => [...new Set([...prev, ...data.results])]);
-    setLoadNext(data.next);
+    const { data: response } = await getSearchResults(loadNext);
+    setYachts((prev) => [...new Set([...prev, ...response.results])]);
+
+    setLoadNext(response.next);
   }, [loadNext]);
 
   return (
-    <>
+    <SWRConfig value={{ fallback }}>
       <Head>
         <title>
-          {t('rental_meta_title', {
+          {/* {t('rental_meta_title', {
             yachtType: yachtType ? yachtType : 'Plovil',
             destination: destination ? destination.name : 'na Jadranu',
-          })}
+          })} */}
         </title>
         <meta
           name="title"
           content={t('rental_meta_title', {
-            yachtType: yachtType ? yachtType : 'Plovil',
-            destination: destination ? destination.name : 'na Jadranu',
+            // yachtType: yachtType ? yachtType : 'Plovil',
+            // destination: destination ? destination.name : 'na Jadranu',
           })}
         />
         <meta name="description" content={t('rental_meta_description')} />
@@ -90,8 +96,8 @@ const OffersPage = ({ yachtType, results, next, count, destination, loading, can
         <meta
           property="og:title"
           content={t('rental_meta_title', {
-            yachtType: yachtType ? yachtType : 'Plovil',
-            destination: destination ? destination.name : 'na Jadranu',
+            // yachtType: yachtType ? yachtType : 'Plovil',
+            // destination: destination ? destination.name : 'na Jadranu',
           })}
         />
         <meta property="og:description" content={t('rental_meta_description')} />
@@ -102,8 +108,8 @@ const OffersPage = ({ yachtType, results, next, count, destination, loading, can
         <meta
           property="twitter:title"
           content={t('rental_meta_title', {
-            yachtType: yachtType ? yachtType : 'Plovil',
-            destination: destination ? destination.name : 'na Jadranu',
+            // yachtType: yachtType ? yachtType : 'Plovil',
+            // destination: destination ? destination.name : 'na Jadranu',
           })}
         />
         <meta property="twitter:description" content={t('rental_meta_description')} />
@@ -133,11 +139,13 @@ const OffersPage = ({ yachtType, results, next, count, destination, loading, can
             displayTotalPrice={displayTotalPrice}
             setDisplayTotalPrice={setDisplayTotalPrice}
           />
-          {loading && <Loader />}
-          <DestinationTeaser destination={destination} />
-          {!yachts.length && <NoResults />}
-          {count && <p className="offers_num_result">{t('offers_num_result', { count })}</p>}
-          {yachts.length > 0 && (
+          {isLoading && <Loader />}
+          <DestinationTeaser destination={data?.destination} />
+          {!isLoading && !data?.count && <NoResults />}
+          {data?.count && (
+            <p className="offers_num_result">{t('offers_num_result', { count: data?.count })}</p>
+          )}
+          {data?.results.length > 0 && (
             <InfiniteScroll
               pageStart={0}
               loadMore={handleLoadMore}
@@ -145,30 +153,32 @@ const OffersPage = ({ yachtType, results, next, count, destination, loading, can
               loader={<Loader key={0} />}
               threshold={1200}
             >
-              {yachts?.map((offer, index) => {
-                return (
-                  <OfferTeaser
-                    priority={index < 2}
-                    displayTotalPrice={displayTotalPrice}
-                    key={offer.id}
-                    offer={offer}
-                    inWishlist={Array.from(wishlist).includes(offer.id.toString())}
-                    handleHeartClick={(id) => {
-                      const { array } = handleHeartClick(id);
-                      mutateWishlist(array);
-                    }}
-                    onEnquiry={() => {
-                      setEnquiryProps({
-                        offerId: offer.id,
-                        yachtModel: offer.yacht.yacht_model.name,
-                        yachtTerm: formatOfferPeriod(offer),
-                        yachtPrice: formatOfferPrice(offer),
-                      });
-                      setShowEnquiryModal(true);
-                    }}
-                  />
-                );
-              })}
+              <>
+                {[...new Set([...data?.results, ...yachts])]?.map((offer, index) => {
+                  return (
+                    <OfferTeaser
+                      priority={index < 2}
+                      displayTotalPrice={displayTotalPrice}
+                      key={offer.id}
+                      offer={offer}
+                      inWishlist={Array.from(wishlist).includes(offer.id.toString())}
+                      handleHeartClick={(id) => {
+                        const { array } = handleHeartClick(id);
+                        mutateWishlist(array);
+                      }}
+                      onEnquiry={() => {
+                        setEnquiryProps({
+                          offerId: offer.id,
+                          yachtModel: offer.yacht.yacht_model.name,
+                          yachtTerm: formatOfferPeriod(offer),
+                          yachtPrice: formatOfferPrice(offer),
+                        });
+                        setShowEnquiryModal(true);
+                      }}
+                    />
+                  );
+                })}
+              </>
             </InfiniteScroll>
           )}
         </>
@@ -182,101 +192,28 @@ const OffersPage = ({ yachtType, results, next, count, destination, loading, can
         yachtTerm={enquiryProps.yachtTerm}
         yachtPrice={enquiryProps.yachtPrice}
       />
-    </>
+    </SWRConfig>
   );
 };
 
-export const getServerSideProps = async (ctx) => {
+export const getStaticProps = async (ctx) => {
   const translations = await serverSideTranslations(
     ctx.locale ?? 'si',
     ['najemplovil', 'common'],
     nextI18nextConfig
   );
-  const search = ctx.req.url;
-  const { destinations, yacht__yacht_model__category__yachtdisplaycategory } = ctx.query;
-  const yachtTypes = [
-    { id: 1, value: 'Jadrnice' },
-    { id: 2, value: 'Katamarana' },
-    { id: 10, value: 'Motornega katamarana' },
-    { id: 6, value: 'Jahte' },
-    { id: 5, value: 'Gumenjaka' },
-    { id: 3, value: 'Guleta' },
-    { id: 9, value: 'Luksuzne motorne jahte' },
-    { id: 8, value: 'Luksuzne jadrnice' },
-    { id: 4, value: 'Jet ski' },
-    { id: 7, value: 'Trimarana' },
-  ];
 
-  if (fs.existsSync(path.resolve(path.join(process.cwd(), `/public${search}.json`)))) {
-    const dataFromFile = fs.readFileSync(
-      path.resolve(path.join(process.cwd(), `/public${search}.json`)),
-      'utf8'
-    );
+  const { data } = await getSearchResultsFromApi();
 
-    if (dataFromFile) {
-      console.log('dataFromFile');
-      const data = JSON.parse(dataFromFile);
-      const yachtType = yachtTypes.find(
-        (type) => type.id == yacht__yacht_model__category__yachtdisplaycategory
-      );
-      const destination = data?.destination || null;
-
-      const canonicalUrl =
-        destination && !yachtType?.id
-          ? `/najem-plovil?destinations=${destinations}`
-          : !destination && yachtType?.id
-          ? `/najem-plovil?yacht__yacht_model__category__yachtdisplaycategory=${yachtType?.id}`
-          : destination && yachtType?.id
-          ? `/najem-plovil?destinations=${destinations}&yacht__yacht_model__category__yachtdisplaycategory=${yachtType?.id}`
-          : '/najem-plovil';
-
-      return {
-        props: {
-          destination: data?.destination || null,
-          yachtType: yachtType?.value || null,
-          results: data?.results || [],
-          count: data?.count || null,
-          next: data?.next || null,
-          canonicalUrl: process.env.NEXT_PUBLIC_DOMAIN_URL + canonicalUrl,
-          ...translations,
-        },
-      };
-    }
-  }
-
-  const { data } = await getSearchResultsFromApi(search);
-
-  if (!fs.existsSync(path.resolve(path.join(process.cwd(), `/public${search}.json`)))) {
-    fs.writeFileSync(
-      path.resolve(path.join(process.cwd(), `/public${search}.json`)),
-      JSON.stringify(data)
-    );
-  }
-
-  const destination = data?.destination || null;
-
-  const yachtType = yachtTypes.find(
-    (type) => type.id == yacht__yacht_model__category__yachtdisplaycategory
-  );
-
-  const canonicalUrl =
-    destination && !yachtType?.id
-      ? `/najem-plovil?destinations=${destinations}`
-      : !destination && yachtType?.id
-      ? `/najem-plovil?yacht__yacht_model__category__yachtdisplaycategory=${yachtType?.id}`
-      : destination && yachtType?.id
-      ? `/najem-plovil?destinations=${destinations}&yacht__yacht_model__category__yachtdisplaycategory=${yachtType?.id}`
-      : '/najem-plovil';
+  const canonicalUrl = '/najem-plovil';
 
   return {
     props: {
-      destination,
-      yachtType: yachtType?.value || null,
-      results: data?.results || [],
-      count: data?.count || null,
-      next: data?.next || null,
       canonicalUrl: process.env.NEXT_PUBLIC_DOMAIN_URL + canonicalUrl,
       ...translations,
+      fallback: {
+        '/najem-plovil': data,
+      },
     },
   };
 };

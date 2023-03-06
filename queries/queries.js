@@ -1,6 +1,7 @@
 import useSWR from "swr";
 
 import { getWishlistFromLocalStorage } from "../utils/wishlistUtils";
+import { getSearchResultsFromApi } from "./getters";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
@@ -107,5 +108,15 @@ export const useWishlistApi = (ids) => {
     isLoading: !error && !data,
     isError: error,
     mutateWishlist: mutate,
+  };
+};
+
+export const useSearch = (search) => {
+  const { data, error } = useSWR(search, () => getSearchResultsFromApi(search), { revalidateOnFocus: false });
+
+  return {
+    data: data?.data,
+    isLoading: !error && !data,
+    isError: error,
   };
 };
