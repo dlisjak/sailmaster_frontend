@@ -2,7 +2,7 @@ const path = require("path");
 
 module.exports = {
   i18n: {
-    locales: ['si'],
+    locales: ['si', "it"],
     defaultLocale: 'si',
   },
   domains: [
@@ -12,7 +12,12 @@ module.exports = {
       domain: 'thesailmaster.si',
       defaultLocale: 'si',
     },
+    {
+      domain: 'thesailmaster.it',
+      defaultLocale: 'it',
+    },
   ],
-  reloadOnPrerender: true,
+  localePath: path.resolve('./public/locales'),
+  localeStructure: '{{lng}}/{{ns}}',
   react: { useSuspense: false }
 }
