@@ -40,6 +40,7 @@ const FeaturedEquipment = ({ items }) => {
 };
 
 const OfferTeaser = ({
+  priority = false,
   offer,
   onEnquiry,
   handleHeartClick,
@@ -110,7 +111,7 @@ const OfferTeaser = ({
                     <Heart />
                   </div>
                   {/* <SliderGallery yacht={offer.yacht} />*/}
-                  <Gallery yacht={offer.yacht} />
+                  <Gallery yacht={offer.yacht} priority={priority} />
                 </div>
               </div>
             </div>

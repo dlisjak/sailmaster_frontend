@@ -149,8 +149,9 @@ const OffersPage = ({ results, fallback, canonicalUrl }) => {
                 {t('offers_num_result', { count: results?.count })}
               </p>
 
-              {results.map((offer) => (
+              {results.map((offer, index) => (
                 <OfferTeaser
+                  priority={index < 2}
                   displayTotalPrice={displayTotalPrice}
                   key={offer.id}
                   offer={offer}
