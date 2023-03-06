@@ -36,10 +36,6 @@ const NoResults = () => {
   );
 };
 
-const Page = (index) => {
-  return <></>;
-};
-
 const OffersPage = ({ fallback, canonicalUrl }) => {
   const { t } = useTranslation('najemplovil');
   const router = useRouter();
@@ -196,9 +192,9 @@ const OffersPage = ({ fallback, canonicalUrl }) => {
   );
 };
 
-export const getStaticProps = async (ctx) => {
+export const getStaticProps = async ({ locale }) => {
   const translations = await serverSideTranslations(
-    ctx.locale ?? 'si',
+    locale,
     ['najemplovil', 'common'],
     nextI18nextConfig
   );

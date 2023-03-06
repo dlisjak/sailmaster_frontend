@@ -19,6 +19,8 @@ import {
   getYachtTypes,
 } from '../queries/getters.js';
 import { subscribeNewsletter } from '../lib/base';
+import nextI18nextConfig from '../next-i18next.config.js';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations.js';
 
 const Index = ({ fallback, featuredYachts, destinations, testimonials, homeBlogs }) => {
   const { t } = useTranslation('home');
@@ -81,8 +83,6 @@ const Index = ({ fallback, featuredYachts, destinations, testimonials, homeBlogs
 };
 
 export const getStaticProps = async ({ locale }) => {
-  const serverSideTranslations = (await import('next-i18next/serverSideTranslations'))
-    .serverSideTranslations;
   const translations = await serverSideTranslations(locale, ['home', 'common'], nextI18NextConfig);
   const yachtTypes = await getYachtTypes();
   const yachtBrands = await getYachtBrands();
