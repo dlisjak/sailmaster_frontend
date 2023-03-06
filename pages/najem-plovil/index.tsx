@@ -36,7 +36,7 @@ const NoResults = () => {
   );
 };
 
-const OffersPage = ({ fallback, canonicalUrl }) => {
+const OffersPage = ({ results, fallback, canonicalUrl }) => {
   const { t } = useTranslation('najemplovil');
   const router = useRouter();
   const search = router.asPath;
@@ -52,9 +52,9 @@ const OffersPage = ({ fallback, canonicalUrl }) => {
   const [filterValues, setFilterValues] = useState({});
   const { wishlist, mutateWishlist } = useWishlist();
 
-  const { data, isLoading } = useSearch(search);
   const [yachts, setYachts] = useState([]);
   const [loadNext, setLoadNext] = useState(null);
+  const { data, isLoading } = useSearch(search);
 
   useEffect(() => {
     setFilterValues(getValuesFromUrl(window.location.search));
@@ -135,7 +135,38 @@ const OffersPage = ({ fallback, canonicalUrl }) => {
             displayTotalPrice={displayTotalPrice}
             setDisplayTotalPrice={setDisplayTotalPrice}
           />
+          {!data?.results && (
+            <>
+              <p className="offers_num_result">
+                {t('offers_num_result', { count: results?.count })}
+              </p>
+
+              {results.map((offer, index) => (
+                <OfferTeaser
+                  priority={index < 2}
+                  displayTotalPrice={displayTotalPrice}
+                  key={offer.id}
+                  offer={offer}
+                  inWishlist={Array.from(wishlist).includes(offer.id.toString())}
+                  handleHeartClick={(id) => {
+                    const { array } = handleHeartClick(id);
+                    mutateWishlist(array);
+                  }}
+                  onEnquiry={() => {
+                    setEnquiryProps({
+                      offerId: offer.id,
+                      yachtModel: offer.yacht.yacht_model.name,
+                      yachtTerm: formatOfferPeriod(offer),
+                      yachtPrice: formatOfferPrice(offer),
+                    });
+                    setShowEnquiryModal(true);
+                  }}
+                />
+              ))}
+            </>
+          )}
           {isLoading && <Loader />}
+
           <DestinationTeaser destination={data?.destination} />
           {!isLoading && !data?.count && <NoResults />}
           {data?.count && (
@@ -205,6 +236,7 @@ export const getStaticProps = async ({ locale }) => {
 
   return {
     props: {
+      results: data?.results,
       canonicalUrl: process.env.NEXT_PUBLIC_DOMAIN_URL + canonicalUrl,
       ...translations,
       fallback: {

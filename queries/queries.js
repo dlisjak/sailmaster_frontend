@@ -112,6 +112,7 @@ export const useWishlistApi = (ids) => {
 };
 
 export const useSearch = (search) => {
+  console.log(search)
   const { data, error } = useSWR(search, () => getSearchResultsFromApi(search), { revalidateOnFocus: false });
 
   return {
