@@ -15,9 +15,9 @@ const Properties = ({ items, size = 2 }) => (
         {range(size).map((index) => {
           const property = rows[index];
           if (!property) {
-            return <div className="relative flex-grow max-w-full flex-1 px-[5px]" key={index} />;
+            return <div className="relative flex-grow max-w-full flex-1 px-[15px]" key={index} />;
           }
-          return <div className="relative flex-grow max-w-full flex-1 px-[5px]" key={index}><Property {...property} /></div>;
+          return <div className="relative flex-grow max-w-full flex-1 px-[15px]" key={index}><Property {...property} /></div>;
         })}
       </div>
     ))}
