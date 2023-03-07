@@ -31,7 +31,7 @@ const HomeFilter = () => {
 
   return (
     <div className="home-filter mb-2 lg:mb-8">
-      <div className="row">
+      <div className="row flex justify-evenly lg:bg-[#ceb896] pt-2 px-2 pb-0 rounded-md">
         <div className="form-group w-full xl:w-2/5 lg:w-1/3 md:w-1/4 pr-[15px] pl-[15px] md:pr-1 md:pl-1">
           <label htmlFor="destination" className="form-label">{t("starting_point")}</label>
           <DestinationSelect
@@ -58,7 +58,7 @@ const HomeFilter = () => {
           placeholder={t("offer_filter_yacht_type_placeholder")}
         />
         <div className="w-full md:w-1/6 pr-[15px] pl-[15px] md:pr-1 md:pl-1">
-          <Link className="btn--home-filter btn btn-secondary btn-lg" href={`${OFFERS_URL}?${searchQuery}`}>
+          <Link className="btn--home-filter btn btn-primary btn-lg" href={`${OFFERS_URL}?${searchQuery}`}>
             {t("search")}
           </Link>
         </div>

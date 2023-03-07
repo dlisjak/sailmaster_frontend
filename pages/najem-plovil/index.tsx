@@ -251,6 +251,7 @@ export const getStaticProps = async ({ locale }) => {
         '/najem-plovil': data,
       },
     },
+    revalidate: 60 * 60 * 12,
   };
 };
 
