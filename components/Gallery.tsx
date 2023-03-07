@@ -16,18 +16,11 @@ export default function Gallery({ yacht, priority }) {
         return (
           <Carousel.Item key={`${image}-${i}`}>
             <div className="featuredYacht__imageContainer relative mb-1 flex aspect-[16/9] h-full w-full overflow-hidden md:aspect-[4/3]">
-              <Image
-                className="carousel-offer-item object-cover"
+              <img
+                className="carousel-offer-item w-full object-cover"
                 src={image}
                 alt={`${yacht.yacht_model.name} ${yacht.yacht_model.category_name}`}
-                sizes="(max-width: 575px) 100vw,
-                (max-width: 768px) 63vw,
-                (max-width: 992px) 17vw,
-                (max-width: 1200px) 20vw,
-                20vw"
-                priority={priority || i < 1}
-                quality={90}
-                fill
+                loading="lazy"
               />
             </div>
           </Carousel.Item>
