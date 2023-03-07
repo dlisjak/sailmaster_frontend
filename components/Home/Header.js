@@ -6,7 +6,7 @@ import Container from 'react-bootstrap/Container';
 import IconsLine from './IconsLine';
 import HomeFilter from '../filter/HomeFilter';
 
-import HEADER from '../../public/media/header-opt.jpg';
+import HEADER from '../../public/media/header-opt-7.png';
 
 const Header = () => {
   const { t } = useTranslation('home');

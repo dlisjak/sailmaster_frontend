@@ -5,6 +5,9 @@ h3 {
   font-weight: 500;
 }
 
+.about ul {
+  list-style-type: disc;
+}
 .accordion-header button {
   width: 100%;
   text-align: left;
@@ -12675,9 +12678,6 @@ body {
   width: 100%;
 }
 
-ul {
-  list-style-type: disc;
-}
 ol, .carousel-indicators {
   margin-bottom: 1rem;
 }
@@ -16960,20 +16960,20 @@ table.season-items th {
 }
 
 .CalendarDay__default {
-  border: 1px solid #e4e7e7;
+  border: 1px solid #fff;
   color: #484848;
   background: #fff;
 }
 
 .CalendarDay__default:hover {
-  background: #e4e7e7;
-  border: 1px solid #e4e7e7;
+  background: #fff;
+  border: 1px solid #fff;
   color: inherit;
 }
 
 .CalendarDay__hovered_offset {
   background: #f4f5f5;
-  border: 1px double #e4e7e7;
+  border: 1px double #fff;
   color: inherit;
 }
 
@@ -17030,13 +17030,13 @@ table.season-items th {
 .CalendarDay__hovered_span,
 .CalendarDay__hovered_span:hover {
   background: #b2f1ec;
-  border: 1px double #80e8e0;
+  border: 1px double #E7DCCB;
   color: #007a87;
 }
 
 .CalendarDay__hovered_span:active {
-  background: #80e8e0;
-  border: 1px double #80e8e0;
+  background: #E7DCCB;
+  border: 1px double #E7DCCB;
   color: #007a87;
 }
 
@@ -17052,7 +17052,7 @@ table.season-items th {
 .CalendarDay__blocked_out_of_range:active,
 .CalendarDay__blocked_out_of_range:hover {
   background: #fff;
-  border: 1px solid #e4e7e7;
+  border: 1px solid #fff;
   color: #cacccd;
 }
 
@@ -17063,7 +17063,7 @@ table.season-items th {
 
 .CalendarDay__hovered_start_blocked_min_nights {
   background: #eceeee;
-  border: 1px double #e4e7e7;
+  border: 1px double #fff;
 }
 
 .CalendarMonth {
@@ -17182,7 +17182,7 @@ table.season-items th {
 }
 
 .DayPickerNavigation_button__default {
-  border: 1px solid #e4e7e7;
+  border: 1px solid #fff;
   background-color: #fff;
   color: #757575;
 }
