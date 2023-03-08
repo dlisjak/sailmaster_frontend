@@ -14,13 +14,7 @@ export default function Gallery({ yacht, priority = false }) {
       {pictures.map((image, i) => {
         return (
           <Carousel.Item key={`${image}-${i}`}>
-            <div className="featuredYacht__imageContainer relative mb-1 flex aspect-[16/9] h-full w-full overflow-hidden md:aspect-[4/3]">
-              <img
-                className="carousel-offer-item object-cover"
-                src={image}
-                alt={`${yacht.yacht_model.name} ${yacht.yacht_model.category_name}`}
-              />
-            </div>
+            <div className="carousel-offer-item" style={{ backgroundImage: `url(${image})` }} />
           </Carousel.Item>
         );
       })}
