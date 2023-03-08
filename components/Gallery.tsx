@@ -22,7 +22,7 @@ export default function Gallery({ yacht, priority = false }) {
                 alt={`${yacht.yacht_model.name} ${yacht.yacht_model.category_name}`}
                 width={480}
                 height={325}
-                priority={priority}
+                priority={i < 1}
                 quality={90}
               />
             </div>
