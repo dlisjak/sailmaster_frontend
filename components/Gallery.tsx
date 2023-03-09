@@ -15,7 +15,7 @@ export default function Gallery({ images, youtube }) {
     slidesToShow: 1,
     slidesToScroll: 1,
     appendDots: (dots) => <ol className="carousel-indicators">{dots}</ol>,
-    customPaging: (i) => <button className="w-auto" />,
+    customPaging: () => <button className="w-auto" />,
   };
 
   return (
