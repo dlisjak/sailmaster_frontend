@@ -3,8 +3,6 @@ import Slider from 'react-slick';
 import Carousel from 'react-bootstrap/Carousel';
 import YouTube from 'react-youtube';
 
-import '../node_modules/slick-carousel/slick/slick.css';
-
 export default function Gallery({ images, youtube }) {
   const settings = {
     dots: true,
