@@ -1,23 +1,39 @@
+import Slider from 'react-slick';
+
 import Carousel from 'react-bootstrap/Carousel';
 import YouTube from 'react-youtube';
 
-export default function Gallery({ yacht, priority = false }) {
-  const { youtube, pictures } = yacht;
+import '../node_modules/slick-carousel/slick/slick.css';
+
+export default function Gallery({ images, youtube }) {
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    appendDots: (dots) => <ol className="carousel-indicators">{dots}</ol>,
+    customPaging: () => <div className="" />,
+  };
 
   return (
-    <Carousel interval={10000000} className="offer-carousel__carousel">
+    <Slider {...settings}>
       {youtube && (
         <Carousel.Item>
           <YouTube videoId={youtube} opts={{ height: '210', width: '100%' }} />
         </Carousel.Item>
       )}
-      {pictures.map((image, i) => {
+      {images.map((image, i) => {
         return (
-          <Carousel.Item key={`${image}-${i}`}>
-            <div className="carousel-offer-item" style={{ backgroundImage: `url(${image})` }} />
+          <Carousel.Item>
+            <div
+              className="carousel-offer-item"
+              style={{ backgroundImage: `url(${image})` }}
+              key={`${image}-${i}`}
+            />
           </Carousel.Item>
         );
       })}
-    </Carousel>
+    </Slider>
   );
 }

@@ -18,7 +18,6 @@ import { offerLink } from "../utils/url_utils";
 import PriceBlock from "../components/PriceBlock";
 import Location from "../components/Location";
 import Map from "./Googlemap";
-import SliderGallery from "./SliderGallery";
 
 const FeaturedEquipment = ({ items }) => {
   return (
@@ -111,7 +110,7 @@ const OfferTeaser = ({
                     <Heart />
                   </div>
                   {/* <SliderGallery yacht={offer.yacht} />*/}
-                  <Gallery yacht={offer.yacht} priority={priority} />
+                  <Gallery images={offer.yacht.pictures} youtube={offer.yacht.youtube} />
                 </div>
               </div>
             </div>
