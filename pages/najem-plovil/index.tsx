@@ -116,7 +116,6 @@ const OffersPage = ({ results, fallback, canonicalUrl }) => {
             <Loader />
           ) : (
             <>
-              {isLoading && <Loader />}
               <DestinationTeaser destination={data?.destination} />
               {!data?.results && (
                 <>

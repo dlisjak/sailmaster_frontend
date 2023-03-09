@@ -384,7 +384,7 @@ const OfferDetail = ({
                 location={offer.location_from}
                 onLocationClick={() => setShowMap(!showMap)}
               />
-              <div className="offer-detail__buttons flex">
+              <div className="offer-detail__buttons flex flex-wrap sm:flex-nowrap">
                 <Link className="btn btn-info flex items-end nowrap whitespace-nowrap" href={emailLink}>
                   <ShareIcon />
                   {t('offer_share_email')}

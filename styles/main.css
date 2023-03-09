@@ -7867,7 +7867,7 @@ button.bg-dark:hover {
 }
 
 .flex-wrap {
-  flex-wrap: wrap !important;
+  flex-wrap: wrap;
 }
 
 .flex-nowrap {
