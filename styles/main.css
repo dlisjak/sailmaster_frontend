@@ -1123,6 +1123,80 @@ pre code {
   font-style: normal;
 }
 
+.slick-slide {
+  float: left;
+  height: 100%;
+  min-height: 1px;
+  display: none;
+}
+
+.slick-dots {
+  position: absolute;
+  bottom: -25px;
+  list-style: none;
+  display: block;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.slick-dots li {
+  position: relative;
+  display: inline-block;
+  margin: 0 5px;
+  padding: 0;
+}
+
+.slick-dots li,
+.slick-dots li button {
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+}
+
+.slick-dots li button {
+  border: 0;
+  background: transparent;
+  display: block;
+  outline: none;
+  line-height: 0;
+  font-size: 0;
+  padding: 5px;
+}
+
+.slick-dots li button:focus,
+.slick-dots li button:hover {
+  outline: none;
+}
+
+.slick-dots li button:focus:before,
+.slick-dots li button:hover:before {
+  opacity: 1;
+}
+
+.slick-dots li button:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '•';
+  width: 20px;
+  height: 20px;
+  font-family: 'slick';
+  font-size: 6px;
+  line-height: 20px;
+  text-align: center;
+  color: #000;
+  opacity: 0.25;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.slick-dots li.slick-active button:before {
+  color: #000;
+  opacity: 0.75;
+}
+
 .slick-next,
 .slick-prev {
   position: absolute;
@@ -15672,6 +15746,7 @@ ol, .carousel-indicators {
   margin-right: 15% !important;
   margin-left: 15% !important;
   list-style: none !important;
+  margin-bottom: 1rem !important;
 }
 
 .offer-teaser .slick-dots > li {
