@@ -5,8 +5,6 @@ import YouTube from 'react-youtube';
 import { useState } from 'react';
 
 export default function Gallery({ images, youtube }) {
-  const [slideIndex, setSlideIndex] = useState(0);
-
   const settings = {
     dots: true,
     infinite: true,

@@ -15766,6 +15766,10 @@ ol, .carousel-indicators {
   transition: opacity .6s ease;
 }
 
+.offer-teaser .slick-dots > li >button {
+  padding: 0 !important;
+ }
+
 .offer-teaser .slick-dots > li.slick-active {
   opacity: 1;
 }
