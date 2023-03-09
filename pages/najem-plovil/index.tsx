@@ -55,18 +55,10 @@ const OffersPage = ({ results, fallback, canonicalUrl }) => {
   const { data, isLoading } = useSearch(search);
   const [yachts, setYachts] = useState([]);
   const [loadNext, setLoadNext] = useState(null);
-  const [destination, setDestination] = useState(null);
 
   useEffect(() => {
     setFilterValues(getValuesFromUrl(window.location.search));
     setYachts([]);
-    setDestination((prev) => {
-      if (data?.destination) {
-        if (prev?.id !== data?.destination?.id) {
-          return data?.destination;
-        }
-      }
-    });
     setLoadNext(data?.next);
   }, [data]);
 
@@ -148,7 +140,7 @@ const OffersPage = ({ results, fallback, canonicalUrl }) => {
           ) : (
             <>
               {isLoading && <Loader />}
-              <DestinationTeaser destination={destination} />
+              <DestinationTeaser destination={data?.destination} />
               {!data?.results && (
                 <>
                   <p className="offers_num_result">

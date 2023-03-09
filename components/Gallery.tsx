@@ -25,12 +25,8 @@ export default function Gallery({ images, youtube }) {
       )}
       {images.map((image, i) => {
         return (
-          <Carousel.Item>
-            <div
-              className="carousel-offer-item"
-              style={{ backgroundImage: `url(${image})` }}
-              key={`${image}-${i}`}
-            />
+          <Carousel.Item key={`${image}-${i}`}>
+            <div className="carousel-offer-item" style={{ backgroundImage: `url(${image})` }} />
           </Carousel.Item>
         );
       })}
