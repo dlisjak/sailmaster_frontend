@@ -15548,19 +15548,19 @@ ol, .carousel-indicators {
   box-shadow: 0 0 31px 1px rgba(0, 0, 0, 0.1);
 }
 
-.slick-slider, .slick-list, .slick-track, .slick-slide > div {
+.offer-teaser .slick-slider,.offer-teaser .slick-list,.offer-teaser .slick-track,.offer-teaser .slick-slide > div {
   height: 100% !important;
 }
 
-.slick-arrow.slick-prev::before, .slick-arrow.slick-next::before {
+.offer-teaser .slick-arrow.slick-prev::before,.offer-teaser .slick-arrow.slick-next::before {
   display: none;
 }
 
-.slick-arrow.slick-prev:hover, .slick-arrow.slick-next:hover {
+.offer-teaser .slick-arrow.slick-prev:hover,.offer-teaser .slick-arrow.slick-next:hover {
   opacity: 1;
 }
 
-.slick-arrow.slick-prev {
+.offer-teaser .slick-arrow.slick-prev {
   display: inline-block;
   width: 20px;
   height: 20px;
@@ -15571,7 +15571,7 @@ ol, .carousel-indicators {
   opacity: 0.5;
 }
 
-.slick-arrow.slick-next {
+.offer-teaser .slick-arrow.slick-next {
   display: inline-block;
   width: 20px;
   height: 20px;
@@ -15582,7 +15582,7 @@ ol, .carousel-indicators {
   opacity: 0.5;
 }
 
-.slick-dots {
+.offer-teaser .slick-dots {
   width: auto !important;
   position: absolute !important;
   right: 0 !important;
@@ -15597,7 +15597,7 @@ ol, .carousel-indicators {
   list-style: none !important;
 }
 
-.slick-dots > li {
+.offer-teaser .slick-dots > li {
   box-sizing: content-box;
   flex: 0 1 auto;
   width: 30px;
@@ -15614,7 +15614,7 @@ ol, .carousel-indicators {
   transition: opacity .6s ease;
 }
 
-.slick-dots > li.slick-active {
+.offer-teaser .slick-dots > li.slick-active {
   opacity: 1;
 }
 

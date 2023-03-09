@@ -24,7 +24,6 @@ export default function Gallery({ images, youtube }) {
         </Carousel.Item>
       )}
       {images.map((image, i) => {
-        console.log(image.replaceAll(' ', '%20'));
         return (
           <Carousel.Item key={`${image}-${i}`}>
             <div
