@@ -15583,6 +15583,7 @@ ol, .carousel-indicators {
 }
 
 .slick-dots {
+  width: auto !important;
   position: absolute !important;
   right: 0 !important;
   bottom: 0 !important;
