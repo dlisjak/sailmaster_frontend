@@ -10,12 +10,28 @@ module.exports = withBundleAnalyzer({
         destination: "/:path*"
       },
       {
-        source: "/:path*",
-        destination: "https://api.thesailmaster.si/:path*/"
+        source: "/static2",
+        destination: "https://api.thesailmaster.si/static2"
       },
       {
-        source: "/:path*",
-        destination: "https://api.thesailmaster.si/:path*/"
+        source: "/media",
+        destination: "https://api.thesailmaster.si/media"
+      },
+      {
+        source: "/api/",
+        destination: "https://api.thesailmaster.si/api/"
+      },
+      {
+        source: "/externalapi/",
+        destination: "https://api.thesailmaster.si/externalapi/"
+      },
+      {
+        source: "/admin/",
+        destination: "https://api.thesailmaster.si/admin/"
+      },
+      {
+        source: "/dynamic-sitemap.xml",
+        destination: "https://api.thesailmaster.si/dynamic-sitemap.xml"
       },
     ]
   },
