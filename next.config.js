@@ -3,6 +3,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
 module.exports = withBundleAnalyzer({
+  trailingSlash: true,
   async rewrites() {
     return [
       {
@@ -10,28 +11,8 @@ module.exports = withBundleAnalyzer({
         destination: "/:path*"
       },
       {
-        source: "/static2/:path*",
-        destination: "https://api.thesailmaster.si/static2/:path*"
-      },
-      {
-        source: "/media/:path*",
-        destination: "https://api.thesailmaster.si/media/:path*"
-      },
-      {
-        source: "/api/:path*",
-        destination: "https://api.thesailmaster.si/api/:path*"
-      },
-      {
-        source: "/externalapi/:path*",
-        destination: "https://api.thesailmaster.si/externalapi/:path*"
-      },
-      {
-        source: "/admin/:path*",
-        destination: "https://api.thesailmaster.si/admin/:path*"
-      },
-      {
-        source: "/dynamic-sitemap.xml",
-        destination: "https://api.thesailmaster.si/dynamic-sitemap.xml"
+        source: "/:path*",
+        destination: "https://api.thesailmaster.si/:path*"
       },
     ]
   },

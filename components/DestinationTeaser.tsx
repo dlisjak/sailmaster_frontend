@@ -7,12 +7,10 @@ const DestinationTeaser = ({ destination }) => {
       <div className="row">
         <div className="w-full pr-[15px] pl-[15px] sm:w-2/5">
           {destination?.image && (
-            <Image
+            <img
               className="destination-teaser__img img-fluid"
-              src={`${process.env.NEXT_PUBLIC_DOMAIN_URL}${destination?.image.thumbnail}`}
+              src={destination?.image.thumbnail}
               alt={destination?.name}
-              width={325}
-              height={217}
             />
           )}
         </div>
