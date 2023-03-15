@@ -3,6 +3,18 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
 module.exports = withBundleAnalyzer({
+  async rewrites() {
+    return [
+      {
+        source: "/:path*",
+        destination: "/:path*"
+      },
+      {
+        source: "/:path*",
+        destination: "https://api.thesailmaster.si/:path*"
+      },
+    ]
+  },
   images: {
     remotePatterns: [
       {
@@ -18,6 +30,11 @@ module.exports = withBundleAnalyzer({
       {
         protocol: 'https',
         hostname: 'thesailmaster.si',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'api.thesailmaster.si',
         pathname: '/**',
       },
       {
