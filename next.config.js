@@ -3,12 +3,19 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
 module.exports = withBundleAnalyzer({
-  trailingSlash: true,
   async rewrites() {
     return [
       {
         source: "/:path*",
         destination: "/:path*"
+      },
+      {
+        "source": "/admin/:path*",
+        "destination": "https://api.thesailmaster.si/admin/:path*"
+      },
+      {
+        "source": "/admin/:path*/",
+        "destination": "https://api.thesailmaster.si/admin/:path*/"
       },
       {
         source: "/:path*/",
