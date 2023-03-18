@@ -11,6 +11,10 @@ module.exports = withBundleAnalyzer({
         destination: '/:path*',
       },
       {
+        source: 'https://thesailmaster.si/admin/',
+        destination: "https://api.thesailmaster.si/admin/"
+      },
+      {
         source: '/:path*',
         destination: "https://api.thesailmaster.si/:path*"
       },
