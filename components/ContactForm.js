@@ -75,6 +75,7 @@ export const IdCard = () => {
 const ContactForm = ({ onSubmit }) => {
   const [finished, setFinished] = useState(false);
   const [error, setError] = useState(false);
+  const [formValues, setFormValues] = useState({});
   const { t } = useTranslation("common");
 
   const requiredMsg = t("form_field_required");
@@ -99,6 +100,7 @@ const ContactForm = ({ onSubmit }) => {
           }}
           validationSchema={ValidationSchema}
           onSubmit={async (values, { setSubmitting }) => {
+            setFormValues(values);
             setError(null);
             try {
               await onSubmit(values);
@@ -152,7 +154,7 @@ const ContactForm = ({ onSubmit }) => {
       {finished && (
         <ThankYouMessage
           title={t("successful_email")}
-          content={<p>{t("successful_email_1")}</p>}
+          content={<p>{t("successful_email_1", { value: formValues.name })}</p>}
         />
       )}
     </>
