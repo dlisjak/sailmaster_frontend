@@ -18,6 +18,7 @@ import { stripHtmlTags } from '../../../utils/miscUtils';
 const OfferDetailPage = ({ yachtOffer }) => {
   const [showEnquiryModal, setShowEnquiryModal] = useState(false);
   const { wishlist, mutateWishlist } = useWishlist();
+  const inWishlist = wishlist && Array.from(wishlist).includes(yachtOffer.id.toString());
   const { t } = useTranslation('common');
 
   if (!yachtOffer) {
@@ -36,7 +37,7 @@ const OfferDetailPage = ({ yachtOffer }) => {
       </Head>
       <OfferDetail
         offer={yachtOffer}
-        inWishlist={wishlist && Array.from(wishlist).includes(yachtOffer.yacht.id.toString())}
+        inWishlist={inWishlist}
         setShowEnquiryModal={setShowEnquiryModal}
         handleHeartClick={(id) => {
           const { array } = handleHeartClick(id);

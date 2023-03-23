@@ -18,7 +18,7 @@ import { stripHtmlTags } from '../../../utils/miscUtils';
 const OfferDetailPage = ({ offer }) => {
   const [showEnquiryModal, setShowEnquiryModal] = useState(false);
   const { wishlist, mutateWishlist } = useWishlist();
-  const inWishlist = wishlist && Array.from(wishlist).includes(offer.yacht.id.toString());
+  const inWishlist = wishlist && Array.from(wishlist).includes(offer.id.toString());
   const { t } = useTranslation('common');
 
   if (!offer) {
