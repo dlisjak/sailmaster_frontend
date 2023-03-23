@@ -15689,7 +15689,7 @@ ol, .carousel-indicators {
   cursor: pointer;
 }
 
-.panel__header:hover {
+.panel__header:hover > div.accordion-header {
   text-decoration: underline;
 }
 
