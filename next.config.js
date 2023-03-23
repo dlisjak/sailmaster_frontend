@@ -7,12 +7,16 @@ module.exports = withBundleAnalyzer({
   async rewrites() {
     return [
       {
+        source: '/:path*',
+        destination: '/:path*',
+      },
+      {
         source: '/admin/:path*',
         destination: 'https://api.thesailmaster.si/admin/:path*',
       },
       {
         source: '/:path*',
-        destination: '/:path*',
+        destination: 'https://api.thesailmaster.si/:path*',
       },
     ]
   },
