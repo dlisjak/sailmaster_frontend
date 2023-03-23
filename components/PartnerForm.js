@@ -16,6 +16,7 @@ import { ThankYouMessage } from "../components/ThankYouMessage";
 const PartnerForm = ({ onSubmit }) => {
   const [finished, setFinished] = useState(false);
   const [error, setError] = useState(false);
+  const [formValues, setFormValues] = useState(null);
   const { t } = useTranslation("common");
 
   const requiredMsg = t("form_field_required");
@@ -43,7 +44,8 @@ const PartnerForm = ({ onSubmit }) => {
           onSubmit={async (values, { setSubmitting }) => {
             setError(null);
             try {
-              await onSubmit(values);
+              // await onSubmit(values);
+              setFormValues(values);
               setFinished(true);
             } catch (e) {
               setError("error");
@@ -107,7 +109,7 @@ const PartnerForm = ({ onSubmit }) => {
       {finished && (
         <ThankYouMessage
           title={t("successful_email")}
-          content={<p>{t("successful_email_1")}</p>}
+          content={<p>{t("successful_email_1", { value: formValues.person })}</p>}
         />
       )}
     </>
