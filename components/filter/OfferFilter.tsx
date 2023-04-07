@@ -9,7 +9,7 @@ import { RangeField, SelectField } from '../../components/forms/fields';
 import { formatMoneyAmount, formatLength } from '../../utils/formats';
 import { RANGE_FIELDS_MAX } from '../../utils/search_utils';
 import { searchUrl } from '../../utils/url_utils';
-import { useYachtBrands, useYachtTypes } from '../../queries/queries';
+import { useYachtBrands, useYachtModels, useYachtTypes } from '../../queries/queries';
 
 export const BasicSearch = ({ values, onSubmit, ...props }) => {
   const { t } = useTranslation('common');
@@ -107,6 +107,13 @@ export const OfferFilter = ({ values, onSubmit, ...props }) => {
 
 export const ExtendedFilter = ({ values, onSubmit }) => {
   const { yachtBrands } = useYachtBrands();
+  const yachtBuilderId = values
+    ? yachtBrands?.find(
+        (item) => String(item.value) === String(values['yacht__yacht_model__builder'])
+      )
+    : null;
+
+  const { yachtModels } = useYachtModels(yachtBuilderId?.value);
   const { t } = useTranslation('common');
   const setValue = (k, v) => {
     const newValues = {
@@ -120,6 +127,8 @@ export const ExtendedFilter = ({ values, onSubmit }) => {
     { name: t('avtopilot'), nausys_id: '17' },
     { name: t('Premčni propeler'), nausys_id: '2' },
   ];
+
+  console.log({ yachtBrands });
 
   return (
     <div className="search-box search-box--extended">
@@ -174,6 +183,16 @@ export const ExtendedFilter = ({ values, onSubmit }) => {
         setValue={setValue}
         placeholder={t('offer_filter_yacht_brand_placeholder')}
       />
+      {values['yacht__yacht_model__builder'] && yachtModels && yachtModels.length > 0 && (
+        <SelectField
+          fieldName="yacht__yacht_model"
+          label={t('yacht_model')}
+          options={yachtModels}
+          values={values}
+          setValue={setValue}
+          placeholder={t('offer_filter_yacht_model_placeholder')}
+        />
+      )}
     </div>
   );
 };
@@ -208,8 +227,11 @@ const ConnectedOfferFilter = ({ filterValues, searchComponent = null }) => {
       <SearchComponent
         values={values}
         onSubmit={(values) => {
+          if (!values['yacht__yacht_model__builder']) {
+            values['yacht__yacht_model'] = undefined;
+          }
           setValues(values);
-          router.push(searchUrl(values));
+          router.push(searchUrl(values), undefined, { scroll: false });
         }}
       />
     </div>

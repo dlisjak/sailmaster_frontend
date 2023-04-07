@@ -13,6 +13,7 @@
   "offer_filter_date_range_end": "Do",
   "offer_filter_yacht_type_placeholder": "Vsi tipi",
   "offer_filter_yacht_brand_placeholder": "Vse znamke",
+  "offer_filter_yacht_model_placeholder": "Vsi modeli",
 
   "inquiry_surname": "Priimek",
   "inquiry_zip_code": "Poštna št.",
@@ -129,6 +130,8 @@
   "search": "Išči",
   "yacht_brand": "Znamka",
   "yacht_brands": "Znamke",
+  "yacht_model": "Model",
+  "yacht_models": "Model",
   "COOKIES": "TheSailmaster za funkcionalnost strani uporablja piškotke, ki ne hranijo osebnih podatkov. Z nadaljevanjem obiska strani soglašaš z njihovo uporabo. <a href='https://thesailmaster.si/zaupnost-podatkov'>Več...</a>",
   "CLOSE": "Zapri",
 

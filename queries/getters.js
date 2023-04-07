@@ -1,7 +1,5 @@
 import axios from "axios";
 
-import { postData } from "../lib/base";
-
 export const getFromApi = async (url) => {
   return await axios.get(url);
 }
@@ -17,6 +15,19 @@ export const getFeaturedYachts = async () => {
   });
 
   return data;
+};
+
+export const getYachtModels = async (builderId = null) => {
+  const lang = process.env.NEXT_PUBLIC_REACT_APP_LANGUAGE;
+  const url = process.env.NEXT_PUBLIC_API_URL + `${builderId !== "undefined" ? `/yacht_model?builder=${builderId}&limit=999` : "/yacht_models"}`;
+
+  const { data } = await axios.get(url, {
+    params: {
+      lang,
+    },
+  });
+
+  return data?.results.map(item => ({ value: item.id, label: item.name }))
 };
 
 export const getDestinations = async (frontpage = false) => {

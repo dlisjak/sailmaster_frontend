@@ -113,47 +113,43 @@ const OffersPage = ({ results, fallback, canonicalUrl }) => {
             setDisplayTotalPrice={setDisplayTotalPrice}
           />
           {isLoading ? (
-            <Loader />
+            <>
+              <Loader />
+              {results.map((offer, index) => (
+                <OfferTeaser
+                  priority={index < 2}
+                  displayTotalPrice={displayTotalPrice}
+                  key={offer.id}
+                  offer={offer}
+                  inWishlist={Array.from(wishlist).includes(offer.id.toString())}
+                  handleHeartClick={(id) => {
+                    const { array } = handleHeartClick(id);
+                    mutateWishlist(array);
+                  }}
+                  onEnquiry={() => {
+                    setEnquiryProps({
+                      offerId: offer.id,
+                      yachtModel: offer.yacht.yacht_model.name,
+                      yachtTerm: formatOfferPeriod(offer),
+                      yachtPrice: formatOfferPrice(offer),
+                    });
+                    setShowEnquiryModal(true);
+                  }}
+                />
+              ))}
+            </>
           ) : (
             <>
               <DestinationTeaser destination={data?.destination} />
-              {!data?.results && (
-                <>
-                  <p className="offers_num_result">
-                    {t('offers_num_result', { count: results?.count })}
-                  </p>
-
-                  {results.map((offer, index) => (
-                    <OfferTeaser
-                      priority={index < 2}
-                      displayTotalPrice={displayTotalPrice}
-                      key={offer.id}
-                      offer={offer}
-                      inWishlist={Array.from(wishlist).includes(offer.id.toString())}
-                      handleHeartClick={(id) => {
-                        const { array } = handleHeartClick(id);
-                        mutateWishlist(array);
-                      }}
-                      onEnquiry={() => {
-                        setEnquiryProps({
-                          offerId: offer.id,
-                          yachtModel: offer.yacht.yacht_model.name,
-                          yachtTerm: formatOfferPeriod(offer),
-                          yachtPrice: formatOfferPrice(offer),
-                        });
-                        setShowEnquiryModal(true);
-                      }}
-                    />
-                  ))}
-                </>
-              )}
               {!isLoading && !data?.count && <NoResults />}
-              {data?.count && (
+              {data?.count && data?.count.length > 0 ? (
                 <p className="offers_num_result">
                   {t('offers_num_result', { count: data?.count })}
                 </p>
+              ) : (
+                <div />
               )}
-              {data?.results.length > 0 && (
+              {data?.results && data?.results.length > 0 && (
                 <InfiniteScroll
                   pageStart={0}
                   loadMore={handleLoadMore}

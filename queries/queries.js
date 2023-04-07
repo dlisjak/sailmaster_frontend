@@ -77,6 +77,18 @@ export const useYachtBrands = () => {
   };
 };
 
+export const useYachtModels = (builderId) => {
+  const { data, error } = useSWR(`/api/yacht-models?builderId=${builderId}`, fetcher, {
+    revalidateOnFocus: false,
+  });
+
+  return {
+    yachtModels: data,
+    isLoading: !error && !data,
+    isError: error,
+  };
+};
+
 export const useTestimonials = () => {
   const { data, error } = useSWR(`/api/testimonials`, fetcher, {
     revalidateOnFocus: false,
