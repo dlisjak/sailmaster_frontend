@@ -167,8 +167,6 @@ export const SelectField = ({
     ? options?.find((item) => String(item.value) === String(values[fieldName]))
     : null;
 
-  console.log({ value });
-
   return (
     <div className={`form-group ${className}`}>
       <label className="form-label" htmlFor={fieldName}>

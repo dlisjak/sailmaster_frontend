@@ -128,8 +128,6 @@ export const ExtendedFilter = ({ values, onSubmit }) => {
     { name: t('Premčni propeler'), nausys_id: '2' },
   ];
 
-  console.log({ yachtBrands });
-
   return (
     <div className="search-box search-box--extended">
       <RangeField

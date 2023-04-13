@@ -5,6 +5,7 @@ import nextI18NextConfig from '../next-i18next.config.js'
 import SSRProvider from 'react-bootstrap/SSRProvider';
 import * as Sentry from "@sentry/react";
 import { Integrations } from "@sentry/tracing";
+import Script from 'next/script';
 
 import Navigation from "../components/Navigation";
 import Footer from "../components/common/Footer";
@@ -36,18 +37,9 @@ if (process.env.NODE_ENV === "production") {
 
 const MyApp = ({ Component, pageProps, router }) => {
   const route = router.route;
-  const path = router.asPath;
   const lang = process.env.NEXT_PUBLIC_REACT_APP_LANGUAGE;
   const [showInquiry, setShowInquiry] = useState(false);
   const [showModal, setShowModal] = useState(false);
-
-  useEffect(() => {
-    setTimeout(() => {
-      window.ga.getAll()[0].set("page", path);
-      window.ga.getAll()[0].send("pageview");
-    }, 0)
-    return
-  }, [path])
 
   useEffect(() => {
     const handlePromoModal = () => {
@@ -65,6 +57,19 @@ const MyApp = ({ Component, pageProps, router }) => {
 
   return (
     <SSRProvider>
+      <Script
+        src="https://www.googletagmanager.com/gtag/js?id=UA-71727689-1"
+        strategy="afterInteractive"
+      />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){window.dataLayer.push(arguments);}
+              gtag('js', new Date());
+
+              gtag('config', 'UA-71727689-1');
+            `}
+      </Script>
       <ScrollToTop smooth color="#ceb896" />
       <Navigation setShowInquiry={setShowInquiry} />
       <ErrorBoundary>
