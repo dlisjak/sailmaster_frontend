@@ -41,13 +41,13 @@ const MyApp = ({ Component, pageProps, router }) => {
   const [showInquiry, setShowInquiry] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     window.ga.getAll()[0].set("page", path);
-  //     window.ga.getAll()[0].send("pageview");
-  //   }, 0)
-  //   return
-  // }, [path])
+  useEffect(() => {
+    setTimeout(() => {
+      window.ga.getAll()[0].set("page", path);
+      window.ga.getAll()[0].send("pageview");
+    }, 0)
+    return
+  }, [path])
 
   useEffect(() => {
     const handlePromoModal = () => {
