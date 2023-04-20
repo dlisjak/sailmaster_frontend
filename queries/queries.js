@@ -29,8 +29,8 @@ export const useDestinations = () => {
   };
 };
 
-export const useSearchDestinations = () => {
-  const { data, error } = useSWR(`/api/destinations/search`, fetcher, {
+export const useSearchDestinations = (term) => {
+  const { data, error } = useSWR(`/api/destinations/search?term=${term}`, fetcher, {
     revalidateOnFocus: false,
   });
 
@@ -128,6 +128,16 @@ export const useSearch = (search) => {
 
   return {
     data: data?.data,
+    isLoading: !error && !data,
+    isError: error,
+  };
+};
+
+export const useBlogLatest = () => {
+  const { data, error } = useSWR("/api/blog", fetcher, { revalidateOnFocus: false });
+
+  return {
+    posts: data?.results,
     isLoading: !error && !data,
     isError: error,
   };

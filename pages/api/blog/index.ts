@@ -1,4 +1,4 @@
-import { getBlog } from '../../../queries/getters';
+import { getBlogs } from '../../../queries/getters';
 
 const allowedMethods = ['GET'];
 
@@ -8,9 +8,9 @@ export default async function handler(req, res) {
       return res.status(405).send({ message: 'Method not allowed.' });
     }
 
-    const { data } = await getBlog();
+    const blogs = await getBlogs();
 
-    return res.status(200).json(data);
+    return res.status(200).json(blogs);
   } catch (err) {
     console.error(err);
 

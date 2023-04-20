@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import Head from 'next/head';
+import { useTranslation } from 'next-i18next';
 
 import { ConnectedBasicSearch } from '../../../components/filter/OfferFilter';
 import OfferInquiry from '../../../components/OfferInquiry';
@@ -9,17 +11,17 @@ import { formatOfferPeriod, formatOfferPrice } from '../../../utils/offerUtils';
 import { handleHeartClick } from '../../../utils/wishlistUtils';
 import nextI18nextConfig from '../../../next-i18next.config';
 import { createOfferInquiry } from '../../../lib/base';
-import { useWishlist } from '../../../queries/queries';
+import { useBlogLatest, useWishlist } from '../../../queries/queries';
 import { yachtSlug } from '../../../utils/url_utils';
-import { useTranslation } from 'next-i18next';
-import Head from 'next/head';
 import { stripHtmlTags } from '../../../utils/miscUtils';
+import { yachtLink } from '../../../utils/url_utils';
 
-const OfferDetailPage = ({ offer }) => {
+const OfferDetailPage = ({ offer, canonicalUrl }) => {
   const [showEnquiryModal, setShowEnquiryModal] = useState(false);
   const { wishlist, mutateWishlist } = useWishlist();
   const inWishlist = wishlist && Array.from(wishlist).includes(offer.id.toString());
   const { t } = useTranslation('common');
+  const { posts } = useBlogLatest();
 
   if (!offer) {
     return <NotFound />;
@@ -34,6 +36,7 @@ const OfferDetailPage = ({ offer }) => {
       <Head>
         <title>{pageTitle + t('seo_title')}</title>
         <meta name="description" content={stripHtmlTags(yacht.get_description)} />
+        <link rel="canonical" href={canonicalUrl} />
       </Head>
       <OfferDetail
         offer={offer}
@@ -112,9 +115,13 @@ export const getStaticProps = async (ctx) => {
     };
   }
 
+  const slug = yachtLink(offer);
+  const canonicalUrl = process.env.NEXT_PUBLIC_DOMAIN_URL + '/najem-plovil/' + slug;
+
   return {
     props: {
       offer,
+      canonicalUrl,
       ...translations,
     },
     // 12h

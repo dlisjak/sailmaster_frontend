@@ -20,7 +20,7 @@ const SimiliarOffer = ({ offer, current, link }) => {
   return (
     <div className={classNames}>
       <div className="similar-offers__offer-period">
-        {link ? <Link href={link}>{period}</Link> : period}
+        {link ? <Link scroll={false} href={link}>{period}</Link> : period}
       </div>
       <div className="similar-offers__offer-price">
         {!offer.final_price

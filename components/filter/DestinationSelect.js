@@ -1,8 +1,8 @@
 import { components } from "react-select";
-import Select from "react-select";
+import AsyncSelect from "react-select/async";
 import { customTheme, customStyles } from "../../utils/reactSelectTheme";
 import { useTranslation } from 'next-i18next';
-import { useSearchDestinations } from "../../queries/queries";
+import { searchDestinations } from "../../lib/search";
 
 const CustomOption = ({ children, ...props }) => {
   const { t } = useTranslation("common");
@@ -24,19 +24,18 @@ const DestinationSelect = ({
   setValue,
 }) => {
   const { t } = useTranslation("common");
-  const { searchDestinations } = useSearchDestinations();
 
   return (
     <div>
-      <Select
-        id="destination"
+      <AsyncSelect
         styles={customStyles}
         theme={customTheme}
         className="react-select-container react-select-container--destinations"
         classNamePrefix="react-select"
         components={{ Option: CustomOption }}
-        options={searchDestinations}
+        cacheOptions
         defaultOptions
+        loadOptions={searchDestinations}
         value={value || null}
         isMulti
         onChange={(values, action) => {
