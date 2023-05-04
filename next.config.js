@@ -16,6 +16,15 @@ module.exports = withBundleAnalyzer({
       },
     ]
   },
+  async redirects() {
+    return [
+      {
+        source: '/externalapi/:path*',
+        destination: 'https://api.thesailmaster.si/media/externalapi/:path*',
+        permanent: true,
+      },
+    ]
+  },
   images: {
     remotePatterns: [
       {
