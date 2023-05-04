@@ -20,7 +20,7 @@ module.exports = withBundleAnalyzer({
     return [
       {
         source: '/externalapi/:path*',
-        destination: 'https://api.thesailmaster.si/media/externalapi/:path*',
+        destination: 'https://api.thesailmaster.si/externalapi/:path*',
         permanent: true,
       },
     ]
