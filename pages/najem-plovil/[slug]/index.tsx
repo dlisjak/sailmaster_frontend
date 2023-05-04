@@ -10,12 +10,12 @@ import nextI18nextConfig from '../../../next-i18next.config';
 import { useWishlist } from '../../../queries/queries';
 import { formatOfferPeriod, formatOfferPrice } from '../../../utils/offerUtils';
 import { handleHeartClick } from '../../../utils/wishlistUtils';
-import { yachtSlug } from '../../../utils/url_utils';
+import { yachtLink, yachtSlug } from '../../../utils/url_utils';
 import { useTranslation } from 'next-i18next';
 import Head from 'next/head';
 import { stripHtmlTags } from '../../../utils/miscUtils';
 
-const OfferDetailPage = ({ yachtOffer }) => {
+const OfferDetailPage = ({ yachtOffer, canonicalUrl }) => {
   const [showEnquiryModal, setShowEnquiryModal] = useState(false);
   const { wishlist, mutateWishlist } = useWishlist();
   const inWishlist = wishlist && Array.from(wishlist).includes(yachtOffer.id.toString());
@@ -34,6 +34,7 @@ const OfferDetailPage = ({ yachtOffer }) => {
       <Head>
         <title>{pageTitle + t('seo_title')}</title>
         <meta name="description" content={stripHtmlTags(yacht.get_description)} />
+        <link rel="canonical" href={canonicalUrl} />
       </Head>
       <OfferDetail
         offer={yachtOffer}
@@ -60,7 +61,6 @@ const OfferDetailPage = ({ yachtOffer }) => {
 
 export const getStaticPaths = async () => {
   const fetch = (await import('node-fetch')).default;
-  const fs = (await import('fs')).default;
 
   const url = process.env.NEXT_PUBLIC_API_URL + `/search/?limit=10&offset=10`;
   const response = await fetch(url);
@@ -90,7 +90,6 @@ export const getStaticPaths = async () => {
   }
 
   const yachts = await Promise.all(promises).then((arr) => arr.flat());
-  fs.writeFileSync('yachts.json', JSON.stringify(yachts));
   console.log(yachts.length);
 
   const paths = yachts.map(({ yacht }) => ({
@@ -142,9 +141,12 @@ export const getStaticProps = async (ctx) => {
     };
   }
 
+  const canonicalUrl = process.env.NEXT_PUBLIC_DOMAIN_URL + '/najem-plovil/' + slug;
+
   return {
     props: {
       yachtOffer,
+      canonicalUrl,
       ...translations,
     },
     // 12h

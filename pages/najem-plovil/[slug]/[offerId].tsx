@@ -62,12 +62,39 @@ const OfferDetailPage = ({ offer, canonicalUrl }) => {
 };
 
 export const getStaticPaths = async () => {
-  const fs = (await import('fs')).default;
-  const data: any = fs.readFileSync('yachts.json');
+  const fetch = (await import('node-fetch')).default;
 
-  const arr = JSON.parse(data);
+  const url = process.env.NEXT_PUBLIC_API_URL + `/search/?limit=10&offset=10`;
+  const response = await fetch(url);
+  const data: any = await response.json();
+  const count = data.count;
+  const promises = [];
 
-  const paths = arr.map((offer) => ({
+  for (let i = 0; i < Math.ceil(count / 10); i++) {
+    const promise = new Promise((resolve, reject) => {
+      setTimeout(async () => {
+        const url = process.env.NEXT_PUBLIC_API_URL + `/search/?limit=10&offset=${10 * i}`;
+        const response = await fetch(url);
+        const contentType = response.headers.get('content-type');
+        if (contentType && contentType.indexOf('application/json') !== -1) {
+          const data: any = await response.json();
+          return resolve(data.results);
+        } else {
+          return response.text().then((text) => {
+            console.log(text);
+            return reject(text);
+          });
+        }
+      }, 100 * i);
+    });
+
+    promises.push(promise);
+  }
+
+  const yachts = await Promise.all(promises).then((arr) => arr.flat());
+  console.log(yachts.length);
+
+  const paths = yachts.map((offer) => ({
     params: {
       slug: yachtSlug(offer.yacht.id, offer.yacht.yacht_model.name),
       offerId: `${offer.id}`,
@@ -90,6 +117,8 @@ export const getStaticProps = async (ctx) => {
     ['home', 'common'],
     nextI18nextConfig
   );
+
+  console.log({ offerId });
 
   const url = process.env.NEXT_PUBLIC_API_URL + '/search/' + offerId + '/';
   const response = await fetch(url);
