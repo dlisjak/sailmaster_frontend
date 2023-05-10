@@ -52,8 +52,6 @@ const OffersPage = ({ results, fallback, basicCanonicalUrl }) => {
   const [filterValues, setFilterValues] = useState({});
   const { wishlist, mutateWishlist } = useWishlist();
 
-  console.log({ search });
-
   const { data, isLoading } = useSearch(search);
   const [yachts, setYachts] = useState([]);
   const [loadNext, setLoadNext] = useState(null);
@@ -61,8 +59,6 @@ const OffersPage = ({ results, fallback, basicCanonicalUrl }) => {
   const canonicalUrl = search.length
     ? process.env.NEXT_PUBLIC_DOMAIN_URL + search
     : basicCanonicalUrl;
-
-  console.log({ canonicalUrl });
 
   useEffect(() => {
     setFilterValues(getValuesFromUrl(window.location.search));

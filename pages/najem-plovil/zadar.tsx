@@ -72,19 +72,19 @@ const OffersPage = ({ search, results, destination, fallback, canonicalUrl }) =>
   return (
     <SWRConfig value={{ fallback }}>
       <Head>
-        <title>{t('rental_meta_title')}</title>
-        <meta name="title" content={t('rental_meta_title')} />
+        <title>{t('rental_meta_title_zadar')}</title>
+        <meta name="title" content={t('rental_meta_title_zadar')} />
         <meta name="description" content={t('rental_meta_description')} />
 
         <meta property="og:type" content="website" />
         <meta property="og:url" content={canonicalUrl} />
-        <meta property="og:title" content={t('rental_meta_title')} />
+        <meta property="og:title" content={t('rental_meta_title_zadar')} />
         <meta property="og:description" content={t('rental_meta_description')} />
         <meta property="og:image" content={`/media/header-opt.jpg`} />
 
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content={canonicalUrl} />
-        <meta property="twitter:title" content={t('rental_meta_title')} />
+        <meta property="twitter:title" content={t('rental_meta_title_zadar')} />
         <meta property="twitter:description" content={t('rental_meta_description')} />
         <meta property="twitter:image" content={`/media/header-opt.jpg`} />
 
