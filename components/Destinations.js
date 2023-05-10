@@ -1,20 +1,37 @@
-import Image from "next/image";
 import Link from "next/link";
-import { valuesToSearch, parseDestinations } from "utils/search_utils";
 
-import { OFFERS_URL } from "../constants";
 import { useDestinations } from "../queries/queries";
 
+const getUrl = (destinationName) => {
+  switch (destinationName) {
+    case "Hrvaška":
+      return "/hrvaska";
+    case "Istra":
+      return "/istra";
+    case "Kvarner":
+      return "/kvarner";
+    case "Zadarska regija":
+      return "/zadar";
+    case "Šibenska regija":
+      return "/sibenik";
+    case "Splitska regija":
+      return "/split";
+    case "Dubrovnik regija":
+      return "/dubrovnik";
+    case "Črna gora":
+      return "/crna-gora";
+    case "Slovenija":
+      return "/slovenija";
+    default:
+      return "/";
+  }
+}
+
 const Destination = ({ destination }) => {
-  const link =
-    OFFERS_URL +
-    "?" +
-    valuesToSearch({
-      destinations: parseDestinations(destination.destination_hash.split("|")),
-    });
+  const url = `/najem-plovil${getUrl(destination.name)}`
 
   return (
-    <Link className="w-full h-full" href={link}>
+    <Link className="w-full h-full" href={url}>
       <div className="destination2 w-full flex relative items-center justify-center">
         <img className="object-cover object-center w-full h-full" src={destination.image.thumbnail} alt={`Najem plovil ${destination.name}`} />
         <h3 className="absolute btn btn-lg btn-primary">

@@ -10,7 +10,7 @@ import nextI18nextConfig from '../../../next-i18next.config';
 import { useWishlist } from '../../../queries/queries';
 import { formatOfferPeriod, formatOfferPrice } from '../../../utils/offerUtils';
 import { handleHeartClick } from '../../../utils/wishlistUtils';
-import { yachtLink, yachtSlug } from '../../../utils/url_utils';
+import { yachtSlug } from '../../../utils/url_utils';
 import { useTranslation } from 'next-i18next';
 import Head from 'next/head';
 import { stripHtmlTags } from '../../../utils/miscUtils';

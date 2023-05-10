@@ -18,7 +18,7 @@ import Compass from '../../components/icons/Compass';
 import Loader from '../../components/Loader';
 
 import { formatOfferPeriod, formatOfferPrice } from '../../utils/offerUtils';
-import { getValuesFromUrl, valuesToSearch } from '../../utils/search_utils';
+import { valuesToSearch } from '../../utils/search_utils';
 import { handleHeartClick } from '../../utils/wishlistUtils';
 import nextI18nextConfig from '../../next-i18next.config';
 import { getSearchResults, getSearchResultsFromApi } from '../../queries/getters';
@@ -36,10 +36,9 @@ const NoResults = () => {
   );
 };
 
-const OffersPage = ({ results, fallback, basicCanonicalUrl }) => {
+const OffersPage = ({ search, results, destination, fallback, canonicalUrl }) => {
   const { t } = useTranslation('najemplovil');
   const router = useRouter();
-  const search = router.asPath;
 
   const [showEnquiryModal, setShowEnquiryModal] = useState(false);
   const [enquiryProps, setEnquiryProps] = useState({
@@ -49,23 +48,16 @@ const OffersPage = ({ results, fallback, basicCanonicalUrl }) => {
     yachtPrice: null,
   });
   const [displayTotalPrice, setDisplayTotalPrice] = useState(true);
-  const [filterValues, setFilterValues] = useState({});
+  const [filterValues, setFilterValues] = useState({
+    destinations: [{ label: 'Dubrovnik regija', obj_type: 'region', value: '37' }],
+  });
   const { wishlist, mutateWishlist } = useWishlist();
-
-  console.log({ search });
 
   const { data, isLoading } = useSearch(search);
   const [yachts, setYachts] = useState([]);
   const [loadNext, setLoadNext] = useState(null);
 
-  const canonicalUrl = search.length
-    ? process.env.NEXT_PUBLIC_DOMAIN_URL + search
-    : basicCanonicalUrl;
-
-  console.log({ canonicalUrl });
-
   useEffect(() => {
-    setFilterValues(getValuesFromUrl(window.location.search));
     setYachts([]);
     setLoadNext(data?.next);
   }, [data]);
@@ -120,6 +112,7 @@ const OffersPage = ({ results, fallback, basicCanonicalUrl }) => {
             displayTotalPrice={displayTotalPrice}
             setDisplayTotalPrice={setDisplayTotalPrice}
           />
+          <DestinationTeaser destination={destination} />
           {isLoading ? (
             <>
               <Loader />
@@ -148,7 +141,6 @@ const OffersPage = ({ results, fallback, basicCanonicalUrl }) => {
             </>
           ) : (
             <>
-              <DestinationTeaser destination={data?.destination} />
               {!isLoading && !data?.count && <NoResults />}
               {data?.count && data?.count.length > 0 ? (
                 <p className="offers_num_result">
@@ -216,18 +208,21 @@ export const getStaticProps = async ({ locale }) => {
     ['najemplovil', 'common'],
     nextI18nextConfig
   );
+  const search = '/najem-plovil?destinations=region-37-Dubrovnik%20regija';
 
-  const { data } = await getSearchResultsFromApi();
+  const { data } = await getSearchResultsFromApi(search);
 
-  const najemPlovil = '/najem-plovil';
+  const najemPlovil = '/najem-plovil/dubrovnik';
 
   return {
     props: {
+      search,
       results: data?.results,
-      basicCanonicalUrl: process.env.NEXT_PUBLIC_DOMAIN_URL + najemPlovil,
+      canonicalUrl: process.env.NEXT_PUBLIC_DOMAIN_URL + najemPlovil,
+      destination: data?.destination,
       ...translations,
       fallback: {
-        '/najem-plovil': data,
+        '/najem-plovil/dubrovnik': data,
       },
     },
     revalidate: 60 * 60 * 12,
