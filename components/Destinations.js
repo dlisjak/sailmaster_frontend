@@ -18,7 +18,7 @@ const getUrl = (destinationName) => {
       return "/split";
     case "Dubrovnik regija":
       return "/dubrovnik";
-    case "Črna gora":
+    case "Črna Gora":
       return "/crna-gora";
     case "Slovenija":
       return "/slovenija";
