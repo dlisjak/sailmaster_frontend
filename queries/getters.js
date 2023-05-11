@@ -173,7 +173,7 @@ export const getSearchResultsFromApi = async (search = "") => {
   const idx = search?.indexOf("?");
   const query = search?.substring(idx);
 
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/search/${idx > 0 ? query : ""}`;
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/search/${idx > 0 ? query : ""}?limit=25`;
 
   return await axios.get(url);
 };

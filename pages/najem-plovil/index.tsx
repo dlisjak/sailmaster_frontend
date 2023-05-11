@@ -159,7 +159,7 @@ const OffersPage = ({ results, fallback, basicCanonicalUrl }) => {
                   loadMore={handleLoadMore}
                   hasMore={!!loadNext}
                   loader={<Loader key={0} />}
-                  threshold={1200}
+                  threshold={2000}
                 >
                   <>
                     {[...new Set([...data?.results, ...yachts])]?.map((offer, index) => {
