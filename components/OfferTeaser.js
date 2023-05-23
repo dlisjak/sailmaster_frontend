@@ -14,7 +14,7 @@ import Gallery from "./Gallery";
 
 import Heart from "./icons/Heart";
 import { formatLength } from "../utils/formats";
-import { offerLink } from "../utils/url_utils";
+import { boatLink, offerLink } from "../utils/url_utils";
 import PriceBlock from "../components/PriceBlock";
 import Location from "../components/Location";
 import Map from "./Googlemap";
@@ -39,9 +39,9 @@ const FeaturedEquipment = ({ items }) => {
 };
 
 const OfferTeaser = ({
-  priority = false,
   offer,
   onEnquiry,
+  useOfferUrl,
   handleHeartClick,
   displayTotalPrice = true,
   inWishlist = false,
@@ -71,7 +71,7 @@ const OfferTeaser = ({
     { name: t("length"), value: formatLength(yacht_model.loa) },
     { name: t("draft"), value: formatLength(yacht.draft) },
   ];
-  const link = offerLink(offer);
+  const link = useOfferUrl ? offerLink(offer) : boatLink(offer.yacht?.id, offer.yacht?.yacht_model.name);
 
   return (
     <>

@@ -26,7 +26,7 @@ const RANGE_FIELDS = [
 export const RANGE_FIELDS_MAX = {
   yacht__cabins_total: CABINS_TOTAL_MAX,
   yacht__build_year: maxValueBuildYear,
-  client_price: 10000,
+  client_price: 15000,
   yacht__yacht_model__loa: 20,
   yacht__wc: 4,
 };

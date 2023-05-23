@@ -64,6 +64,13 @@ const OfferDetailPage = ({ offer, canonicalUrl }) => {
 export const getStaticPaths = async () => {
   const fetch = (await import('node-fetch')).default;
 
+  if (process.env.SKIP_BUILD_STATIC_GENERATION) {
+    return {
+      paths: [],
+      fallback: 'blocking',
+    };
+  }
+
   const url = process.env.NEXT_PUBLIC_API_URL + `/search/?limit=10&offset=10`;
   const response = await fetch(url);
   const data: any = await response.json();

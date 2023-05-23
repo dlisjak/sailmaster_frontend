@@ -154,6 +154,7 @@
   "why_charter_route": "/zakaj-charter",
   "why_us_route": "/zakaj-najeti-plovilo-pri-nas",
   "blog_route": "/blog",
+  "yachts_route": "/plovila",
   "reservations_steps_route": "/postopek-rezervacije",
   "payment_type_route": "/nacin-placila",
   "data_privacy_route": "/zaupnost-podatkov",
@@ -317,6 +318,8 @@
   "destinations_seo_desc": "TheSailmaster, najprijaznejše mesto za najem jadrnic, katamaranov in motornih plovil na Jadranu. Zagotovite si svoje sanjske počitnice po najnižjih cenah.",
   "partners_seo_title": "Za partnerje - TheSailmaster.si | Najem jadrnice, katamarana, jahte - last minute",
   "partners_seo_desc": "TheSailmaster, najprijaznejše mesto za najem jadrnic, katamaranov in motornih plovil na Jadranu. Zagotovite si svoje sanjske počitnice po najnižjih cenah.",
+
+  "all_yachts": "Vsa Plovila",
 
   "wishlist_route": "/seznam-zelja",
   "wishlist_nav": "Seznam želja",

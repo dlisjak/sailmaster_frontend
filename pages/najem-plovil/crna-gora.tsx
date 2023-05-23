@@ -62,6 +62,8 @@ const OffersPage = ({ search, results, destination, fallback, canonicalUrl }) =>
     setLoadNext(data?.next);
   }, [data]);
 
+  const hasDateSet = !!filterValues['dateRange']?.startDate && !!filterValues['dateRange']?.endDate;
+
   const handleLoadMore = useCallback(async () => {
     const { data: response } = await getSearchResults(loadNext);
     setYachts((prev) => [...new Set([...prev, ...response.results])]);
@@ -115,13 +117,12 @@ const OffersPage = ({ search, results, destination, fallback, canonicalUrl }) =>
           <DestinationTeaser destination={destination} />
           {isLoading ? (
             <>
-              <Loader />
               {results.map((offer, index) => (
                 <OfferTeaser
-                  priority={index < 2}
                   displayTotalPrice={displayTotalPrice}
                   key={offer.id}
                   offer={offer}
+                  useOfferUrl={!!hasDateSet}
                   inWishlist={Array.from(wishlist).includes(offer.id.toString())}
                   handleHeartClick={(id) => {
                     const { array } = handleHeartClick(id);
@@ -155,16 +156,16 @@ const OffersPage = ({ search, results, destination, fallback, canonicalUrl }) =>
                   loadMore={handleLoadMore}
                   hasMore={!!loadNext}
                   loader={<Loader key={0} />}
-                  threshold={1200}
+                  threshold={2000}
                 >
                   <>
                     {[...new Set([...data?.results, ...yachts])]?.map((offer, index) => {
                       return (
                         <OfferTeaser
-                          priority={index < 2}
                           displayTotalPrice={displayTotalPrice}
                           key={offer.id}
                           offer={offer}
+                          useOfferUrl={!!hasDateSet}
                           inWishlist={Array.from(wishlist).includes(offer.id.toString())}
                           handleHeartClick={(id) => {
                             const { array } = handleHeartClick(id);

@@ -2,7 +2,6 @@ import Slider from 'react-slick';
 
 import Carousel from 'react-bootstrap/Carousel';
 import YouTube from 'react-youtube';
-import { useState } from 'react';
 
 export default function Gallery({ images, youtube }) {
   const settings = {

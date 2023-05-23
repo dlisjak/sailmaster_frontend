@@ -17,9 +17,13 @@ export function offerUrl(yacht_id, yacht_model_name, pk) {
   )}/${pk}`;
 }
 
+export const boatLink = (yachtId, yachtModelName) => {
+  return `${OFFERS_URL}/${yachtSlug(yachtId, yachtModelName)}`;
+}
+
 export function offerLink(offer) {
-  if (!offer) return
-  return offerUrl(offer.yacht?.id, offer.yacht?.yacht_model.name, offer.id)
+  if (!offer) return;
+  return offerUrl(offer.yacht?.id, offer.yacht?.yacht_model.name, offer.id);
 }
 
 export function yachtSlug(yacht_id, yacht_model_name) {

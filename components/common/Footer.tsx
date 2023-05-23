@@ -21,7 +21,7 @@ const Footer = ({ lang }) => {
     <div className="footer">
       <div className="container">
         <div className="footer-upper row">
-          <div className="footer-upper-col w-full pr-[15px] pr-[15px] pl-[15px] pl-[15px] sm:w-1/2 md:w-1/4">
+          <div className="footer-upper-col w-full pl-[15px] pl-[15px] pr-[15px] pr-[15px] sm:w-1/2 md:w-1/4">
             <h3>{t('why_us')}</h3>
             <ul className="check">
               <li
@@ -61,7 +61,7 @@ const Footer = ({ lang }) => {
               </li>
             </ul>
           </div>
-          <div className="footer-upper-col w-full pr-[15px] pr-[15px] pl-[15px] pl-[15px] sm:w-1/2 md:w-1/4">
+          <div className="footer-upper-col w-full pl-[15px] pl-[15px] pr-[15px] pr-[15px] sm:w-1/2 md:w-1/4">
             <h3>{t('footer_informations')}</h3>
             <ul className="squares">
               <li
@@ -115,7 +115,7 @@ const Footer = ({ lang }) => {
               </li>
             </ul>
           </div>
-          <div className="footer-upper-col w-full pr-[15px] pr-[15px] pl-[15px] pl-[15px] sm:w-1/2 md:w-1/4">
+          <div className="footer-upper-col w-full pl-[15px] pl-[15px] pr-[15px] pr-[15px] sm:w-1/2 md:w-1/4">
             <h3>{t('footer_sailmaster')}</h3>
             <ul className="squares">
               <li
@@ -139,9 +139,12 @@ const Footer = ({ lang }) => {
               >
                 <Link href={t('blog_route')}>{t('blog').toUpperCase()}</Link>
               </li>
+              <li>
+                <Link href={t('yachts_route')}>{t('all_yachts')}</Link>
+              </li>
             </ul>
           </div>
-          <div className="footer-upper-col w-full pr-[15px] pr-[15px] pl-[15px] pl-[15px] sm:w-1/2 md:w-1/4">
+          <div className="footer-upper-col w-full pl-[15px] pl-[15px] pr-[15px] pr-[15px] sm:w-1/2 md:w-1/4">
             <h3>{t('contact')}</h3>
             <p>
               {t('company_name')} <br />
@@ -156,7 +159,7 @@ const Footer = ({ lang }) => {
           <div className="footer-border w-full" />
         </div>
         <div className="footer-upper footer-middle row">
-          <div className="footer-upper-col w-full pr-[15px] pr-[15px] pl-[15px] pl-[15px] sm:w-full md:w-1/2">
+          <div className="footer-upper-col w-full pl-[15px] pl-[15px] pr-[15px] pr-[15px] sm:w-full md:w-1/2">
             <h3>{t('partners')}</h3>
             <div className="p-logos">
               <a href="https://www.vzajemna.si/" rel="noopener noreferrer" target="_blank">
@@ -175,7 +178,7 @@ const Footer = ({ lang }) => {
               </a>
             </div>
           </div>
-          <div className="footer-upper-col w-full pr-[15px] pr-[15px] pl-[15px] pl-[15px] sm:w-full md:w-1/4">
+          <div className="footer-upper-col w-full pl-[15px] pl-[15px] pr-[15px] pr-[15px] sm:w-full md:w-1/4">
             <h3>{t('follow_us')}</h3>
             <div className="social">
               <a
@@ -221,7 +224,7 @@ const Footer = ({ lang }) => {
               </a>
             </div>
           </div>
-          <div className="footer-upper-col w-full pr-[15px] pr-[15px] pl-[15px] pl-[15px] sm:w-full md:w-1/4">
+          <div className="footer-upper-col w-full pl-[15px] pl-[15px] pr-[15px] pr-[15px] sm:w-full md:w-1/4">
             {logo}
             <Nausys />
           </div>

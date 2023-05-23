@@ -5,7 +5,7 @@ import Image from './Image';
 import Location from './Location';
 import Properties from './Properties';
 
-import { offerUrl } from '../utils/url_utils';
+import { boatLink, offerLink, offerUrl } from '../utils/url_utils';
 import { useFeaturedYachts } from '../queries/queries';
 
 const FeaturedYacht = ({ item }) => {
@@ -18,13 +18,14 @@ const FeaturedYacht = ({ item }) => {
       value: `${item.cabins_total} / ${item.berths_total}`,
     },
   ];
+
+  const link = boatLink(item.yacht_id, item.yacht_model_name);
+
   return (
     <div className="featured-yacht">
       <div>
         <h3 className="featured-yacht__name">
-          <Link href={offerUrl(item.yacht_id, item.yacht_model_name, item.offer_id)}>
-            {item.title}
-          </Link>
+          <Link href={link}>{item.title}</Link>
         </h3>
         {item.price && <h4 className="featured-yacht__price">{item.price}</h4>}
         <Location location={item.location} />
@@ -52,7 +53,10 @@ const FeaturedYachts = ({ items }) => {
         {(featuredYachts || items).results
           .filter((item) => !!item.offer_id)
           .map((item) => (
-            <div className="flex pr-[15px] pl-[15px] sm:w-1/2 md:w-1/3 xl:w-1/4" key={item.yacht_id}>
+            <div
+              className="flex pl-[15px] pr-[15px] sm:w-1/2 md:w-1/3 xl:w-1/4"
+              key={item.yacht_id}
+            >
               <FeaturedYacht item={item} />
             </div>
           ))}
