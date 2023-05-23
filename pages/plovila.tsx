@@ -1,45 +1,44 @@
 import Link from 'next/link';
+import classNames from 'classnames';
+import Container from 'react-bootstrap/Container';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import nextI18nextConfig from '../next-i18next.config';
 import { getYachtBrands, getYachtModels } from '../queries/getters';
-import { LayoutWithSidebar } from '../components/BaseLayout';
 
 const VsaPlovila = ({ yachts }) => {
   return (
-    <LayoutWithSidebar
-      rowClassName="offers-row"
-      mainClassName="offers-wrapper"
-      className="offers"
-      sidebar={<></>}
-    >
-      <ul className="grid grid-cols-4">
-        {yachts.map(({ brand, models }) => {
-          return (
-            <li key={brand.value} className="p-2 pb-4">
-              <Link
-                className="font-bold"
-                href={`/najem-plovil?yacht__yacht_model__builder=${brand.value}`}
-                target="_blank"
-              >
-                {brand.label}
-              </Link>
-              <ul>
-                {models.map((model) => (
-                  <li className="" key={model.value}>
-                    <Link
-                      href={`/najem-plovil?yacht__yacht_model__builder=${brand.value}&yacht__yacht_model=${model.value}`}
-                      target="_blank"
-                    >
-                      {model.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </li>
-          );
-        })}
-      </ul>
-    </LayoutWithSidebar>
+    <div className={classNames('base-layout')}>
+      <Container>
+        <h1>Vsa plovila</h1>
+        <ul className="columns-2 md:columns-3 lg:columns-4">
+          {yachts.map(({ brand, models }) => {
+            return (
+              <li key={brand.value} className="inline-block w-full p-2 pb-4">
+                <Link
+                  className="text-lg font-bold text-primary"
+                  href={`/najem-plovil?yacht__yacht_model__builder=${brand.value}`}
+                  target="_blank"
+                >
+                  {brand.label}
+                </Link>
+                <ul>
+                  {models.map((model) => (
+                    <li className="" key={model.value}>
+                      <Link
+                        href={`/najem-plovil?yacht__yacht_model__builder=${brand.value}&yacht__yacht_model=${model.value}`}
+                        target="_blank"
+                      >
+                        {model.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            );
+          })}
+        </ul>
+      </Container>
+    </div>
   );
 };
 
