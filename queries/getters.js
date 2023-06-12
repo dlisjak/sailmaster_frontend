@@ -19,15 +19,15 @@ export const getFeaturedYachts = async () => {
 
 export const getYachtModels = async (builderId = null) => {
   const lang = process.env.NEXT_PUBLIC_REACT_APP_LANGUAGE;
-  const url = process.env.NEXT_PUBLIC_API_URL + `${builderId !== "undefined" ? `/yacht_model?builder=${builderId}&limit=999` : "/yacht_models"}`;
+  const url = process.env.NEXT_PUBLIC_API_URL + `${builderId !== "undefined" ? `/yacht-models/?yacht__yacht_model__builder=${builderId}` : "/yacht_models"}`;
 
-  const { data } = await axios.get(url, {
+  const res = await axios.get(url, {
     params: {
       lang,
     },
   });
 
-  return data?.results.map(item => ({ value: item.id, label: item.name }))
+  return (res.data || res.data.results || []).map(item => ({ value: item.id, label: item.name }))
 };
 
 export const getDestinations = async (frontpage = false) => {

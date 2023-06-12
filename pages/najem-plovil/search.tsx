@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import InfiniteScroll from 'react-infinite-scroller';
 import { useTranslation } from 'next-i18next';
@@ -58,13 +58,12 @@ const OffersPage = ({ results, destination, url, count, fallback, canonicalUrl }
   const hasDateSet = !!filterValues['dateRange']?.startDate && !!filterValues['dateRange']?.endDate;
 
   useEffect(() => {
-    console.log(window.location.search);
     setFilterValues(getValuesFromUrl(window.location.search));
     setYachts([]);
     setLoadNext(data?.next);
   }, [data]);
 
-  const handleLoadMore = useCallback(async () => {
+  const handleLoadMore = useMemo(async () => {
     if (!loadNext) return;
     const { data: response } = await getSearchResults(loadNext);
     setYachts((prev) => [...new Set([...prev, ...response.results])]);

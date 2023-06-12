@@ -39,7 +39,7 @@ const DEFAULT_FIELDS = [
   "o",
   "yacht__yacht_model__category__yachtdisplaycategory",
   "yacht__yacht_model__builder",
-  "yacht__yacht_model",
+  "yacht__yacht_model__parent",
 ];
 const SET_FIELDS = ["equipment"];
 

@@ -183,7 +183,7 @@ export const ExtendedFilter = ({ values, onSubmit }) => {
       />
       {values['yacht__yacht_model__builder'] && yachtModels && yachtModels.length > 0 && (
         <SelectField
-          fieldName="yacht__yacht_model"
+          fieldName="yacht__yacht_model__parent"
           label={t('yacht_model')}
           options={yachtModels}
           values={values}
@@ -226,7 +226,7 @@ const ConnectedOfferFilter = ({ filterValues, searchComponent = null }) => {
         values={values}
         onSubmit={(values) => {
           if (!values['yacht__yacht_model__builder']) {
-            values['yacht__yacht_model'] = undefined;
+            values['yacht__yacht_model__parent'] = undefined;
           }
           setValues(values);
           router.push(searchUrl(values), undefined, { scroll: false });

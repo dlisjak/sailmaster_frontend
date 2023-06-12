@@ -25,7 +25,7 @@ const VsaPlovila = ({ yachts }) => {
                   {models.map((model) => (
                     <li className="" key={model.value}>
                       <Link
-                        href={`/najem-plovil?yacht__yacht_model__builder=${brand.value}&yacht__yacht_model=${model.value}`}
+                        href={`/najem-plovil?yacht__yacht_model__builder=${brand.value}&yacht__yacht_model__parent=${model.value}`}
                         target="_blank"
                       >
                         {model.label}
