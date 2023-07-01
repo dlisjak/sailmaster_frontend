@@ -11,7 +11,7 @@ const VsaPlovila = ({ yachts }) => {
       <Container>
         <h1>Vsa plovila</h1>
         <ul className="columns-2 md:columns-3 lg:columns-4">
-          {yachts.map(({ brand, models }) => {
+          {yachts?.map(({ brand, models }) => {
             return (
               <li key={brand.value} className="inline-block w-full p-2 pb-4">
                 <Link
@@ -22,7 +22,7 @@ const VsaPlovila = ({ yachts }) => {
                   {brand.label}
                 </Link>
                 <ul>
-                  {models.map((model) => (
+                  {models?.map((model) => (
                     <li className="" key={model.value}>
                       <Link
                         href={`/najem-plovil?yacht__yacht_model__builder=${brand.value}&yacht__yacht_model__parent=${model.value}`}
@@ -57,7 +57,7 @@ export const getStaticProps = async (ctx) => {
         } catch (err) {
           resolve({ brand });
         }
-      }, 300 * i);
+      }, 100 * i);
     });
 
     promises.push(promise);
