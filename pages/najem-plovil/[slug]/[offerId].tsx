@@ -21,7 +21,6 @@ const OfferDetailPage = ({ offer, canonicalUrl }) => {
   const { wishlist, mutateWishlist } = useWishlist();
   const inWishlist = wishlist && Array.from(wishlist).includes(offer.id.toString());
   const { t } = useTranslation('common');
-  const { posts } = useBlogLatest();
 
   if (!offer) {
     return <NotFound />;

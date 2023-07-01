@@ -30,7 +30,6 @@ import {
 import { optionalServices, obligatoryServices } from '../utils/offerUtils';
 import SimilarOffersCarousel from './SimilarOffersCarousel';
 import GoogleMap from './Googlemap';
-import { stripHtmlTags } from '../utils/miscUtils';
 import SidebarTestimonials from './SidebarTestimonials';
 
 import Heart from '../public/icons/priljubljeno.svg';
@@ -40,6 +39,7 @@ import Check from '../public/icons/check.svg';
 import { INSURANCE_URL } from '../constants/urls';
 
 import ZAVAROVANJE_IMAGE from "../public/media/yacht-pool-Financial_System_2023-2.png"
+import "../node_modules/react-image-gallery/styles/css/image-gallery.css"
 
 export const OfferImageGallery = ({ offer }) => {
   const items = offer.yacht.pictures.map((url, i) => {
@@ -49,7 +49,7 @@ export const OfferImageGallery = ({ offer }) => {
       thumbnail: url,
       renderItem: () => (
         <div className='relative'>
-          <img src={url} alt={alt} />
+          <img src={url} alt={alt} height={520} />
         </div>
       ),
       renderThumbInner: () => (
@@ -59,6 +59,7 @@ export const OfferImageGallery = ({ offer }) => {
       )
     })
   });
+
   return <ImageGallery items={items} />;
 };
 
@@ -157,7 +158,7 @@ const Attribute = ({ label, value, icon = null, comment = null }) => {
     <div className="attribute">
       <div className="attribute__label">
         {icon && (
-          <Image
+          <img
             className="mr-[10px] display-initial"
             src={`/images/attributes/${icon}`}
             width={24}

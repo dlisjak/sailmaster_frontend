@@ -75,8 +75,6 @@ const OffersPage = ({ results, fallback, basicCanonicalUrl }) => {
     setLoadNext(response.next);
   }, [loadNext]);
 
-  console.log({ results });
-
   return (
     <SWRConfig value={{ fallback }}>
       <Head>

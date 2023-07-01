@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import dynamic from "next/dynamic.js";
 import { appWithTranslation } from 'next-i18next'
 import nextI18NextConfig from '../next-i18next.config.js'
-import SSRProvider from 'react-bootstrap/SSRProvider';
 import * as Sentry from "@sentry/react";
 import { Integrations } from "@sentry/tracing";
 import Script from 'next/script';
@@ -56,7 +55,7 @@ const MyApp = ({ Component, pageProps, router }) => {
 
 
   return (
-    <SSRProvider>
+    <>
       <Script
         src="https://www.googletagmanager.com/gtag/js?id=UA-71727689-1"
         strategy="afterInteractive"
@@ -79,7 +78,7 @@ const MyApp = ({ Component, pageProps, router }) => {
       <CookieLaw />
       {showModal && <PromoModal onHide={() => setShowModal(false)} />}
       {showInquiry && <InquiryModal onClose={() => setShowInquiry(false)} />}
-    </SSRProvider>
+    </>
   );
 };
 

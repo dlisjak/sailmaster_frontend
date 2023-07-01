@@ -51,9 +51,13 @@ export const getStaticProps = async (ctx) => {
   brands.forEach((brand, i) => {
     const promise = new Promise((resolve, reject) => {
       setTimeout(async () => {
-        const models = await getYachtModels(brand.value);
-        resolve({ brand, models });
-      }, 100 * i);
+        try {
+          const models = await getYachtModels(brand.value);
+          resolve({ brand, models });
+        } catch (err) {
+          resolve({ brand });
+        }
+      }, 300 * i);
     });
 
     promises.push(promise);

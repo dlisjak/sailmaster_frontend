@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { useState } from 'react';
 import YouTube from 'react-youtube';
 
@@ -30,7 +29,7 @@ const SliderGallery = ({ yacht }) => {
           <div className={`carousel-item ${idx === i ? 'active' : ''}`} key={`${image}-${i}`}>
             <div className="featuredYacht__imageContainer relative mb-1 flex aspect-[16/9] h-full w-full overflow-hidden md:aspect-[4/3]">
               {idx === i && (
-                <Image
+                <img
                   className="carousel-offer-item object-cover"
                   src={image}
                   alt={`${yacht.yacht_model.name} ${yacht.yacht_model.category_name}`}
