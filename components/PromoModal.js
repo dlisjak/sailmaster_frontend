@@ -15,13 +15,27 @@ import { subscribeNewsletterGift } from "../lib/base";
 import GIFT from "../public/media/gift_si.png";
 import Image from "next/image";
 
-const PromoModal = ({ onHide }) => {
+const PromoModal = () => {
   const { t, i18n } = useTranslation("common");
   const [finished, setFinished] = useState(false);
   const [error, setError] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    const handlePromoModal = () => {
+      if (!localStorage.getItem("promoModal")) {
+        setTimeout(() => {
+          setShowModal(true)
+          localStorage.setItem("promoModal", 1)
+        }, 3000)
+      }
+    }
+
+    handlePromoModal();
+  }, []);
 
   return (
-    <Modal show={true} onHide={onHide} dialogClassName="promo-modal">
+    <Modal show={showModal} onHide={() => setShowModal(false)} dialogClassName="promo-modal" >
       <Modal.Header>
         <Modal.Title></Modal.Title>
         <button type="button" className="close" onClick={onHide}>
@@ -95,7 +109,7 @@ const PromoModal = ({ onHide }) => {
           />
         )}
       </Modal.Body>
-    </Modal>
+    </Modal >
   );
 };
 
