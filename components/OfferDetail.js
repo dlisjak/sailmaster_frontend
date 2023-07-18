@@ -51,7 +51,7 @@ export const OfferImageGallery = ({ offer }) => {
       thumbnailHeight: 69,
       renderItem: () => (
         <div className='relative'>
-          <Image src={url} alt={alt} height={550} width={825} />
+          <Image src={url} alt={alt} height={550} width={825} priority={i == 0} />
         </div>
       ),
       renderThumbInner: () => (
