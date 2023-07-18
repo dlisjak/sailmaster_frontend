@@ -38,7 +38,7 @@ const PromoModal = () => {
     <Modal show={showModal} onHide={() => setShowModal(false)} dialogClassName="promo-modal" >
       <Modal.Header>
         <Modal.Title></Modal.Title>
-        <button type="button" className="close" onClick={onHide}>
+        <button type="button" className="close" onClick={() => setShowModal(false)}>
           <span aria-hidden="true">x</span>
           <span className="sr-only">Close</span>
         </button>
