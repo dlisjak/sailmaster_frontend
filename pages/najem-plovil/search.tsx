@@ -63,7 +63,7 @@ const OffersPage = ({ results, destination, url, count, fallback, canonicalUrl }
     setLoadNext(data?.next);
   }, [data]);
 
-  const handleLoadMore = useMemo(async () => {
+  const handleLoadMore = useCallback(async () => {
     if (!loadNext) return;
     const { data: response } = await getSearchResults(loadNext);
     setYachts((prev) => [...new Set([...prev, ...response.results])]);

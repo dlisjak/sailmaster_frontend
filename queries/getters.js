@@ -27,7 +27,9 @@ export const getYachtModels = async (builderId = null) => {
     },
   });
 
-  return (res.data || res.data.results || []).map(item => ({ value: item.id, label: item.name }))
+  const array = res.data.results || res.data;
+
+  return array.map(item => ({ value: item.id, label: item.name }))
 };
 
 export const getDestinations = async (frontpage = false) => {

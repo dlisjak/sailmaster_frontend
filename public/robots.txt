@@ -1,6 +1,5 @@
-# *
 User-agent: *
-Allow: /
+Disallow: /najem-plovil/*/*
 
 # Host
 Host: https://thesailmaster.si

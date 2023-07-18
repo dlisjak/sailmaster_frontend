@@ -5,6 +5,10 @@ h3 {
   font-weight: 500;
 }
 
+.image-gallery-slide-wrapper {
+  aspect-ratio: 16 / 9;
+}
+
 .offer-teaser__properties .properties .row > div {
   padding-left: 5px !important;
   padding-right: 5px !important;
