@@ -47,14 +47,16 @@ export const OfferImageGallery = ({ offer }) => {
 
     return ({
       thumbnail: url,
+      lazyLoad: true,
+      thumbnailHeight: 69,
       renderItem: () => (
         <div className='relative'>
-          <img src={url} alt={alt} height={520} />
+          <Image src={url} alt={alt} height={550} width={825} />
         </div>
       ),
       renderThumbInner: () => (
         <div className='relative min-h-[69px]'>
-          <img src={url} alt={`${alt} thumbnail`} width={150} height={100} />
+          <Image src={url} alt={`${alt} thumbnail`} width={150} height={100} />
         </div>
       )
     })
