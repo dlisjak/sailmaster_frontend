@@ -2,7 +2,7 @@ const path = require("path");
 
 module.exports = {
   i18n: {
-    locales: ['si', "it"],
+    locales: ["si"],
     defaultLocale: 'si',
   },
   domains: [
@@ -11,10 +11,6 @@ module.exports = {
       // e.g. www.example.com should be used if that is the expected hostname
       domain: 'thesailmaster.si',
       defaultLocale: 'si',
-    },
-    {
-      domain: 'thesailmaster.it',
-      defaultLocale: 'it',
     },
   ],
   localePath: path.resolve('./public/locales'),

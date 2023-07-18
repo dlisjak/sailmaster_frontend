@@ -3,6 +3,8 @@ module.exports = {
   generateRobotsTxt: true,
   sitemapSize: 7000,
   exclude: [
-    "/najem-plovil/*/*"
+    "/najem-plovil/*/*",
+    "/it",
+    "/it/*"
   ]
 }
