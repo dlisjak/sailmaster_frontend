@@ -69,6 +69,8 @@ export const getStaticPaths = async () => {
     };
   }
 
+  console.log('getStaticPaths');
+
   const url = process.env.NEXT_PUBLIC_API_URL + `/search/?limit=10&offset=10`;
   const response = await fetch(url);
   const data: any = await response.json();
