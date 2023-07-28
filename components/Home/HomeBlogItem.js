@@ -11,7 +11,7 @@ const HomeBlogItem = ({ slug, image, title, text }) => {
     <div className="home-blog">
       <div className="home-blog-image">
         <Link href={getBlogLink(slug)}>
-          <Image src={image} className="img-fluid" width={508} height={266} alt={title} />
+          <img src={image} className="img-fluid" width={508} height={266} alt={title} />
         </Link>
       </div>
       <div className="home-blog-bottom">

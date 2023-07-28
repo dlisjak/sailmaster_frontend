@@ -8,7 +8,7 @@ import Properties from './Properties';
 import { boatLink, offerLink, offerUrl } from '../utils/url_utils';
 import { useFeaturedYachts } from '../queries/queries';
 
-const FeaturedYacht = ({ item }) => {
+export const FeaturedYacht = ({ item }) => {
   const { t } = useTranslation('common');
 
   const yachtProperties = [
@@ -20,6 +20,7 @@ const FeaturedYacht = ({ item }) => {
   ];
 
   const link = boatLink(item.yacht_id, item.yacht_model_name);
+  const location = item.location || item.location_from;
 
   return (
     <div className="featured-yacht">
@@ -28,12 +29,12 @@ const FeaturedYacht = ({ item }) => {
           <Link href={link}>{item.title}</Link>
         </h3>
         {item.price && <h4 className="featured-yacht__price">{item.price}</h4>}
-        <Location location={item.location} />
+        <Location location={location} />
       </div>
       <div>
         {item.image && (
           <div className="featuredYacht__imageContainer relative mb-1 flex aspect-[4/3] w-full overflow-hidden object-cover">
-            <Image src={item.image} alt={item.title} width={506} height={380} />
+            <img src={item.image} alt={item.title} width={506} height={380} />
           </div>
         )}
         <div>

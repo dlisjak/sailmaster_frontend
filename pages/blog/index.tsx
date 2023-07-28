@@ -53,13 +53,12 @@ const Blog = ({ results, next }) => {
                         <Row>
                           <Col xs={12} sm={5}>
                             <Link href={getBlogLink(item.slug)}>
-                              <Image
+                              <img
                                 src={item.image.thumbnail}
                                 alt={item.title}
                                 width={512}
                                 height={220}
                                 className="img-fluid"
-                                priority={idx === 0}
                               />
                             </Link>
                           </Col>

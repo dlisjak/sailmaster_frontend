@@ -38,7 +38,7 @@ const BlogSingle = ({ blog_single }) => {
           <Col xs={12} sm={12}>
             <div className="col-inner">
               <div className="image-wrapper">
-                <Image
+                <img
                   alt={blog_single.title}
                   src={blog_single.image.full_size}
                   width={800}

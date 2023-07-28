@@ -24,7 +24,7 @@ const FeaturedEquipment = ({ items }) => {
     <div className="featured-equipment">
       {items.map((item, index) => (
         <div key={index} className="featured-equipment__item">
-          <Image
+          <img
             className="featured-equipment__img"
             width={72}
             height={72}

@@ -37,9 +37,12 @@ import PinIcon from '../public/icons/zemljevid1.svg';
 import ShareIcon from '../public/icons/deli.svg';
 import Check from '../public/icons/check.svg';
 import { INSURANCE_URL } from '../constants/urls';
+import useSWR from "swr";
 
 import ZAVAROVANJE_IMAGE from "../public/media/yacht-pool-Financial_System_2023-2.png"
 import "../node_modules/react-image-gallery/styles/css/image-gallery.css"
+import { fetcher } from '../lib/fetcher';
+import { FeaturedYacht } from './FeaturedYachts';
 
 export const OfferImageGallery = ({ offer }) => {
   const items = offer.yacht.pictures.map((url, i) => {
@@ -51,12 +54,12 @@ export const OfferImageGallery = ({ offer }) => {
       thumbnailHeight: 69,
       renderItem: () => (
         <div className='relative'>
-          <Image src={url} alt={alt} height={550} width={825} priority={i == 0} />
+          <img src={url} alt={alt} height={550} width={825} priority={i == 0} />
         </div>
       ),
       renderThumbInner: () => (
         <div className='relative min-h-[69px]'>
-          <Image src={url} alt={`${alt} thumbnail`} width={150} height={100} />
+          <img src={url} alt={`${alt} thumbnail`} width={150} height={100} />
         </div>
       )
     })
@@ -334,10 +337,16 @@ const OfferDetail = ({
     offer.location_from.country_code
   );
 
+  const { data, error } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/search/${offer.id}/similar/`, fetcher, {
+    revalidateOnFocus: false,
+  });
+
   const optServices = optionalServices(offer.season_specific_data.services);
 
   const pageTitle = `${yacht_model.category_name} - ${yacht_model.name}`;
   const emailLink = `mailto:?subject=${pageTitle}&body=${router.asPath}`;
+
+  console.log(data)
 
   return (
     <>
@@ -368,7 +377,7 @@ const OfferDetail = ({
               <SidebarTestimonials />
 
               <Link href={INSURANCE_URL}>
-                <Image
+                <img
                   src={ZAVAROVANJE_IMAGE}
                   alt={t('insurance')}
                   width={255}
@@ -475,6 +484,22 @@ const OfferDetail = ({
               </Button>
             </div>
           </Section>
+          {/* 
+          <Section title='Sorodna plovila'>
+            <div className="featured-yachts">
+              <div className="row">
+                {data?.similar_offers
+                  .map((item) => (
+                    <div
+                      className="flex pl-[15px] pr-[15px] sm:w-1/2 md:w-1/3 xl:w-1/4"
+                      key={item.yacht_id}
+                    >
+                      <FeaturedYacht item={item} />
+                    </div>
+                  ))}
+              </div>
+            </div>
+          </Section> */}
 
           <Section title={t('offer_faq')}>
             <Faq

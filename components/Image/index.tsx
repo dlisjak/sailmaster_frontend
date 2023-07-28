@@ -7,7 +7,7 @@ const MyImage = ({ src, alt, width, height }) => {
     imgSrc = process.env.NEXT_PUBLIC_DOMAIN_URL + src;
   }
 
-  return <Image src={imgSrc} alt={alt} width={width} height={height} />;
+  return <img src={imgSrc} alt={alt} width={width} height={height} />;
 };
 
 export default MyImage;
